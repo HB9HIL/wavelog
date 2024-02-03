@@ -35,9 +35,10 @@ body {
         <div class="card-body">
 	    <div class="border-bottom mb-3">
 		<h5>Welcome to the Demo of Wavelog</h5>
-		<p>This demo will be reset every night at 0200z.<br>
+		<p>This demo will be reset every night at 0200z.<br><br>
 		Username: demo<br>
-		Password: demo</p>
+		Password: demo<br><br>
+        All Information about Wavelog on <a href='https://www.github.com/wavelog/wavelog' target='_blank'>Github</a></p>
 	    </div>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
 			<?php $this->form_validation->set_error_delimiters('', ''); ?>
