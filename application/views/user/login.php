@@ -33,18 +33,25 @@ body {
     <img src="<?php echo base_url(); ?>assets/logo/<?php echo $this->optionslib->get_logo('main_logo'); ?>.png" class="mx-auto d-block mainLogo" alt="">
     <div class="my-2 rounded-0 shadow-sm card mb-2 shadow-sm">
         <div class="card-body">
+	    <div class="border-bottom mb-3">
+		<h5>Welcome to the Demo of Wavelog</h5>
+		<p>This demo will be reset every night at 0200z.<br><br>
+		Username: demo<br>
+		Password: demo<br><br>
+        All Information about Wavelog on <a href='https://www.github.com/wavelog/wavelog' target='_blank'>Github</a></p>
+	    </div>
             <form method="post" action="<?php echo site_url('user/login'); ?>" name="users">
 			<?php $this->form_validation->set_error_delimiters('', ''); ?>
                 <input type="hidden" name="id" value="<?php echo $this->uri->segment(3); ?>" />
                 <div>
                     <label for="floatingInput"><strong><?php echo lang('account_username'); ?></strong></label>
-                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="<?php echo lang('account_username'); ?>"
+                    <input type="text" name="user_name" class="form-control" id="floatingInput" placeholder="demo"
                         value="<?php echo $this->input->post('user_name'); ?>" autofocus>
                 </div>
                 <div>
                     <label for="floatingPassword"><strong><?php echo lang('account_password'); ?></strong></label>
                     <input type="password" name="user_password" class="form-control" id="floatingPassword"
-                        placeholder="<?php echo lang('account_password'); ?>">
+                        placeholder="demo">
                 </div>
 
                 <div>
