@@ -20,9 +20,3 @@ sync.sh
 *.swp
 .debug
 .htaccess
-assets/json/dok.txt
-assets/json/pota.txt
-assets/json/sota.txt
-assets/json/wwff.txt
-updates/clublog_scp.txt
-updates/lotw_users.csv
