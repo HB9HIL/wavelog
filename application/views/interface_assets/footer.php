@@ -47,6 +47,7 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/common.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
 
@@ -90,7 +91,11 @@ if($this->session->userdata('user_id') != null) {
 }
 ?>
 
-<!-- Version Dialog END -->
+<!-- Operator -->
+
+<script>
+    displayOperatorDialog();
+</script>
 
 <script>
     function set_active_location(current_active, new_active) {
