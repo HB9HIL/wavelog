@@ -94,8 +94,10 @@ if($this->session->userdata('user_id') != null) {
 <!-- Operator -->
 
 <script>
-    <?php $op_call = $this->session->userdata('operator_callsign');
-    if ($op_call == 'DL250CDF') { ?>
+    <?php 
+    $op_call = $this->session->userdata('operator_callsign');
+    $user_type = $this->session->userdata('user_type');
+    if ($op_call == 'DL250CDF' && $user_type != '99') { ?>
         displayOperatorDialog();
     <?php } ?>
 </script>
