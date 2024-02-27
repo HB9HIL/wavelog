@@ -1,4 +1,4 @@
-<div class="modal fade" id="operatorModal" tabindex="-1" aria-labelledby="operatorLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade bg-black bg-opacity-50" id="operatorModal" tabindex="-1" aria-labelledby="operatorLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
             <div class="modal-header">
