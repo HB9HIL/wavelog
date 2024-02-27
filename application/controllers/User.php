@@ -708,7 +708,7 @@ class User extends CI_Controller {
 				redirect('dashboard');
 			} else {
 				if(ENVIRONMENT == 'maintenance') {
-					$this->session->set_flashdata('notice', 'Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in.');
+					$this->session->set_flashdata('notice', 'Sorry. Die DL250CDF Instanz befindet sich aktuell im Wartungsmodus. Warte ein paar Minuten. Wavelog ist gleich wieder bereit für die nächsten QSOs!');
 					redirect('user/login');
 				} else {
 					$this->session->set_flashdata('error', 'Incorrect username or password!');
