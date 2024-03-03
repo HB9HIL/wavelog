@@ -60,11 +60,11 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 
 		<ul class="navbar-nav">
-		<?php
+		<!-- <?php
 		if (!empty($slug)) { ?>
 		<li class="nav-item">
 			<a class="nav-link" href="<?php echo site_url('visitor/satellites/'.$slug);?>">Gridsquares</a>
-		</li>
+		</li> -->
 		<?php
 			$this->CI =& get_instance();
 			if ($this->CI->oqrs_enabled($slug)) {
@@ -81,11 +81,11 @@
 					<a class="btn btn-secondary" href="https://github.com/wavelog/wavelog">Visit Wavelog on Github</a>
 				</li>
 			<?php } ?>
-			<?php if ($this->uri->segment(1) != "oqrs") { ?>
+			<!-- <?php if ($this->uri->segment(1) != "oqrs") { ?>
 				<li class="nav-item">
 					<a class="btn btn-primary ms-2" href="<?php echo site_url('user/login');?>">Login</a>
 				</li>
-			<?php } ?>
+			<?php } ?> -->
 		</ul>
 		<div class="m-2">
 			<?php if (!empty($slug)) {
