@@ -164,18 +164,6 @@ if($this->session->userdata('user_id') != null) {
     <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "logbooks" && $this->uri->segment(2) == "edit") { ?>
-<script>
-    function removeSlug() {
-        var slugLink = document.getElementById("slugLink");
-        if (slugLink !== null) {
-            slugLink.style.display = "none";
-        }
-        document.getElementById('publicSlugInput').value = ''
-    }
-</script>
-<?php } ?>
-
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>
@@ -431,6 +419,10 @@ $(function () {
                 $('[data-bs-toggle="tooltip"]').tooltip();
                 $(".runbutton").removeClass('running');
                 $(".runbutton").prop('disabled', false);
+
+				$('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function () {
+                        showQsoActionsMenu($(this).closest('.dropdown'));
+                    });
             });
     }
 
@@ -1292,6 +1284,8 @@ $($('#callsign')).on('keypress',function(e) {
 <script>
 $(document).ready(function(){
     $('#btn_update_dxcc').bind('click', function(){
+		$(".ld-ext-right").addClass("running");
+		$(".ld-ext-right").prop("disabled", true);
         $('#dxcc_update_status').show();
         $.ajax({url:"update/dxcc"});
         setTimeout(update_stats,5000);
@@ -1302,7 +1296,10 @@ $(document).ready(function(){
 
             if ((val  === null) || (val.substring(0,4) !="DONE")){
                 setTimeout(update_stats, 5000);
-            }
+            } else {
+				$(".ld-ext-right").removeClass("running");
+				$(".ld-ext-right").prop("disabled", false);
+			}
         });
 
     }
@@ -1917,9 +1914,9 @@ $(document).ready(function(){
 <script>
     var reload_after_qso_safe = false;
     <?php if (
-	$this->uri->segment(1) != "search" && 
-	$this->uri->segment(2) != "filter" && 
-	$this->uri->segment(1) != "qso" && 
+	$this->uri->segment(1) != "search" &&
+	$this->uri->segment(2) != "filter" &&
+	$this->uri->segment(1) != "qso" &&
 	$this->uri->segment(1) != "logbookadvanced") { ?>
 		reload_after_qso_safe = true;
 	<?php } ?>
@@ -2148,9 +2145,8 @@ $(document).ready(function(){
 function viewQsl(picture, callsign) {
 
             var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
-            var baseURL= "<?php echo base_url();?>";
-            var $textAndPic = $('<div></div>');
-                $textAndPic.append('<center><img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+baseURL+webpath_qsl+'/'+picture+'" /><center>');
+            var textAndPic = $('<div class="text-center"></div>');
+                textAndPic.append('<img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+base_url+webpath_qsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
                 title = 'QSL Card';
@@ -2161,7 +2157,7 @@ function viewQsl(picture, callsign) {
             BootstrapDialog.show({
                 title: title,
                 size: BootstrapDialog.SIZE_WIDE,
-                message: $textAndPic,
+                message: textAndPic,
                 buttons: [{
                     label: lang_admin_close,
                     action: function(dialogRef){
@@ -2182,9 +2178,8 @@ function deleteQsl(id) {
                 btnOKClass: 'btn-danger',
                 callback: function(result) {
                     if(result) {
-                        var baseURL= "<?php echo base_url();?>";
                         $.ajax({
-                            url: baseURL + 'index.php/qsl/delete',
+                            url: base_url + 'index.php/qsl/delete',
                             type: 'post',
                             data: {'id': id
                             },
@@ -2256,9 +2251,8 @@ function viewEqsl(picture, callsign) {
    * Used to fetch QSOs from the logbook in the awards
    */
     function displayContacts(searchphrase, band, mode, type, qsl) {
-        var baseURL = "<?php echo base_url();?>";
         $.ajax({
-            url: baseURL + 'index.php/awards/qso_details_ajax',
+            url: base_url + 'index.php/awards/qso_details_ajax',
             type: 'post',
             data: {
                 'Searchphrase': searchphrase,
@@ -2360,13 +2354,13 @@ function viewEqsl(picture, callsign) {
 	    }
     });
     }
+
     function uploadQsl() {
         var webpath_qsl = "<?php echo $this->paths->getPathQsl(); ?>";
-        var baseURL= "<?php echo base_url();?>";
         var formdata = new FormData(document.getElementById("fileinfo"));
 
         $.ajax({
-            url: baseURL + 'index.php/qsl/uploadqsl',
+            url: base_url + 'index.php/qsl/uploadqsl',
             type: 'post',
             data: formdata,
             enctype: 'multipart/form-data',
@@ -2381,7 +2375,7 @@ function viewEqsl(picture, callsign) {
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<div class="text-center carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+base_url+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div>');
                         $("#qslcardfront").val(null);
                     }
                     else {
@@ -2401,7 +2395,7 @@ function viewEqsl(picture, callsign) {
                         $('.qslcardtab').removeAttr('hidden');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li class="active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<div class="text-center active carousel-item carouselimageid_'+data.status.front.insertid+'"><img class="img-fluid w-qsl" src="'+base_url+'/'+webpath_qsl+'/'+data.status.front.filename+'" alt="QSL picture #'+(quantity+1)+'"></div>');
                         $(".carouselExampleIndicators").carousel();
                         $("#qslcardfront").val(null);
                     }
@@ -2420,7 +2414,7 @@ function viewEqsl(picture, callsign) {
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<div class="text-center carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+base_url+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div>');
                         $("#qslcardback").val(null);
                     }
                     else {
@@ -2440,7 +2434,7 @@ function viewEqsl(picture, callsign) {
                         $('.qslcardtab').removeAttr('hidden');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li class="active" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
-                        $(".carousel-inner").append('<center><div class="active carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+baseURL+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div></center>');
+                        $(".carousel-inner").append('<div class="text-center active carousel-item carouselimageid_'+data.status.back.insertid+'"><img class="img-fluid w-qsl" src="'+base_url+'/'+webpath_qsl+'/'+data.status.back.filename+'" alt="QSL picture #'+(quantity+1)+'"></div>');
                         $(".carouselExampleIndicators").carousel();
                         $("#qslcardback").val(null);
                     }
@@ -2458,9 +2452,8 @@ function viewEqsl(picture, callsign) {
 	function addQsosToQsl(filename) {
 		var title = 'Add additional QSOs to a QSL Card';
 
-		var baseURL= "<?php echo base_url();?>";
 		$.ajax({
-			url: baseURL + 'index.php/qsl/loadSearchForm',
+			url: base_url + 'index.php/qsl/loadSearchForm',
 			type: 'post',
 			data: {'filename': filename},
 			success: function(html) {
@@ -2484,9 +2477,8 @@ function viewEqsl(picture, callsign) {
 	function addQsoToQsl(qsoid, filename, id) {
 		var title = 'Add additional QSOs to a QSL Card';
 
-		var baseURL= "<?php echo base_url();?>";
 		$.ajax({
-			url: baseURL + 'index.php/qsl/addQsoToQsl',
+			url: base_url + 'index.php/qsl/addQsoToQsl',
 			type: 'post',
 			data: {'filename': filename, 'qsoid': qsoid},
 			success: function(html) {
@@ -2501,9 +2493,8 @@ function viewEqsl(picture, callsign) {
 	}
 
 	function searchAdditionalQsos(filename) {
-		var baseURL= "<?php echo base_url();?>";
 		$.ajax({
-			url: baseURL + 'index.php/qsl/searchQsos',
+			url: base_url + 'index.php/qsl/searchQsos',
 			type: 'post',
 			data: {'callsign': $('#callsign').val(), 'filename': filename},
 			success: function(html) {

@@ -872,3 +872,71 @@ label {
 	vertical-align: middle;
 }
 
+.table .editRow {
+	--bs-table-bg: none !important;
+	--bs-table-accent-bg: none !important;
+}
+
+/* Used in maps */
+.legend {
+	padding: 6px 8px;
+	font: 14px Arial, Helvetica, sans-serif;
+	line-height: 24px;
+	color: rgb(255, 255, 255) !important;	
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 10px;
+	background-color: rgb(52, 55, 56) !important;
+}
+.legend h4 {
+	text-align: center;
+	font-size: 16px;
+	margin: 2px 12px 8px;
+	color: rgb(255, 255, 255) !important;
+}
+.legend span {
+	position: relative;
+	bottom: 3px;
+}
+.legend i {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.info.leaflet-control {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+	background-color: rgb(52, 55, 56) !important;
+	color: rgb(255, 255, 255) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: rgb(255, 255, 255) !important;
+}
+
+.leaflet-popup-content-wrapper {
+	background-color: rgb(52, 55, 56) !important;
+	color: rgb(255, 255, 255) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.leaflet-popup-close-button {
+	color: rgb(255, 255, 255) !important;
+}
+
+.leaflet-popup-tip {
+	background-color: rgb(52, 55, 56) !important;
+	border-color: #fff;
+	border-width: 1px;
+	border-style: solid;
+}

@@ -166,6 +166,15 @@ $options = json_decode($options);
 				} ?>
                         </select>
                     </div>
+                    <div hidden class="orbits_dropdown mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
+                        <label class="form-label" for="orbits"><?php echo lang('general_word_orbit'); ?></label>
+                        <select class="form-select form-select-sm" id="orbits">
+                            <option value="All"><?php echo lang('general_word_all'); ?></option>
+                            <?php foreach($orbits as $orbit) {
+					echo '<option value="' . htmlentities($orbit) . '"' . '>' . htmlentities($orbit) . '</option>'."\n";
+				} ?>
+                        </select>
+                    </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
                         <label class="form-label" for="selectPropagation"><?php echo lang('filter_general_propagation'); ?></label>
                         <select id="selectPropagation" name="selectPropagation" class="form-select form-select-sm">
@@ -199,7 +208,6 @@ $options = json_decode($options);
                           echo '<option value="'. $i . '">'. $i .'</option>';
                       }
                       ?>
-                            ?>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-2 col-md-2 col-sm-3 col-xl">
@@ -422,7 +430,13 @@ $options = json_decode($options);
         <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="dupeButton"><?php echo lang('filter_dupes'); ?><div class="ld ld-ring ld-spin"></div></button>
         <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="editButton">Edit<div class="ld ld-ring ld-spin"></div></button>
 		<button type="button" class="btn btn-sm btn-danger me-1" id="deleteQsos"><?php echo lang('filter_actions_delete'); ?></button>
-        <button type="button" class="btn btn-sm btn-primary me-1 ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
+		<div class="btn-group me-1" role="group">
+            <button type="button" class="btn btn-sm btn-primary ld-ext-right" id="mapButton" onclick="mapQsos(this.form);"><?php echo lang('filter_map'); ?><div class="ld ld-ring ld-spin"></div></button>
+			<button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+			<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li><button type="button" class="dropdown-item" onclick="mapGlobeQsos(this.form);" id="mapGlobeButton">Globe map</button></li>
+            </ul>
+        </div>
 		<button type="options" class="btn btn-sm btn-primary me-1" id="optionButton"><?php echo lang('filter_options'); ?></button>
 		<button type="reset" class="btn btn-sm btn-danger me-1" id="resetButton"><?php echo lang('filter_reset'); ?></button>
 

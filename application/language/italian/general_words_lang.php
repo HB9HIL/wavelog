@@ -19,6 +19,7 @@ $lang['general_word_cancel'] = "Cancel";
 $lang['general_word_ok'] = "OK";
 $lang['general_word_show'] = "Show";
 $lang['general_word_attention'] = "Attention";
+$lang['general_word_message'] = "Message";
 $lang['general_word_enabled'] = "Enabled";
 $lang['general_word_disabled'] = "Disabled";
 $lang['general_word_export'] = "Export";
@@ -44,10 +45,12 @@ $lang['general_word_location'] = 'Luogo';
 $lang['general_word_comment'] = 'Commento';
 $lang['general_word_general'] = 'Generale';
 $lang['general_word_satellite'] = 'Satellite';
+$lang['general_word_orbit'] = 'Orbit';
 $lang['general_word_satellite_short'] = 'Sat';
 $lang['general_word_notes'] = 'Note';
 $lang['general_word_country'] = 'Paese';
 $lang['general_word_city'] = 'City';
+$lang['general_word_age'] = 'Age';
 
 $lang['general_word_total'] = 'Totale';
 $lang['general_word_year'] = 'Anno';
@@ -153,6 +156,7 @@ $lang['gen_hamradio_qslvia'] = 'QSL via';
 $lang['gen_hamradio_qslmsg'] = 'QSL Msg';
 $lang['gen_hamradio_locator'] = 'Locatore';
 $lang['gen_hamradio_transmit_power'] = 'Potenza di Trasmissione (W)';
+$lang['gen_hamradio_receive_power'] = 'RX Power (W)';
 $lang['gen_hamradio_propagation_mode'] = 'Modo di Propagazione';
 
 $lang['gen_hamradio_satellite_name'] = 'Nome Satellite';
@@ -232,4 +236,5 @@ $lang['dashboard_logbooks_warning'] = 'You have no station logbook. Go <a href="
 
 $lang['hams_at_no_activations_found'] = 'No upcoming activations found. Please check back later.';
 
+$lang['gen_add_to_contest'] = "Add QSOs to Contest";
 $lang['datatables_language'] = "it-IT";
