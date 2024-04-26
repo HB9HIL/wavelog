@@ -1258,6 +1258,12 @@ class Logbook_model extends CI_Model {
 		  $lotwrdate = $qso->COL_LOTW_QSLRDATE;
 	  }
 
+	  if ($this->input->post('distance')) {
+		  $distance = $this->input->post('distance');
+	  } else {
+		  $distance = null;
+	  }
+
 	  $data = array(
 		  'COL_TIME_ON' => $this->input->post('time_on'),
 		  'COL_TIME_OFF' => $this->input->post('time_off'),
@@ -1271,7 +1277,7 @@ class Logbook_model extends CI_Model {
 		  'COL_RST_SENT' => $this->input->post('rst_sent'),
 		  'COL_GRIDSQUARE' => strtoupper(trim($this->input->post('locator'))),
 		  'COL_VUCC_GRIDS' => strtoupper(preg_replace('/\s+/', '', $this->input->post('vucc_grids'))),
-		  'COL_DISTANCE' => $this->input->post('distance'),
+		  'COL_DISTANCE' => $distance,
 		  'COL_COMMENT' => $this->input->post('comment'),
 		  'COL_NAME' => $this->input->post('name'),
 		  'COL_COUNTRY' => $country,
@@ -1775,13 +1781,6 @@ class Logbook_model extends CI_Model {
 	  } else {
 		  return;
 	  }
-  }
-
-  // returns the number of qso's total on this instance
-  function count_all_qso() {
-    $sql = 'SELECT COUNT(*) AS total FROM '. $this->config->item('table_name').' WHERE station_id IS NOT NULL;';
-    $query = $this->db->query($sql);
-    return $query->row()->total;
   }
 
     /*
@@ -4631,12 +4630,6 @@ function lotw_last_qsl_date($user_id) {
            print "No QSOs affected.";
         }
         $this->db->trans_complete();
-    }
-
-    public function calls_without_station_id() {
-		$query=$this->db->query("select distinct COL_STATION_CALLSIGN from ".$this->config->item('table_name')." where station_id is null or station_id = ''");
-	    $result = $query->result_array();
-	    return $result;
     }
 
     public function check_for_station_id() {
