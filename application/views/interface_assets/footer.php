@@ -52,6 +52,7 @@
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/common.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
@@ -114,6 +115,11 @@ if($this->session->userdata('user_id') != null) {
 
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
     <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
+<?php } ?>
+
+<!-- JS library to convert cron format to human readable -->
+<?php if ($this->uri->segment(1) == "cron") { ?>
+    <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "options") { ?>

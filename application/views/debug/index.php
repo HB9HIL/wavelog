@@ -43,7 +43,14 @@
                             <td>Environment</td>
                             <td><?php echo ENVIRONMENT; ?></td>
                         </tr>
-
+                        <tr class="blank-row">
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>Total QSO on this instance</td>
+                            <td><?php echo $qso_total . ' QSOs'; ?></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -455,38 +462,38 @@
                         </thead>
                         <tr>
                             <td>DXCC update from Club Log</td>
-                            <td><?php echo (($this->optionslib->get_option('dxcc_clublog_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('dxcc_clublog_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('dxcc_clublog_update') ?? '')))  ?></td>
+                            <td><?php echo $dxcc_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update'); ?>">Update</a></td>
 
                         </tr>
                         <tr>
                             <td>DOK file download</td>
-                            <td><?php echo (($this->optionslib->get_option('dok_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('dok_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('dok_file_update') ?? '')))  ?></td>
+                            <td><?php echo $dok_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_dok'); ?>">Update</a></td>
                         </tr>
                         <tr>
                             <td>LoTW users download</td>
-                            <td><?php echo (($this->optionslib->get_option('lotw_users_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('lotw_users_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('lotw_users_update') ?? '')))  ?></td>
+                            <td><?php echo $lotw_user_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/lotw_users'); ?>">Update</a></td>
                         </tr>
                         <tr>
                             <td>POTA file download</td>
-                            <td><?php echo (($this->optionslib->get_option('pota_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('pota_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('pota_file_update') ?? '')))  ?></td>
+                            <td><?php echo $pota_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_pota'); ?>">Update</a></td>
                         </tr>
                         <tr>
                             <td>SCP file download</td>
-                            <td><?php echo (($this->optionslib->get_option('scp_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('scp_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('scp_update') ?? '')))  ?></td>
+                            <td><?php echo $scp_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_clublog_scp'); ?>">Update</a></td>
                         </tr>
                         <tr>
                             <td>SOTA file download</td>
-                            <td><?php echo (($this->optionslib->get_option('sota_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('sota_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('sota_file_update') ?? '')))  ?></td>
+                            <td><?php echo $sota_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_sota'); ?>">Update</a></td>
                         </tr>
                         <tr>
                             <td>WWFF file download</td>
-                            <td><?php echo (($this->optionslib->get_option('wwff_file_update') ?? '') == '' ? '' : date($custom_date_format, strtotime($this->optionslib->get_option('wwff_file_update') ?? ''))  . ' ' . date("h:i", strtotime($this->optionslib->get_option('wwff_file_update') ?? '')))  ?></td>
+                            <td><?php echo $wwff_update->last_run ?? 'never'; ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>">Update</a></td>
                         </tr>
                     </table>
