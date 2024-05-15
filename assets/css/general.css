@@ -312,6 +312,21 @@ TD.qsl {
 	font-size: 1.1em;
 }
 
+TD.clublog {
+	width: 33px;
+	white-space: nowrap;
+}
+
+.clublog-green {
+	color: #00a000 !important;
+	font-size: 1.1em;
+}
+
+.clublog-red {
+	color: #f00 !important;
+	font-size: 1.1em;
+}
+
 TD.qrz {
 	width: 33px;
 	white-space: nowrap;
@@ -666,11 +681,6 @@ div#station_logbooks_linked_table_paginate {
 	margin-bottom: 0px;
 }
 
-#advancedmap {
-	height: calc(100vh - 280px) !important;
-	max-height: 1000px !important;
-}
-
 .lotw-cert-list table {
 	margin-bottom: 0px;
 }
@@ -840,9 +850,14 @@ label {
 }
 
 .coordinates {
-    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+	justify-content: center;
     align-items: stretch;
 }
+
 .cohidden {
     display:none;
 }
