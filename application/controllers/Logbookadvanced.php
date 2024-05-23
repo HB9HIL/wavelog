@@ -60,14 +60,13 @@ class Logbookadvanced extends CI_Controller {
 
 		$pageData['bands'] = $this->bands->get_worked_bands();
 
-		$CI =& get_instance();
 		// Get Date format
-		if($CI->session->userdata('user_date_format')) {
+		if($this->session->userdata('user_date_format')) {
 			// If Logged in and session exists
-			$pageData['custom_date_format'] = $CI->session->userdata('user_date_format');
+			$pageData['custom_date_format'] = $this->session->userdata('user_date_format');
 		} else {
 			// Get Default date format from /config/wavelog.php
-			$pageData['custom_date_format'] = $CI->config->item('qso_date_format');
+			$pageData['custom_date_format'] = $this->config->item('qso_date_format');
 		}
 
 		switch ($pageData['custom_date_format']) {
@@ -494,7 +493,6 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['rsts']['show'] = $this->input->post('rsts');
 		$json_string['band']['show'] = $this->input->post('band');
 		$json_string['myrefs']['show'] = $this->input->post('myrefs');
-		$json_string['refs']['show'] = $this->input->post('refs');
 		$json_string['name']['show'] = $this->input->post('name');
 		$json_string['qslvia']['show'] = $this->input->post('qslvia');
 		$json_string['qsl']['show'] = $this->input->post('qsl');
@@ -509,6 +507,12 @@ class Logbookadvanced extends CI_Controller {
 		$json_string['pota']['show'] = $this->input->post('pota');
 		$json_string['operator']['show'] = $this->input->post('operator');
 		$json_string['comment']['show'] = $this->input->post('comment');
+		$json_string['propagation']['show'] = $this->input->post('propagation');
+		$json_string['contest']['show'] = $this->input->post('contest');
+		$json_string['gridsquare']['show'] = $this->input->post('gridsquare');
+		$json_string['sota']['show'] = $this->input->post('sota');
+		$json_string['dok']['show'] = $this->input->post('dok');
+		$json_string['sig']['show'] = $this->input->post('sig');
 
 		$obj['column_settings']= json_encode($json_string);
 

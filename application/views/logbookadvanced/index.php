@@ -13,7 +13,37 @@
     <?php
     echo "var homegrid ='" . strtoupper($homegrid[0]) . "';";
     if (!isset($options)) {
-        $options = "{\"datetime\":{\"show\":\"true\"},\"de\":{\"show\":\"true\"},\"dx\":{\"show\":\"true\"},\"mode\":{\"show\":\"true\"},\"rstr\":{\"show\":\"true\"},\"rsts\":{\"show\":\"true\"},\"band\":{\"show\":\"true\"},\"myrefs\":{\"show\":\"true\"},\"refs\":{\"show\":\"true\"},\"name\":{\"show\":\"true\"},\"qslvia\":{\"show\":\"true\"},\"qsl\":{\"show\":\"true\"},\"lotw\":{\"show\":\"true\"},\"eqsl\":{\"show\":\"true\"},\"qslmsg\":{\"show\":\"true\"},\"dxcc\":{\"show\":\"true\"},\"state\":{\"show\":\"true\"},\"cqzone\":{\"show\":\"true\"},\"ituzone\":{\"show\":\"true\"},\"iota\":{\"show\":\"true\"},\"pota\":{\"show\":\"true\"},\"operator\":{\"show\":\"true\"},\"comment\":{\"show\":\"true\"}}";
+        $options = "{
+            \"datetime\":{\"show\":\"true\"},
+            \"de\":{\"show\":\"true\"},
+            \"dx\":{\"show\":\"true\"},
+            \"mode\":{\"show\":\"true\"},
+            \"rstr\":{\"show\":\"true\"},
+            \"rsts\":{\"show\":\"true\"},
+            \"band\":{\"show\":\"true\"},
+            \"myrefs\":{\"show\":\"true\"},
+            \"name\":{\"show\":\"true\"},
+            \"qslvia\":{\"show\":\"true\"},
+            \"qsl\":{\"show\":\"true\"},
+            \"lotw\":{\"show\":\"true\"},
+            \"eqsl\":{\"show\":\"true\"},
+            \"qslmsg\":{\"show\":\"true\"},
+            \"dxcc\":{\"show\":\"true\"},
+            \"state\":{\"show\":\"true\"},
+            \"cqzone\":{\"show\":\"true\"},
+            \"ituzone\":{\"show\":\"true\"},
+            \"iota\":{\"show\":\"true\"},
+            \"pota\":{\"show\":\"true\"},
+            \"operator\":{\"show\":\"true\"},
+            \"comment\":{\"show\":\"true\"},
+            \"propagation\":{\"show\":\"true\"},
+			\"contest\":{\"show\":\"true\"},
+			\"gridsquare\":{\"show\":\"true\"},
+			\"sota\":{\"show\":\"true\"},
+			\"dok\":{\"show\":\"true\"},
+			\"wwff\":{\"show\":\"true\"},
+			\"sig\":{\"show\":\"true\"}
+        }";
     }
     $current_opts = json_decode($options);
     echo "var user_options = $options;";
@@ -33,6 +63,35 @@
         echo "\nvar o_template = { ituzone: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
+	if (!isset($current_opts->propagation)) {
+        echo "\nvar o_template = { propagation: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->contest)) {
+        echo "\nvar o_template = { contest: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->gridsquare)) {
+        echo "\nvar o_template = { gridsquare: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->sota)) {
+        echo "\nvar o_template = { sota: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->dok)) {
+        echo "\nvar o_template = { dok: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->wwff)) {
+        echo "\nvar o_template = { wwff: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+	if (!isset($current_opts->sig)) {
+        echo "\nvar o_template = { sig: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
+
 
     foreach ($mapoptions as $mo) {
         if ($mo != null) {
@@ -335,8 +394,9 @@ $options = json_decode($options);
             <button type="button" class="btn btn-sm btn-success me-1" id="sentBureau"><?php echo lang('filter_actions_sent_bureau'); ?></button>
             <button type="button" class="btn btn-sm btn-success me-1" id="sentDirect"><?php echo lang('filter_actions_sent_direct'); ?></button>
             <button type="button" class="btn btn-sm btn-success me-1" id="sentElectronic"><?php echo lang('filter_actions_sent_electronic'); ?></button>
-            <button type="button" class="btn btn-sm btn-warning me-1" id="dontSend"><?php echo lang('filter_actions_not_sent'); ?></button>
-            <button type="button" class="btn btn-sm btn-warning me-1" id="notRequired"><?php echo lang('filter_actions_qsl_n_required'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="dontSend"><?php echo lang('filter_actions_not_sent'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="notRequired"><?php echo lang('filter_actions_qsl_n_required'); ?></button>
+            <button type="button" class="btn btn-sm btn-danger me-1" id="notReceived"><?php echo lang('filter_actions_not_rcvd'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedBureau"><?php echo lang('filter_actions_recv_bureau'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedDirect"><?php echo lang('filter_actions_recv_direct'); ?></button>
             <button type="button" class="btn btn-sm btn-warning me-1" id="receivedElectronic"><?php echo lang('filter_actions_recv_electronic'); ?></button>
@@ -357,7 +417,7 @@ $options = json_decode($options);
 			<?php if (($options->state->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchState"><?php echo lang('filter_search_state'); ?></button><?php
             } ?>
-			<?php if (($options->refs->show ?? "true") == "true") { ?>
+			<?php if (($options->gridsquare->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchGridsquare"><?php echo lang('filter_search_gridsquare'); ?></button><?php
             } ?>
 			<?php if (($options->cqzone->show ?? "true") == "true") { ?>
@@ -375,13 +435,13 @@ $options = json_decode($options);
             <?php if (($options->iota->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchIota"><?php echo lang('filter_search_iota'); ?></button><?php
             } ?>
-			<?php if (($options->refs->show ?? "true") == "true") { ?>
+			<?php if (($options->sota->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchSota"><?php echo lang('filter_search_sota'); ?></button><?php
             } ?>
-            <?php if (($options->refs->show ?? "true") == "true") { ?>
+            <?php if (($options->pota->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchPota"><?php echo lang('filter_search_pota'); ?></button><?php
             } ?>
-            <?php if (($options->refs->show ?? "true") == "true") { ?>
+            <?php if (($options->wwff->show ?? "true") == "true") { ?>
                 <button type="button" class="btn btn-sm btn-primary me-1" id="searchWwff"><?php echo lang('filter_search_wwff'); ?></button><?php
             } ?>
             <?php if (($options->operator->show ?? "true") == "true") { ?>
@@ -463,11 +523,8 @@ $options = json_decode($options);
                     <?php if (($options->band->show ?? "true") == "true") {
                         echo '<th>' . lang('gen_hamradio_band') . '</th>';
                     } ?>
-                    <?php if (($options->myrefs->show ?? "true") == "true") {
-                        echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
-                    } ?>
-                    <?php if (($options->refs->show ?? "true") == "true") {
-                        echo '<th>' . lang('gen_hamradio_refs') . '</th>';
+					<?php if (($options->gridsquare->show ?? "true") == "true") {
+                        echo '<th>Gridsquare</th>';
                     } ?>
                     <?php if (($options->name->show ?? "true") == "true") {
                         echo '<th>' . lang('general_word_name') . '</th>';
@@ -510,6 +567,27 @@ $options = json_decode($options);
                     } ?>
                     <?php if (($options->comment->show ?? "true") == "true") {
                         echo '<th>' . lang('general_word_comment') . '</th>';
+                    } ?>
+					<?php if (($options->propagation->show ?? "true") == "true") {
+                        echo '<th>' . lang('filter_general_propagation') . '</th>';
+                    } ?>
+					<?php if (($options->contest->show ?? "true") == "true") {
+                        echo '<th>Contest</th>';
+                    } ?>
+					<?php if (($options->sota->show ?? "true") == "true") {
+                        echo '<th>SOTA</th>';
+                    } ?>
+					<?php if (($options->dok->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_dok') . '</th>';
+                    } ?>
+					<?php if (($options->wwff->show ?? "true") == "true") {
+                        echo '<th>WWFF</th>';
+                    } ?>
+					<?php if (($options->sig->show ?? "true") == "true") {
+                        echo '<th>SIG</th>';
+                    } ?>
+					<?php if (($options->myrefs->show ?? "true") == "true") {
+                        echo '<th>' . lang('gen_hamradio_myrefs') . '</th>';
                     } ?>
                 </tr>
             </thead>

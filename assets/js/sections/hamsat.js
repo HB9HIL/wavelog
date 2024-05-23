@@ -90,9 +90,9 @@ function loadActivationsTable(rows, show_workable_only) {
 		data.push(activation.aos_at_date);
 		data.push(activation.aos_to_los);
 		if (activation.callsign_wkd == 1) {;
-			data.push("<span class=\"text-success\">"+activation.callsign+"</span>");
+			data.push("<span class=\"text-success\">"+activation.callsign.replaceAll('0', 'Ø')+"</span>");
 		} else {
-			data.push(activation.callsign);
+			data.push(activation.callsign.replaceAll('0', 'Ø'));
 		}
 		data.push(activation.comment);
 		freq = parseFloat(activation.mhz).toFixed(3);
@@ -106,10 +106,12 @@ function loadActivationsTable(rows, show_workable_only) {
 		data.push("<span title=\""+activation.mode+"\" class=\"badge "+activation.mode_class+"\">"+activation.mode+"</span>");
 		grids = [];
 		for (var j=0; j < activation.grids_wkd.length; j++) {
-			if (activation.grids_wkd[j] == 1) {
-				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j]+"</span>")
-			} else {
-				grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j]+"</span>")
+			if (!grids.some(str => str.includes(activation.grids[j].substring(0, 4)))) {
+				if (activation.grids_wkd[j] == 1) {
+					grids.push("<span data-bs-toggle=\"tooltip\" title=\"Worked\" class=\"badge bg-success\">"+activation.grids[j].substring(0, 4)+"</span>")
+				} else {
+					grids.push("<span data-bs-toggle=\"tooltip\" title=\"Not Worked\" class=\"badge bg-danger\">"+activation.grids[j].substring(0, 4)+"</span>")
+				}
 			}
 		}
 		data.push(grids.join(' '));
