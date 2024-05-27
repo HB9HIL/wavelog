@@ -32,7 +32,7 @@ $config['show_time'] = FALSE;
 | Default is: M
 |
 */
-$config['measurement_base'] = 'M';
+$config['measurement_base'] = 'K';
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ $config['measurement_base'] = 'M';
 | Default is: FALSE
 |
 */
-$config['map_gridsquares'] = FALSE;
+$config['map_gridsquares'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ $config['map_gridsquares'] = FALSE;
 |
 */
 
-$config['public_search'] = FALSE;
+$config['public_search'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ $config['callsign_tags'] = TRUE;
 |
 */
 
-$config['qso_date_format'] = "d/m/y";
+$config['qso_date_format'] = "d.m.Y";
 
 /*
 |--------------------------------------------------------------------------
@@ -109,4 +109,4 @@ $config['qso_date_format'] = "d/m/y";
 |
 */
 
-$config['map_6digit_grids'] = FALSE;
+$config['map_6digit_grids'] = TRUE;
