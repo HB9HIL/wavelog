@@ -860,6 +860,8 @@ $(document).ready(function () {
 	});
 
 	$('#searchForm').submit();
+
+	$('#de').selectpicker();
 });
 
 function printlabel() {
