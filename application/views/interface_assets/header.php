@@ -18,6 +18,7 @@
 	<?php
 	$theme = $this->optionslib->get_theme();
 	if ($theme) { ?>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-multiselect.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/<?php echo $theme; ?>/bootstrap.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/general.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/selectize.bootstrap4.css" />
