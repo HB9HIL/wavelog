@@ -264,3 +264,12 @@ div.alert-danger {
 #searchbar-form .border {
     border-color: #757575 !important;
 }
+
+.multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback), .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active, .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active, .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active {
+    background-color: #515151;
+    color: white;
+}
+
+.multiselect-container .multiselect-option:hover, .multiselect-container .multiselect-group:hover, .multiselect-container .multiselect-all:hover, .multiselect-container .multiselect-option:focus, .multiselect-container .multiselect-group:focus, .multiselect-container .multiselect-all:focus {
+    background-color: #5e5e5e !important;
+}

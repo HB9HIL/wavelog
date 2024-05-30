@@ -467,14 +467,12 @@ $options = json_decode($options);
             <option value="5000">5000</option>
         </select>
 		<label class="me-2" for="de"><?php echo lang('general_word_location'); ?></label>
-		<select id="de" name="de" class="form-select form-select-sm me-2 w-auto">
-			<option value="All"><?php echo lang('general_word_all'); ?></option>
+		<select id="de" name="de" multiple="multiple"> <!-- don't add classes here; look at logbookadvanced.js  "$('#de').multiselect" -->
 			<?php foreach ($station_profile->result() as $station) { ?>
 				<option value="<?php echo $station->station_id; ?>"
 				<?php if ($station->station_id == $active_station_id) {
 					echo " selected =\"selected\"";
                 } ?>>
-				<?php echo lang('gen_hamradio_callsign') . ": " ?>
 				<?php echo $station->station_callsign; ?> (<?php echo $station->station_profile_name; ?>)
 			</option>
 			<?php } ?>
