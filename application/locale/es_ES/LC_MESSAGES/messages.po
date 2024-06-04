@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:50+0000\n"
-"PO-Revision-Date: 2024-06-04 22:05\n"
+"PO-Revision-Date: 2024-06-04 22:11\n"
 "Last-Translator: Kader Bouyakoub <bkader@mail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Crowdin-Project: wavelog-test\n"
 "X-Crowdin-Project-ID: 682556\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /gettext_po_test/application/locale/es_ES/LC_MESSAGES/messages.po\n"
-"X-Crowdin-File-ID: 38\n"
+"X-Crowdin-File: /gettext_po_test/application/locale/de_DE/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 36\n"
 
 #: application/views/dashboard/index.php:57
 msgid "dashboard_php_version_warning"
@@ -57,7 +57,7 @@ msgstr ""
 #: application/views/dashboard/index.php:108
 #: application/views/dashboard/index.php:158
 msgid "Callsign"
-msgstr "Rufzeichen"
+msgstr ""
 
 #: application/views/dashboard/index.php:124
 msgid "lotw_cert_expired"
@@ -69,11 +69,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:153
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #: application/views/dashboard/index.php:156
 msgid "Time"
-msgstr "Tiempo Test"
+msgstr ""
 
 #: application/views/dashboard/index.php:219
 msgid "QSOs Breakdown"
