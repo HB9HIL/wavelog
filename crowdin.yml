@@ -1,5 +1,19 @@
 files:
-  - source: /application/locale/messages.pot
-    translation: /application/locale/%locale_with_underscore%/LC_MESSAGES/messages.po
-bundles:
-  - 2
+  - source: '/application/locale/messages.pot'
+    translation: '/application/locale/%two_letters_code%_%locale%/LC_MESSAGES/messages.po'
+    skip_untranslated_files: true
+    skip_untranslated_strings: true
+
+    languages_mapping:
+      two_letters_code:
+        de: de
+        es: es
+        it: it
+        fr: fr
+      locale:
+        de: DE
+        es: ES
+        it: IT
+        fr: FR
+
+"preserve_hierarchy": true
