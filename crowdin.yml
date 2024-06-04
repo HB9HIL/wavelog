@@ -1,5 +1,5 @@
 files:
-  - source: /application/locale/*/LC_MESSAGES/messages.po
+  - source: /application/locale/messages.pot
     translation: /application/locale/%locale_with_underscore%/LC_MESSAGES/messages.po
 bundles:
   - 2
