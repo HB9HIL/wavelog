@@ -1,24 +1,22 @@
-# CODEIGNITER GETTEXT FILES.
-# Copyright (c) 2014 - 2016, British Columbia Institute of Technology
-# This file is distributed under the same license as the PACKAGE package.
-# EllisLab Dev Team <https://codeigniter.com>, 2016.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: CodeIgniter\n"
+"Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:50+0000\n"
-"PO-Revision-Date: 2017-02-09 12:05+0100\n"
-"Last-Translator: Kader Bouyakoub <bkader@mail.com>\n"
-"Language-Team: Kader Bouyakoub <bkader@mail.com>\n"
-"Language: es_ES\n"
+"PO-Revision-Date: 2024-06-04 22:05\n"
+"Last-Translator: \n"
+"Language-Team: Spanish\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Eazy Po 0.9.5.3\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _;__;_n;_d\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 5.5.5\n"
+"X-Crowdin-Project: wavelog-test\n"
+"X-Crowdin-Project-ID: 682556\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: /gettext_po_test/application/locale/de_DE/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 36\n"
 
 #: application/views/dashboard/index.php:57
 msgid "dashboard_php_version_warning"
@@ -57,7 +55,7 @@ msgstr ""
 #: application/views/dashboard/index.php:108
 #: application/views/dashboard/index.php:158
 msgid "Callsign"
-msgstr "Rufzeichen"
+msgstr ""
 
 #: application/views/dashboard/index.php:124
 msgid "lotw_cert_expired"
@@ -69,11 +67,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:153
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #: application/views/dashboard/index.php:156
 msgid "Time"
-msgstr "Tiempo Test"
+msgstr ""
 
 #: application/views/dashboard/index.php:219
 msgid "QSOs Breakdown"
@@ -81,7 +79,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:223
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: application/views/dashboard/index.php:228
 msgid "Year"
@@ -153,3 +151,4 @@ msgstr ""
 #: application/views/awards/cq/index.php:72
 msgid "Band"
 msgstr ""
+
