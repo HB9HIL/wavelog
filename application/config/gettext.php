@@ -53,13 +53,21 @@ $config['gettext_domain'] = NULL;
 | used on the site.
 */
 $config['gettext_languages'] = array(
-	'arabic',
+	'bulgarian',
+	'chinese_simplified',
+	'czech',
+	'dutch',
 	'english',
+	'finnish',
 	'french',
 	'german',
+	'greek',
 	'italian',
-	'portuguese',
+	'polish',
+	'russian',
 	'spanish',
+	'swedish',
+	'turkish'
 );
 
 /*
