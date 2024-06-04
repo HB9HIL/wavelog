@@ -79,7 +79,7 @@ msgstr "Total"
 
 #: application/views/dashboard/index.php:228
 msgid "Year"
-msgstr "Jahr"
+msgstr "Jahr TEST"
 
 #: application/views/dashboard/index.php:233
 msgid "Month"
