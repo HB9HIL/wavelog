@@ -47,7 +47,7 @@
             </div>
 
             <div class="mb-3 row">
-                <div class="col-md-2"><?php echo lang('awards_qsl_type'); ?></div>
+                <div class="col-md-2"><?= __('QSL Type'); ?></div>
                 <div class="col-md-10">
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" name="qsl" value="1" id="qsl" <?php if ($this->input->post('qsl') || $this->input->method() !== 'post') echo ' checked="checked"'; ?> >
@@ -69,7 +69,7 @@
             </div>
 
             <div class="mb-3 row">
-                <label class="col-md-2 control-label" for="band"><?php echo lang('gen_hamradio_band'); ?></label>
+                <label class="col-md-2 control-label" for="band"><?= __('Band'); ?></label>
                 <div class="col-md-2">
                     <select id="band2" name="band" class="form-select form-select-sm">
                         <option value="All" <?php if ($this->input->post('band') == "All" || $this->input->method() !== 'post') echo ' selected'; ?> ><?php echo lang('general_word_all'); ?></option>
