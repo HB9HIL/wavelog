@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-04 19:50+0000\n"
-"PO-Revision-Date: 2024-06-04 22:14\n"
+"PO-Revision-Date: 2024-06-04 22:38\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -86,7 +86,7 @@ msgstr "Jahr TES"
 
 #: application/views/dashboard/index.php:233
 msgid "Month"
-msgstr "Monat Tes"
+msgstr "Monat"
 
 #: application/views/dashboard/index.php:242
 msgid "Countrys Breakdown"
