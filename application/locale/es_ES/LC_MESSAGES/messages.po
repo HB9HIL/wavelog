@@ -81,7 +81,7 @@ msgstr ""
 
 #: application/views/dashboard/index.php:223
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: application/views/dashboard/index.php:228
 msgid "Year"
