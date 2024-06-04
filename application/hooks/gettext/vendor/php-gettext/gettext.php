@@ -143,7 +143,7 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 				$input = new FileReader($full_path);
 				break;
 			} else {
-				log_message('error', 'Language Path does not exist.');
+				log_message('error', 'Language Path does not exist. See function _get_reader in application/hooks/gettext/vendor/php-gettext/gettext.php');
 			}
 		}
 
