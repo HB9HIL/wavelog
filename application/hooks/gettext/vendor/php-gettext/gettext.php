@@ -138,7 +138,8 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 		$locale_names = get_list_of_locales($locale);
 		$input = null;
 		foreach($locale_names as $locale) {
-			$full_path = "application/locale".$bound_path . $locale . "/" . $subpath;
+			$full_path = $bound_path . $locale . "/" . $subpath;
+			log_message('error', 'full path: '.$full_path);
 			if (file_exists($full_path)) {
 				$input = new FileReader($full_path);
 				break;
