@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CodeIgniter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 18:39+0000\n"
+"POT-Creation-Date: 2024-06-04 19:50+0000\n"
 "PO-Revision-Date: 2017-02-09 12:05+0100\n"
 "Last-Translator: Kader Bouyakoub <bkader@mail.com>\n"
 "Language-Team: Kader Bouyakoub <bkader@mail.com>\n"
@@ -144,4 +144,12 @@ msgstr ""
 
 #: application/views/dashboard/index.php:315
 msgid "eQSL Cards"
+msgstr ""
+
+#: application/views/awards/cq/index.php:50
+msgid "QSL Type"
+msgstr ""
+
+#: application/views/awards/cq/index.php:72
+msgid "Band"
 msgstr ""

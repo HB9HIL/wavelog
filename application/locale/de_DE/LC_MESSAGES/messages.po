@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: German (Wavelog)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 18:54+0000\n"
+"POT-Creation-Date: 2024-06-04 19:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-project/"
@@ -133,10 +133,17 @@ msgid "Requested"
 msgstr "Angefragt"
 
 #: application/views/dashboard/index.php:294
-#, ignore-same
 msgid "LotW"
 msgstr "LotW"
 
 #: application/views/dashboard/index.php:315
 msgid "eQSL Cards"
 msgstr "eQSL Karten"
+
+#: application/views/awards/cq/index.php:50
+msgid "QSL Type"
+msgstr ""
+
+#: application/views/awards/cq/index.php:72
+msgid "Band"
+msgstr ""
