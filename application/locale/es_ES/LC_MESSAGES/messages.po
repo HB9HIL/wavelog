@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CodeIgniter\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 17:07+0000\n"
+"POT-Creation-Date: 2024-06-04 18:39+0000\n"
 "PO-Revision-Date: 2017-02-09 12:05+0100\n"
 "Last-Translator: Kader Bouyakoub <bkader@mail.com>\n"
 "Language-Team: Kader Bouyakoub <bkader@mail.com>\n"
@@ -20,8 +20,128 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;__;_n;_d\n"
 
+#: application/views/dashboard/index.php:57
+msgid "dashboard_php_version_warning"
+msgstr ""
+
+#: application/views/dashboard/index.php:63
+msgid "dashboard_country_files_warning"
+msgstr ""
+
+#: application/views/dashboard/index.php:69
+msgid "dashboard_locations_warning"
+msgstr ""
+
+#: application/views/dashboard/index.php:75
+msgid "dashboard_logbooks_warning"
+msgstr ""
+
+#: application/views/dashboard/index.php:82
+msgid "dashboard_you_have_had"
+msgstr ""
+
+#: application/views/dashboard/index.php:86
+#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:130
+msgid "general_word_important"
+msgstr ""
+
+#: application/views/dashboard/index.php:86
+msgid "notice_turn_the_radio_on"
+msgstr ""
+
+#: application/views/dashboard/index.php:93
+msgid "error_no_active_station_profile"
+msgstr ""
+
 #: application/views/dashboard/index.php:108
 #: application/views/dashboard/index.php:158
 msgid "Callsign"
 msgstr "Rufzeichen"
 
+#: application/views/dashboard/index.php:124
+msgid "lotw_cert_expired"
+msgstr ""
+
+#: application/views/dashboard/index.php:130
+msgid "lotw_cert_expiring"
+msgstr ""
+
+#: application/views/dashboard/index.php:153
+msgid "Date"
+msgstr ""
+
+#: application/views/dashboard/index.php:156
+msgid "Time"
+msgstr ""
+
+#: application/views/dashboard/index.php:219
+msgid "QSOs Breakdown"
+msgstr ""
+
+#: application/views/dashboard/index.php:223
+msgid "Total"
+msgstr ""
+
+#: application/views/dashboard/index.php:228
+msgid "Year"
+msgstr ""
+
+#: application/views/dashboard/index.php:233
+msgid "Month"
+msgstr ""
+
+#: application/views/dashboard/index.php:242
+msgid "Countrys Breakdown"
+msgstr ""
+
+#: application/views/dashboard/index.php:246
+#: application/views/dashboard/index.php:362
+msgid "Worked"
+msgstr ""
+
+#: application/views/dashboard/index.php:250
+#: application/views/dashboard/index.php:368
+msgid "Confirmed"
+msgstr ""
+
+#: application/views/dashboard/index.php:259
+msgid "Needed"
+msgstr ""
+
+#: application/views/dashboard/index.php:267
+msgid "QSL Cards"
+msgstr ""
+
+#: application/views/dashboard/index.php:268
+#: application/views/dashboard/index.php:295
+#: application/views/dashboard/index.php:316
+#: application/views/dashboard/index.php:337
+msgid "Today"
+msgstr ""
+
+#: application/views/dashboard/index.php:272
+#: application/views/dashboard/index.php:299
+#: application/views/dashboard/index.php:320
+#: application/views/dashboard/index.php:341
+msgid "Sent"
+msgstr ""
+
+#: application/views/dashboard/index.php:278
+#: application/views/dashboard/index.php:305
+#: application/views/dashboard/index.php:326
+#: application/views/dashboard/index.php:347
+msgid "Received"
+msgstr ""
+
+#: application/views/dashboard/index.php:284
+msgid "Requested"
+msgstr ""
+
+#: application/views/dashboard/index.php:294
+msgid "LotW"
+msgstr ""
+
+#: application/views/dashboard/index.php:315
+msgid "eQSL Cards"
+msgstr ""
