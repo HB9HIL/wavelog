@@ -1,9 +1,6 @@
 files:
-  - source: '/application/locale/messages.pot'
-    translation: '/application/locale/%two_letters_code%_%locale%/LC_MESSAGES/messages.po'
-    skip_untranslated_files: true
-    skip_untranslated_strings: true
-
+  - source: /application/locale/messages.pot
+    translation: /application/locale/%two_letters_code%_%locale%/LC_MESSAGES/messages.po
     languages_mapping:
       two_letters_code:
         de: de
@@ -15,5 +12,4 @@ files:
         es: ES
         it: IT
         fr: FR
-
-"preserve_hierarchy": true
+preserve_hierarchy: 1
