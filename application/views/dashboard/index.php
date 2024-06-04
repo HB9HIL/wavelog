@@ -94,6 +94,22 @@ function echo_table_col($row, $name) {
 		</div>
 	<?php } ?>
 
+	<!-- JUST FOR DEBUGGING LANGUAGE -->
+	<div class="alert alert-danger" role="alert">
+		  <p> 	Language Info <br>
+		  		Name: <?= $language['name']; ?><br>
+		  		Name_En: <?= $language['name_en']; ?><br>
+		  		Folder: <?= $language['folder']; ?><br>
+		  		Direction: <?= $language['direction']; ?><br>
+		  		Code: <?= $language['code']; ?><br>
+		  		Flag: <?= $language['flag']; ?></p>
+		</div>
+		<div class="alert alert-danger" role="alert">
+			<p> "Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?></p>
+		</div>
+	<!-- JUST FOR DEBUGGING LANGUAGE -->
+
+
 	<?php if($themesWithoutMode != 0) { ?>
 		<div class="alert alert-danger" role="alert">
 		  	You have themes without defined theme mode. Please ask the admin to edit the themes.
@@ -139,7 +155,7 @@ function echo_table_col($row, $name) {
 					<?php if(($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === FALSE || ($this->config->item('show_time'))) { ?>
 					<th><?php echo lang('general_word_time'); ?></th>
 					<?php } ?>
-					<th><?php echo lang('gen_hamradio_call'); ?></th>
+					<th><?= __('Callsign'); ?></th>
 					<?php
 					echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
 					echo_table_header_col($this, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
