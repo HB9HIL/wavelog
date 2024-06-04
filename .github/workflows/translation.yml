@@ -1,7 +1,7 @@
 name: Translation Workflow
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,6 +25,9 @@ jobs:
         for po in $(find . -name "*.po"); do
           msgmerge -U "$po" application/locale/messages.pot;
         done
+
+    - name: Delete backup .po~ files
+      run: find . -name "*.po~" -delete
 
     - name: Compile MO files from PO files
       run: |
