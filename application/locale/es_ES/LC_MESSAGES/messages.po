@@ -69,11 +69,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:153
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: application/views/dashboard/index.php:156
 msgid "Time"
-msgstr "Tiempo Test"
+msgstr "Tiempo Tes"
 
 #: application/views/dashboard/index.php:219
 msgid "QSOs Breakdown"
