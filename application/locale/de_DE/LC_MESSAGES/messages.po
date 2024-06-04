@@ -83,7 +83,7 @@ msgstr "Jahr"
 
 #: application/views/dashboard/index.php:233
 msgid "Month"
-msgstr "Monat"
+msgstr "Monat Test"
 
 #: application/views/dashboard/index.php:242
 msgid "Countrys Breakdown"
