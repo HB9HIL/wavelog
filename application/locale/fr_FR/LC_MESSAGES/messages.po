@@ -17,8 +17,8 @@ msgstr ""
 "X-Crowdin-Project: wavelog-test\n"
 "X-Crowdin-Project-ID: 682556\n"
 "X-Crowdin-Language: fr\n"
-"X-Crowdin-File: /gettext_po_test/application/locale/de_DE/LC_MESSAGES/messages.po\n"
-"X-Crowdin-File-ID: 36\n"
+"X-Crowdin-File: /gettext_po_test/application/locale/es_ES/LC_MESSAGES/messages.po\n"
+"X-Crowdin-File-ID: 38\n"
 
 #: application/views/dashboard/index.php:57
 msgid "dashboard_php_version_warning"
