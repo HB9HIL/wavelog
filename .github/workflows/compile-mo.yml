@@ -15,13 +15,14 @@ jobs:
       with:
         repository: HB9HIL/wavelog
         ref: gettext_po_test
+        fetch-depth: 2
 
     - name: Set up gettext
       run: sudo apt-get install -y gettext
 
     - name: Compile .mo files from changed .po files
       run: |
-        for po in $(git diff --name-only ${{ github.event.after }} ${{ github.event.before }} | grep '\.po$'); do
+        for po in $(git diff --name-only HEAD~1 HEAD | grep '\.po$'); do
           mo="${po%.po}.mo";
           msgfmt -o "$mo" "$po";
         done
