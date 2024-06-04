@@ -133,7 +133,7 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 		// get the current locale
 
 		$locale = _setlocale(LC_MESSAGES, 0);
-		$bound_path = isset($text_domains[$domain]->path) ? $text_domains[$domain]->path : '/';
+		$bound_path = 'application/locale/';
 		$subpath = $LC_CATEGORIES[$category] . "/$domain.mo";
 		$locale_names = get_list_of_locales($locale);
 		$input = null;
@@ -142,8 +142,6 @@ function _get_reader($domain = null, $category = 5, $enable_cache = true)
 			if (file_exists($full_path)) {
 				$input = new FileReader($full_path);
 				break;
-			} else {
-				log_message('error', 'Language Path does not exist. See function _get_reader in application/hooks/gettext/vendor/php-gettext/gettext.php');
 			}
 		}
 
