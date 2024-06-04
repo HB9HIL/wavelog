@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '**/*.po'
+    branches:
+      - 'gettext_po_test'
 
 jobs:
   compile_mo:
