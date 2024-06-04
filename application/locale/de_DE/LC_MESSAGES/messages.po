@@ -1,24 +1,18 @@
-# CODEIGNITER GETTEXT FILES.
-# Copyright (c) 2014 - 2016, British Columbia Institute of Technology
-# This file is distributed under the same license as the PACKAGE package.
-# EllisLab Dev Team <https://codeigniter.com>, 2016.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: CodeIgniter\n"
+"Project-Id-Version: German (Wavelog)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 18:39+0000\n"
-"PO-Revision-Date: 2017-02-09 12:05+0100\n"
-"Last-Translator: Kader Bouyakoub <bkader@mail.com>\n"
-"Language-Team: Kader Bouyakoub <bkader@mail.com>\n"
-"Language: de_DE\n"
+"POT-Creation-Date: 2024-06-04 18:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-project/"
+"de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Eazy Po 0.9.5.3\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _;__;_n;_d\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: application/views/dashboard/index.php:57
 msgid "dashboard_php_version_warning"
@@ -69,79 +63,80 @@ msgstr ""
 
 #: application/views/dashboard/index.php:153
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: application/views/dashboard/index.php:156
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
 #: application/views/dashboard/index.php:219
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "QSO Übersicht"
 
 #: application/views/dashboard/index.php:223
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: application/views/dashboard/index.php:228
 msgid "Year"
-msgstr ""
+msgstr "Jahr"
 
 #: application/views/dashboard/index.php:233
 msgid "Month"
-msgstr ""
+msgstr "Monat"
 
 #: application/views/dashboard/index.php:242
 msgid "Countrys Breakdown"
-msgstr ""
+msgstr "Länder Übersicht"
 
 #: application/views/dashboard/index.php:246
 #: application/views/dashboard/index.php:362
 msgid "Worked"
-msgstr ""
+msgstr "Gearbeitet"
 
 #: application/views/dashboard/index.php:250
 #: application/views/dashboard/index.php:368
 msgid "Confirmed"
-msgstr ""
+msgstr "Bestätigt"
 
 #: application/views/dashboard/index.php:259
 msgid "Needed"
-msgstr ""
+msgstr "Benötigt"
 
 #: application/views/dashboard/index.php:267
 msgid "QSL Cards"
-msgstr ""
+msgstr "QSL Karten"
 
 #: application/views/dashboard/index.php:268
 #: application/views/dashboard/index.php:295
 #: application/views/dashboard/index.php:316
 #: application/views/dashboard/index.php:337
 msgid "Today"
-msgstr ""
+msgstr "Heute"
 
 #: application/views/dashboard/index.php:272
 #: application/views/dashboard/index.php:299
 #: application/views/dashboard/index.php:320
 #: application/views/dashboard/index.php:341
 msgid "Sent"
-msgstr ""
+msgstr "Gesendet"
 
 #: application/views/dashboard/index.php:278
 #: application/views/dashboard/index.php:305
 #: application/views/dashboard/index.php:326
 #: application/views/dashboard/index.php:347
 msgid "Received"
-msgstr ""
+msgstr "Erhalten"
 
 #: application/views/dashboard/index.php:284
 msgid "Requested"
-msgstr ""
+msgstr "Angefragt"
 
 #: application/views/dashboard/index.php:294
+#, ignore-same
 msgid "LotW"
-msgstr ""
+msgstr "LotW"
 
 #: application/views/dashboard/index.php:315
 msgid "eQSL Cards"
-msgstr ""
+msgstr "eQSL Karten"
