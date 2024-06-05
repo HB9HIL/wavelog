@@ -254,3 +254,4 @@ msgstr ""
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr ""
+
