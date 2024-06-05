@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:34+0000\n"
-"PO-Revision-Date: 2024-06-05 12:34\n"
+"PO-Revision-Date: 2024-06-05 12:44\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -19,19 +19,19 @@ msgstr ""
 
 #: application/views/dashboard/index.php:4
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 #: application/views/dashboard/index.php:5
 msgid "RSTS"
-msgstr ""
+msgstr "RSTS"
 
 #: application/views/dashboard/index.php:6
 msgid "RSTR"
-msgstr ""
+msgstr "RSTR"
 
 #: application/views/dashboard/index.php:7
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: application/views/dashboard/index.php:8
 msgid "IOTA"
@@ -59,7 +59,7 @@ msgstr "Planquadrat"
 
 #: application/views/dashboard/index.php:14
 msgid "Distance"
-msgstr ""
+msgstr "Distanz"
 
 #: application/views/dashboard/index.php:15
 #: application/views/awards/cq/index.php:72
@@ -72,15 +72,15 @@ msgstr "Frequenz"
 
 #: application/views/dashboard/index.php:17
 msgid "Operator"
-msgstr ""
+msgstr "Operator"
 
 #: application/views/dashboard/index.php:18
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: application/views/dashboard/index.php:28
 msgid "Deleted DXCC"
-msgstr ""
+msgstr "Gelöschtes DXCC"
 
 #: application/views/dashboard/index.php:57
 msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
@@ -146,22 +146,22 @@ msgstr "Rufzeichen"
 #: application/views/dashboard/index.php:112
 #, php-format
 msgid "For more information, %s."
-msgstr ""
+msgstr "Für weitere Informationen, %s."
 
 #: application/views/dashboard/index.php:112
 msgid "Click here"
-msgstr ""
+msgstr "Klicke hier"
 
 #: application/views/dashboard/index.php:113
 #, php-format
 msgid "You have eaten %d Banana today."
 msgid_plural "You have eaten %d Bananas today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du hast heute %d Banane gegessen."
+msgstr[1] "Du hast heute %d Bananen gegessen."
 
 #: application/views/dashboard/index.php:121
 msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
-msgstr ""
+msgstr "Du hast Themes ohne definierten Theme-Modus. Bitte den Administrator, die Themes zu bearbeiten."
 
 #: application/views/dashboard/index.php:130
 msgid "At least one of your LoTW certificates is expired!"
@@ -245,7 +245,7 @@ msgstr "Angefragt"
 #: application/views/dashboard/index.php:300
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:321
 msgid "eQSL Cards"
