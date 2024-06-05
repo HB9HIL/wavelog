@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:03+0000\n"
-"PO-Revision-Date: 2024-06-05 11:48\n"
+"PO-Revision-Date: 2024-06-05 12:09\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -83,17 +83,13 @@ msgid "Deleted DXCC"
 msgstr ""
 
 #: application/views/dashboard/index.php:57
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
-msgstr ""
-"Du musst deine PHP-Version aktualisieren. Die minimale Version ist 7.4. "
-"Deine Version ist"
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgstr "Du musst deine PHP-Version aktualisieren. Die minimale Version ist 7.4. Deine Version ist"
 
 #: application/views/dashboard/index.php:63
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Go here to do it:"
-msgstr ""
-"Du musst deine Länderdaten erst aktualisieren. Klicke hier, um das zu tun:"
+msgstr "Du musst deine Länderdaten erst aktualisieren. Klicke hier, um das zu tun:"
 
 #: application/views/dashboard/index.php:63
 msgid "Update Country Files"
@@ -102,9 +98,7 @@ msgstr "Länderdaten aktualisieren"
 #: application/views/dashboard/index.php:69
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Go here to do it:"
-msgstr ""
-"Du hast noch keinen Stationsstandort angelegt. Klicke hier, um eine "
-"anzulegen:"
+msgstr "Du hast noch keinen Stationsstandort angelegt. Klicke hier, um eine anzulegen:"
 
 #: application/views/dashboard/index.php:69
 #: application/views/dashboard/index.php:75
@@ -114,8 +108,7 @@ msgstr "Stations Setup"
 #: application/views/dashboard/index.php:75
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Go here to do it:"
-msgstr ""
-"Du hast noch kein Stationslogbuch angelegt. Klicke hier, um eines anzulegen:"
+msgstr "Du hast noch kein Stationslogbuch angelegt. Klicke hier, um eines anzulegen:"
 
 #: application/views/dashboard/index.php:82
 #, php-format
@@ -132,8 +125,7 @@ msgstr "Wichtig"
 
 #: application/views/dashboard/index.php:86
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
-"Du hast heute noch keine QSOs gemacht; Zeit das Funkgerät einzuschalten!"
+msgstr "Du hast heute noch keine QSOs gemacht; Zeit das Funkgerät einzuschalten!"
 
 #: application/views/dashboard/index.php:93
 msgid "Attention: you need to set an active station location."
@@ -152,9 +144,7 @@ msgid "Callsign"
 msgstr "Rufzeichen"
 
 #: application/views/dashboard/index.php:119
-msgid ""
-"You have themes without defined theme mode. Please ask the admin to edit the "
-"themes."
+msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
 msgstr ""
 
 #: application/views/dashboard/index.php:128
@@ -237,10 +227,9 @@ msgid "Requested"
 msgstr "Angefragt"
 
 #: application/views/dashboard/index.php:298
-#, fuzzy
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
-msgstr "Logbook of the World"
+msgstr ""
 
 #: application/views/dashboard/index.php:319
 msgid "eQSL Cards"
@@ -249,3 +238,4 @@ msgstr "eQSL Karten"
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr "QSL Typ"
+

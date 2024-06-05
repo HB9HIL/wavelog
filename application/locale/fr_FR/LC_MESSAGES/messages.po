@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:03+0000\n"
-"PO-Revision-Date: 2024-06-05 11:48\n"
+"PO-Revision-Date: 2024-06-05 12:09\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -83,8 +83,7 @@ msgid "Deleted DXCC"
 msgstr ""
 
 #: application/views/dashboard/index.php:57
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
@@ -145,9 +144,7 @@ msgid "Callsign"
 msgstr ""
 
 #: application/views/dashboard/index.php:119
-msgid ""
-"You have themes without defined theme mode. Please ask the admin to edit the "
-"themes."
+msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
 msgstr ""
 
 #: application/views/dashboard/index.php:128
@@ -241,3 +238,4 @@ msgstr ""
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr ""
+
