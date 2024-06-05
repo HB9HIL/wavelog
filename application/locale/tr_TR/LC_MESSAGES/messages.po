@@ -1,23 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Wavelog
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:34+0000\n"
-"PO-Revision-Date: 2024-06-05 15:20+0200\n"
+"PO-Revision-Date: 2024-06-05 13:44\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Turkish\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Crowdin-Project: wavelog-test\n"
+"X-Crowdin-Project-ID: 682556\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: /gettext_test/assets/lang_src/messages.pot\n"
+"X-Crowdin-File-ID: 74\n"
 
 #: application/views/dashboard/index.php:4
 msgid "Mode"
@@ -85,8 +83,7 @@ msgid "Deleted DXCC"
 msgstr ""
 
 #: application/views/dashboard/index.php:57
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
@@ -163,9 +160,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:121
-msgid ""
-"You have themes without defined theme mode. Please ask the admin to edit the "
-"themes."
+msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
 msgstr ""
 
 #: application/views/dashboard/index.php:130
@@ -259,3 +254,4 @@ msgstr ""
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr ""
+
