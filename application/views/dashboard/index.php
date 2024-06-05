@@ -106,8 +106,8 @@ function echo_table_col($row, $name) {
 		  		Flag: <?= $language['flag']; ?></p>
 		</div>
 		<div class="alert alert-danger" role="alert">
-			<p> "Apple": <?= _ngettext("Apple", "Apples", 1); ?><br>
-			    "Apples": <?= _ngettext("Apple", "Apples", 20); ?><br>
+			<p> "Apple": 1 <?= _ngettext("Apple", "Apples", 1); ?><br>
+			    "Apples": 20 <?= _ngettext("Apple", "Apples", 20); ?><br>
 				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?></p>
 		</div>
 	<?php } ?>
