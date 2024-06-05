@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:34+0000\n"
-"PO-Revision-Date: 2024-06-05 12:09\n"
+"PO-Revision-Date: 2024-06-05 12:34\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -35,27 +35,27 @@ msgstr ""
 
 #: application/views/dashboard/index.php:8
 msgid "IOTA"
-msgstr ""
+msgstr "IOTA"
 
 #: application/views/dashboard/index.php:9
 msgid "SOTA"
-msgstr ""
+msgstr "SOTA"
 
 #: application/views/dashboard/index.php:10
 msgid "WWFF"
-msgstr ""
+msgstr "WWFF"
 
 #: application/views/dashboard/index.php:11
 msgid "POTA"
-msgstr ""
+msgstr "POTA"
 
 #: application/views/dashboard/index.php:12
 msgid "State"
-msgstr ""
+msgstr "Staat"
 
 #: application/views/dashboard/index.php:13
 msgid "Gridsquare"
-msgstr ""
+msgstr "Planquadrat"
 
 #: application/views/dashboard/index.php:14
 msgid "Distance"
@@ -68,7 +68,7 @@ msgstr "Band"
 
 #: application/views/dashboard/index.php:16
 msgid "Frequency"
-msgstr ""
+msgstr "Frequenz"
 
 #: application/views/dashboard/index.php:17
 msgid "Operator"
