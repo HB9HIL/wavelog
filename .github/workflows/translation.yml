@@ -23,7 +23,7 @@ jobs:
     - name: Merge POT into PO files
       run: |
         for po in $(find . -name "*.po"); do
-          msgmerge -U --verbose "$po" pot/messages.pot;
+          msgmerge -UN --verbose "$po" pot/messages.pot;
         done
 
     - name: Delete backup .po~ files
