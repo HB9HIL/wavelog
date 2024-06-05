@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 12:03+0000\n"
+"POT-Creation-Date: 2024-06-05 12:20+0000\n"
 "PO-Revision-Date: 2024-06-05 12:09\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
@@ -83,7 +83,8 @@ msgid "Deleted DXCC"
 msgstr ""
 
 #: application/views/dashboard/index.php:57
-msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgid ""
+"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
@@ -118,8 +119,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:86
-#: application/views/dashboard/index.php:128
-#: application/views/dashboard/index.php:134
+#: application/views/dashboard/index.php:129
+#: application/views/dashboard/index.php:135
 msgid "Important"
 msgstr ""
 
@@ -139,103 +140,113 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: application/views/dashboard/index.php:111
-#: application/views/dashboard/index.php:162
+#: application/views/dashboard/index.php:163
 msgid "Callsign"
 msgstr "Rufzeichen"
 
-#: application/views/dashboard/index.php:119
-msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
+#: application/views/dashboard/index.php:112
+#, php-format
+msgid "For more information, %s."
 msgstr ""
 
-#: application/views/dashboard/index.php:128
+#: application/views/dashboard/index.php:112
+msgid "Click here"
+msgstr ""
+
+#: application/views/dashboard/index.php:120
+msgid ""
+"You have themes without defined theme mode. Please ask the admin to edit the "
+"themes."
+msgstr ""
+
+#: application/views/dashboard/index.php:129
 msgid "At least one of your LoTW certificates is expired!"
 msgstr ""
 
-#: application/views/dashboard/index.php:134
+#: application/views/dashboard/index.php:135
 msgid "At least one of your LoTW certificates is about to expire!"
 msgstr ""
 
-#: application/views/dashboard/index.php:157
+#: application/views/dashboard/index.php:158
 msgid "Date"
 msgstr "Fecha"
 
-#: application/views/dashboard/index.php:160
+#: application/views/dashboard/index.php:161
 msgid "Time"
 msgstr "Tiempo Test"
 
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:224
 msgid "QSOs Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:227
+#: application/views/dashboard/index.php:228
 msgid "Total"
 msgstr ""
 
-#: application/views/dashboard/index.php:232
+#: application/views/dashboard/index.php:233
 msgid "Year"
 msgstr ""
 
-#: application/views/dashboard/index.php:237
+#: application/views/dashboard/index.php:238
 msgid "Month"
 msgstr ""
 
-#: application/views/dashboard/index.php:246
+#: application/views/dashboard/index.php:247
 msgid "Countries Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:250
-#: application/views/dashboard/index.php:366
+#: application/views/dashboard/index.php:251
+#: application/views/dashboard/index.php:367
 msgid "Worked"
 msgstr ""
 
-#: application/views/dashboard/index.php:254
-#: application/views/dashboard/index.php:372
+#: application/views/dashboard/index.php:255
+#: application/views/dashboard/index.php:373
 msgid "Confirmed"
 msgstr ""
 
-#: application/views/dashboard/index.php:263
+#: application/views/dashboard/index.php:264
 msgid "Needed"
 msgstr ""
 
-#: application/views/dashboard/index.php:271
+#: application/views/dashboard/index.php:272
 msgid "QSL Cards"
 msgstr ""
 
-#: application/views/dashboard/index.php:272
-#: application/views/dashboard/index.php:299
-#: application/views/dashboard/index.php:320
-#: application/views/dashboard/index.php:341
+#: application/views/dashboard/index.php:273
+#: application/views/dashboard/index.php:300
+#: application/views/dashboard/index.php:321
+#: application/views/dashboard/index.php:342
 msgid "Today"
 msgstr ""
 
-#: application/views/dashboard/index.php:276
-#: application/views/dashboard/index.php:303
-#: application/views/dashboard/index.php:324
-#: application/views/dashboard/index.php:345
+#: application/views/dashboard/index.php:277
+#: application/views/dashboard/index.php:304
+#: application/views/dashboard/index.php:325
+#: application/views/dashboard/index.php:346
 msgid "Sent"
 msgstr ""
 
-#: application/views/dashboard/index.php:282
-#: application/views/dashboard/index.php:309
-#: application/views/dashboard/index.php:330
-#: application/views/dashboard/index.php:351
+#: application/views/dashboard/index.php:283
+#: application/views/dashboard/index.php:310
+#: application/views/dashboard/index.php:331
+#: application/views/dashboard/index.php:352
 msgid "Received"
 msgstr ""
 
-#: application/views/dashboard/index.php:288
+#: application/views/dashboard/index.php:289
 msgid "Requested"
 msgstr ""
 
-#: application/views/dashboard/index.php:298
+#: application/views/dashboard/index.php:299
 msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
-#: application/views/dashboard/index.php:319
+#: application/views/dashboard/index.php:320
 msgid "eQSL Cards"
 msgstr ""
 
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr ""
-
