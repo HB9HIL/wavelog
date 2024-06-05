@@ -108,7 +108,9 @@ function echo_table_col($row, $name) {
 		<div class="alert alert-danger" role="alert">
 			<p> "Apple": 1 <?= _ngettext("Apple", "Apples", 1); ?><br>
 			    "Apples": 20 <?= _ngettext("Apple", "Apples", 20); ?><br>
-				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?></p>
+				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?><br>
+				"Text with Link inside": <?= sprintf(_("For more information, %s."), '<a href="https://example.com">' . _("Click here") . '</a>'); ?><br>
+				"Same with Numbers": <?php $bananas = 2; echo sprintf(_ngettext("You have eaten %d Banana today.", "You have eaten %d Bananas today.", intval($bananas)), intval($bananas)); ?></p> <!-- change number of bananas -->
 		</div>
 	<?php } ?>
 	<!-- JUST FOR DEBUGGING LANGUAGE -->
