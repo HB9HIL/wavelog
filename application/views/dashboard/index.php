@@ -1,21 +1,21 @@
 <?php
-function echo_table_header_col($ctx, $name) {
+function echo_table_header_col($name) {
 	switch($name) {
-		case 'Mode': echo '<th>'.$ctx->lang->line('gen_hamradio_mode').'</th>'; break;
-		case 'RSTS': echo '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rsts').'</th>'; break;
-		case 'RSTR': echo '<th class="d-none d-sm-table-cell">'.$ctx->lang->line('gen_hamradio_rstr').'</th>'; break;
-		case 'Country': echo '<th>'.$ctx->lang->line('general_word_country').'</th>'; break;
-		case 'IOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_iota').'</th>'; break;
-		case 'SOTA': echo '<th>'.$ctx->lang->line('gen_hamradio_sota').'</th>'; break;
-		case 'WWFF': echo '<th>'.$ctx->lang->line('gen_hamradio_wwff').'</th>'; break;
-		case 'POTA': echo '<th>'.$ctx->lang->line('gen_hamradio_pota').'</th>'; break;
-		case 'State': echo '<th>'.$ctx->lang->line('gen_hamradio_state').'</th>'; break;
-		case 'Grid': echo '<th>'.$ctx->lang->line('gen_hamradio_gridsquare').'</th>'; break;
-		case 'Distance': echo '<th>'.$ctx->lang->line('gen_hamradio_distance').'</th>'; break;
-		case 'Band': echo '<th>'.$ctx->lang->line('gen_hamradio_band').'</th>'; break;
-		case 'Frequency': echo '<th>'.$ctx->lang->line('gen_hamradio_frequency').'</th>'; break;
-		case 'Operator': echo '<th>'.$ctx->lang->line('gen_hamradio_operator').'</th>'; break;
-		case 'Name': echo '<th>'.$ctx->lang->line('general_word_name').'</th>'; break;
+		case 'Mode': echo '<th>'.__("Mode").'</th>'; break;
+		case 'RSTS': echo '<th class="d-none d-sm-table-cell">'.__("RSTS").'</th>'; break;
+		case 'RSTR': echo '<th class="d-none d-sm-table-cell">'.__("RSTR").'</th>'; break;
+		case 'Country': echo '<th>'.__("Country").'</th>'; break;
+		case 'IOTA': echo '<th>'.__("IOTA").'</th>'; break;
+		case 'SOTA': echo '<th>'.__("SOTA").'</th>'; break;
+		case 'WWFF': echo '<th>'.__("WWFF").'</th>'; break;
+		case 'POTA': echo '<th>'.__("POTA").'</th>'; break;
+		case 'State': echo '<th>'.__("State").'</th>'; break;
+		case 'Grid': echo '<th>'.__("Gridsquare").'</th>'; break;
+		case 'Distance': echo '<th>'.__("Distance").'</th>'; break;
+		case 'Band': echo '<th>'.__("Band").'</th>'; break;
+		case 'Frequency': echo '<th>'.__("Frequency").'</th>'; break;
+		case 'Operator': echo '<th>'.__("Operator").'</th>'; break;
+		case 'Name': echo '<th>'.__("Name").'</th>'; break;
 	}
 }
 
@@ -25,7 +25,7 @@ function echo_table_col($row, $name) {
 		case 'Mode':    echo '<td>'; echo $row->COL_SUBMODE==null?$row->COL_MODE:$row->COL_SUBMODE . '</td>'; break;
       	case 'RSTS':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_SENT; if ($row->COL_STX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_STX); echo '</span>';} if ($row->COL_STX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_STX_STRING . '</span>';} echo '</td>'; break;
       	case 'RSTR':    echo '<td class="d-none d-sm-table-cell">' . $row->COL_RST_RCVD; if ($row->COL_SRX) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">'; printf("%03d", $row->COL_SRX); echo '</span>';} if ($row->COL_SRX_STRING) { echo ' <span data-bs-toggle="tooltip" title="'.($row->COL_CONTEST_ID!=""?$row->COL_CONTEST_ID:"n/a").'" class="badge text-bg-light">' . $row->COL_SRX_STRING . '</span>';} echo '</td>'; break;
-		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.$ci->lang->line('gen_hamradio_deleted_dxcc').'</span>'  . '</td>'; break;
+		case 'Country': echo '<td>' . ucwords(strtolower(($row->COL_COUNTRY))); if ($row->end != NULL) echo ' <span class="badge text-bg-danger">'.__("Deleted DXCC").'</span>'  . '</td>'; break;
 		case 'IOTA':    echo '<td>' . ($row->COL_IOTA) . '</td>'; break;
 		case 'SOTA':    echo '<td>' . ($row->COL_SOTA_REF) . '</td>'; break;
 		case 'WWFF':    echo '<td>' . ($row->COL_WWFF_REF) . '</td>'; break;
@@ -116,7 +116,7 @@ function echo_table_col($row, $name) {
 
 	<?php if($themesWithoutMode != 0) { ?>
 		<div class="alert alert-danger" role="alert">
-		  	You have themes without defined theme mode. Please ask the admin to edit the themes.
+		  	<?= __("You have themes without defined theme mode. Please ask the admin to edit the themes."); ?>
 		</div>
 	<?php } ?>
 
@@ -161,10 +161,10 @@ function echo_table_col($row, $name) {
 					<?php } ?>
 					<th><?= __('Callsign'); ?></th>
 					<?php
-					echo_table_header_col($this, $this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
-					echo_table_header_col($this, $this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
-					echo_table_header_col($this, $this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
-					echo_table_header_col($this, $this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
+					echo_table_header_col($this->session->userdata('user_column1')==""?'Mode':$this->session->userdata('user_column1'));
+					echo_table_header_col($this->session->userdata('user_column2')==""?'RSTS':$this->session->userdata('user_column2'));
+					echo_table_header_col($this->session->userdata('user_column3')==""?'RSTR':$this->session->userdata('user_column3'));
+					echo_table_header_col($this->session->userdata('user_column4')==""?'Band':$this->session->userdata('user_column4'));
 				?>
 				</tr>
 			</thead>
@@ -295,7 +295,7 @@ function echo_table_col($row, $name) {
 		<?php if((($this->config->item('use_auth') && ($this->session->userdata('user_type') >= 2)) || $this->config->item('use_auth') === false) && ($total_lotw_sent != 0 || $total_lotw_rcvd != 0)) { ?>
 		<table class="table table-striped border-top">
 			<tr class="titles">
-				<td colspan="2"><i class="fas fa-list"></i> <?= __("Logbook of the World"); ?></td>
+				<td colspan="2"><i class="fas fa-list"></i> <?= _pgettext("Probably no translation needed as this is a name.","Logbook of the World"); ?></td>
 				<td colspan="1"><?= __("Today"); ?></td>
 			</tr>
 
