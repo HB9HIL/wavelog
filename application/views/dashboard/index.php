@@ -108,7 +108,8 @@ function echo_table_col($row, $name) {
 		<div class="alert alert-danger" role="alert">
 			<p> "Apple": 1 <?= _ngettext("Apple", "Apples", 1); ?><br>
 			    "Apples": 20 <?= _ngettext("Apple", "Apples", 20); ?><br>
-				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?></p>
+				"Callsign" in <?= $language['name']; ?>: <?= __('Callsign'); ?><br>
+				"Text with Link inside": <?= sprintf(_("For more information, %s."), '<a href="https://example.com">' . _("Click here") . '</a>'); ?></p>
 		</div>
 	<?php } ?>
 	<!-- JUST FOR DEBUGGING LANGUAGE -->
