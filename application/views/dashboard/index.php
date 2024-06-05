@@ -79,7 +79,7 @@ function echo_table_col($row, $name) {
 	<?php if($this->optionslib->get_option('dashboard_banner') != "false") { ?>
 	<?php if($todays_qsos >= 1) { ?>
 		<div class="alert alert-success" role="alert" style="margin-top: 1rem;">
-			  <?= __("You have had"); ?> <strong><?php echo $todays_qsos; ?></strong> <?php echo $todays_qsos != 1 ? lang('dashboard_qsos_today') : str_replace('QSOs', 'QSO', lang('dashboard_qsos_today')); ?>
+			<?= sprintf(_ngettext("You have had %d QSO today", "You have had %d QSOs today", intval($todays_qsos)), intval($todays_qsos)); ?>
 		</div>
 	<?php } else { ?>
 		<div class="alert alert-warning" role="alert" style="margin-top: 1rem;">
