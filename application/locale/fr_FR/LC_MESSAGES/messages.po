@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 11:26+0000\n"
+"POT-Creation-Date: 2024-06-05 11:38+0000\n"
 "PO-Revision-Date: 2024-06-05 11:05\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
@@ -47,8 +47,11 @@ msgid "You have no station logbook. Go here to do it:"
 msgstr ""
 
 #: application/views/dashboard/index.php:82
-msgid "You have had"
-msgstr ""
+#, php-format
+msgid "You have had %d QSO today"
+msgid_plural "You have had %d QSOs today"
+msgstr[0] ""
+msgstr[1] ""
 
 #: application/views/dashboard/index.php:86
 #: application/views/dashboard/index.php:128
