@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 11:38+0000\n"
-"PO-Revision-Date: 2024-06-05 11:05\n"
+"PO-Revision-Date: 2024-06-05 11:48\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -18,61 +18,60 @@ msgstr ""
 "X-Crowdin-File-ID: 66\n"
 
 #: application/views/dashboard/index.php:57
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
-msgstr ""
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgstr "Du musst deine PHP-Version aktualisieren. Die minimale Version ist 7.4. Deine Version ist"
 
 #: application/views/dashboard/index.php:63
 msgctxt "Dashboard Warning"
 msgid "You need to update country files! Go here to do it:"
-msgstr ""
+msgstr "Du musst deine Länderdaten erst aktualisieren. Klicke hier, um das zu tun:"
 
 #: application/views/dashboard/index.php:63
 msgid "Update Country Files"
-msgstr ""
+msgstr "Länderdaten aktualisieren"
 
 #: application/views/dashboard/index.php:69
 msgctxt "Dashboard Warning"
 msgid "You have no station locations. Go here to do it:"
-msgstr ""
+msgstr "Du hast noch keinen Stationsstandort angelegt. Klicke hier, um eine anzulegen:"
 
 #: application/views/dashboard/index.php:69
 #: application/views/dashboard/index.php:75
 msgid "Stationsetup"
-msgstr ""
+msgstr "Stations Setup"
 
 #: application/views/dashboard/index.php:75
 msgctxt "Dashboard Warning"
 msgid "You have no station logbook. Go here to do it:"
-msgstr ""
+msgstr "Du hast noch kein Stationslogbuch angelegt. Klicke hier, um eines anzulegen:"
 
 #: application/views/dashboard/index.php:82
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du hast heute %d QSO gemacht"
+msgstr[1] "Du hast heute %d QSOs gemacht"
 
 #: application/views/dashboard/index.php:86
 #: application/views/dashboard/index.php:128
 #: application/views/dashboard/index.php:134
 msgid "Important"
-msgstr ""
+msgstr "Wichtig"
 
 #: application/views/dashboard/index.php:86
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
+msgstr "Du hast heute noch keine QSOs gemacht; Zeit das Funkgerät einzuschalten!"
 
 #: application/views/dashboard/index.php:93
 msgid "Attention: you need to set an active station location."
-msgstr ""
+msgstr "Achtung: Sie müssen einen aktiven Stationsstandort festlegen."
 
 #: application/views/dashboard/index.php:109
 #: application/views/dashboard/index.php:110
 msgid "Apple"
 msgid_plural "Apples"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Apfel"
+msgstr[1] "Äpfel"
 
 #: application/views/dashboard/index.php:111
 #: application/views/dashboard/index.php:162
@@ -81,11 +80,11 @@ msgstr "Rufzeichen"
 
 #: application/views/dashboard/index.php:128
 msgid "At least one of your LoTW certificates is expired!"
-msgstr ""
+msgstr "Mindestens eines Ihrer LoTW-Zertifikate ist abgelaufen!"
 
 #: application/views/dashboard/index.php:134
 msgid "At least one of your LoTW certificates is about to expire!"
-msgstr ""
+msgstr "Mindestens eines Ihrer LoTW-Zertifikate läuft demnächst ab!"
 
 #: application/views/dashboard/index.php:157
 msgid "Date"
@@ -101,18 +100,17 @@ msgstr "QSO Übersicht"
 
 #: application/views/dashboard/index.php:227
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: application/views/dashboard/index.php:232
 msgid "Year"
-msgstr "Jahr TES"
+msgstr "Jahr"
 
 #: application/views/dashboard/index.php:237
 msgid "Month"
 msgstr "Monat Tes"
 
 #: application/views/dashboard/index.php:246
-#, fuzzy
 msgid "Countries Breakdown"
 msgstr "Länder Übersicht"
 
@@ -159,9 +157,9 @@ msgstr "Erhalten"
 msgid "Requested"
 msgstr "Angefragt"
 
-#: application/views/dashboard/index.php:298
+#: Probably no translation needed as this is the real name of the product
 msgid "Logbook of the World"
-msgstr ""
+msgstr "Logbook of the World"
 
 #: application/views/dashboard/index.php:319
 msgid "eQSL Cards"
@@ -169,8 +167,9 @@ msgstr "eQSL Karten"
 
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
-msgstr ""
+msgstr "QSL Typ"
 
 #: application/views/awards/cq/index.php:72
 msgid "Band"
-msgstr ""
+msgstr "Band"
+

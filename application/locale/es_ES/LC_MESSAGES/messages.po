@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 11:38+0000\n"
-"PO-Revision-Date: 2024-06-05 11:05\n"
+"PO-Revision-Date: 2024-06-05 11:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -18,8 +18,7 @@ msgstr ""
 "X-Crowdin-File-ID: 66\n"
 
 #: application/views/dashboard/index.php:57
-msgid ""
-"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
@@ -158,7 +157,7 @@ msgstr ""
 msgid "Requested"
 msgstr ""
 
-#: application/views/dashboard/index.php:298
+#: Probably no translation needed as this is the real name of the product
 msgid "Logbook of the World"
 msgstr ""
 
@@ -173,3 +172,4 @@ msgstr ""
 #: application/views/awards/cq/index.php:72
 msgid "Band"
 msgstr ""
+
