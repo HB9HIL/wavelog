@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-05 12:34+0000\n"
-"PO-Revision-Date: 2024-06-05 13:44\n"
+"PO-Revision-Date: 2024-06-05 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -141,7 +141,7 @@ msgstr[1] ""
 #: application/views/dashboard/index.php:111
 #: application/views/dashboard/index.php:164
 msgid "Callsign"
-msgstr ""
+msgstr "Indicativo"
 
 #: application/views/dashboard/index.php:112
 #, php-format
@@ -173,11 +173,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:159
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: application/views/dashboard/index.php:162
 msgid "Time"
-msgstr ""
+msgstr "Tiempo Test"
 
 #: application/views/dashboard/index.php:225
 msgid "QSOs Breakdown"
