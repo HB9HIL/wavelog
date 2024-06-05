@@ -1,5 +1,5 @@
 files:
-  - source: '/application/locale/messages.pot'
+  - source: '/pot/messages.pot'
     translation: '/application/locale/%locale_with_underscore%/LC_MESSAGES/messages.po'
     skip_untranslated_files: true
     skip_untranslated_strings: true
