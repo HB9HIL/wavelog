@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:02+0200\n"
+"POT-Creation-Date: 2024-06-05 11:26+0000\n"
 "PO-Revision-Date: 2024-06-05 11:05\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
@@ -18,37 +18,50 @@ msgstr ""
 "X-Crowdin-File-ID: 66\n"
 
 #: application/views/dashboard/index.php:57
-msgid "dashboard_php_version_warning"
+msgid ""
+"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
-msgid "dashboard_country_files_warning"
+msgctxt "Dashboard Warning"
+msgid "You need to update country files! Go here to do it:"
+msgstr ""
+
+#: application/views/dashboard/index.php:63
+msgid "Update Country Files"
 msgstr ""
 
 #: application/views/dashboard/index.php:69
-msgid "dashboard_locations_warning"
+msgctxt "Dashboard Warning"
+msgid "You have no station locations. Go here to do it:"
+msgstr ""
+
+#: application/views/dashboard/index.php:69
+#: application/views/dashboard/index.php:75
+msgid "Stationsetup"
 msgstr ""
 
 #: application/views/dashboard/index.php:75
-msgid "dashboard_logbooks_warning"
+msgctxt "Dashboard Warning"
+msgid "You have no station logbook. Go here to do it:"
 msgstr ""
 
 #: application/views/dashboard/index.php:82
-msgid "dashboard_you_have_had"
+msgid "You have had"
 msgstr ""
 
 #: application/views/dashboard/index.php:86
 #: application/views/dashboard/index.php:128
 #: application/views/dashboard/index.php:134
-msgid "general_word_important"
+msgid "Important"
 msgstr ""
 
 #: application/views/dashboard/index.php:86
-msgid "notice_turn_the_radio_on"
+msgid "You have made no QSOs today; time to turn on the radio!"
 msgstr ""
 
 #: application/views/dashboard/index.php:93
-msgid "error_no_active_station_profile"
+msgid "Attention: you need to set an active station location."
 msgstr ""
 
 #: application/views/dashboard/index.php:109
@@ -64,11 +77,11 @@ msgid "Callsign"
 msgstr "Rufzeichen"
 
 #: application/views/dashboard/index.php:128
-msgid "lotw_cert_expired"
+msgid "At least one of your LoTW certificates is expired!"
 msgstr ""
 
 #: application/views/dashboard/index.php:134
-msgid "lotw_cert_expiring"
+msgid "At least one of your LoTW certificates is about to expire!"
 msgstr ""
 
 #: application/views/dashboard/index.php:157
@@ -96,7 +109,8 @@ msgid "Month"
 msgstr "Monat Tes"
 
 #: application/views/dashboard/index.php:246
-msgid "Countrys Breakdown"
+#, fuzzy
+msgid "Countries Breakdown"
 msgstr "Länder Übersicht"
 
 #: application/views/dashboard/index.php:250
@@ -143,7 +157,7 @@ msgid "Requested"
 msgstr "Angefragt"
 
 #: application/views/dashboard/index.php:298
-msgid "LotW"
+msgid "Logbook of the World"
 msgstr ""
 
 #: application/views/dashboard/index.php:319
@@ -157,4 +171,3 @@ msgstr ""
 #: application/views/awards/cq/index.php:72
 msgid "Band"
 msgstr ""
-
