@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 11:38+0000\n"
+"POT-Creation-Date: 2024-06-05 12:03+0000\n"
 "PO-Revision-Date: 2024-06-05 11:48\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
@@ -17,8 +17,74 @@ msgstr ""
 "X-Crowdin-File: /gettext_po_test/pot/messages.pot\n"
 "X-Crowdin-File-ID: 66\n"
 
+#: application/views/dashboard/index.php:4
+msgid "Mode"
+msgstr ""
+
+#: application/views/dashboard/index.php:5
+msgid "RSTS"
+msgstr ""
+
+#: application/views/dashboard/index.php:6
+msgid "RSTR"
+msgstr ""
+
+#: application/views/dashboard/index.php:7
+msgid "Country"
+msgstr ""
+
+#: application/views/dashboard/index.php:8
+msgid "IOTA"
+msgstr ""
+
+#: application/views/dashboard/index.php:9
+msgid "SOTA"
+msgstr ""
+
+#: application/views/dashboard/index.php:10
+msgid "WWFF"
+msgstr ""
+
+#: application/views/dashboard/index.php:11
+msgid "POTA"
+msgstr ""
+
+#: application/views/dashboard/index.php:12
+msgid "State"
+msgstr ""
+
+#: application/views/dashboard/index.php:13
+msgid "Gridsquare"
+msgstr ""
+
+#: application/views/dashboard/index.php:14
+msgid "Distance"
+msgstr ""
+
+#: application/views/dashboard/index.php:15
+#: application/views/awards/cq/index.php:72
+msgid "Band"
+msgstr ""
+
+#: application/views/dashboard/index.php:16
+msgid "Frequency"
+msgstr ""
+
+#: application/views/dashboard/index.php:17
+msgid "Operator"
+msgstr ""
+
+#: application/views/dashboard/index.php:18
+msgid "Name"
+msgstr ""
+
+#: application/views/dashboard/index.php:28
+msgid "Deleted DXCC"
+msgstr ""
+
 #: application/views/dashboard/index.php:57
-msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
+msgid ""
+"You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
 msgstr ""
 
 #: application/views/dashboard/index.php:63
@@ -77,6 +143,12 @@ msgstr[1] ""
 #: application/views/dashboard/index.php:162
 msgid "Callsign"
 msgstr "Rufzeichen"
+
+#: application/views/dashboard/index.php:119
+msgid ""
+"You have themes without defined theme mode. Please ask the admin to edit the "
+"themes."
+msgstr ""
 
 #: application/views/dashboard/index.php:128
 msgid "At least one of your LoTW certificates is expired!"
@@ -157,7 +229,8 @@ msgstr ""
 msgid "Requested"
 msgstr ""
 
-#: Probably no translation needed as this is the real name of the product
+#: application/views/dashboard/index.php:298
+msgctxt "Probably no translation needed as this is a name."
 msgid "Logbook of the World"
 msgstr ""
 
@@ -168,8 +241,3 @@ msgstr ""
 #: application/views/awards/cq/index.php:50
 msgid "QSL Type"
 msgstr ""
-
-#: application/views/awards/cq/index.php:72
-msgid "Band"
-msgstr ""
-
