@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-04 19:50+0000\n"
-"PO-Revision-Date: 2024-06-04 22:14\n"
+"POT-Creation-Date: 2024-06-05 13:02+0200\n"
+"PO-Revision-Date: 2024-06-05 11:05\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: wavelog-test\n"
 "X-Crowdin-Project-ID: 682556\n"
 "X-Crowdin-Language: es-ES\n"
-"X-Crowdin-File: /gettext_po_test/application/locale/messages.pot\n"
-"X-Crowdin-File-ID: 52\n"
+"X-Crowdin-File: /gettext_po_test/pot/messages.pot\n"
+"X-Crowdin-File-ID: 66\n"
 
 #: application/views/dashboard/index.php:57
 msgid "dashboard_php_version_warning"
@@ -38,8 +38,8 @@ msgid "dashboard_you_have_had"
 msgstr ""
 
 #: application/views/dashboard/index.php:86
-#: application/views/dashboard/index.php:124
-#: application/views/dashboard/index.php:130
+#: application/views/dashboard/index.php:128
+#: application/views/dashboard/index.php:134
 msgid "general_word_important"
 msgstr ""
 
@@ -51,95 +51,102 @@ msgstr ""
 msgid "error_no_active_station_profile"
 msgstr ""
 
-#: application/views/dashboard/index.php:108
-#: application/views/dashboard/index.php:158
+#: application/views/dashboard/index.php:109
+#: application/views/dashboard/index.php:110
+msgid "Apple"
+msgid_plural "Apples"
+msgstr[0] ""
+msgstr[1] ""
+
+#: application/views/dashboard/index.php:111
+#: application/views/dashboard/index.php:162
 msgid "Callsign"
 msgstr "Rufzeichen"
 
-#: application/views/dashboard/index.php:124
+#: application/views/dashboard/index.php:128
 msgid "lotw_cert_expired"
 msgstr ""
 
-#: application/views/dashboard/index.php:130
+#: application/views/dashboard/index.php:134
 msgid "lotw_cert_expiring"
 msgstr ""
 
-#: application/views/dashboard/index.php:153
+#: application/views/dashboard/index.php:157
 msgid "Date"
 msgstr "Fecha"
 
-#: application/views/dashboard/index.php:156
+#: application/views/dashboard/index.php:160
 msgid "Time"
 msgstr "Tiempo Test"
 
-#: application/views/dashboard/index.php:219
+#: application/views/dashboard/index.php:223
 msgid "QSOs Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:223
+#: application/views/dashboard/index.php:227
 msgid "Total"
 msgstr ""
 
-#: application/views/dashboard/index.php:228
+#: application/views/dashboard/index.php:232
 msgid "Year"
 msgstr ""
 
-#: application/views/dashboard/index.php:233
+#: application/views/dashboard/index.php:237
 msgid "Month"
 msgstr ""
 
-#: application/views/dashboard/index.php:242
+#: application/views/dashboard/index.php:246
 msgid "Countrys Breakdown"
 msgstr ""
 
-#: application/views/dashboard/index.php:246
-#: application/views/dashboard/index.php:362
+#: application/views/dashboard/index.php:250
+#: application/views/dashboard/index.php:366
 msgid "Worked"
 msgstr ""
 
-#: application/views/dashboard/index.php:250
-#: application/views/dashboard/index.php:368
+#: application/views/dashboard/index.php:254
+#: application/views/dashboard/index.php:372
 msgid "Confirmed"
 msgstr ""
 
-#: application/views/dashboard/index.php:259
+#: application/views/dashboard/index.php:263
 msgid "Needed"
 msgstr ""
 
-#: application/views/dashboard/index.php:267
+#: application/views/dashboard/index.php:271
 msgid "QSL Cards"
-msgstr ""
-
-#: application/views/dashboard/index.php:268
-#: application/views/dashboard/index.php:295
-#: application/views/dashboard/index.php:316
-#: application/views/dashboard/index.php:337
-msgid "Today"
 msgstr ""
 
 #: application/views/dashboard/index.php:272
 #: application/views/dashboard/index.php:299
 #: application/views/dashboard/index.php:320
 #: application/views/dashboard/index.php:341
+msgid "Today"
+msgstr ""
+
+#: application/views/dashboard/index.php:276
+#: application/views/dashboard/index.php:303
+#: application/views/dashboard/index.php:324
+#: application/views/dashboard/index.php:345
 msgid "Sent"
 msgstr ""
 
-#: application/views/dashboard/index.php:278
-#: application/views/dashboard/index.php:305
-#: application/views/dashboard/index.php:326
-#: application/views/dashboard/index.php:347
+#: application/views/dashboard/index.php:282
+#: application/views/dashboard/index.php:309
+#: application/views/dashboard/index.php:330
+#: application/views/dashboard/index.php:351
 msgid "Received"
 msgstr ""
 
-#: application/views/dashboard/index.php:284
+#: application/views/dashboard/index.php:288
 msgid "Requested"
 msgstr ""
 
-#: application/views/dashboard/index.php:294
+#: application/views/dashboard/index.php:298
 msgid "LotW"
 msgstr ""
 
-#: application/views/dashboard/index.php:315
+#: application/views/dashboard/index.php:319
 msgid "eQSL Cards"
 msgstr ""
 
