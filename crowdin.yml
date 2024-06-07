@@ -1,0 +1,24 @@
+files:
+  - source: '/assets/lang_src/messages.pot'
+    translation: '/application/locale/%locale_with_underscore%/LC_MESSAGES/messages.po'
+    skip_untranslated_files: true
+    skip_untranslated_strings: true
+
+    languages_mapping:
+      locale_with_underscore:
+        bg: bg_BG
+        cs: cs_CZ
+        de: de_DE
+        el: el_GR
+        es: es_ES
+        fi: fi_FI
+        fr: fr_FR
+        it: it_IT
+        nl: nl_NL
+        pl: pl_PL
+        ru: ru_RU
+        sv: sv_SE
+        tr: tr_TR
+        zh: zh_CN
+
+"preserve_hierarchy": true
