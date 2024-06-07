@@ -1,23 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Wavelog
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-07 02:34+0200\n"
-"PO-Revision-Date: 2024-06-05 15:14+0200\n"
+"PO-Revision-Date: 2024-06-07 00:47\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Finnish\n"
 "Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Crowdin-Project: wavelog-test\n"
+"X-Crowdin-Project-ID: 682556\n"
+"X-Crowdin-Language: fi\n"
+"X-Crowdin-File: /gettext_test/assets/lang_src/messages.pot\n"
+"X-Crowdin-File-ID: 84\n"
 
 #: src/QSLManager/QSO.php:266 src/QSLManager/QSO.php:365
 #: src/QSLManager/QSO.php:402 application/views/visitor/index.php:288
@@ -44,7 +42,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:239
 #: application/views/view_log/partial/log_ajax.php:247
 msgid "Sent"
-msgstr "Lähetetyt"
+msgstr ""
 
 #: src/QSLManager/QSO.php:269 src/QSLManager/QSO.php:314
 #: application/views/search/search_result_ajax.php:183
@@ -79,7 +77,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:148
 #: application/views/view_log/partial/log_ajax.php:186
 msgid "Requested"
-msgstr "Pyydetyt"
+msgstr ""
 
 #: src/QSLManager/QSO.php:275 src/QSLManager/QSO.php:320
 #: application/views/search/search_result_ajax.php:189
@@ -97,7 +95,7 @@ msgstr "Pyydetyt"
 #: application/views/view_log/partial/log_ajax.php:151
 #: application/views/view_log/partial/log_ajax.php:189
 msgid "Invalid (Ignore)"
-msgstr "Virheellinen (Ohita)"
+msgstr ""
 
 #: src/QSLManager/QSO.php:292 src/QSLManager/QSO.php:335
 #: application/views/search/search_result_ajax.php:199
@@ -181,7 +179,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:240
 #: application/views/view_log/partial/log_ajax.php:248
 msgid "Received"
-msgstr "Vastaanotetut"
+msgstr ""
 
 #: src/QSLManager/QSO.php:365 src/QSLManager/QSO.php:377
 #: application/controllers/Logbook.php:670
@@ -276,7 +274,7 @@ msgstr ""
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:135
 msgid "Gridsquare Map"
-msgstr "Gridsquare-kartta"
+msgstr ""
 
 #: application/controllers/Gridmap.php:31
 #: application/controllers/Visitor.php:372
@@ -392,7 +390,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 msgid "Mode"
-msgstr "Lähetelaji"
+msgstr ""
 
 #: application/controllers/Logbook.php:1276
 #: application/views/visitor/index.php:9
@@ -469,7 +467,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:13
 #: application/views/view_log/partial/log_ajax.php:7
 msgid "Country"
-msgstr "Maa"
+msgstr ""
 
 #: application/controllers/Logbook.php:1279
 #: application/views/visitor/index.php:18 application/views/bands/index.php:52
@@ -574,7 +572,7 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:82
 #: application/views/view_log/partial/log_ajax.php:12
 msgid "State"
-msgstr "osavaltio"
+msgstr ""
 
 #: application/controllers/Logbook.php:1284
 #: application/views/visitor/index.php:27
@@ -631,7 +629,7 @@ msgstr ""
 #: application/views/qslcard/searchresult.php:84
 #: application/views/view_log/partial/log_ajax.php:14
 msgid "Distance"
-msgstr "Etäisyys"
+msgstr ""
 
 #: application/controllers/Logbook.php:1286
 #: application/views/visitor/index.php:33 application/views/bands/index.php:47
@@ -695,7 +693,7 @@ msgstr "Etäisyys"
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 msgid "Band"
-msgstr "Bandi"
+msgstr ""
 
 #: application/controllers/Logbook.php:1287
 #: application/views/visitor/index.php:36
@@ -715,7 +713,7 @@ msgstr "Bandi"
 #: application/views/view_log/qso.php:93
 #: application/views/view_log/partial/log_ajax.php:16
 msgid "Frequency"
-msgstr "Taajuus"
+msgstr ""
 
 #: application/controllers/Logbook.php:1288
 #: application/views/visitor/index.php:39
@@ -761,12 +759,12 @@ msgstr ""
 #: application/views/view_log/qso.php:529
 #: application/views/view_log/partial/log_ajax.php:29
 msgid "Deleted DXCC"
-msgstr "Poistettu DXCC"
+msgstr ""
 
 #: application/controllers/Qslprint.php:46
 #: application/views/interface_assets/header.php:401
 msgid "Print Requested QSLs"
-msgstr "Tulosta pyydetyt QSL:t"
+msgstr ""
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:363
@@ -874,7 +872,7 @@ msgstr ""
 #: application/views/station_profile/index.php:79
 #: application/views/user/main.php:52
 msgid "Edit"
-msgstr "Muokkaa"
+msgstr ""
 
 #: application/controllers/Stationsetup.php:355
 #: application/views/stationsetup/stationsetup.php:132
@@ -910,7 +908,7 @@ msgstr ""
 #: application/views/user/main.php:54
 #: application/views/lotw_views/index.php:118
 msgid "Delete"
-msgstr "Poista"
+msgstr ""
 
 #: application/controllers/Stationsetup.php:364
 #: application/views/stationsetup/stationsetup.php:183
@@ -952,7 +950,7 @@ msgstr ""
 #: application/controllers/Options.php:57
 #: application/views/options/sidebar.php:4
 msgid "Appearance"
-msgstr "Ulkoasu"
+msgstr ""
 
 #: application/controllers/Options.php:78
 #: application/controllers/Options.php:86
@@ -985,7 +983,7 @@ msgstr ""
 #: application/controllers/Options.php:185
 #: application/controllers/Options.php:196
 msgid "Radio Settings"
-msgstr "Radion asetukset"
+msgstr ""
 
 #: application/controllers/Options.php:217
 msgid "Radio Timeout Warning changed to "
@@ -1080,7 +1078,7 @@ msgstr ""
 #: application/views/qslprint/index.php:20 application/views/view_log/qso.php:9
 #: application/views/view_log/partial/log_ajax.php:18
 msgid "Station Location"
-msgstr "Asemaprofiili"
+msgstr ""
 
 #: application/controllers/Station.php:70
 msgid "Edit Station Location: "
@@ -1112,17 +1110,17 @@ msgstr ""
 #: application/controllers/Statistics.php:27
 #: application/views/interface_assets/header.php:133
 msgid "Statistics"
-msgstr "Statistiikkaa"
+msgstr ""
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
 msgid "Accumulated Statistics"
-msgstr "Kertyneet tilastot"
+msgstr ""
 
 #: application/controllers/Contesting.php:99
 #: application/views/interface_assets/header.php:265
 msgid "Contests"
-msgstr "Kontestit"
+msgstr ""
 
 #: application/controllers/Contesting.php:113
 msgid "Update Contest"
@@ -1183,7 +1181,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 msgid "Date"
-msgstr "Päivä"
+msgstr ""
 
 #: application/views/visitor/index.php:151
 #: application/views/timeline/index.php:227
@@ -1209,7 +1207,7 @@ msgstr "Päivä"
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 msgid "Time"
-msgstr "Aika"
+msgstr ""
 
 #: application/views/visitor/index.php:153
 #: application/views/contesting/index.php:201
@@ -1224,12 +1222,12 @@ msgstr "Aika"
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 msgid "Call"
-msgstr "Kutsu"
+msgstr ""
 
 #: application/views/visitor/index.php:238
 #: application/views/dashboard/index.php:215
 msgid "QSOs Breakdown"
-msgstr "Yhteystilasto"
+msgstr ""
 
 #: application/views/visitor/index.php:242
 #: application/views/statistics/satqsotable.php:10
@@ -1262,18 +1260,18 @@ msgstr ""
 #: application/views/accumulate/index.php:6
 #: application/views/dayswithqso/index.php:16
 msgid "Year"
-msgstr "Vuosi"
+msgstr ""
 
 #: application/views/visitor/index.php:252
 #: application/views/dashboard/index.php:229
 #: application/views/accumulate/index.php:8
 msgid "Month"
-msgstr "Kuukausi"
+msgstr ""
 
 #: application/views/visitor/index.php:259
 #: application/views/dashboard/index.php:238
 msgid "Countries Breakdown"
-msgstr "Maatilasto"
+msgstr ""
 
 #: application/views/visitor/index.php:263
 #: application/views/bandmap/list.php:72
@@ -1282,7 +1280,7 @@ msgstr "Maatilasto"
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
 msgid "Worked"
-msgstr "Workittu"
+msgstr ""
 
 #: application/views/visitor/index.php:267
 #: application/views/bandmap/list.php:73
@@ -1293,19 +1291,19 @@ msgstr "Workittu"
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
 msgid "Confirmed"
-msgstr "Kuitattu"
+msgstr ""
 
 #: application/views/visitor/index.php:276
 #: application/views/dashboard/index.php:255
 msgid "Needed"
-msgstr "Tarvittu"
+msgstr ""
 
 #: application/views/visitor/index.php:284
 #: application/views/dashboard/index.php:246
 #: application/views/dashboard/index.php:263
 #: application/views/qslcard/index.php:5
 msgid "QSL Cards"
-msgstr "QSL-kortit"
+msgstr ""
 
 #: application/views/visitor/index.php:307
 #: application/views/dashboard/index.php:311
@@ -1402,7 +1400,7 @@ msgstr ""
 #: application/views/qslcard/index.php:28 application/views/view_log/qso.php:82
 #: application/views/view_log/qso.php:507
 msgid "Callsign"
-msgstr "Radioamatöörikutsu"
+msgstr ""
 
 #: application/views/cabrillo/index.php:48
 msgid "Category Operator"
@@ -1582,7 +1580,7 @@ msgstr ""
 #: application/views/statistics/index.php:56
 #: application/views/interface_assets/header.php:365
 msgid "Bands"
-msgstr "Bandit"
+msgstr ""
 
 #: application/views/bands/index.php:36
 msgid "Using the band list you can control which bands are shown when creating a new QSO."
@@ -1648,7 +1646,7 @@ msgstr ""
 
 #: application/views/bands/index.php:58 application/views/qso/index.php:433
 msgid "USA County"
-msgstr "USA lääni"
+msgstr ""
 
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:167
@@ -1793,7 +1791,7 @@ msgstr ""
 #: application/views/api/help.php:19 application/views/api/help.php:38
 #: application/views/cron/index.php:21 application/views/debug/index.php:36
 msgid "Copy to clipboard"
-msgstr "Kopioi leikepöydälle"
+msgstr ""
 
 #: application/views/api/help.php:20 application/views/qso/index.php:538
 #: application/views/qso/index.php:583 application/views/qso/edit_ajax.php:476
@@ -1869,7 +1867,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:34
 #: application/views/awards/dxcc/index.php:127
 msgid "Satellite"
-msgstr "Satelliitti"
+msgstr ""
 
 #: application/views/activated_gridmap/index.php:30
 #: application/views/distances/index.php:43
@@ -1904,7 +1902,7 @@ msgstr ""
 #: application/views/activated_gridmap/index.php:86
 #: application/views/gridmap/index.php:128
 msgid "Plot"
-msgstr "Merkitse"
+msgstr ""
 
 #: application/views/activated_gridmap/index.php:87
 #: application/views/gridmap/index.php:129
@@ -1938,7 +1936,7 @@ msgstr ""
 #: application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:271
 msgid "Backup"
-msgstr "Varmuuskopiot"
+msgstr ""
 
 #: application/views/backup/main.php:17
 msgid "Some of the data stored in Wavelog can be exported so that you can keep a backup copy elsewhere."
@@ -2011,7 +2009,7 @@ msgstr ""
 #: application/views/distances/index.php:8
 #: application/views/interface_assets/header.php:141
 msgid "Distances Worked"
-msgstr "Workitut etäisyydet"
+msgstr ""
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:20
@@ -2037,7 +2035,7 @@ msgstr ""
 
 #: application/views/distances/index.php:19
 msgid "Band selection"
-msgstr "Bandin valinta"
+msgstr ""
 
 #: application/views/distances/index.php:52
 #: application/views/timeline/index.php:71
@@ -2067,7 +2065,7 @@ msgstr ""
 #: application/views/statistics/index.php:14
 #: application/views/statistics/index.php:50
 msgid "Years"
-msgstr "Vuodet"
+msgstr ""
 
 #: application/views/statistics/index.php:17
 msgid "Number of QSOs worked each year"
@@ -2075,22 +2073,22 @@ msgstr ""
 
 #: application/views/statistics/index.php:28
 msgid "Explore the logbook."
-msgstr "Uppoudu lokiisi tarkemmin"
+msgstr ""
 
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 msgid "QSOs"
-msgstr "QSO:t"
+msgstr ""
 
 #: application/views/statistics/index.php:62
 #: application/views/statistics/index.php:99
 msgid "Unique callsigns"
-msgstr "Erillisiä kutsuja"
+msgstr ""
 
 #: application/views/timeline/index.php:2
 #: application/views/interface_assets/header.php:145
 msgid "Timeline"
-msgstr "Aikajana"
+msgstr ""
 
 #: application/views/timeline/index.php:41
 #: application/views/accumulate/index.php:47
@@ -2225,7 +2223,7 @@ msgstr ""
 #: application/views/eqslcard/index.php:33 application/views/qso/index.php:401
 #: application/views/qso/edit_ajax.php:189
 msgid "Propagation Mode"
-msgstr "Propagaatiomuoto"
+msgstr ""
 
 #: application/views/csv/index.php:95 application/views/kml/index.php:80
 #: application/views/logbookadvanced/index.php:220
@@ -2369,7 +2367,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:207
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr "Satelliitti"
+msgstr ""
 
 #: application/views/csv/index.php:111 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:236
@@ -2396,7 +2394,7 @@ msgstr ""
 #: application/views/qrz/export.php:97 application/views/hrdlog/export.php:77
 #: application/views/cfd/index.php:15 application/views/webadif/export.php:97
 msgid "From date"
-msgstr "päivämäärästä"
+msgstr ""
 
 #: application/views/csv/index.php:123 application/views/kml/index.php:108
 #: application/views/adif/import.php:179 application/views/adif/import.php:225
@@ -2547,15 +2545,15 @@ msgstr ""
 
 #: application/views/contesting/index.php:2
 msgid "Start new Contest Session"
-msgstr "Nollaa kilpailuloki"
+msgstr ""
 
 #: application/views/contesting/index.php:3
 msgid "Contest Logging"
-msgstr "Kilpailuloki"
+msgstr ""
 
 #: application/views/contesting/index.php:11
 msgid "Exchange Type"
-msgstr "Annettava sanoma"
+msgstr ""
 
 #: application/views/contesting/index.php:15
 #: application/views/contesting/index.php:94
@@ -2571,7 +2569,7 @@ msgstr ""
 
 #: application/views/contesting/index.php:18
 msgid "Serial"
-msgstr "Sarjanumero"
+msgstr ""
 
 #: application/views/contesting/index.php:19
 msgid "Serial + Exchange"
@@ -2585,7 +2583,7 @@ msgstr ""
 #: application/views/contesting/edit.php:31
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
-msgstr "Kilpailun nimi"
+msgstr ""
 
 #: application/views/contesting/index.php:34
 #: application/views/qso/index.php:352
@@ -2633,16 +2631,16 @@ msgstr ""
 #: application/views/qso/index.php:289 application/views/qso/edit_ajax.php:183
 #: application/views/view_log/qso.php:199
 msgid "Comment"
-msgstr "Kommentti"
+msgstr ""
 
 #: application/views/contesting/index.php:163
 msgid "Reset QSO"
-msgstr "Nollaa QSO"
+msgstr ""
 
 #: application/views/contesting/index.php:164
 #: application/views/qso/index.php:607
 msgid "Save QSO"
-msgstr "TALLENNA QSO"
+msgstr ""
 
 #: application/views/contesting/index.php:166
 msgid "Copy received exchange to"
@@ -2662,15 +2660,15 @@ msgstr ""
 
 #: application/views/contesting/index.php:175
 msgid "Locator"
-msgstr "Lokaattori"
+msgstr ""
 
 #: application/views/contesting/index.php:187
 msgid "Callsign Suggestions"
-msgstr "Ehdotettu kutsu"
+msgstr ""
 
 #: application/views/contesting/index.php:194
 msgid "Contest Logbook"
-msgstr "Kilpailussa pidetyt yhteydet"
+msgstr ""
 
 #: application/views/contesting/add.php:16
 msgid "Using the contest list, you can control which Contests are shown when logging QSOs in a contest."
@@ -2761,11 +2759,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:12
 msgid "Import Options"
-msgstr "Tuonnin asetukset"
+msgstr ""
 
 #: application/views/lotw/import.php:22
 msgid "Upload a File"
-msgstr "Lataa tiedosto"
+msgstr ""
 
 #: application/views/lotw/import.php:24
 #, php-format
@@ -2783,19 +2781,19 @@ msgstr ""
 #: application/views/adif/import.php:55
 #: application/views/lotw_views/index.php:4
 msgid "Important"
-msgstr "Tärkeää"
+msgstr ""
 
 #: application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
-msgstr "Lokitiedoston pitää olla ADI-tiedosto --> .adi"
+msgstr ""
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
-msgstr "Valitse tiedosto"
+msgstr ""
 
 #: application/views/lotw/import.php:36
 msgid "Pull LoTW data for me"
-msgstr "Lataa ja tuo LoTW:n data"
+msgstr ""
 
 #: application/views/lotw/import.php:47
 msgid "Select callsign to pull LoTW confirmations for."
@@ -2803,11 +2801,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog käyttää profiiliisi tallennettuja LoTW:n käyttäjätietoja lokikoosteen lataamiseen. Lokikooste sisältää tähän päivään asti kaikki kuitatut yhteydet, alkaen valitsemastasi päivästä tai siitä päivästä kun olet viimeksi ne palvelusta ladannut ."
+msgstr ""
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
-msgstr "Tuo LoTW:n osumat"
+msgstr ""
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:49
 msgid "BandMap"
@@ -2828,7 +2826,7 @@ msgstr ""
 #: application/views/awards/dxcc/index.php:87
 #: application/views/view_log/qso.php:247
 msgid "Africa"
-msgstr "Afrikka"
+msgstr ""
 
 #: application/views/bandmap/index.php:37 application/views/bandmap/list.php:80
 #: application/views/options/dxcluster.php:56
@@ -2837,7 +2835,7 @@ msgstr "Afrikka"
 #: application/views/awards/dxcc/index.php:83
 #: application/views/view_log/qso.php:250
 msgid "Antarctica"
-msgstr "Antarktis"
+msgstr ""
 
 #: application/views/bandmap/index.php:38 application/views/bandmap/list.php:81
 #: application/views/options/dxcluster.php:57
@@ -2846,7 +2844,7 @@ msgstr "Antarktis"
 #: application/views/awards/dxcc/index.php:91
 #: application/views/view_log/qso.php:253
 msgid "Asia"
-msgstr "Aasia"
+msgstr ""
 
 #: application/views/bandmap/index.php:39 application/views/bandmap/list.php:82
 #: application/views/options/dxcluster.php:58
@@ -2855,7 +2853,7 @@ msgstr "Aasia"
 #: application/views/awards/dxcc/index.php:95
 #: application/views/view_log/qso.php:256
 msgid "Europe"
-msgstr "Eurooppa"
+msgstr ""
 
 #: application/views/bandmap/index.php:40 application/views/bandmap/list.php:83
 #: application/views/options/dxcluster.php:59
@@ -2864,7 +2862,7 @@ msgstr "Eurooppa"
 #: application/views/awards/dxcc/index.php:99
 #: application/views/view_log/qso.php:259
 msgid "North America"
-msgstr "Pohjois-Amerikka"
+msgstr ""
 
 #: application/views/bandmap/index.php:41 application/views/bandmap/list.php:84
 #: application/views/options/dxcluster.php:60
@@ -2873,7 +2871,7 @@ msgstr "Pohjois-Amerikka"
 #: application/views/awards/dxcc/index.php:107
 #: application/views/view_log/qso.php:262
 msgid "Oceania"
-msgstr "Oseania"
+msgstr ""
 
 #: application/views/bandmap/index.php:42 application/views/bandmap/list.php:85
 #: application/views/options/dxcluster.php:61
@@ -2882,7 +2880,7 @@ msgstr "Oseania"
 #: application/views/awards/dxcc/index.php:103
 #: application/views/view_log/qso.php:265
 msgid "South America"
-msgstr "Etelä-Amerikka"
+msgstr ""
 
 #: application/views/bandmap/list.php:69
 msgid "DXCC-Status"
@@ -2918,7 +2916,7 @@ msgstr ""
 
 #: application/views/options/email.php:64
 msgid "Email Sender Name"
-msgstr "Lähettäjän nimi"
+msgstr ""
 
 #: application/views/options/email.php:67
 msgid "The email sender name, e.g. 'Wavelog'"
@@ -2927,7 +2925,7 @@ msgstr ""
 #: application/views/options/email.php:72 application/views/user/edit.php:58
 #: application/views/user/forgot_password.php:47
 msgid "Email Address"
-msgstr "Email"
+msgstr ""
 
 #: application/views/options/email.php:75
 msgid "The email address from which the emails are sent, e.g. 'wavelog@example.com'"
@@ -3071,7 +3069,7 @@ msgstr ""
 
 #: application/views/options/sidebar.php:5
 msgid "Radios"
-msgstr "Radiot"
+msgstr ""
 
 #: application/views/options/sidebar.php:9
 #: application/views/interface_assets/footer.php:89
@@ -3082,11 +3080,11 @@ msgstr ""
 #: application/views/options/appearance.php:39
 #: application/views/user/edit.php:157
 msgid "Theme"
-msgstr "Teema"
+msgstr ""
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr "Yleisen teeman valinta, joka vaikuttaa sivuston vierailijoihin. "
+msgstr ""
 
 #: application/views/options/appearance.php:61
 msgid "Dashboard Notification Banner"
@@ -3239,7 +3237,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:22
 #: application/views/view_log/partial/log_ajax.php:88
 msgid "Station"
-msgstr "Asema"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:400
 #: application/views/interface_assets/footer.php:21
@@ -3247,46 +3245,46 @@ msgstr "Asema"
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:268
 msgid "Edit QSO"
-msgstr "Muokkaa QSO:a"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:405
 #: application/views/view_log/partial/log.php:140
 #: application/views/view_log/partial/log_ajax.php:273
 msgid "Mark QSL Sent (Bureau)"
-msgstr "Merkitse QSL lähetetyksi (Bureau)"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:406
 #: application/views/view_log/partial/log.php:141
 #: application/views/view_log/partial/log_ajax.php:274
 msgid "Mark QSL Sent (Direct)"
-msgstr "Merkitse QSL lähetetyksi (Direct)"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:413
 #: application/views/view_log/qso.php:652
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:283
 msgid "Mark QSL Received (Bureau)"
-msgstr "Merkitse QSL vastaanotetuksi (Bureau)"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:414
 #: application/views/view_log/qso.php:654
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:284
 msgid "Mark QSL Received (Direct)"
-msgstr "Merkitse QSL vastaanotetuksi (Direct)"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:415
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:275
 msgid "Mark QSL Card Requested"
-msgstr "Merkitse QSL-kortti pyydetyksi"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/qso.php:666
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:276
 msgid "Mark QSL Card Not Required"
-msgstr "Merkitse QSL-kortti tarpeettomaksi"
+msgstr ""
 
 #: application/views/search/search_result_ajax.php:422
 #: application/views/view_log/partial/log_ajax.php:290
@@ -3302,7 +3300,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:156
 #: application/views/view_log/partial/log_ajax.php:296
 msgid "Delete QSO"
-msgstr "Poista QSO"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:128
 msgid "From"
@@ -3310,7 +3308,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:132
 msgid "To"
-msgstr "to"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:136
 #: application/views/logbookadvanced/index.php:512
@@ -3359,7 +3357,7 @@ msgstr ""
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
 #: application/views/qso/index.php:554
 msgid "Yes"
-msgstr "Kyllä"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:288
 #: application/views/logbookadvanced/index.php:299
@@ -3389,7 +3387,7 @@ msgstr "Kyllä"
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
 #: application/views/qso/index.php:553
 msgid "No"
-msgstr "Ei"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:295
 msgid "QSL received"
@@ -3410,7 +3408,7 @@ msgstr ""
 #: application/views/qso/index.php:570
 #: application/views/qslprint/qsolist.php:125
 msgid "Manager"
-msgstr "Manageri"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:316
 msgid "QSL recv. method"
@@ -3587,7 +3585,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:65
 #: application/views/qso/index.php:272
 msgid "Location"
-msgstr "Sijainti"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:483
 msgid "Dupes"
@@ -3613,7 +3611,7 @@ msgstr ""
 #: application/views/simplefle/index.php:158
 #: application/views/lotw_views/index.php:47
 msgid "Options"
-msgstr "Valinnat"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:506
 #: application/views/logbookadvanced/useroptions.php:22
@@ -3622,7 +3620,7 @@ msgstr "Valinnat"
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/view_log/qso.php:71
 msgid "Date/Time"
-msgstr "Päivä/Aika"
+msgstr ""
 
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:26
@@ -3718,11 +3716,11 @@ msgstr[1] ""
 
 #: application/views/dashboard/index.php:98
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr "Ei kusoja tänään - siis radio päälle ja bandeille!"
+msgstr ""
 
 #: application/views/dashboard/index.php:105
 msgid "Attention: you need to set an active station location."
-msgstr "Varoitus: sinun täytyy valita aktiivinen asemaprofiili."
+msgstr ""
 
 #: application/views/dashboard/index.php:111
 msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
@@ -3730,11 +3728,11 @@ msgstr ""
 
 #: application/views/dashboard/index.php:120
 msgid "At least one of your LoTW certificates is expired!"
-msgstr "Vähintään yksi LoTW:n kutsumerkin varmenteesi on vanhentunut!!"
+msgstr ""
 
 #: application/views/dashboard/index.php:126
 msgid "At least one of your LoTW certificates is about to expire!"
-msgstr "Vähintään yksi LoTW:n kutsumerkin varmenteesi on vanhentumassa!"
+msgstr ""
 
 #: application/views/dashboard/index.php:290
 msgctxt "Probably no translation needed as this is a name."
@@ -3940,7 +3938,7 @@ msgstr ""
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
-msgstr "Ignore QSOs that cannot be matched"
+msgstr ""
 
 #: application/views/adif/import.php:269
 msgid "If unchecked, information about QSOs which could not be found in Wavelog will be displayed."
@@ -4013,7 +4011,7 @@ msgstr ""
 #: application/views/timeplotter/index.php:9
 #: application/views/interface_assets/header.php:149
 msgid "Timeplotter"
-msgstr "Aikajana"
+msgstr ""
 
 #: application/views/timeplotter/index.php:10
 msgid "The Timeplotter is used to analyze your logbook and find out at what times you worked certain CQ zones or DXCC countries on a selected band."
@@ -4231,16 +4229,16 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:85
 msgid "Developer Mode"
-msgstr "Kehittäjätila"
+msgstr ""
 
 #: application/views/interface_assets/header.php:96
 #: application/views/view_log/index.php:11
 msgid "Logbook"
-msgstr "Lokikirja"
+msgstr ""
 
 #: application/views/interface_assets/header.php:98
 msgid "Overview"
-msgstr "Yleiskatsaus"
+msgstr ""
 
 #: application/views/interface_assets/header.php:100
 msgid "Advanced"
@@ -4248,11 +4246,11 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:103
 msgid "View QSL Cards"
-msgstr "Näytä QSL"
+msgstr ""
 
 #: application/views/interface_assets/header.php:106
 msgid "View eQSL Cards"
-msgstr "Näytä eQSL"
+msgstr ""
 
 #: application/views/interface_assets/header.php:114
 msgid "Live QSO"
@@ -4282,15 +4280,15 @@ msgstr ""
 #: application/views/notes/view.php:6 application/views/notes/view.php:9
 #: application/views/view_log/qso.php:590
 msgid "Notes"
-msgstr "Muistiinpanot"
+msgstr ""
 
 #: application/views/interface_assets/header.php:131
 msgid "Analytics"
-msgstr "Analyysit"
+msgstr ""
 
 #: application/views/interface_assets/header.php:137
 msgid "Activated Gridsquares"
-msgstr "Aktivoidut ruudut"
+msgstr ""
 
 #: application/views/interface_assets/header.php:139
 #: application/views/activators/index.php:2
@@ -4300,17 +4298,17 @@ msgstr ""
 #: application/views/interface_assets/header.php:143
 #: application/views/dayswithqso/index.php:2
 msgid "Days with QSOs"
-msgstr "QSO:llsia päiviä"
+msgstr ""
 
 #: application/views/interface_assets/header.php:151
 #: application/views/awards/iota/index.php:57
 #: application/views/awards/dxcc/index.php:79
 msgid "Continents"
-msgstr "Mantereet"
+msgstr ""
 
 #: application/views/interface_assets/header.php:155
 msgid "Awards"
-msgstr "Awardit"
+msgstr ""
 
 #: application/views/interface_assets/header.php:163
 msgid "ITU"
@@ -4391,7 +4389,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:248
 msgid "Bandmap"
-msgstr "Bandikartta"
+msgstr ""
 
 #: application/views/interface_assets/header.php:250
 msgid "SAT Timers"
@@ -4399,11 +4397,11 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:261
 msgid "Global Options"
-msgstr "Yleiset asetukset"
+msgstr ""
 
 #: application/views/interface_assets/header.php:263
 msgid "Modes"
-msgstr "Modet"
+msgstr ""
 
 #: application/views/interface_assets/header.php:267
 #: application/views/notes/add.php:38 application/views/notes/edit.php:39
@@ -4412,11 +4410,11 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:269
 msgid "Themes"
-msgstr "Teemat"
+msgstr ""
 
 #: application/views/interface_assets/header.php:273
 msgid "Update Country Files"
-msgstr "Päivitä Country Files"
+msgstr ""
 
 #: application/views/interface_assets/header.php:277
 msgid "Debug Information"
@@ -4433,7 +4431,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:347
 #: application/views/user/login.php:59
 msgid "Login"
-msgstr "Kirjaudu"
+msgstr ""
 
 #: application/views/interface_assets/header.php:358
 #: application/views/user/edit.php:49
@@ -4442,7 +4440,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:370
 msgid "ADIF Import / Export"
-msgstr "ADIF Tuonti / Vienti"
+msgstr ""
 
 #: application/views/interface_assets/header.php:372
 msgid "Other Export Options"
@@ -4450,7 +4448,7 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:376
 msgid "DX Atlas Gridsquare Export"
-msgstr "DX Atlas Gridsquare Vienti"
+msgstr ""
 
 #: application/views/interface_assets/header.php:380
 msgid "Cabrillo Export"
@@ -4462,11 +4460,11 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:398
 msgid "OQRS Requests"
-msgstr "OQRS Pyynnöt"
+msgstr ""
 
 #: application/views/interface_assets/header.php:402
 msgid "Labels"
-msgstr "Tarrat"
+msgstr ""
 
 #: application/views/interface_assets/header.php:404
 msgid "Third-Party Services"
@@ -4474,19 +4472,19 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:407
 msgid "eQSL Import / Export"
-msgstr "eQSL Tuonti / Vienti"
+msgstr ""
 
 #: application/views/interface_assets/header.php:408
 msgid "HRDLog Logbook"
-msgstr "HRDLog Logi"
+msgstr ""
 
 #: application/views/interface_assets/header.php:409
 msgid "QRZ Logbook"
-msgstr "QRZ Logi"
+msgstr ""
 
 #: application/views/interface_assets/header.php:410
 msgid "QO-100 Dx Club Upload"
-msgstr "QO-100 Dx Club Lähetys"
+msgstr ""
 
 #: application/views/interface_assets/header.php:415
 msgid "Hardware Interfaces"
@@ -4498,11 +4496,11 @@ msgstr ""
 
 #: application/views/interface_assets/header.php:419
 msgid "Forum"
-msgstr "Foorumi"
+msgstr ""
 
 #: application/views/interface_assets/header.php:421
 msgid "Logout"
-msgstr "Kirjaudu ulos"
+msgstr ""
 
 #: application/views/interface_assets/header.php:429
 msgid "Select a Location"
@@ -4515,12 +4513,12 @@ msgstr ""
 #: application/views/eqslcard/index.php:10
 #: application/views/qslcard/index.php:10
 msgid "You are using"
-msgstr "Käytät"
+msgstr ""
 
 #: application/views/eqslcard/index.php:10
 #: application/views/qslcard/index.php:10
 msgid "of disk space to store QSL Card assets"
-msgstr "levytilaa QSL-korteille"
+msgstr ""
 
 #: application/views/station_profile/create.php:32
 #: application/views/station_profile/edit.php:40
@@ -4648,7 +4646,7 @@ msgstr ""
 #: application/views/qso/index.php:439 application/views/view_log/qso.php:282
 #: application/views/view_log/qso.php:549
 msgid "IOTA Reference"
-msgstr "IOTA ref.nro"
+msgstr ""
 
 #: application/views/station_profile/create.php:141
 #: application/views/station_profile/edit.php:205
@@ -4672,7 +4670,7 @@ msgstr ""
 #: application/views/qso/index.php:456 application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:556
 msgid "SOTA Reference"
-msgstr "SOTA ref.nro"
+msgstr ""
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
@@ -4693,7 +4691,7 @@ msgstr ""
 #: application/views/view_log/qso.php:296
 #: application/views/view_log/qso.php:563
 msgid "WWFF Reference"
-msgstr "WWFF ref.nro"
+msgstr ""
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
@@ -4714,7 +4712,7 @@ msgstr ""
 #: application/views/view_log/qso.php:303
 #: application/views/view_log/qso.php:570
 msgid "POTA Reference(s)"
-msgstr "POTA ref.nro"
+msgstr ""
 
 #: application/views/station_profile/create.php:160
 #: application/views/station_profile/edit.php:247
@@ -4977,19 +4975,19 @@ msgstr ""
 
 #: application/views/user/main.php:30
 msgid "User List"
-msgstr "Käyttäjälista"
+msgstr ""
 
 #: application/views/user/main.php:33
 msgid "Wavelog needs at least one user configured in order to operate."
-msgstr "Wavelog tarvitsee toimiakseen vähintään yhden luodun käyttäjän."
+msgstr ""
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "Käyttäjille voidaan määrittää rooleja, jotka antavat heille erilaisia käyttöoikeuksia, kuten QSO:n lisääminen lokikirjaan ja pääsy Wavelog-sovellusliittymiin (API)."
+msgstr ""
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
-msgstr "Tällä hetkellä kirjautunut käyttäjä näkyy jokaisen sivun oikeassa yläkulmassa."
+msgstr ""
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
@@ -4997,7 +4995,7 @@ msgstr ""
 
 #: application/views/user/main.php:38
 msgid "Create user"
-msgstr "Luo käyttäjä"
+msgstr ""
 
 #: application/views/user/main.php:39
 msgid "Refresh List"
@@ -5009,7 +5007,7 @@ msgstr ""
 
 #: application/views/user/main.php:49
 msgid "Type"
-msgstr "Rooli"
+msgstr ""
 
 #: application/views/user/main.php:50
 msgid "Last seen"
@@ -5042,7 +5040,7 @@ msgstr ""
 #: application/views/user/login.php:45 application/views/user/login.php:46
 #: application/views/user/edit.php:52
 msgid "Username"
-msgstr "käyttäjänimi"
+msgstr ""
 
 #: application/views/user/login.php:50 application/views/user/login.php:52
 #: application/views/user/edit.php:64
@@ -5050,19 +5048,19 @@ msgstr "käyttäjänimi"
 #: application/views/user/reset_password.php:23
 #: application/views/user/reset_password.php:30
 msgid "Password"
-msgstr "Salasana"
+msgstr ""
 
 #: application/views/user/login.php:56
 msgid "Forgot your password?"
-msgstr "Salasana unohtunut?"
+msgstr ""
 
 #: application/views/user/edit.php:4
 msgid "Create User Account"
-msgstr "Luo käyttäjätili"
+msgstr ""
 
 #: application/views/user/edit.php:6
 msgid "Edit Account"
-msgstr "Muokkaa käyttäjätiliä"
+msgstr ""
 
 #: application/views/user/edit.php:41
 msgid "General Information"
@@ -5070,19 +5068,19 @@ msgstr ""
 
 #: application/views/user/edit.php:77
 msgid "User Role"
-msgstr "Käyttäjän rooli"
+msgstr ""
 
 #: application/views/user/edit.php:99
 msgid "Personal"
-msgstr "Henkilötiedot"
+msgstr ""
 
 #: application/views/user/edit.php:102
 msgid "First Name"
-msgstr "Etunimi"
+msgstr ""
 
 #: application/views/user/edit.php:109
 msgid "Last Name"
-msgstr "Sukunimi"
+msgstr ""
 
 #: application/views/user/edit.php:120
 msgid "Ham Radio"
@@ -5090,16 +5088,16 @@ msgstr ""
 
 #: application/views/user/edit.php:146
 msgid "Wavelog Preferences"
-msgstr "Wavelog Asetukset"
+msgstr ""
 
 #: application/views/user/edit.php:154 application/views/qso/index.php:28
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
 msgid "General"
-msgstr "Yleinen"
+msgstr ""
 
 #: application/views/user/edit.php:157
 msgid "Stylesheet"
-msgstr "Tyylisivu"
+msgstr ""
 
 #: application/views/user/edit.php:169
 msgid "Wavelog Language"
@@ -5111,47 +5109,47 @@ msgstr ""
 
 #: application/views/user/edit.php:179
 msgid "Timezone"
-msgstr "Aikavyöhyke"
+msgstr ""
 
 #: application/views/user/edit.php:187
 msgid "Date Format"
-msgstr "Päivämäärämuoto"
+msgstr ""
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
-msgstr "Valitse, miten haluat päivämäärät näkyvän, kun olet kirjautunut tilillesi."
+msgstr ""
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
-msgstr "Mittayksikkömuoto"
+msgstr ""
 
 #: application/views/user/edit.php:212
 msgid "Choose which unit distances will be shown in"
-msgstr "Valitse, mitä mittayksikkömuotoa käytetään"
+msgstr ""
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
-msgstr "Lokin sarakkeiden sisältö"
+msgstr ""
 
 #: application/views/user/edit.php:224
 msgid "Choose column 1"
-msgstr "Sarake 1"
+msgstr ""
 
 #: application/views/user/edit.php:246
 msgid "Choose column 2"
-msgstr "Sarake 2"
+msgstr ""
 
 #: application/views/user/edit.php:268
 msgid "Choose column 3"
-msgstr "Sarake 3"
+msgstr ""
 
 #: application/views/user/edit.php:290
 msgid "Choose column 4"
-msgstr "Sarake 4"
+msgstr ""
 
 #: application/views/user/edit.php:312
 msgid "Choose column 5 (only for logbook)"
-msgstr "Sarake 5 (vain lokikirjassa)"
+msgstr ""
 
 #: application/views/user/edit.php:341
 msgid "QSO Logging Options"
@@ -5167,11 +5165,11 @@ msgstr ""
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Näytä kusokumppanin profiilikuva qrz.com/hamqth.com -profiilista lokin QSO:n kirjausikkunassa."
+msgstr ""
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr "Anna qrz.com/hamqth.com tunnustiedot in the general config file."
+msgstr ""
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
@@ -5204,7 +5202,7 @@ msgstr ""
 
 #: application/views/user/edit.php:416
 msgid "Show notes in the main menu."
-msgstr "Näytä 'Muistio' päävalikossa."
+msgstr ""
 
 #: application/views/user/edit.php:427
 msgid "Quicklog Field"
@@ -5286,7 +5284,7 @@ msgstr ""
 
 #: application/views/user/edit.php:630
 msgid "Default Band"
-msgstr "Oletusbandi"
+msgstr ""
 
 #: application/views/user/edit.php:640
 msgid "Default QSL-Methods"
@@ -5298,19 +5296,19 @@ msgstr ""
 
 #: application/views/user/edit.php:708
 msgid "Logbook of The World (LoTW) Username"
-msgstr "Logbook of The World (LoTW) Käyttäjänimi"
+msgstr ""
 
 #: application/views/user/edit.php:714
 msgid "Logbook of The World (LoTW) Password"
-msgstr "Logbook of The World (LoTW) Salasana"
+msgstr ""
 
 #: application/views/user/edit.php:734
 msgid "eQSL.cc Username"
-msgstr "eQSL.cc Käyttäjänimi"
+msgstr ""
 
 #: application/views/user/edit.php:740
 msgid "eQSL.cc Password"
-msgstr "eQSL.cc Salasana"
+msgstr ""
 
 #: application/views/user/edit.php:757
 msgid "Club Log"
@@ -5318,15 +5316,15 @@ msgstr ""
 
 #: application/views/user/edit.php:760
 msgid "Club Log Email/Callsign"
-msgstr "Club Log Sähköposti/Kutsu"
+msgstr ""
 
 #: application/views/user/edit.php:762
 msgid "The Email or Callsign you use to login to Club Log"
-msgstr "Sähköposti tai kutsu, jota käytät kirjautuessasi Club Log:iin"
+msgstr ""
 
 #: application/views/user/edit.php:767
 msgid "Club Log Password"
-msgstr "Club Log Salasana"
+msgstr ""
 
 #: application/views/user/edit.php:788
 msgid "Miscellaneous"
@@ -5394,42 +5392,42 @@ msgstr ""
 
 #: application/views/user/edit.php:873
 msgid "Save Account"
-msgstr "Tallenna käyttäjätilin muutokset"
+msgstr ""
 
 #: application/views/user/reset_password.php:8
 #: application/views/user/reset_password.php:35
 #: application/views/user/forgot_password.php:51
 msgid "Reset Password"
-msgstr "Resetoi salasana"
+msgstr ""
 
 #: application/views/user/reset_password.php:9
 #: application/views/user/forgot_password.php:34
 msgid "You can reset your password here."
-msgstr "Voit resetoida salasanasi tästä"
+msgstr ""
 
 #: application/views/user/reset_password.php:28
 msgid "Confirm Password"
-msgstr "Vahvista salasana"
+msgstr ""
 
 #: application/views/user/delete.php:5
 msgid "Delete User Account"
-msgstr "Poista käyttäjätili"
+msgstr ""
 
 #: application/views/user/delete.php:10
 msgid "Are you sure you want to delete the user account"
-msgstr "Oletko varma, että haluat poistaa käyttäjätilin"
+msgstr ""
 
 #: application/views/user/delete.php:14
 msgid "Yes, delete this user"
-msgstr "Kyllä, poista tämä käyttäjätili"
+msgstr ""
 
 #: application/views/user/delete.php:14
 msgid "No, do not delete this user"
-msgstr "En, älä poista tätä käyttäjätiliä"
+msgstr ""
 
 #: application/views/user/forgot_password.php:33
 msgid "Forgot Password?"
-msgstr "Salasana unohtunut?"
+msgstr ""
 
 #: application/views/qso/index.php:4
 msgid "TimeOff is less than TimeOn"
@@ -5437,7 +5435,7 @@ msgstr ""
 
 #: application/views/qso/index.php:5 application/views/qso/index.php:694
 msgid "Previous Contacts"
-msgstr "Edelliset yhteydet"
+msgstr ""
 
 #: application/views/qso/index.php:6
 msgid "times worked before"
@@ -5465,63 +5463,63 @@ msgstr ""
 
 #: application/views/qso/index.php:322 application/views/view_log/qso.php:98
 msgid "Frequency (RX)"
-msgstr "Taajuus (RX)"
+msgstr ""
 
 #: application/views/qso/index.php:327
 msgid "Band (RX)"
-msgstr "Bandi (RX)"
+msgstr ""
 
 #: application/views/qso/index.php:346 application/views/view_log/qso.php:542
 msgid "Transmit Power (W)"
-msgstr "Lähetysteho (W)"
+msgstr ""
 
 #: application/views/qso/index.php:348
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr "Anna teholukema Watteina käyttäen vain numeroita."
+msgstr ""
 
 #: application/views/qso/index.php:458
 msgid "For example: GM/NS-001."
-msgstr "Esimerkiksi: OH/JS-004."
+msgstr ""
 
 #: application/views/qso/index.php:471
 msgid "For example: DLFF-0069."
-msgstr "Esimerkiksi: OHFF-1234."
+msgstr ""
 
 #: application/views/qso/index.php:484
 msgid "For example: PA-0150. Multiple values allowed."
-msgstr "Esimerkiksi: PA-0150. Multiple values allowed."
+msgstr ""
 
 #: application/views/qso/index.php:496
 msgid "For example: GMA"
-msgstr "Esimerkiksi: GMA"
+msgstr ""
 
 #: application/views/qso/index.php:502
 msgid "For example: DA/NW-357"
-msgstr "Esimerkiksi: DA/NW-357"
+msgstr ""
 
 #: application/views/qso/index.php:510
 msgid "For example: Q03"
-msgstr "Esimerkiksi: Q03"
+msgstr ""
 
 #: application/views/qso/index.php:519 application/views/view_log/qso.php:207
 msgid "Satellite Name"
-msgstr "Satelliitti"
+msgstr ""
 
 #: application/views/qso/index.php:527 application/views/view_log/qso.php:214
 msgid "Satellite Mode"
-msgstr "Satelliitin Mode"
+msgstr ""
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Muistio tallentuu vain logiin, tähän yhteydeen, eikä siirry eteenpäin muihin palveluihin."
+msgstr ""
 
 #: application/views/qso/index.php:563 application/views/qso/index.php:566
 msgid "Method"
-msgstr "Method / tapa"
+msgstr ""
 
 #: application/views/qso/index.php:583 application/views/qso/edit_ajax.php:476
 msgid "This note content is exported to QSL services like eqsl.cc."
-msgstr "Tämä viestisi siirtyy myös QSL-palveluihin, kuten eqsl.cc."
+msgstr ""
 
 #: application/views/qso/index.php:586 application/views/qso/edit_ajax.php:480
 msgid "Get the default message for eQSL, for this station."
@@ -5533,11 +5531,11 @@ msgstr ""
 
 #: application/views/qso/index.php:677
 msgid "Suggestions"
-msgstr "Kutsumerkkiehdotukset"
+msgstr ""
 
 #: application/views/qso/index.php:684
 msgid "Profile Picture"
-msgstr "Profiilikuva"
+msgstr ""
 
 #: application/views/qso/index.php:708
 msgid "Max. 5 previous contacts are shown"
@@ -6118,7 +6116,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:54
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
-msgstr "QSL-kortti"
+msgstr ""
 
 #: application/views/awards/cq/index.php:113
 msgid "Show CQ Zone Map"
@@ -6433,81 +6431,81 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:10
 msgid "LoTW Import"
-msgstr "LoTW Tuonti"
+msgstr ""
 
 #: application/views/lotw_views/index.php:17
 msgid "Upload Certificate"
-msgstr "Lataa ja tuo kutsumerkin varmenne"
+msgstr ""
 
 #: application/views/lotw_views/index.php:17
 msgid "Available Certificates"
-msgstr "Kutsumerkin varmenteet"
+msgstr ""
 
 #: application/views/lotw_views/index.php:41
 msgid "QSO Start Date"
-msgstr "QSO aloituspäivä"
+msgstr ""
 
 #: application/views/lotw_views/index.php:42
 msgid "QSO End Date"
-msgstr "QSO lopetuspäivä"
+msgstr ""
 
 #: application/views/lotw_views/index.php:43
 msgid "Date Created"
-msgstr "Päivä jolloin luotu"
+msgstr ""
 
 #: application/views/lotw_views/index.php:44
 msgid "Date Expires"
-msgstr "Päivä joloin vanhenee"
+msgstr ""
 
 #: application/views/lotw_views/index.php:46
 #: application/views/view_log/qso.php:404
 msgid "Last Upload"
-msgstr "Last upload"
+msgstr ""
 
 #: application/views/lotw_views/index.php:91
 msgid "Expired"
-msgstr "Vanhentunut"
+msgstr ""
 
 #: application/views/lotw_views/index.php:93
 msgid "Expiring"
-msgstr "Vanhenee"
+msgstr ""
 
 #: application/views/lotw_views/index.php:95
 msgid "Valid"
-msgstr "Voimassa"
+msgstr ""
 
 #: application/views/lotw_views/index.php:114
 msgid "Not Synced"
-msgstr "Ei synkronoitu"
+msgstr ""
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Sinun täytyy ladata ainakin yksi LoTW:n P12 tiedostomuotoinen kutsumerkin varmenne käyttääksesi tätä toimintoaluetta."
+msgstr ""
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
-msgstr "Info"
+msgstr ""
 
 #: application/views/lotw_views/index.php:149
 msgid "Manual Sync"
-msgstr "Synkronoi yhteydet manuaalisesti"
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:31
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr "Tuo palveluun LoTW:n .p12 kutsumerkin varmenne"
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
-msgstr "Vie .p12 tiedoston ohjeistus"
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "Avaa TQSL &amp; ja siirry kutsumerkin varmeenteen / Callsign Certificates välilehdelle"
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Right click on desired Callsign"
-msgstr "Klikkaa hiiren oikealla näppäimella haluamaasi kutsua"
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Click 'Save Callsign Certificate File' and do not add a password"
@@ -6515,11 +6513,11 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
-msgstr "Lataa ja tuo äsken tallentamasi tiedosto tänne."
+msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:35
 msgid "Upload File"
-msgstr "Lataa tiedosto"
+msgstr ""
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
@@ -6822,43 +6820,43 @@ msgstr ""
 #: application/views/notes/add.php:12 application/views/notes/edit.php:13
 #: application/views/notes/view.php:12
 msgid "Create Note"
-msgstr "Luo uusi muistiinpano"
+msgstr ""
 
 #: application/views/notes/main.php:22
 msgid "Your Notes"
-msgstr "Muistiinpanosi"
+msgstr ""
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Näyttää siltä, ettei sinulla ole vielä yhtään muistiinpanoa. Tämä Wavelogin muistio ovat kätevä tapa tallentaa vaikka ATU:n asetukset, taajuudet. Muistiinpanosi säilyvät täällä tallessa, eikä sinun tarvitse etsiä niitä paperipinojesi alta. Näin aika säästyy workkimiseen  --... ...-- "
+msgstr ""
 
 #: application/views/notes/add.php:29 application/views/notes/edit.php:30
 msgid "Title"
-msgstr "Otsikko"
+msgstr ""
 
 #: application/views/notes/add.php:34 application/views/notes/edit.php:35
 msgid "Category"
-msgstr "Kategoria"
+msgstr ""
 
 #: application/views/notes/add.php:37 application/views/notes/edit.php:38
 msgid "Antennas"
-msgstr "Antennit"
+msgstr ""
 
 #: application/views/notes/add.php:43 application/views/notes/edit.php:44
 msgid "Note Contents"
-msgstr "Muistiinpanon teksti:"
+msgstr ""
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:50
 msgid "Save Note"
-msgstr "Tallenna muistiinpano"
+msgstr ""
 
 #: application/views/notes/edit.php:7 application/views/notes/view.php:19
 msgid "Edit Note"
-msgstr "Muokkaa muistiinpanoa"
+msgstr ""
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
-msgstr "Poista muistiinpano"
+msgstr ""
 
 #: application/views/view_log/index.php:4
 msgid "Displaying all QSOs of station locations which are linked to this logbook"
@@ -6866,11 +6864,11 @@ msgstr ""
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr "QSO:n tiedot"
+msgstr ""
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr "QSL-manageri"
+msgstr ""
 
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
@@ -6878,7 +6876,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:128
 msgid "Total Distance"
-msgstr "Kokonaismatka"
+msgstr ""
 
 #: application/views/view_log/qso.php:221
 msgid "Antenna Azimuth"
@@ -6894,19 +6892,19 @@ msgstr ""
 
 #: application/views/view_log/qso.php:370
 msgid "QSL Card has been sent via the bureau"
-msgstr "QSL-kortti on lähetty buron kautta"
+msgstr ""
 
 #: application/views/view_log/qso.php:372
 msgid "QSL Card has been sent via direct"
-msgstr "QSL-kortti on lähetetty direktinä"
+msgstr ""
 
 #: application/views/view_log/qso.php:374
 msgid "QSL Card has been sent electronically"
-msgstr "QSL-kortti on lähetetty sähköisesti"
+msgstr ""
 
 #: application/views/view_log/qso.php:376
 msgid "QSL Card has been sent via manager"
-msgstr "QSL-kortti on lähetetty managerin kautta"
+msgstr ""
 
 #: application/views/view_log/qso.php:378
 msgid "QSL Card has been sent"
@@ -6914,34 +6912,34 @@ msgstr ""
 
 #: application/views/view_log/qso.php:387
 msgid "QSL Card has been received via the bureau"
-msgstr "QSL-kortti on vastaanotettu buron kautta"
+msgstr ""
 
 #: application/views/view_log/qso.php:389
 msgid "QSL Card has been received via direct"
-msgstr "QSL-kortti on vastaanotettu direktinä"
+msgstr ""
 
 #: application/views/view_log/qso.php:391
 msgid "QSL Card has been received electronically"
-msgstr "QSL-kortti on vastaanotettu sähköisesti"
+msgstr ""
 
 #: application/views/view_log/qso.php:393
 msgid "QSL Card has been received via manager"
-msgstr "QSL-kortti on vastaanotettu managerin kautta"
+msgstr ""
 
 #: application/views/view_log/qso.php:395
 msgid "QSL Card has been received"
-msgstr "QSL-kortti on vastaanotettu"
+msgstr ""
 
 #: application/views/view_log/qso.php:404
 msgid "This station uses LoTW."
-msgstr "Tämä asmea käyttää LoTW-palvelua. Viimeinen yhteyksien lähetys oli"
+msgstr ""
 
 #: application/views/view_log/qso.php:409
 #: application/views/view_log/qso.php:414
 #: application/views/view_log/qso.php:419
 #: application/views/view_log/qso.php:424
 msgid "This QSO was confirmed on"
-msgstr "Tämä QSO vahvistettiin"
+msgstr ""
 
 #: application/views/view_log/qso.php:435
 msgid "More QSOs"
@@ -6953,27 +6951,25 @@ msgstr ""
 
 #: application/views/view_log/qso.php:630
 msgid "Uploaded QSL Card front image"
-msgstr "QSL-kortin ladattu etukuva"
+msgstr ""
 
 #: application/views/view_log/qso.php:635
 msgid "Upload QSL Card image"
-msgstr "Lähetä QSL-kortin kuva"
+msgstr ""
 
 #: application/views/view_log/qso.php:640
 msgid "Uploaded QSL Card back image"
-msgstr "QSL-kortin ladattu takakuva"
+msgstr ""
 
 #: application/views/view_log/qso.php:656
 msgid "Mark QSL Received (Electronic)"
-msgstr "Merkitse QSL vastaanotetuksi (Electronic)"
+msgstr ""
 
 #: application/views/view_log/qso.php:662
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr "Merkitse QSL-kortti pyydetyksi (Bureau)"
+msgstr ""
 
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Card Requested (Direct)"
-msgstr "Merkitse QSL-kortti pyydetyksi (Direct)"
+msgstr ""
 
-#~ msgid "Overwrite exisiting DOK in log by DCL (if different)."
-#~ msgstr "Overwrite exisiting DOK in log by DCL (if different)"
