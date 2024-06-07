@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-07 02:34+0200\n"
-"PO-Revision-Date: 2024-06-07 00:47\n"
+"PO-Revision-Date: 2024-06-07 01:53\n"
 "Last-Translator: \n"
 "Language-Team: Bulgarian\n"
 "Language: bg_BG\n"
@@ -42,7 +42,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:239
 #: application/views/view_log/partial/log_ajax.php:247
 msgid "Sent"
-msgstr ""
+msgstr "Изпратени"
 
 #: src/QSLManager/QSO.php:269 src/QSLManager/QSO.php:314
 #: application/views/search/search_result_ajax.php:183
@@ -77,7 +77,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:148
 #: application/views/view_log/partial/log_ajax.php:186
 msgid "Requested"
-msgstr ""
+msgstr "Заявени"
 
 #: src/QSLManager/QSO.php:275 src/QSLManager/QSO.php:320
 #: application/views/search/search_result_ajax.php:189
@@ -111,7 +111,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:164
 #: application/views/view_log/partial/log_ajax.php:202
 msgid "Bureau"
-msgstr ""
+msgstr "Бюро"
 
 #: src/QSLManager/QSO.php:295 src/QSLManager/QSO.php:338
 #: application/views/search/search_result_ajax.php:202
@@ -127,7 +127,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:167
 #: application/views/view_log/partial/log_ajax.php:205
 msgid "Direct"
-msgstr ""
+msgstr "Директено"
 
 #: src/QSLManager/QSO.php:298
 #: application/views/search/search_result_ajax.php:205
@@ -137,7 +137,7 @@ msgstr ""
 #: application/views/qslprint/qslprint.php:28
 #: application/views/view_log/partial/log_ajax.php:170
 msgid "Via"
-msgstr ""
+msgstr "Чрез"
 
 #: src/QSLManager/QSO.php:301 src/QSLManager/QSO.php:344
 #: application/views/search/search_result_ajax.php:208
@@ -179,7 +179,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:240
 #: application/views/view_log/partial/log_ajax.php:248
 msgid "Received"
-msgstr ""
+msgstr "Получени"
 
 #: src/QSLManager/QSO.php:365 src/QSLManager/QSO.php:377
 #: application/controllers/Logbook.php:670
@@ -390,7 +390,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:9
 #: application/views/view_log/partial/log_ajax.php:4
 msgid "Mode"
-msgstr ""
+msgstr "Режим"
 
 #: application/controllers/Logbook.php:1276
 #: application/views/visitor/index.php:9
@@ -467,7 +467,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:13
 #: application/views/view_log/partial/log_ajax.php:7
 msgid "Country"
-msgstr ""
+msgstr "Държава"
 
 #: application/controllers/Logbook.php:1279
 #: application/views/visitor/index.php:18 application/views/bands/index.php:52
@@ -693,7 +693,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:12
 #: application/views/view_log/partial/log_ajax.php:15
 msgid "Band"
-msgstr ""
+msgstr "Обхват"
 
 #: application/controllers/Logbook.php:1287
 #: application/views/visitor/index.php:36
@@ -713,7 +713,7 @@ msgstr ""
 #: application/views/view_log/qso.php:93
 #: application/views/view_log/partial/log_ajax.php:16
 msgid "Frequency"
-msgstr ""
+msgstr "Честота"
 
 #: application/controllers/Logbook.php:1288
 #: application/views/visitor/index.php:39
@@ -1078,7 +1078,7 @@ msgstr ""
 #: application/views/qslprint/index.php:20 application/views/view_log/qso.php:9
 #: application/views/view_log/partial/log_ajax.php:18
 msgid "Station Location"
-msgstr ""
+msgstr "Местоположение на станцията"
 
 #: application/controllers/Station.php:70
 msgid "Edit Station Location: "
@@ -1181,7 +1181,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:4
 #: application/views/view_log/partial/log_ajax.php:59
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: application/views/visitor/index.php:151
 #: application/views/timeline/index.php:227
@@ -1207,7 +1207,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:6
 #: application/views/view_log/partial/log_ajax.php:61
 msgid "Time"
-msgstr ""
+msgstr "Час"
 
 #: application/views/visitor/index.php:153
 #: application/views/contesting/index.php:201
@@ -1222,12 +1222,12 @@ msgstr ""
 #: application/views/view_log/partial/log.php:8
 #: application/views/view_log/partial/log_ajax.php:63
 msgid "Call"
-msgstr ""
+msgstr "Инициал"
 
 #: application/views/visitor/index.php:238
 #: application/views/dashboard/index.php:215
 msgid "QSOs Breakdown"
-msgstr ""
+msgstr "Разбивка на QSO-тата"
 
 #: application/views/visitor/index.php:242
 #: application/views/statistics/satqsotable.php:10
@@ -1260,18 +1260,18 @@ msgstr ""
 #: application/views/accumulate/index.php:6
 #: application/views/dayswithqso/index.php:16
 msgid "Year"
-msgstr ""
+msgstr "Година"
 
 #: application/views/visitor/index.php:252
 #: application/views/dashboard/index.php:229
 #: application/views/accumulate/index.php:8
 msgid "Month"
-msgstr ""
+msgstr "Месец"
 
 #: application/views/visitor/index.php:259
 #: application/views/dashboard/index.php:238
 msgid "Countries Breakdown"
-msgstr ""
+msgstr "Разбивка по държави"
 
 #: application/views/visitor/index.php:263
 #: application/views/bandmap/list.php:72
@@ -1280,7 +1280,7 @@ msgstr ""
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
 msgid "Worked"
-msgstr ""
+msgstr "Работени"
 
 #: application/views/visitor/index.php:267
 #: application/views/bandmap/list.php:73
@@ -1291,19 +1291,19 @@ msgstr ""
 #: application/views/awards/cq/index.php:32
 #: application/views/awards/itu/index.php:32
 msgid "Confirmed"
-msgstr ""
+msgstr "Потвърдени"
 
 #: application/views/visitor/index.php:276
 #: application/views/dashboard/index.php:255
 msgid "Needed"
-msgstr ""
+msgstr "Необходими"
 
 #: application/views/visitor/index.php:284
 #: application/views/dashboard/index.php:246
 #: application/views/dashboard/index.php:263
 #: application/views/qslcard/index.php:5
 msgid "QSL Cards"
-msgstr ""
+msgstr "QSL картички"
 
 #: application/views/visitor/index.php:307
 #: application/views/dashboard/index.php:311
@@ -1646,7 +1646,7 @@ msgstr ""
 
 #: application/views/bands/index.php:58 application/views/qso/index.php:433
 msgid "USA County"
-msgstr ""
+msgstr "USA окръг"
 
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:167
@@ -1796,7 +1796,7 @@ msgstr ""
 #: application/views/api/help.php:20 application/views/qso/index.php:538
 #: application/views/qso/index.php:583 application/views/qso/edit_ajax.php:476
 msgid "Info"
-msgstr ""
+msgstr "Инфо"
 
 #: application/views/api/help.php:20
 msgid "It's good practice to delete a key if you are no longer using the associated application."
@@ -1824,7 +1824,7 @@ msgstr ""
 #: application/views/cron/index.php:52
 #: application/views/lotw_views/index.php:45
 msgid "Status"
-msgstr ""
+msgstr "Състояние"
 
 #: application/views/api/help.php:32
 #: application/views/logbookadvanced/index.php:461
@@ -1867,7 +1867,7 @@ msgstr ""
 #: application/views/awards/wab/index.php:34
 #: application/views/awards/dxcc/index.php:127
 msgid "Satellite"
-msgstr ""
+msgstr "Сателит"
 
 #: application/views/activated_gridmap/index.php:30
 #: application/views/distances/index.php:43
@@ -2151,7 +2151,7 @@ msgstr ""
 #: application/views/qso/index.php:390
 #: application/views/awards/cq/index.php:148
 msgid "CQ Zone"
-msgstr ""
+msgstr "CQ зона"
 
 #: application/views/timeline/details.php:2
 #: application/views/awards/details.php:1
@@ -2367,7 +2367,7 @@ msgstr ""
 #: application/views/qso/edit_ajax.php:207
 msgctxt "Propagation Mode"
 msgid "Satellite"
-msgstr ""
+msgstr "Сателит"
 
 #: application/views/csv/index.php:111 application/views/kml/index.php:96
 #: application/views/logbookadvanced/index.php:236
@@ -2394,7 +2394,7 @@ msgstr ""
 #: application/views/qrz/export.php:97 application/views/hrdlog/export.php:77
 #: application/views/cfd/index.php:15 application/views/webadif/export.php:97
 msgid "From date"
-msgstr ""
+msgstr "От дата"
 
 #: application/views/csv/index.php:123 application/views/kml/index.php:108
 #: application/views/adif/import.php:179 application/views/adif/import.php:225
@@ -2545,15 +2545,15 @@ msgstr ""
 
 #: application/views/contesting/index.php:2
 msgid "Start new Contest Session"
-msgstr ""
+msgstr "Нулиране на сесията на състезанието"
 
 #: application/views/contesting/index.php:3
 msgid "Contest Logging"
-msgstr ""
+msgstr "Регистриране на състезание"
 
 #: application/views/contesting/index.php:11
 msgid "Exchange Type"
-msgstr ""
+msgstr "Тип обмен"
 
 #: application/views/contesting/index.php:15
 #: application/views/contesting/index.php:94
@@ -2583,7 +2583,7 @@ msgstr ""
 #: application/views/contesting/edit.php:31
 #: application/views/view_log/qso.php:275
 msgid "Contest Name"
-msgstr ""
+msgstr "Име на състезанието"
 
 #: application/views/contesting/index.php:34
 #: application/views/qso/index.php:352
@@ -2594,7 +2594,7 @@ msgstr ""
 #: application/views/bandmap/index.php:25 application/views/bandmap/list.php:60
 #: application/views/qso/index.php:312
 msgid "Radio"
-msgstr ""
+msgstr "Радио"
 
 #: application/views/contesting/index.php:116
 #: application/views/contesting/index.php:208
@@ -2631,16 +2631,16 @@ msgstr ""
 #: application/views/qso/index.php:289 application/views/qso/edit_ajax.php:183
 #: application/views/view_log/qso.php:199
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: application/views/contesting/index.php:163
 msgid "Reset QSO"
-msgstr ""
+msgstr "Нулиране на QSO"
 
 #: application/views/contesting/index.php:164
 #: application/views/qso/index.php:607
 msgid "Save QSO"
-msgstr ""
+msgstr "Запазване на QSO"
 
 #: application/views/contesting/index.php:166
 msgid "Copy received exchange to"
@@ -2660,15 +2660,15 @@ msgstr ""
 
 #: application/views/contesting/index.php:175
 msgid "Locator"
-msgstr ""
+msgstr "Локатор"
 
 #: application/views/contesting/index.php:187
 msgid "Callsign Suggestions"
-msgstr ""
+msgstr "Предложения за инициали"
 
 #: application/views/contesting/index.php:194
 msgid "Contest Logbook"
-msgstr ""
+msgstr "Дневник на състезанието"
 
 #: application/views/contesting/add.php:16
 msgid "Using the contest list, you can control which Contests are shown when logging QSOs in a contest."
@@ -2759,11 +2759,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:12
 msgid "Import Options"
-msgstr ""
+msgstr "Опции за импортиране"
 
 #: application/views/lotw/import.php:22
 msgid "Upload a File"
-msgstr ""
+msgstr "Качете файл"
 
 #: application/views/lotw/import.php:24
 #, php-format
@@ -2781,7 +2781,7 @@ msgstr ""
 #: application/views/adif/import.php:55
 #: application/views/lotw_views/index.php:4
 msgid "Important"
-msgstr ""
+msgstr "Важно"
 
 #: application/views/lotw/import.php:25
 msgid "Log files must have the file type .adi"
@@ -2789,7 +2789,7 @@ msgstr ""
 
 #: application/views/lotw/import.php:27
 msgid "Choose file"
-msgstr ""
+msgstr "Изберете файл"
 
 #: application/views/lotw/import.php:36
 msgid "Pull LoTW data for me"
@@ -3237,7 +3237,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:22
 #: application/views/view_log/partial/log_ajax.php:88
 msgid "Station"
-msgstr ""
+msgstr "Станция"
 
 #: application/views/search/search_result_ajax.php:400
 #: application/views/interface_assets/footer.php:21
@@ -3245,46 +3245,46 @@ msgstr ""
 #: application/views/view_log/partial/log.php:135
 #: application/views/view_log/partial/log_ajax.php:268
 msgid "Edit QSO"
-msgstr ""
+msgstr "Редактирай QSO"
 
 #: application/views/search/search_result_ajax.php:405
 #: application/views/view_log/partial/log.php:140
 #: application/views/view_log/partial/log_ajax.php:273
 msgid "Mark QSL Sent (Bureau)"
-msgstr ""
+msgstr "Маркирайте QSL като изпратено (Бюро)"
 
 #: application/views/search/search_result_ajax.php:406
 #: application/views/view_log/partial/log.php:141
 #: application/views/view_log/partial/log_ajax.php:274
 msgid "Mark QSL Sent (Direct)"
-msgstr ""
+msgstr "Маркирайте QSL като изпратено(Директно)"
 
 #: application/views/search/search_result_ajax.php:413
 #: application/views/view_log/qso.php:652
 #: application/views/view_log/partial/log.php:148
 #: application/views/view_log/partial/log_ajax.php:283
 msgid "Mark QSL Received (Bureau)"
-msgstr ""
+msgstr "Маркирайте QSL получена (Бюро)"
 
 #: application/views/search/search_result_ajax.php:414
 #: application/views/view_log/qso.php:654
 #: application/views/view_log/partial/log.php:149
 #: application/views/view_log/partial/log_ajax.php:284
 msgid "Mark QSL Received (Direct)"
-msgstr ""
+msgstr "Маркирайте QSL получена (Директно)"
 
 #: application/views/search/search_result_ajax.php:415
 #: application/views/view_log/partial/log.php:150
 #: application/views/view_log/partial/log_ajax.php:275
 msgid "Mark QSL Card Requested"
-msgstr ""
+msgstr "Маркирайте QSL карта като поискана"
 
 #: application/views/search/search_result_ajax.php:416
 #: application/views/view_log/qso.php:666
 #: application/views/view_log/partial/log.php:151
 #: application/views/view_log/partial/log_ajax.php:276
 msgid "Mark QSL Card Not Required"
-msgstr ""
+msgstr "Маркирайте QSL картата като неизискваща"
 
 #: application/views/search/search_result_ajax.php:422
 #: application/views/view_log/partial/log_ajax.php:290
@@ -3300,7 +3300,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:156
 #: application/views/view_log/partial/log_ajax.php:296
 msgid "Delete QSO"
-msgstr ""
+msgstr "Изтрий QSO"
 
 #: application/views/logbookadvanced/index.php:128
 msgid "From"
@@ -3308,7 +3308,7 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:132
 msgid "To"
-msgstr ""
+msgstr "to"
 
 #: application/views/logbookadvanced/index.php:136
 #: application/views/logbookadvanced/index.php:512
@@ -3357,7 +3357,7 @@ msgstr ""
 #: application/views/user/edit.php:834 application/views/user/edit.php:859
 #: application/views/qso/index.php:554
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: application/views/logbookadvanced/index.php:288
 #: application/views/logbookadvanced/index.php:299
@@ -3387,7 +3387,7 @@ msgstr ""
 #: application/views/user/edit.php:833 application/views/user/edit.php:858
 #: application/views/qso/index.php:553
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: application/views/logbookadvanced/index.php:295
 msgid "QSL received"
@@ -3585,7 +3585,7 @@ msgstr ""
 #: application/views/station_profile/edit.php:65
 #: application/views/qso/index.php:272
 msgid "Location"
-msgstr ""
+msgstr "Местоположение"
 
 #: application/views/logbookadvanced/index.php:483
 msgid "Dupes"
@@ -3620,7 +3620,7 @@ msgstr ""
 #: application/views/awards/sig/qso_list.php:10
 #: application/views/view_log/qso.php:71
 msgid "Date/Time"
-msgstr ""
+msgstr "Дата/Час"
 
 #: application/views/logbookadvanced/index.php:509
 #: application/views/logbookadvanced/useroptions.php:26
@@ -3716,11 +3716,11 @@ msgstr[1] ""
 
 #: application/views/dashboard/index.php:98
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr ""
+msgstr "Днес не сте правили QSO; време е да включите радиото!"
 
 #: application/views/dashboard/index.php:105
 msgid "Attention: you need to set an active station location."
-msgstr ""
+msgstr "Внимание: трябва да зададете местоположение на активната станция."
 
 #: application/views/dashboard/index.php:111
 msgid "You have themes without defined theme mode. Please ask the admin to edit the themes."
@@ -3938,7 +3938,7 @@ msgstr ""
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
-msgstr ""
+msgstr "Ignore QSOs that cannot be matched"
 
 #: application/views/adif/import.php:269
 msgid "If unchecked, information about QSOs which could not be found in Wavelog will be displayed."
@@ -4234,7 +4234,7 @@ msgstr ""
 #: application/views/interface_assets/header.php:96
 #: application/views/view_log/index.php:11
 msgid "Logbook"
-msgstr ""
+msgstr "Дневник"
 
 #: application/views/interface_assets/header.php:98
 msgid "Overview"
@@ -4280,7 +4280,7 @@ msgstr ""
 #: application/views/notes/view.php:6 application/views/notes/view.php:9
 #: application/views/view_log/qso.php:590
 msgid "Notes"
-msgstr ""
+msgstr "Бележки"
 
 #: application/views/interface_assets/header.php:131
 msgid "Analytics"
@@ -4513,12 +4513,12 @@ msgstr ""
 #: application/views/eqslcard/index.php:10
 #: application/views/qslcard/index.php:10
 msgid "You are using"
-msgstr ""
+msgstr "Вие използвате"
 
 #: application/views/eqslcard/index.php:10
 #: application/views/qslcard/index.php:10
 msgid "of disk space to store QSL Card assets"
-msgstr ""
+msgstr "дисково пространство за съхранение на QSL картички"
 
 #: application/views/station_profile/create.php:32
 #: application/views/station_profile/edit.php:40
@@ -4646,7 +4646,7 @@ msgstr ""
 #: application/views/qso/index.php:439 application/views/view_log/qso.php:282
 #: application/views/view_log/qso.php:549
 msgid "IOTA Reference"
-msgstr ""
+msgstr "IOTA референция"
 
 #: application/views/station_profile/create.php:141
 #: application/views/station_profile/edit.php:205
@@ -4670,7 +4670,7 @@ msgstr ""
 #: application/views/qso/index.php:456 application/views/view_log/qso.php:289
 #: application/views/view_log/qso.php:556
 msgid "SOTA Reference"
-msgstr ""
+msgstr "SOTA референция"
 
 #: application/views/station_profile/create.php:148
 #: application/views/station_profile/edit.php:221
@@ -4691,7 +4691,7 @@ msgstr ""
 #: application/views/view_log/qso.php:296
 #: application/views/view_log/qso.php:563
 msgid "WWFF Reference"
-msgstr ""
+msgstr "WWFF референция"
 
 #: application/views/station_profile/create.php:154
 #: application/views/station_profile/edit.php:234
@@ -5093,7 +5093,7 @@ msgstr ""
 #: application/views/user/edit.php:154 application/views/qso/index.php:28
 #: application/views/notes/add.php:36 application/views/notes/edit.php:37
 msgid "General"
-msgstr ""
+msgstr "Общи"
 
 #: application/views/user/edit.php:157
 msgid "Stylesheet"
@@ -5129,27 +5129,27 @@ msgstr ""
 
 #: application/views/user/edit.php:221
 msgid "Logbook fields"
-msgstr ""
+msgstr "Полета в дневника"
 
 #: application/views/user/edit.php:224
 msgid "Choose column 1"
-msgstr ""
+msgstr "Избор за колона 1"
 
 #: application/views/user/edit.php:246
 msgid "Choose column 2"
-msgstr ""
+msgstr "Избор за колона 2"
 
 #: application/views/user/edit.php:268
 msgid "Choose column 3"
-msgstr ""
+msgstr "Избор за колона 3"
 
 #: application/views/user/edit.php:290
 msgid "Choose column 4"
-msgstr ""
+msgstr "Избор за колона 4"
 
 #: application/views/user/edit.php:312
 msgid "Choose column 5 (only for logbook)"
-msgstr ""
+msgstr "Избор за колона 5 (само за дневника)"
 
 #: application/views/user/edit.php:341
 msgid "QSO Logging Options"
@@ -5435,7 +5435,7 @@ msgstr ""
 
 #: application/views/qso/index.php:5 application/views/qso/index.php:694
 msgid "Previous Contacts"
-msgstr ""
+msgstr "Предишни контакти"
 
 #: application/views/qso/index.php:6
 msgid "times worked before"
@@ -5447,7 +5447,7 @@ msgstr ""
 
 #: application/views/qso/index.php:33
 msgid "Sat"
-msgstr ""
+msgstr "Сат"
 
 #: application/views/qso/index.php:48
 msgid "Add Band/Mode to Favs"
@@ -5463,59 +5463,59 @@ msgstr ""
 
 #: application/views/qso/index.php:322 application/views/view_log/qso.php:98
 msgid "Frequency (RX)"
-msgstr ""
+msgstr "Честота (RX)"
 
 #: application/views/qso/index.php:327
 msgid "Band (RX)"
-msgstr ""
+msgstr "Обхват (RX)"
 
 #: application/views/qso/index.php:346 application/views/view_log/qso.php:542
 msgid "Transmit Power (W)"
-msgstr ""
+msgstr "Мощност на предавателя (W)"
 
 #: application/views/qso/index.php:348
 msgid "Give power value in Watts. Include only numbers in the input."
-msgstr ""
+msgstr "Посочете стойността на мощността във ватове. Въведете само цифри."
 
 #: application/views/qso/index.php:458
 msgid "For example: GM/NS-001."
-msgstr ""
+msgstr "Например: GM/NS-001."
 
 #: application/views/qso/index.php:471
 msgid "For example: DLFF-0069."
-msgstr ""
+msgstr "Например: DLFF-0069."
 
 #: application/views/qso/index.php:484
 msgid "For example: PA-0150. Multiple values allowed."
-msgstr ""
+msgstr "Например: PA-0150. Multiple values allowed."
 
 #: application/views/qso/index.php:496
 msgid "For example: GMA"
-msgstr ""
+msgstr "Например: GMA"
 
 #: application/views/qso/index.php:502
 msgid "For example: DA/NW-357"
-msgstr ""
+msgstr "Например: DA/NW-357"
 
 #: application/views/qso/index.php:510
 msgid "For example: Q03"
-msgstr ""
+msgstr "Например: Q03"
 
 #: application/views/qso/index.php:519 application/views/view_log/qso.php:207
 msgid "Satellite Name"
-msgstr ""
+msgstr "Име на сателита"
 
 #: application/views/qso/index.php:527 application/views/view_log/qso.php:214
 msgid "Satellite Mode"
-msgstr ""
+msgstr "Режим на сателита"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr ""
+msgstr "Съдържанието на бележката се използва само в Wavelog и не се експортира в други услуги."
 
 #: application/views/qso/index.php:563 application/views/qso/index.php:566
 msgid "Method"
-msgstr ""
+msgstr "Метод"
 
 #: application/views/qso/index.php:583 application/views/qso/edit_ajax.php:476
 msgid "This note content is exported to QSL services like eqsl.cc."
@@ -5531,7 +5531,7 @@ msgstr ""
 
 #: application/views/qso/index.php:677
 msgid "Suggestions"
-msgstr ""
+msgstr "Предложения"
 
 #: application/views/qso/index.php:684
 msgid "Profile Picture"
@@ -6116,7 +6116,7 @@ msgstr ""
 #: application/views/awards/itu/index.php:54
 #: application/views/view_log/qso.php:25
 msgid "QSL Card"
-msgstr ""
+msgstr "QSL катичка"
 
 #: application/views/awards/cq/index.php:113
 msgid "Show CQ Zone Map"
@@ -6284,7 +6284,7 @@ msgstr ""
 #: application/views/awards/jcc/index.php:148
 #: application/views/view_log/qso.php:521
 msgid "City"
-msgstr ""
+msgstr "Град"
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -6431,15 +6431,15 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:10
 msgid "LoTW Import"
-msgstr ""
+msgstr "LoTW импорт"
 
 #: application/views/lotw_views/index.php:17
 msgid "Upload Certificate"
-msgstr ""
+msgstr "Качване на сертификат"
 
 #: application/views/lotw_views/index.php:17
 msgid "Available Certificates"
-msgstr ""
+msgstr "Налични сертификати"
 
 #: application/views/lotw_views/index.php:41
 msgid "QSO Start Date"
@@ -6451,20 +6451,20 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:43
 msgid "Date Created"
-msgstr ""
+msgstr "Дата на създаване"
 
 #: application/views/lotw_views/index.php:44
 msgid "Date Expires"
-msgstr ""
+msgstr "Дата изтичане"
 
 #: application/views/lotw_views/index.php:46
 #: application/views/view_log/qso.php:404
 msgid "Last Upload"
-msgstr ""
+msgstr "Last upload"
 
 #: application/views/lotw_views/index.php:91
 msgid "Expired"
-msgstr ""
+msgstr "Изтекъл"
 
 #: application/views/lotw_views/index.php:93
 msgid "Expiring"
@@ -6472,40 +6472,40 @@ msgstr ""
 
 #: application/views/lotw_views/index.php:95
 msgid "Valid"
-msgstr ""
+msgstr "Валиден"
 
 #: application/views/lotw_views/index.php:114
 msgid "Not Synced"
-msgstr ""
+msgstr "Не е синхронизиран"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr ""
+msgstr "Трябва да качите някои LoTW p12 сертификати, за да използвате тази област."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
-msgstr ""
+msgstr "Информация"
 
 #: application/views/lotw_views/index.php:149
 msgid "Manual Sync"
-msgstr ""
+msgstr "Ръчно синхронизиране"
 
 #: application/views/lotw_views/upload_cert.php:8
 #: application/views/lotw_views/upload_cert.php:31
 msgid "Upload Logbook of the World .p12 Certificate"
-msgstr ""
+msgstr "Качване на Logbook of the World .p12 сертификат"
 
 #: application/views/lotw_views/upload_cert.php:19
 msgid "Export .p12 File Instructions"
-msgstr ""
+msgstr "Инструкции за експортиране на .p12 файл"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr ""
+msgstr "Отворете TQSL &amp; отидете на раздела Callsign Certificates"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Right click on desired Callsign"
-msgstr ""
+msgstr "Щракнете с десния бутон върху желания опознавателен знак"
 
 #: application/views/lotw_views/upload_cert.php:24
 msgid "Click 'Save Callsign Certificate File' and do not add a password"
@@ -6513,11 +6513,11 @@ msgstr ""
 
 #: application/views/lotw_views/upload_cert.php:25
 msgid "Upload File below."
-msgstr ""
+msgstr "Качете файла по-долу."
 
 #: application/views/lotw_views/upload_cert.php:35
 msgid "Upload File"
-msgstr ""
+msgstr "Качи файлa"
 
 #: application/views/debug/index.php:23
 msgid "Wavelog Information"
@@ -6820,43 +6820,43 @@ msgstr ""
 #: application/views/notes/add.php:12 application/views/notes/edit.php:13
 #: application/views/notes/view.php:12
 msgid "Create Note"
-msgstr ""
+msgstr "Създаване на бележка"
 
 #: application/views/notes/main.php:22
 msgid "Your Notes"
-msgstr ""
+msgstr "Вашите бележки"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr ""
+msgstr "В момента нямате бележки, това е фантастичен начин за съхранение на данни като настройки на ATU, маяци и общи бележки за станции и е по-добре от хартия, тъй като не можете да ги загубите!"
 
 #: application/views/notes/add.php:29 application/views/notes/edit.php:30
 msgid "Title"
-msgstr ""
+msgstr "Заглавие"
 
 #: application/views/notes/add.php:34 application/views/notes/edit.php:35
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: application/views/notes/add.php:37 application/views/notes/edit.php:38
 msgid "Antennas"
-msgstr ""
+msgstr "Антени"
 
 #: application/views/notes/add.php:43 application/views/notes/edit.php:44
 msgid "Note Contents"
-msgstr ""
+msgstr "Съдържание на бележката"
 
 #: application/views/notes/add.php:48 application/views/notes/edit.php:50
 msgid "Save Note"
-msgstr ""
+msgstr "Запазване на бележката"
 
 #: application/views/notes/edit.php:7 application/views/notes/view.php:19
 msgid "Edit Note"
-msgstr ""
+msgstr "Редактиране на бележката"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
-msgstr ""
+msgstr "Изтриване на бележката"
 
 #: application/views/view_log/index.php:4
 msgid "Displaying all QSOs of station locations which are linked to this logbook"
@@ -6864,11 +6864,11 @@ msgstr ""
 
 #: application/views/view_log/qso.php:6
 msgid "QSO Details"
-msgstr ""
+msgstr "Подробности за QSO"
 
 #: application/views/view_log/qso.php:29
 msgid "QSL Management"
-msgstr ""
+msgstr "Управление на QSL"
 
 #: application/views/view_log/qso.php:42
 msgid "eQSL Card"
@@ -6876,7 +6876,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:128
 msgid "Total Distance"
-msgstr ""
+msgstr "Общо разстояние"
 
 #: application/views/view_log/qso.php:221
 msgid "Antenna Azimuth"
@@ -6888,15 +6888,15 @@ msgstr ""
 
 #: application/views/view_log/qso.php:366
 msgid "QSL Info"
-msgstr ""
+msgstr "QSL информация"
 
 #: application/views/view_log/qso.php:370
 msgid "QSL Card has been sent via the bureau"
-msgstr ""
+msgstr "QSL картичката е изпратена чрез бюрото"
 
 #: application/views/view_log/qso.php:372
 msgid "QSL Card has been sent via direct"
-msgstr ""
+msgstr "QSL картичката е изпратена директно"
 
 #: application/views/view_log/qso.php:374
 msgid "QSL Card has been sent electronically"
@@ -6916,7 +6916,7 @@ msgstr ""
 
 #: application/views/view_log/qso.php:389
 msgid "QSL Card has been received via direct"
-msgstr ""
+msgstr "QSL картичката е получена директно"
 
 #: application/views/view_log/qso.php:391
 msgid "QSL Card has been received electronically"
@@ -6939,7 +6939,7 @@ msgstr ""
 #: application/views/view_log/qso.php:419
 #: application/views/view_log/qso.php:424
 msgid "This QSO was confirmed on"
-msgstr ""
+msgstr "Това QSO беше потвърдено на"
 
 #: application/views/view_log/qso.php:435
 msgid "More QSOs"
@@ -6951,25 +6951,25 @@ msgstr ""
 
 #: application/views/view_log/qso.php:630
 msgid "Uploaded QSL Card front image"
-msgstr ""
+msgstr "Качване на лице на QSL картичка"
 
 #: application/views/view_log/qso.php:635
 msgid "Upload QSL Card image"
-msgstr ""
+msgstr "Качване на изображения на QSL картичка"
 
 #: application/views/view_log/qso.php:640
 msgid "Uploaded QSL Card back image"
-msgstr ""
+msgstr "Качване на гръб на QSL картичка"
 
 #: application/views/view_log/qso.php:656
 msgid "Mark QSL Received (Electronic)"
-msgstr ""
+msgstr "Маркирайте получено QSL (електронно)"
 
 #: application/views/view_log/qso.php:662
 msgid "Mark QSL Card Requested (Bureau)"
-msgstr ""
+msgstr "Маркирайте QSL карта като поискана (Бюро)"
 
 #: application/views/view_log/qso.php:664
 msgid "Mark QSL Card Requested (Direct)"
-msgstr ""
+msgstr "Маркирайте QSL карта като поискана(Директно)"
 
