@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: wavelog-test\n"
+"Project-Id-Version: wavelog test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 20:07+0200\n"
 "PO-Revision-Date: 2024-06-09 18:01+0000\n"
