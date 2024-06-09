@@ -3,14 +3,15 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-05 12:44\n"
-"Last-Translator: \n"
-"Language-Team: German\n"
+"PO-Revision-Date: 2024-06-09 13:48+0000\n"
+"Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
+"Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Crowdin-Project: wavelog-test\n"
 "X-Crowdin-Project-ID: 682556\n"
 "X-Crowdin-Language: de\n"
@@ -305,7 +306,7 @@ msgstr "unbekannt"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Cabrillo Export"
 
 #: application/controllers/Qsl.php:25 application/views/visitor/index.php:283
 #: application/views/dashboard/index.php:245
