@@ -1,21 +1,5 @@
 msgid ""
-msgstr ""
-"Project-Id-Version: wavelog-test\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-05 12:44\n"
-"Last-Translator: \n"
-"Language-Team: German\n"
-"Language: de_DE\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: wavelog-test\n"
-"X-Crowdin-Project-ID: 682556\n"
-"X-Crowdin-Language: de\n"
-"X-Crowdin-File: /gettext_po_test/pot/messages.pot\n"
-"X-Crowdin-File-ID: 66\n"
+msgstr "Project-Id-Version: wavelog-test\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2024-06-09 10:27+0200\nPO-Revision-Date: 2024-06-09 13:46+0000\nLast-Translator: Weblate Admin <hb9hil@wavelog.org>\nLanguage-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=n != 1;\nX-Generator: Weblate 5.5.5\nX-Crowdin-Project: wavelog-test\nX-Crowdin-Project-ID: 682556\nX-Crowdin-Language: de\nX-Crowdin-File: /gettext_po_test/pot/messages.pot\nX-Crowdin-File-ID: 66\n"
 
 #: src/QSLManager/QSO.php:266 src/QSLManager/QSO.php:365
 #: src/QSLManager/QSO.php:402 application/views/visitor/index.php:287
@@ -305,7 +289,7 @@ msgstr "unbekannt"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Cabrillo Export"
 
 #: application/controllers/Qsl.php:25 application/views/visitor/index.php:283
 #: application/views/dashboard/index.php:245
