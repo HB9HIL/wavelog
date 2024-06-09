@@ -23,7 +23,8 @@ jobs:
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: example-patches
+          branch: dev_alpha_l10n
+          base: dev_alpha
           delete-branch: false
           title: 'Update Translations'
           body: |
