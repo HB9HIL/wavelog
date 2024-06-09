@@ -26,6 +26,7 @@ class Clublog_model extends CI_Model
 		error_reporting(E_ALL);
 
 		$this->load->helper('file');
+		$this->load->library('AdifHelper');
 
 		$station_profiles = $this->all_with_count($clean_userid);
 
@@ -158,8 +159,9 @@ class Clublog_model extends CI_Model
 				if (curl_errno($request)) {
 					$return = curl_error($request);
 				} elseif (preg_match_all('/Login rejected/', $response)) {
+					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 					$return = "Wrong Clublog username and password for Callsign: '" . $station_row->station_callsign . "'. 'LOGIN REJECTED'.";
-					log_message('error', $return);
+					log_message('debug', $return);
 				} elseif (preg_match_all('/Invalid callsign/', $response)) {	// We're trying to download calls for a station we're not granted. Disable Clublog-Transfer for that station(s)
 					$this->disable_sync4call($station_row->station_callsign, $station_row->station_ids);
 					$return = "The callsign '" . $station_row->station_callsign . "' does not match the user account at Clublog. 'INVALID CALLSIGN'.";
