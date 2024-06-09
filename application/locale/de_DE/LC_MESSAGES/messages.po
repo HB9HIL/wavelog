@@ -1,14 +1,15 @@
 # Weblate Admin <hb9hil@wavelog.org>, 2024.
 # F Tester <fabian@familie-berg.ch>, 2024.
 # inspector <mail@hb9hil.org>, 2024.
+# HB9HIL <hb9hil@wavelog.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-09 09:30+0000\n"
-"Last-Translator: inspector <mail@hb9hil.org>\n"
-"Language-Team: German <http://10.25.83.121/projects/wavelog/main-language/de/>\n"
+"PO-Revision-Date: 2024-06-09 11:25+0000\n"
+"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
+"Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1343,16 +1344,16 @@ msgstr "Bearbeite API Beschreibung"
 #: application/controllers/Api.php:69
 #, php-format
 msgid "API Key %s description has been updated."
-msgstr ""
+msgstr "Die Beschreibung des API Schlüssels '%s' wurde aktualisiert."
 
 #: application/controllers/Api.php:109
 #, php-format
 msgid "API Key %s has been deleted"
-msgstr ""
+msgstr "API Schlüssel %s wurde gelöscht"
 
 #: application/controllers/Api.php:118
 msgid "No Key Found"
-msgstr ""
+msgstr "Kein Schlüssel gefunden"
 
 #: application/controllers/Api.php:118
 msgid "Key Disabled"
