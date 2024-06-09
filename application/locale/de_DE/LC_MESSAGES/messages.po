@@ -329,7 +329,7 @@ msgstr ""
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "QSL Karten Management"
 
 #: application/controllers/Gridmap.php:10
 #: application/views/interface_assets/header.php:135
