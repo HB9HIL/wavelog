@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog test\n"
 "Report-Msgid-Bugs-To: hb9hil@wavelog.org\n"
 "POT-Creation-Date: 2024-06-09 20:15+0200\n"
-"PO-Revision-Date: 2024-06-09 18:17+0000\n"
+"PO-Revision-Date: 2024-06-09 18:24+0000\n"
 "Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -930,7 +930,7 @@ msgstr "Stations Setup"
 #: application/controllers/Stationsetup.php:387
 #: application/controllers/Stationsetup.php:401
 msgid "Not allowed"
-msgstr ""
+msgstr "Nicht erlaubt"
 
 #: application/controllers/Stationsetup.php:72
 #: application/controllers/Stationsetup.php:86
@@ -941,7 +941,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:428
 #: application/views/qso/index.php:608
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: application/controllers/Stationsetup.php:159
 #: application/views/stationsetup/stationsetup.php:22
@@ -1036,7 +1036,7 @@ msgstr "Aktive Station"
 #: application/views/qso/index.php:20 application/views/qso/edit_ajax.php:33
 #: application/views/simplefle/index.php:27
 msgid "QSO"
-msgstr ""
+msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:351
 #: application/views/api/help.php:57 application/views/satellite/index.php:25
@@ -1133,7 +1133,7 @@ msgstr ""
 
 #: application/controllers/Update.php:222
 msgid "DONE"
-msgstr ""
+msgstr "FERTIG"
 
 #: application/controllers/Cron.php:38
 #: application/views/interface_assets/header.php:275
