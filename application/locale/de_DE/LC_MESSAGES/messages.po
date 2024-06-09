@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Wavelog\n"
 "Report-Msgid-Bugs-To: hb9hil@wavelog.org\n"
 "POT-Creation-Date: 2024-06-09 20:43+0200\n"
-"PO-Revision-Date: 2024-06-09 19:24+0000\n"
-"Last-Translator: Christian Egger <christian@hb9hjq.ch>\n"
+"PO-Revision-Date: 2024-06-09 22:22+0000\n"
+"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -945,11 +945,11 @@ msgstr "Erstelle Stationslogbuch"
 
 #: application/controllers/Stationsetup.php:166
 msgid "Edit container name"
-msgstr ""
+msgstr "Bearbeite Container Name"
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Bearbeite verlinkte Standorte"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
@@ -957,7 +957,7 @@ msgstr "Besucherseite bearbeiten"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Fehler. Link ist bereits in Gebrauch!"
 
 #: application/controllers/Stationsetup.php:226
 #: application/controllers/Station.php:55
@@ -1003,7 +1003,7 @@ msgstr "Zeige die öffentl. Seite für das Logbuch: "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Bist du sicher, dass du diesen öffentlichen Link löschen willst?"
 
 #: application/controllers/Stationsetup.php:341
 #: application/views/stationsetup/stationsetup.php:150
