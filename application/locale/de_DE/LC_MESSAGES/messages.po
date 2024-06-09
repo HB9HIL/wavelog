@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-09 13:52+0000\n"
+"PO-Revision-Date: 2024-06-09 14:07+0000\n"
 "Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
-"Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\n"
+"Language-Team: German <http://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -241,7 +241,7 @@ msgstr "Erhalten"
 #: application/views/view_log/partial/log_ajax.php:230
 #: application/views/view_log/partial/log_ajax.php:231
 msgid "LoTW"
-msgstr ""
+msgstr "LoTW"
 
 #: src/QSLManager/QSO.php:402 src/QSLManager/QSO.php:415
 #: application/controllers/Logbook.php:673
