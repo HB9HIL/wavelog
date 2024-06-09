@@ -6,15 +6,15 @@ on:
       - dev_alpha_l10n
 
 jobs:
-  createPullRequest:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Set up GitHub CLI
-        run: apt-get update && \
-             apt-get install gh -y
+        run: sudo apt-get update && \
+             sudo apt-get install gh -y
 
       - name: Authenticate GitHub CLI
         env:
