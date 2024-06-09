@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-09 14:07+0000\n"
+"PO-Revision-Date: 2024-06-09 14:14+0000\n"
 "Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
 "Language-Team: German <http://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -274,7 +274,7 @@ msgstr "LoTW"
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
 msgid "eQSL"
-msgstr ""
+msgstr "eQSL"
 
 #: application/models/Logbook_model.php:4131
 msgid "QSO could not be matched"
