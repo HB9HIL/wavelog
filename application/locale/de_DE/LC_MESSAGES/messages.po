@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-09 13:48+0000\n"
+"PO-Revision-Date: 2024-06-09 13:52+0000\n"
 "Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
 "Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -161,7 +161,7 @@ msgstr "Direkt"
 #: application/views/qslprint/qslprint.php:28
 #: application/views/view_log/partial/log_ajax.php:168
 msgid "Via"
-msgstr ""
+msgstr "Via"
 
 #: src/QSLManager/QSO.php:301 src/QSLManager/QSO.php:344
 #: application/views/search/search_result_ajax.php:208
