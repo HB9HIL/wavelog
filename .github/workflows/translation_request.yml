@@ -1,4 +1,4 @@
-name: Create Pull Request on Push
+name: Pull Request bei Push erstellen
 
 on:
   push:
@@ -9,9 +9,10 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Repository auschecken
+        uses: actions/checkout@v4
 
-      - name: Create Pull Request
+      - name: Pull Request erstellen
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
