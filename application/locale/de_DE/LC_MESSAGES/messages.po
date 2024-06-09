@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wavelog test\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 20:07+0200\n"
-"PO-Revision-Date: 2024-06-09 18:01+0000\n"
+"Report-Msgid-Bugs-To: hb9hil@wavelog.org\n"
+"POT-Creation-Date: 2024-06-09 20:15+0200\n"
+"PO-Revision-Date: 2024-06-09 18:17+0000\n"
 "Last-Translator: Weblate Admin <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -241,7 +241,7 @@ msgstr "Erhalten"
 #: application/views/view_log/partial/log_ajax.php:230
 #: application/views/view_log/partial/log_ajax.php:231
 msgid "LoTW"
-msgstr ""
+msgstr "LoTW"
 
 #: src/QSLManager/QSO.php:402 src/QSLManager/QSO.php:415
 #: application/controllers/Logbook.php:673
@@ -274,7 +274,7 @@ msgstr ""
 #: application/views/view_log/partial/log_ajax.php:217
 #: application/views/view_log/partial/log_ajax.php:218
 msgid "eQSL"
-msgstr ""
+msgstr "eQSL"
 
 #: application/models/Logbook_model.php:4131
 msgid "QSO could not be matched"
@@ -306,7 +306,7 @@ msgstr "unbekannt"
 
 #: application/controllers/Cabrillo.php:20
 msgid "Export Cabrillo"
-msgstr ""
+msgstr "Cabrillo Export"
 
 #: application/controllers/Qsl.php:25 application/views/visitor/index.php:283
 #: application/views/dashboard/index.php:245
@@ -321,12 +321,12 @@ msgstr "QSL Karten hochladen"
 
 #: application/controllers/Debug.php:75
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 #: application/controllers/Dxcalendar.php:10
 #: application/views/interface_assets/header.php:242
 msgid "DX Calendar"
-msgstr ""
+msgstr "DX Kalender"
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
@@ -403,7 +403,7 @@ msgstr "Logbuch"
 #: application/views/awards/vucc/band.php:15
 #: application/views/awards/dxcc/index.php:61
 msgid "QSL"
-msgstr ""
+msgstr "QSL"
 
 #: application/controllers/Logbook.php:679
 #: application/views/search/search_result_ajax.php:124
@@ -418,7 +418,7 @@ msgstr ""
 #: application/views/view_log/qso.php:423
 #: application/views/view_log/partial/log_ajax.php:83
 msgid "Clublog"
-msgstr ""
+msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1275
 #: application/views/visitor/index.php:6
@@ -520,7 +520,7 @@ msgstr "Mode"
 #: application/views/view_log/partial/log.php:10
 #: application/views/view_log/partial/log_ajax.php:5
 msgid "RST (S)"
-msgstr ""
+msgstr "RST (S)"
 
 #: application/controllers/Logbook.php:1277
 #: application/views/visitor/index.php:12
@@ -548,7 +548,7 @@ msgstr ""
 #: application/views/view_log/partial/log.php:11
 #: application/views/view_log/partial/log_ajax.php:6
 msgid "RST (R)"
-msgstr ""
+msgstr "RST (R)"
 
 #: application/controllers/Logbook.php:1278
 #: application/views/visitor/index.php:15
@@ -905,7 +905,7 @@ msgstr "Gelöschtes DXCC"
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:244
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Contest Kalender"
 
 #: application/controllers/Qslprint.php:46
 #: application/views/interface_assets/header.php:401
@@ -917,7 +917,7 @@ msgstr "Druck angeforderter QSLs"
 #: application/controllers/Clublog.php:15 application/controllers/Eqsl.php:13
 #: application/controllers/Qrz.php:14
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Wartungsmodus ist aktiv. Bitte versuche es später erneut."
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:363
