@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: wavelog-test\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-09 10:27+0200\n"
-"PO-Revision-Date: 2024-06-09 11:37+0000\n"
+"PO-Revision-Date: 2024-06-09 11:40+0000\n"
 "Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <http://10.25.83.121/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -1361,7 +1361,7 @@ msgstr "Schlüssel deaktiviert"
 
 #: application/controllers/Api.php:120
 msgid "Key Invalid - either not found or disabled"
-msgstr ""
+msgstr "Schlüssel ungültig - entweder nicht gefunden oder deaktiviert"
 
 #: application/controllers/Api.php:124
 #: application/views/lotw_views/index.php:95
