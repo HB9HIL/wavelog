@@ -317,7 +317,7 @@ msgstr "QSL Karten"
 
 #: application/controllers/Qsl.php:35
 msgid "Upload QSL Cards"
-msgstr ""
+msgstr "QSL Karten hochladen"
 
 #: application/controllers/Debug.php:75
 msgid "Debug"
