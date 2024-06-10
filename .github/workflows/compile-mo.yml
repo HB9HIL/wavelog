@@ -1,12 +1,12 @@
 name: Compile .mo files from changed .po files
 
 on: 
-  push:
-    paths:
-      - '**/*.po'
-    branches:
-      - 'dev_alpha'
-  # workflow_dispatch:
+  # push:
+    # paths:
+      # - '**/*.po'
+    # branches:
+      # - 'dev_alpha'
+  workflow_dispatch:
 
 jobs:
   compile_mo:
