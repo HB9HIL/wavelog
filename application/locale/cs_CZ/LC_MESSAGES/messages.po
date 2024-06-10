@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 20:43+0200\n"
+"POT-Creation-Date: 2024-06-10 02:41+0200\n"
 "PO-Revision-Date: 2024-06-05 15:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -457,7 +457,7 @@ msgstr ""
 #: application/views/dashboard/index.php:4
 #: application/views/adif/dcl_success.php:33
 #: application/views/dxatlas/index.php:42
-#: application/views/accumulate/index.php:29
+#: application/views/accumulate/index.php:28
 #: application/views/eqsl/analysis.php:39
 #: application/views/eqsl/download.php:39 application/views/eqsl/result.php:36
 #: application/views/gridmap/index.php:65
@@ -790,7 +790,7 @@ msgstr "Vzdálenost"
 #: application/views/adif/dcl_success.php:32
 #: application/views/dxatlas/index.php:31
 #: application/views/timeplotter/index.php:14
-#: application/views/accumulate/index.php:19
+#: application/views/accumulate/index.php:18
 #: application/views/eqsl/download.php:41
 #: application/views/gridmap/index.php:10
 #: application/views/qslmanagement/index.php:24
@@ -1920,7 +1920,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:652
 #: application/views/timeline/index.php:45
-#: application/views/accumulate/index.php:59
+#: application/views/accumulate/index.php:58
 msgid "Worked All States (WAS)"
 msgstr ""
 
@@ -2361,8 +2361,8 @@ msgstr ""
 #: application/views/timeplotter/index.php:17
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
-#: application/views/accumulate/index.php:22
-#: application/views/accumulate/index.php:32
+#: application/views/accumulate/index.php:21
+#: application/views/accumulate/index.php:31
 #: application/views/gridmap/index.php:13
 #: application/views/gridmap/index.php:28
 #: application/views/gridmap/index.php:41
@@ -2897,7 +2897,7 @@ msgstr ""
 #: application/views/lookup/index.php:63
 #: application/views/logbookadvanced/useroptions.php:17
 #: application/views/timeplotter/index.php:59
-#: application/views/accumulate/index.php:97
+#: application/views/accumulate/index.php:96
 #: application/views/activators/index.php:50
 #: application/views/awards/helvetia/index.php:110
 #: application/views/awards/cq/index.php:111
@@ -3004,22 +3004,22 @@ msgid "Rcvd"
 msgstr ""
 
 #: application/views/timeline/index.php:41
-#: application/views/accumulate/index.php:48
+#: application/views/accumulate/index.php:47
 msgid "Award"
 msgstr ""
 
 #: application/views/timeline/index.php:44
-#: application/views/accumulate/index.php:53
+#: application/views/accumulate/index.php:52
 msgid "DX Century Club (DXCC)"
 msgstr ""
 
 #: application/views/timeline/index.php:46
-#: application/views/accumulate/index.php:65
+#: application/views/accumulate/index.php:64
 msgid "Islands On The Air (IOTA)"
 msgstr ""
 
 #: application/views/timeline/index.php:47
-#: application/views/accumulate/index.php:71
+#: application/views/accumulate/index.php:70
 msgid "Worked All Zones (WAZ)"
 msgstr ""
 
@@ -5985,20 +5985,16 @@ msgid "Accumulated Number of CQ Zones worked"
 msgstr ""
 
 #: application/views/accumulate/index.php:7
-#: application/views/accumulate/index.php:81
+#: application/views/accumulate/index.php:80
 msgid "Yearly"
 msgstr ""
 
 #: application/views/accumulate/index.php:9
-#: application/views/accumulate/index.php:87
+#: application/views/accumulate/index.php:86
 msgid "Monthly"
 msgstr ""
 
-#: application/views/accumulate/index.php:10
-msgid "Testword for Testing"
-msgstr ""
-
-#: application/views/accumulate/index.php:76
+#: application/views/accumulate/index.php:75
 msgid "Period"
 msgstr ""
 

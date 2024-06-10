@@ -7,7 +7,6 @@
     var lang_general_word_yearly = '<?= __("Yearly"); ?>';
     var lang_general_word_month = '<?= __("Month"); ?>';
     var lang_general_word_monthly = '<?= __("Monthly"); ?>';
-    var lang_test_word = '<?= __("Testword for Testing") ?>';
 </script>
 <div class="container">
     <h2><?php echo $page_title; ?></h1>
