@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wavelog\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: hb9hil@wavelog.org\n"
 "POT-Creation-Date: 2024-06-10 06:04+0000\n"
-"PO-Revision-Date: 2024-06-09 22:22+0000\n"
+"PO-Revision-Date: 2024-06-10 06:05+0000\n"
 "Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
@@ -9173,7 +9173,7 @@ msgstr ""
 
 #: application/controllers/Update.php:26
 msgid "Updates"
-msgstr ""
+msgstr "Updates"
 
 #: application/controllers/Update.php:76
 msgid "Preparing DXCC-Entries: "
