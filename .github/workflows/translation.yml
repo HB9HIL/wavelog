@@ -1,7 +1,9 @@
 name: Translation Workflow
 
-on:
-  workflow_dispatch:
+on: 
+  push:
+    branches:
+      - 'dev_alpha'
 
 jobs:
   build:
