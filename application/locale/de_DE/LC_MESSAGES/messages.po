@@ -56,7 +56,7 @@ msgstr "Planquadrat-Aktivierer"
 
 #: application/controllers/Activatorsmap.php:17
 msgid "Activators Map"
-msgstr ""
+msgstr "Aktivierer-Karte"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
@@ -440,7 +440,7 @@ msgstr ""
 #: application/controllers/Lotw.php:28 application/controllers/Qrz.php:14
 #: application/controllers/Update.php:16
 msgid "Maintenance Mode is active. Try again later."
-msgstr ""
+msgstr "Wartungmodus aktiv. Bitte später erneut versuchen"
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
@@ -450,7 +450,7 @@ msgstr ""
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:244
 msgid "Contest Calendar"
-msgstr ""
+msgstr "Contest Kalender"
 
 #: application/controllers/Contesting.php:36
 #: application/views/contesting/index.php:3
@@ -1360,7 +1360,7 @@ msgstr ""
 
 #: application/controllers/Qslmanagement.php:14
 msgid "QSL Card Management"
-msgstr ""
+msgstr "QSL-Karten Management"
 
 #: application/controllers/Qslprint.php:46
 #: application/views/interface_assets/header.php:402
@@ -1477,7 +1477,7 @@ msgstr "Stations Setup"
 #: application/controllers/Stationsetup.php:387
 #: application/controllers/Stationsetup.php:401
 msgid "Not allowed"
-msgstr ""
+msgstr "Nicht erlaubt"
 
 #: application/controllers/Stationsetup.php:72
 #: application/controllers/Stationsetup.php:86
@@ -1488,7 +1488,7 @@ msgstr ""
 #: application/controllers/Stationsetup.php:428
 #: application/views/qso/index.php:608
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: application/controllers/Stationsetup.php:159
 #: application/views/stationsetup/stationsetup.php:22
@@ -1501,15 +1501,15 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:181
 msgid "Edit linked locations"
-msgstr ""
+msgstr "Verlinkte Stationsstandorte bearbeiten"
 
 #: application/controllers/Stationsetup.php:190
 msgid "Edit visitor site"
-msgstr ""
+msgstr "Besucherseite bearbeiten"
 
 #: application/controllers/Stationsetup.php:212
 msgid "Error. Link is already in use!"
-msgstr ""
+msgstr "Fehler. Link existiert bereits"
 
 #: application/controllers/Stationsetup.php:253
 #: application/views/options/appearance.php:57
@@ -1550,7 +1550,7 @@ msgstr "Zeige die öffentl. Seite für das Logbuch: "
 
 #: application/controllers/Stationsetup.php:281
 msgid "Are you sure you want to delete the public slug?"
-msgstr ""
+msgstr "Bist Du Dir sicher die Kurz-URL zu löschen?"
 
 #: application/controllers/Stationsetup.php:341
 #: application/views/station_profile/index.php:69
@@ -1623,7 +1623,7 @@ msgstr "Kopieren"
 #: application/views/stationsetup/stationsetup.php:186
 #, php-format
 msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
-msgstr ""
+msgstr "Stationsprofil '%s' wirklich löschen? Alle QSOs in dem Profil werden mitgelöscht!"
 
 #: application/controllers/Stationsetup.php:364
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
