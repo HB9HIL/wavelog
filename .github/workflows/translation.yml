@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get install -y gettext
 
     - name: Create POT file
-      run: xgettext --no-wrap -o assets/lang_src/messages.pot --copyright-holder=Wavelog --from-code=UTF-8 --keyword=__ --keyword=_ngettext:1,2 --keyword=_pgettext:1c,2 -L PHP $(find . -name "*.php")
+      run: xgettext --no-wrap -F -o assets/lang_src/messages.pot --copyright-holder=Wavelog --from-code=UTF-8 --keyword=__ --keyword=_ngettext:1,2 --keyword=_pgettext:1c,2 -L PHP $(find . -name "*.php")
 
     - name: Merge POT into PO files
       run: |
