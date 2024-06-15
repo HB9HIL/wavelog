@@ -1802,37 +1802,30 @@ msgid "QO-100 Dx Club Upload"
 msgstr ""
 
 #: application/models/Logbook_model.php:4133
-#: application/models/Logbook_model.php:4136
 msgid "QSO could not be matched"
 msgstr "QSOs que no concuerdan"
 
 #: application/models/Logbook_model.php:4139
-#: application/models/Logbook_model.php:4142
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmados por LoTW/Clublog/eQSL/Concurso"
 
 #: application/models/Logbook_model.php:4144
-#: application/models/Logbook_model.php:4147
 msgid "confirmed by award manager"
 msgstr "confirmados por el administrador del premio"
 
 #: application/models/Logbook_model.php:4147
-#: application/models/Logbook_model.php:4150
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmados al hacer chequeo cruzadoc on datos de DCL"
 
 #: application/models/Logbook_model.php:4150
-#: application/models/Logbook_model.php:4153
 msgid "confirmation pending"
 msgstr "pendiente de confirmación"
 
 #: application/models/Logbook_model.php:4153
-#: application/models/Logbook_model.php:4156
 msgid "unconfirmed"
 msgstr "sin confirmar"
 
 #: application/models/Logbook_model.php:4156
-#: application/models/Logbook_model.php:4159
 msgid "unknown"
 msgstr "desconocido"
 
