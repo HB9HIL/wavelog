@@ -16,8 +16,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        repository: wavelog/wavelog
-        ref: alpha
+        repository: HB9HIL/wavelog
+        ref: dev_alpha
         fetch-depth: 2
 
     - name: Set up gettext
