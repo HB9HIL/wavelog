@@ -1,16 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wavelog\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: hb9hil@wavelog.org\n"
 "POT-Creation-Date: 2024-06-15 07:53+0000\n"
-"PO-Revision-Date: 2024-06-05 12:44\n"
-"Last-Translator: \n"
-"Language-Team: German\n"
+"PO-Revision-Date: 2024-06-15 07:58+0000\n"
+"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
+"Language-Team: German <https://translate.wavelog.org/projects/wavelog/wavelog-translations/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:147
@@ -60,7 +61,7 @@ msgstr "Aktivierer-Karte"
 
 #: application/controllers/Adif.php:18
 msgid "valid date"
-msgstr ""
+msgstr "gültiges Datum"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
