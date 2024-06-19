@@ -25,17 +25,28 @@ jobs:
 
     - name: Compile .mo files from changed .po files
       run: |
-        for po in $(git diff --name-only HEAD~1 HEAD | grep '\.po$'); do
-          mo="${po%.po}.mo";
-          msgfmt --verbose -o "$mo" "$po";
-        done
+        set -e
+        changed_po_files=$(git diff --name-only HEAD~1 HEAD | grep '\.po$' || true)
+        if [ -n "$changed_po_files" ]; then
+          for po in $changed_po_files; do
+            mo="${po%.po}.mo"
+            msgfmt --verbose -o "$mo" "$po"
+            echo "Compiled $po to $mo"
+          done
+        else
+          echo "No .po files changed"
+        fi
 
     - name: Commit changes
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
-        git add .
-        git commit -m "Compiled .mo file"
-        git push
+        if [ -n "$(git status --porcelain)" ]; then
+          git add $(git ls-files --modified | grep '\.mo$')
+          git commit -m "Compiled .mo files"
+          git push
+        else
+          echo "No changes to commit"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
