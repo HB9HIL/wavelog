@@ -69,7 +69,7 @@ msgstr "gültiges Datum"
 
 #: application/controllers/Adif.php:20
 msgid "date incorrect"
-msgstr ""
+msgstr "Datum nicht korrekt"
 
 #: application/controllers/Adif.php:29 application/views/adif/import.php:24
 msgid "ADIF Export"
