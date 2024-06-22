@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-20 00:31+0200\n"
-"PO-Revision-Date: 2024-06-22 19:56+0000\n"
-"Last-Translator: Fabian <fabian@familie-berg.ch>\n"
+"PO-Revision-Date: 2024-06-22 20:01+0000\n"
+"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -8420,6 +8420,7 @@ msgid "Select Available Station Locations"
 msgstr "Wähle verfügbare Stationsstandorte"
 
 #: application/views/stationsetup/linkedlocations.php:25
+#, fuzzy
 msgid "Link Location"
 msgstr "Verknüpfe Standort"
 
