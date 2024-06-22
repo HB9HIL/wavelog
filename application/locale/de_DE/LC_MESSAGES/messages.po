@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-20 00:31+0200\n"
-"PO-Revision-Date: 2024-06-22 16:07+0000\n"
+"PO-Revision-Date: 2024-06-22 18:36+0000\n"
 "Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
@@ -254,7 +254,7 @@ msgstr ""
 
 #: application/controllers/Awards.php:470
 msgid " and "
-msgstr ""
+msgstr " und "
 
 #: application/controllers/Awards.php:486
 #: application/controllers/Logbook.php:1280
