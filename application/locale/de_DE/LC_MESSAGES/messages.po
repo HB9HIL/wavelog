@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-06-20 00:31+0200\n"
-"PO-Revision-Date: 2024-06-22 18:51+0000\n"
-"Last-Translator: HB9HIL <hb9hil@wavelog.org>\n"
+"PO-Revision-Date: 2024-06-22 19:56+0000\n"
+"Last-Translator: Fabian <fabian@familie-berg.ch>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -238,15 +238,15 @@ msgstr ""
 
 #: application/controllers/Awards.php:457
 msgid " and sat "
-msgstr ""
+msgstr " und Sat "
 
 #: application/controllers/Awards.php:460
 msgid " and orbit type "
-msgstr ""
+msgstr " und Orbit-Typ "
 
 #: application/controllers/Awards.php:464
 msgid " and propagation "
-msgstr ""
+msgstr " und Ausbreitungsart "
 
 #: application/controllers/Awards.php:467
 msgid " and mode "
