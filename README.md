@@ -1,4 +1,4 @@
-# Wavelog
+# Wavelog Test
 
 > Important: Only accepting PRs on the "dev" branch.
 
