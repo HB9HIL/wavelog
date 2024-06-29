@@ -59,6 +59,10 @@ class Qrz {
 
 
 	public function search($callsign, $key, $use_fullname = false) {
+		// replace Slash '/' with the html code 
+		$callsign = str_replace("/",'&#47',$callsign);
+		log_message('debug', 'Search in QRZ.com for Callsign: '.$callsign);
+
 		$data = null;
 		try {
 			// URL to the XML Source
@@ -73,6 +77,7 @@ class Qrz {
         	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 			$xml = curl_exec($ch);
 			$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			log_message('debug', 'QRZ httpcode response: '.$httpcode);
 			curl_close($ch);
 			if ($httpcode != 200) return $data['error'] = 'Problems with qrz.com communication'; // Exit function if no 200. If request fails, 0 is returned
 			// Create XML object
@@ -109,7 +114,7 @@ class Qrz {
 				$data['us_county'] = null;
 			}
 		} finally {
-
+			log_message('debug', 'QRZ Search Result: '.json_encode($data));
 			return $data;
 		}
 	}
