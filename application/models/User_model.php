@@ -503,6 +503,7 @@ class User_Model extends CI_Model {
 			if($this->_auth($password, $u->row()->user_password)) {
 				if (ENVIRONMENT != "maintenance") {
 					return 1;
+					log_message('error', __("Testing Weblate"));
 				} else {
 					if($u->row()->user_type != 99){
 						return 0;

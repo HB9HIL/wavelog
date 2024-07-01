@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-01 08:27+0200\n"
+"POT-Creation-Date: 2024-07-01 08:31+0200\n"
 "PO-Revision-Date: 2024-06-26 11:15+0000\n"
 "Last-Translator: Aurélien Barrau <abarrau378@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-translation/fr/>\n"
@@ -1834,6 +1834,10 @@ msgstr "non confirmé"
 #: application/models/Logbook_model.php:4158
 msgid "unknown"
 msgstr "inconnu"
+
+#: application/models/User_model.php:506
+msgid "Testing Weblate"
+msgstr ""
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated Number of DXCCs worked"

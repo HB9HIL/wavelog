@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-01 08:27+0200\n"
+"POT-Creation-Date: 2024-07-01 08:31+0200\n"
 "PO-Revision-Date: 2024-06-25 13:16+0000\n"
 "Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
 "Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-translation/cs/>\n"
@@ -1833,6 +1833,10 @@ msgstr ""
 
 #: application/models/Logbook_model.php:4158
 msgid "unknown"
+msgstr ""
+
+#: application/models/User_model.php:506
+msgid "Testing Weblate"
 msgstr ""
 
 #: application/views/accumulate/index.php:2
