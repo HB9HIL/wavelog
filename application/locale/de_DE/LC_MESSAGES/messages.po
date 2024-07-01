@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-06-29 18:17+0000\n"
-"PO-Revision-Date: 2024-06-29 17:54+0000\n"
+"POT-Creation-Date: 2024-07-01 10:22+0000\n"
+"PO-Revision-Date: 2024-07-01 10:37+0000\n"
 "Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-translation/de/>\n"
 "Language: de_DE\n"
@@ -583,6 +583,17 @@ msgstr "Summe gearbeiteter Planquadrate"
 #: application/controllers/Hamsat.php:59
 msgid "Hamsat - Satellite Roving"
 msgstr "Hamsat - Satellite Roving"
+
+#: application/controllers/Hrdlog.php:71
+#, php-format
+msgid "%d QSO is now uploaded to HRDlog"
+msgid_plural "%d QSOs are now uploaded to HRDlog"
+msgstr[0] "%d QSO ist jetzt zu HRDlog hochgeladen"
+msgstr[1] "%d QSOs sind jetzt zu HRDlog hochgeladen"
+
+#: application/controllers/Hrdlog.php:76
+msgid "No QSOs found to upload."
+msgstr "Keine QSOs zum hochladen gefunden."
 
 #: application/controllers/Kmlexport.php:24
 #: application/views/interface_assets/header.php:380
@@ -1811,31 +1822,43 @@ msgstr "Export Karte"
 msgid "QO-100 Dx Club Upload"
 msgstr "QO-100 Dx Club Upload"
 
-#: application/models/Logbook_model.php:4135
+#: application/models/Hrdlog_model.php:22
+msgid "HRDlog: QSOs have been uploaded to hrdlog.net for the station callsign: "
+msgstr "HRDlog: QSOs wurden hochgeladen für das Stationsrufzeichen: "
+
+#: application/models/Hrdlog_model.php:25
+msgid "HRDlog: No QSOs found to upload for the station callsign: "
+msgstr "HRDlog: Keine QSOs gefunden zum hochladen für Stationsrufzeichen: "
+
+#: application/models/Hrdlog_model.php:31
+msgid "HRDlog: No station profiles with HRDlog Credentials found."
+msgstr "HRDlog: Keine Stationsprofile mit HRDlog Zugangsdaten gefunden."
+
+#: application/models/Logbook_model.php:4139
 msgid "QSO could not be matched"
 msgstr "QSO konnte nicht gefunden werden"
 
-#: application/models/Logbook_model.php:4141
+#: application/models/Logbook_model.php:4145
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "bestätigt durch LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4146
+#: application/models/Logbook_model.php:4150
 msgid "confirmed by award manager"
 msgstr "bestätigt durch Diplommananger"
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4153
 msgid "confirmed by cross-check of DCL data"
 msgstr "bestätigt durch Cross-Check von DCL-Daten"
 
-#: application/models/Logbook_model.php:4152
+#: application/models/Logbook_model.php:4156
 msgid "confirmation pending"
 msgstr "Bestätigung ausstehend"
 
-#: application/models/Logbook_model.php:4155
+#: application/models/Logbook_model.php:4159
 msgid "unconfirmed"
 msgstr "nicht bestätigt"
 
-#: application/models/Logbook_model.php:4158
+#: application/models/Logbook_model.php:4162
 msgid "unknown"
 msgstr "unbekannt"
 
