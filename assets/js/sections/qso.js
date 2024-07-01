@@ -63,6 +63,14 @@ $( document ).ready(function() {
 		}
 	});
 
+	// Sanitize some input data
+	$('#callsign').on('input', function() {
+		$(this).val($(this).val().replace(/\s/g, ''));
+	});
+	$('#locator').on('input', function() {
+		$(this).val($(this).val().replace(/\s/g, ''));
+	});
+
 	$('.callsign-suggest').hide();
 
 	setRst($(".mode").val());
@@ -773,7 +781,7 @@ $( document ).ready(function() {
 				find_callsign=find_callsign.replace('Ø', '0');
 
 				// Replace / in a callsign with - to stop urls breaking
-				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val(), async function(result)
+				$.getJSON(base_url + 'index.php/logbook/json/' + find_callsign + '/' + json_band + '/' + json_mode + '/' + $('#stationProfile').val() + '/' + $('#start_date').val(), async function(result)
 					{
 
 						// Make sure the typed callsign and json result match
@@ -972,7 +980,11 @@ $( document ).ready(function() {
 							}
 
 							if(result.timesWorked != "") {
-								$('#timesWorked').html(result.timesWorked + ' ' + lang_qso_title_times_worked_before);
+								if (result.timesWorked == '0') {
+									$('#timesWorked').html(lang_qso_title_not_worked_before);
+								} else {
+									$('#timesWorked').html(result.timesWorked + ' ' + lang_qso_title_times_worked_before);
+								}
 							} else {
 								$('#timesWorked').html(lang_qso_title_previous_contacts);
 							}
@@ -1037,10 +1049,12 @@ $( document ).ready(function() {
 
 	/* on mode change */
 	$('.mode').change(function() {
-		$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function(result) {
-			$('#frequency').val(result);
-			$('#frequency_rx').val("");
-		});
+		if ($('#radio').val() == 0) {
+			$.get(base_url + 'index.php/qso/band_to_freq/' + $('#band').val() + '/' + $('.mode').val(), function(result) {
+				$('#frequency').val(result);
+			});
+		}
+		$('#frequency_rx').val("");
 	});
 
 	/* Calculate Frequency */
