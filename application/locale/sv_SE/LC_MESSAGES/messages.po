@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-05 15:19+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-07-09 13:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Swedish <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/sv/>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -729,7 +730,9 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Ingen loggbok hittades. Du måste konfigurera en loggbok under Station Logbooks. Gör det här:"
+msgstr ""
+"Ingen loggbok hittades. Du måste konfigurera en loggbok under Station "
+"Logbooks. Gör det här:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -6555,7 +6558,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog använder LoTW användarnamn och lösenord som är sparat i din användarprofil för att ladda ner repport från LoTW. Rapporten Wavelog kommer att ladda ner kommer att ha alla bekräftelser sedan valt datum, eller sedan din senaste LoTW-bekräftelse (hämtad från din logg), fram till nu."
+msgstr ""
+"Wavelog använder LoTW användarnamn och lösenord som är sparat i din "
+"användarprofil för att ladda ner repport från LoTW. Rapporten Wavelog kommer "
+"att ladda ner kommer att ha alla bekräftelser sedan valt datum, eller sedan "
+"din senaste LoTW-bekräftelse (hämtad från din logg), fram till nu."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6622,7 +6629,8 @@ msgstr "Ej synkad"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Du behöver ladda upp LoTW p12 certifikat för att kunna använda denna area."
+msgstr ""
+"Du behöver ladda upp LoTW p12 certifikat för att kunna använda denna area."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6864,7 +6872,8 @@ msgstr ""
 
 #: application/views/options/dxcluster.php:50
 msgid "The Age in Minutes of spots, that will be taken care at bandplan/lookup"
-msgstr "Åldern i minuter av fläckar, som kommer att tas om hand vid bandplan/uppslag"
+msgstr ""
+"Åldern i minuter av fläckar, som kommer att tas om hand vid bandplan/uppslag"
 
 #: application/views/options/dxcluster.php:53
 msgid "Show spots which are spotted from following continent"
@@ -6953,7 +6962,10 @@ msgstr ""
 
 #: application/views/options/index.php:13
 msgid "Wavelog Options are global settings used for all users of the installation, which are overridden if there's a setting on a user level."
-msgstr "Wavelog-alternativ är globala inställningar som används för alla användare av installationen, som åsidosätts om det finns en inställning på användarnivå."
+msgstr ""
+"Wavelog-alternativ är globala inställningar som används för alla användare "
+"av installationen, som åsidosätts om det finns en inställning på "
+"användarnivå."
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -6977,7 +6989,9 @@ msgstr ""
 
 #: application/views/options/oqrs.php:50
 msgid "When this is on, all station locations with OQRS active, will be searched at once."
-msgstr "När detta är på kommer alla stationsplatser med OQRS aktiv att sökas på en gång."
+msgstr ""
+"När detta är på kommer alla stationsplatser med OQRS aktiv att sökas på en "
+"gång."
 
 #: application/views/options/oqrs.php:54
 msgid "Show station location name in grouped search results"
@@ -6993,7 +7007,9 @@ msgstr "Radio Timeout Varning"
 
 #: application/views/options/radios.php:39
 msgid "The Radio Timeout Warning is used on the QSO entry panel to alert you to radio interface disconnects."
-msgstr "Radiotimeout-varningen används på QSO-ingångspanelen för att uppmärksamma dig på frånkopplingar av radiogränssnittet."
+msgstr ""
+"Radiotimeout-varningen används på QSO-ingångspanelen för att uppmärksamma "
+"dig på frånkopplingar av radiogränssnittet."
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
@@ -7658,7 +7674,8 @@ msgstr "Satellite-mode"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Detta innehåll används bara inom Wavelog och kommer inte att exporteras."
+msgstr ""
+"Detta innehåll används bara inom Wavelog och kommer inte att exporteras."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
@@ -9059,11 +9076,15 @@ msgstr ""
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Visa profilbild på QSO-partner från qrz.com/hamqth.com-profilen i logg QSO-sektionen."
+msgstr ""
+"Visa profilbild på QSO-partner från qrz.com/hamqth.com-profilen i logg QSO-"
+"sektionen."
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr "Vänligen ställ in dina qrz.com/hamqth.com-uppgifter i den allmänna inställningsfilen (config file)."
+msgstr ""
+"Vänligen ställ in dina qrz.com/hamqth.com-uppgifter i den allmänna "
+"inställningsfilen (config file)."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
@@ -9080,7 +9101,9 @@ msgstr "SOTA auto lookup gridsquare och namn för summit."
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
 msgid "If set, name and gridsquare is fetched from the API and filled in location and locator."
-msgstr "Om det är inställt hämtas namn och rutnätsruta från API:t och fylls i plats och locator."
+msgstr ""
+"Om det är inställt hämtas namn och rutnätsruta från API:t och fylls i plats "
+"och locator."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
@@ -9341,11 +9364,14 @@ msgstr "Wavelog behöver minst en användare konfigurerad för att fungera."
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "Användare kan tilldelas roller som ger dem olika behörigheter, som att lägga till QSO:er i loggboken och komma åt Wavelog API:er."
+msgstr ""
+"Användare kan tilldelas roller som ger dem olika behörigheter, som att lägga "
+"till QSO:er i loggboken och komma åt Wavelog API:er."
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
-msgstr "Den för närvarande inloggade användaren visas uppe till höger på varje sida."
+msgstr ""
+"Den för närvarande inloggade användaren visas uppe till höger på varje sida."
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
