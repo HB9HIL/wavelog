@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-05 15:20+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-07-09 13:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Turkish <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/tr/>\n"
 "Language: tr_TR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -729,7 +730,9 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Kayıt defteri bulunamadı. İstasyon Kayıt Defterleri altında bir kayıt defteri tanızlamanız lazım! Buradan yapın:"
+msgstr ""
+"Kayıt defteri bulunamadı. İstasyon Kayıt Defterleri altında bir kayıt "
+"defteri tanızlamanız lazım! Buradan yapın:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -6555,7 +6558,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog, sizin için LoTW'den bir rapor indirmek için kullanıcı profilinizde kayıtlı LoTW kullanıcı adını ve şifreyi kullanacak. Wavelog indirmeleri raporu, seçilen tarihten itibaren veya son LoTW onayınızdan (günlüğünüzden alınır) bu yana şimdiye kadarki tüm onaylara sahip olacaktır."
+msgstr ""
+"Wavelog, sizin için LoTW'den bir rapor indirmek için kullanıcı profilinizde "
+"kayıtlı LoTW kullanıcı adını ve şifreyi kullanacak. Wavelog indirmeleri "
+"raporu, seçilen tarihten itibaren veya son LoTW onayınızdan (günlüğünüzden "
+"alınır) bu yana şimdiye kadarki tüm onaylara sahip olacaktır."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6622,7 +6629,8 @@ msgstr "Senkronize Edilmedi"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Bu alanı kullanmak için bazı LoTW p12 sertifikaları yüklemeniz gerekiyor."
+msgstr ""
+"Bu alanı kullanmak için bazı LoTW p12 sertifikaları yüklemeniz gerekiyor."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6757,7 +6765,10 @@ msgstr "Notlarınız"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Şu anda bir notunuz yok. Bunlar ATU ayarları, işaretçiler ve genel istasyon notları gibi verileri saklamanın harika bir yoludur ve onları kaybedemeyeceğiniz için kağıttan daha iyidir!"
+msgstr ""
+"Şu anda bir notunuz yok. Bunlar ATU ayarları, işaretçiler ve genel istasyon "
+"notları gibi verileri saklamanın harika bir yoludur ve onları "
+"kaybedemeyeceğiniz için kağıttan daha iyidir!"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7658,7 +7669,8 @@ msgstr "Uydu Modu"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Not içeriği yalnızca Wavelog içinde kullanılır ve diğer servislere aktarılmaz"
+msgstr ""
+"Not içeriği yalnızca Wavelog içinde kullanılır ve diğer servislere aktarılmaz"
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
