@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-05 15:14+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-07-09 13:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Finnish <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/fi/>\n"
 "Language: fi_FI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -6555,7 +6556,11 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog käyttää profiiliisi tallennettuja LoTW:n käyttäjätietoja lokikoosteen lataamiseen. Lokikooste sisältää tähän päivään asti kaikki kuitatut yhteydet, alkaen valitsemastasi päivästä tai siitä päivästä kun olet viimeksi ne palvelusta ladannut ."
+msgstr ""
+"Wavelog käyttää profiiliisi tallennettuja LoTW:n käyttäjätietoja "
+"lokikoosteen lataamiseen. Lokikooste sisältää tähän päivään asti kaikki "
+"kuitatut yhteydet, alkaen valitsemastasi päivästä tai siitä päivästä kun "
+"olet viimeksi ne palvelusta ladannut ."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6622,7 +6627,9 @@ msgstr "Ei synkronoitu"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Sinun täytyy ladata ainakin yksi LoTW:n P12 tiedostomuotoinen kutsumerkin varmenne käyttääksesi tätä toimintoaluetta."
+msgstr ""
+"Sinun täytyy ladata ainakin yksi LoTW:n P12 tiedostomuotoinen kutsumerkin "
+"varmenne käyttääksesi tätä toimintoaluetta."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6643,7 +6650,9 @@ msgstr "Vie .p12 tiedoston ohjeistus"
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "Avaa TQSL &amp; ja siirry kutsumerkin varmeenteen / Callsign Certificates välilehdelle"
+msgstr ""
+"Avaa TQSL &amp; ja siirry kutsumerkin varmeenteen / Callsign Certificates "
+"välilehdelle"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Right click on desired Callsign"
@@ -6757,7 +6766,11 @@ msgstr "Muistiinpanosi"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Näyttää siltä, ettei sinulla ole vielä yhtään muistiinpanoa. Tämä Wavelogin muistio ovat kätevä tapa tallentaa vaikka ATU:n asetukset, taajuudet. Muistiinpanosi säilyvät täällä tallessa, eikä sinun tarvitse etsiä niitä paperipinojesi alta. Näin aika säästyy workkimiseen  --... ...-- "
+msgstr ""
+"Näyttää siltä, ettei sinulla ole vielä yhtään muistiinpanoa. Tämä Wavelogin "
+"muistio ovat kätevä tapa tallentaa vaikka ATU:n asetukset, taajuudet. "
+"Muistiinpanosi säilyvät täällä tallessa, eikä sinun tarvitse etsiä niitä "
+"paperipinojesi alta. Näin aika säästyy workkimiseen  --... ...-- "
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7658,7 +7671,9 @@ msgstr "Satelliitin Mode"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Muistio tallentuu vain logiin, tähän yhteydeen, eikä siirry eteenpäin muihin palveluihin."
+msgstr ""
+"Muistio tallentuu vain logiin, tähän yhteydeen, eikä siirry eteenpäin muihin "
+"palveluihin."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
@@ -8999,7 +9014,8 @@ msgstr "Päivämäärämuoto"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
-msgstr "Valitse, miten haluat päivämäärät näkyvän, kun olet kirjautunut tilillesi."
+msgstr ""
+"Valitse, miten haluat päivämäärät näkyvän, kun olet kirjautunut tilillesi."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
@@ -9059,7 +9075,9 @@ msgstr ""
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Näytä kusokumppanin profiilikuva qrz.com/hamqth.com -profiilista lokin QSO:n kirjausikkunassa."
+msgstr ""
+"Näytä kusokumppanin profiilikuva qrz.com/hamqth.com -profiilista lokin QSO:n "
+"kirjausikkunassa."
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
@@ -9341,11 +9359,16 @@ msgstr "Wavelog tarvitsee toimiakseen vähintään yhden luodun käyttäjän."
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "Käyttäjille voidaan määrittää rooleja, jotka antavat heille erilaisia käyttöoikeuksia, kuten QSO:n lisääminen lokikirjaan ja pääsy Wavelog-sovellusliittymiin (API)."
+msgstr ""
+"Käyttäjille voidaan määrittää rooleja, jotka antavat heille erilaisia "
+"käyttöoikeuksia, kuten QSO:n lisääminen lokikirjaan ja pääsy Wavelog-"
+"sovellusliittymiin (API)."
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
-msgstr "Tällä hetkellä kirjautunut käyttäjä näkyy jokaisen sivun oikeassa yläkulmassa."
+msgstr ""
+"Tällä hetkellä kirjautunut käyttäjä näkyy jokaisen sivun oikeassa "
+"yläkulmassa."
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
