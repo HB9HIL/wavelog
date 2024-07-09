@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-05 15:13+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-07-09 13:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Greek <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/el/>\n"
 "Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6\n"
 
 #: application/controllers/Accumulated.php:21
 #: application/views/interface_assets/header.php:148
@@ -729,7 +730,9 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Δεν βρέθηκαν αρχεία. Πρέπει να ορίσετε ένα αρχεία στα αρχεία σταθμών! Κάντε το εδώ:"
+msgstr ""
+"Δεν βρέθηκαν αρχεία. Πρέπει να ορίσετε ένα αρχεία στα αρχεία σταθμών! Κάντε "
+"το εδώ:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -6555,7 +6558,12 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Το Wavelog θα χρησιμοποιήσει το όνομα χρήστη και τον κωδικό πρόσβασης LoTW που είναι αποθηκευμένα στο προφίλ χρήστη σας για να πραγματοποιήσει λήψη μιας αναφοράς από το LoTW για εσάς. Οι λήψεις αναφοράς Wavelog θα έχουν όλες τις επιβεβαιώσεις από την επιλεγμένη ημερομηνία ή από την τελευταία επιβεβαίωση LoTW (που ελήφθη από το αρχείο καταγραφής σας), μέχρι τώρα."
+msgstr ""
+"Το Wavelog θα χρησιμοποιήσει το όνομα χρήστη και τον κωδικό πρόσβασης LoTW "
+"που είναι αποθηκευμένα στο προφίλ χρήστη σας για να πραγματοποιήσει λήψη "
+"μιας αναφοράς από το LoTW για εσάς. Οι λήψεις αναφοράς Wavelog θα έχουν όλες "
+"τις επιβεβαιώσεις από την επιλεγμένη ημερομηνία ή από την τελευταία "
+"επιβεβαίωση LoTW (που ελήφθη από το αρχείο καταγραφής σας), μέχρι τώρα."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6622,7 +6630,9 @@ msgstr "Μη συγχρονισμένο"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Πρέπει να ανεβάσετε ορισμένα πιστοποιητικά LoTW p12 για να χρησιμοποιήσετε αυτήν την περιοχή."
+msgstr ""
+"Πρέπει να ανεβάσετε ορισμένα πιστοποιητικά LoTW p12 για να χρησιμοποιήσετε "
+"αυτήν την περιοχή."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6643,7 +6653,8 @@ msgstr "Εξαγωγή Οδηγίες αρχείου .p12 "
 
 #: application/views/lotw_views/upload_cert.php:22
 msgid "Open TQSL and go to the Callsign Certificates Tab"
-msgstr "Ανοίξτε το TQSL &amp; μεταβείτε στην καρτέλα Πιστοποιητικά διακριτικού κλήσης"
+msgstr ""
+"Ανοίξτε το TQSL &amp; μεταβείτε στην καρτέλα Πιστοποιητικά διακριτικού κλήσης"
 
 #: application/views/lotw_views/upload_cert.php:23
 msgid "Right click on desired Callsign"
@@ -6757,7 +6768,10 @@ msgstr "Οι σημειώσεις σας"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Αυτήν τη στιγμή δεν έχετε σημειώσεις, αυτος είναι ένας φανταστικός τρόπος αποθήκευσης δεδομένων όπως ρυθμίσεις ATU, beacons και γενικές σημειώσεις σταθμών και είναι καλύτερο από χαρτί, καθώς δεν μπορείτε να τα χάσετε!"
+msgstr ""
+"Αυτήν τη στιγμή δεν έχετε σημειώσεις, αυτος είναι ένας φανταστικός τρόπος "
+"αποθήκευσης δεδομένων όπως ρυθμίσεις ATU, beacons και γενικές σημειώσεις "
+"σταθμών και είναι καλύτερο από χαρτί, καθώς δεν μπορείτε να τα χάσετε!"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7527,7 +7541,8 @@ msgstr ""
 
 #: application/views/qso/edit_ajax.php:476 application/views/qso/index.php:583
 msgid "This note content is exported to QSL services like eqsl.cc."
-msgstr "Αυτό το περιεχόμενο σημείωσης εξάγεται σε υπηρεσίες QSL όπως το eqsl.cc."
+msgstr ""
+"Αυτό το περιεχόμενο σημείωσης εξάγεται σε υπηρεσίες QSL όπως το eqsl.cc."
 
 #: application/views/qso/edit_ajax.php:480 application/views/qso/index.php:586
 msgid "Get the default message for eQSL, for this station."
@@ -7658,7 +7673,9 @@ msgstr "Λειτουργία δορυφόρου"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Το περιεχόμενο σημείωσης χρησιμοποιείται μόνο στο Wavelog και δεν εξάγεται σε άλλες υπηρεσίες."
+msgstr ""
+"Το περιεχόμενο σημείωσης χρησιμοποιείται μόνο στο Wavelog και δεν εξάγεται "
+"σε άλλες υπηρεσίες."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
