@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-26 11:15+0000\n"
-"Last-Translator: Aurélien Barrau <abarrau378@gmail.com>\n"
-"Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-translation/fr/>\n"
+"PO-Revision-Date: 2024-07-09 13:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: French <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -730,7 +731,9 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Aucun journal de trafic n'a été trouvé. Vous devez en définir un via le menu 'Station Logbooks' ! Faites-le ici :"
+msgstr ""
+"Aucun journal de trafic n'a été trouvé. Vous devez en définir un via le menu "
+"'Station Logbooks' ! Faites-le ici :"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -1404,7 +1407,9 @@ msgstr "Les paramètres ont été sauvegardés avec succès."
 
 #: application/controllers/Options.php:299
 msgid "Something went wrong with saving the settings. Try again."
-msgstr "Problème rencontré lors de l'enregistrement des paramètres. Merci de réessayer."
+msgstr ""
+"Problème rencontré lors de l'enregistrement des paramètres. Merci de "
+"réessayer."
 
 #: application/controllers/Options.php:310
 #: application/controllers/Options.php:320
@@ -1753,7 +1758,9 @@ msgstr "Copier"
 #: application/views/stationsetup/stationsetup.php:191
 #, php-format
 msgid "Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."
-msgstr "Etes-vous certain de supprimer le profil de station '%s' ? Cela supprimera tous les QSO de cette station."
+msgstr ""
+"Etes-vous certain de supprimer le profil de station '%s' ? Cela supprimera "
+"tous les QSO de cette station."
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
@@ -2518,15 +2525,18 @@ msgstr "(A cocher, si l'ADIF à importer ne contient pas ces informations)."
 
 #: application/views/adif/import.php:103
 msgid "Mark imported QSOs as uploaded to HRDLog.net Logbook"
-msgstr "Indiquer que les QSO importés ont été téléchargés dans le journal HRDLog.net"
+msgstr ""
+"Indiquer que les QSO importés ont été téléchargés dans le journal HRDLog.net"
 
 #: application/views/adif/import.php:113
 msgid "Mark imported QSOs as uploaded to QRZ Logbook"
-msgstr "Indiquer que les QSO importés ont été téléchargés dans le journal QRZ.com"
+msgstr ""
+"Indiquer que les QSO importés ont été téléchargés dans le journal QRZ.com"
 
 #: application/views/adif/import.php:123
 msgid "Mark imported QSOs as uploaded to Clublog Logbook"
-msgstr "Indiquer que les QSO importés ont été téléchargés dans le journal Clublog"
+msgstr ""
+"Indiquer que les QSO importés ont été téléchargés dans le journal Clublog"
 
 #: application/views/adif/import.php:133
 msgid "Use DXCC information from ADIF"
@@ -2534,11 +2544,15 @@ msgstr "Utiliser l'information du DXCC issue du fichier ADIF"
 
 #: application/views/adif/import.php:135
 msgid "If not selected, Wavelog will attempt to determine DXCC information automatically."
-msgstr "(Si cochée, Wavelog tentera de déterminer automatiquement les informations DXCC)."
+msgstr ""
+"(Si cochée, Wavelog tentera de déterminer automatiquement les informations "
+"DXCC)."
 
 #: application/views/adif/import.php:143
 msgid "Always use login-callsign as operator-name on import"
-msgstr "Toujours utiliser l'indicatif de connexion comme nom d'opérateur lors de l'import"
+msgstr ""
+"Toujours utiliser l'indicatif de connexion comme nom d'opérateur lors de "
+"l'import"
 
 #: application/views/adif/import.php:152
 #: application/views/interface_assets/footer.php:21
@@ -2551,7 +2565,9 @@ msgstr "Ignorer l'indicatif de la station lors de l'import"
 
 #: application/views/adif/import.php:154
 msgid "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location."
-msgstr "(Si cochée, Wavelog tentera d'importer <b>TOUS</b> les QSO de l'ADIF, qu'ils correspondent ou non à l'emplacement de la station choisie)."
+msgstr ""
+"(Si cochée, Wavelog tentera d'importer <b>TOUS</b> les QSO de l'ADIF, qu'ils "
+"correspondent ou non à l'emplacement de la station choisie)."
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -2565,7 +2581,10 @@ msgstr "Emportez votre fichier journal de trafic partout !"
 
 #: application/views/adif/import.php:166
 msgid "Exporting ADIFs allows you to import contacts into third party applications like LoTW, Awards or just for keeping a backup."
-msgstr "L'export de fichier ADIF vous permet d'importer vos QSO dans des applications tierces comme LoTW, Awards ou simplement pour conserver une sauvegarde."
+msgstr ""
+"L'export de fichier ADIF vous permet d'importer vos QSO dans des "
+"applications tierces comme LoTW, Awards ou simplement pour conserver une "
+"sauvegarde."
 
 #: application/views/adif/import.php:176 application/views/adif/import.php:222
 #: application/views/cfd/index.php:15 application/views/csv/index.php:118
@@ -2629,7 +2648,9 @@ msgstr "Importez uniquement les données DOK des QSO confirmés sur DCL."
 
 #: application/views/adif/import.php:251
 msgid "Uncheck if you also want to update DOK with data from unconfirmed QSOs in DCL."
-msgstr "(Décoché, si vous souhaitez également mettre à jour DOK, avec les données des QSO non confirmés dans DCL)."
+msgstr ""
+"(Décoché, si vous souhaitez également mettre à jour DOK, avec les données "
+"des QSO non confirmés dans DCL)."
 
 #: application/views/adif/import.php:258
 msgid "Overwrites exisiting DOK in log by DCL (if different)."
@@ -2637,7 +2658,9 @@ msgstr ""
 
 #: application/views/adif/import.php:260
 msgid "If checked Wavelog will forcibly overwrite existing DOK with DOK from DCL log."
-msgstr "(Si cochée, Wavelog écrasera de force le DOK existant par le DOK du journal DCL)."
+msgstr ""
+"(Si cochée, Wavelog écrasera de force le DOK existant par le DOK du journal "
+"DCL)."
 
 #: application/views/adif/import.php:267
 msgid "Ignore QSOs that cannot be matched."
@@ -2669,7 +2692,9 @@ msgstr "Erreurs ADIF"
 
 #: application/views/adif/import_success.php:25
 msgid "You have ADIF errors, the QSOs have still been added but these fields have not been populated."
-msgstr "Vous avez des erreurs ADIF, les QSO ont quand même été ajoutés mais ces champs n'ont pas été renseignés."
+msgstr ""
+"Vous avez des erreurs ADIF, les QSO ont quand même été ajoutés mais ces "
+"champs n'ont pas été renseignés."
 
 #: application/views/adif/mark_lotw.php:12
 #: application/views/hrdlog/mark_hrdlog.php:12
@@ -4096,11 +4121,16 @@ msgstr ""
 
 #: application/views/contesting/add.php:16
 msgid "Using the contest list, you can control which Contests are shown when logging QSOs in a contest."
-msgstr "En utilisant la liste des concours, vous pouvez contrôler quels concours sont affichés lors de l'enregistrement des QSO dans un concours."
+msgstr ""
+"En utilisant la liste des concours, vous pouvez contrôler quels concours "
+"sont affichés lors de l'enregistrement des QSO dans un concours."
 
 #: application/views/contesting/add.php:19
 msgid "Active contests will be shown in the Contest Name drop-down, while inactive contests will be hidden and cannot be selected."
-msgstr "Les concours actifs seront affichés dans la liste déroulante 'Nom du concours' sur les pages Contest Logging, tandis que les concours inactifs seront masqués et ne pourront pas être sélectionnés."
+msgstr ""
+"Les concours actifs seront affichés dans la liste déroulante 'Nom du "
+"concours' sur les pages Contest Logging, tandis que les concours inactifs "
+"seront masqués et ne pourront pas être sélectionnés."
 
 #: application/views/contesting/add.php:26
 #: application/views/contesting/create.php:30
@@ -4141,7 +4171,9 @@ msgstr ""
 
 #: application/views/contesting/add.php:55
 msgid "Warning! Are you sure you want to delete the following contest: "
-msgstr "ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> le concours : "
+msgstr ""
+"ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> le concours "
+": "
 
 #: application/views/contesting/add.php:56
 msgid "Warning! Are you sure you want to activate all contests?"
@@ -4617,7 +4649,9 @@ msgstr ""
 
 #: application/views/dashboard/index.php:56
 msgid "You need to upgrade your PHP version. Minimum version is 7.4. Your version is"
-msgstr "Vous devez mettre à jour votre version PHP. La version minimale est 7.4. Votre version est"
+msgstr ""
+"Vous devez mettre à jour votre version PHP. La version minimale est 7.4. "
+"Votre version est"
 
 #: application/views/dashboard/index.php:63
 #, php-format
@@ -4646,7 +4680,8 @@ msgstr[1] ""
 
 #: application/views/dashboard/index.php:97
 msgid "You have made no QSOs today; time to turn on the radio!"
-msgstr "Vous n'avez réalisé aucun QSO aujourd'hui. Il est temps d'allumer la radio !"
+msgstr ""
+"Vous n'avez réalisé aucun QSO aujourd'hui. Il est temps d'allumer la radio !"
 
 #: application/views/dashboard/index.php:104
 msgid "Attention: you need to set an active station location."
@@ -5157,7 +5192,8 @@ msgstr "Données du QSO"
 
 #: application/views/distances/index.php:9
 msgid "contacts were plotted.<br /> Your furthest contact was with"
-msgstr "contacts utilisés pour le graphique.<br/> Le dernier contact réalisé est"
+msgstr ""
+"contacts utilisés pour le graphique.<br/> Le dernier contact réalisé est"
 
 #: application/views/distances/index.php:10
 msgid "in gridsquare"
@@ -5181,7 +5217,9 @@ msgstr "DX Atlas - Export"
 
 #: application/views/dxatlas/index.php:7
 msgid "Export your logbook for use in DX Atlas to display worked / confirmed gridsquares."
-msgstr "Exportez votre journal de trafic pour l'utiliser dans DX Atlas et afficher les Locator réalisés/confirmés."
+msgstr ""
+"Exportez votre journal de trafic pour l'utiliser dans DX Atlas et afficher "
+"les Locator réalisés/confirmés."
 
 #: application/views/dxatlas/index.php:11 application/views/kml/index.php:11
 msgid "Only QSOs with a gridsquare defined will be exported!"
@@ -5325,7 +5363,9 @@ msgstr ""
 
 #: application/views/eqsl/tools.php:26
 msgid "Use this if you have lots of QSOs to upload to eQSL it will save the server timing out."
-msgstr "Utilisez cette fonction si vous avez beaucoup de QSO à télécharger sur eQSL, cela évitera au serveur de perdre du temps."
+msgstr ""
+"Utilisez cette fonction si vous avez beaucoup de QSO à télécharger sur eQSL, "
+"cela évitera au serveur de perdre du temps."
 
 #: application/views/eqslcard/index.php:10
 #, php-format
@@ -5712,7 +5752,9 @@ msgstr ""
 
 #: application/views/kml/index.php:7
 msgid "Export your logbook to a KML file for use in Google Earth."
-msgstr "Exportez votre journal de trafic vers un fichier KML pour l'utiliser dans Google Earth."
+msgstr ""
+"Exportez votre journal de trafic vers un fichier KML pour l'utiliser dans "
+"Google Earth."
 
 #: application/views/labels/create.php:24
 msgid "Label name used for display purposes, so pick something meaningful, perhaps the label style."
@@ -6247,7 +6289,9 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:414
 msgid "Warning! Are you sure you want to delete the marked QSO(s)?"
-msgstr "ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> les QSO sélectionnés ?"
+msgstr ""
+"ATTENTION ! Etes vous certain de vouloir <b><u>supprimer</u></b> les QSO "
+"sélectionnés ?"
 
 #: application/views/logbookadvanced/index.php:417
 msgid "With selected: "
@@ -6556,7 +6600,12 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog utilisera le nom d'utilisateur et le mot de passe LoTW stockés dans votre profil utilisateur pour télécharger le journal vers LoTW.<br/> Les téléchargements du journal Wavelog auront toutes les confirmations depuis la date choisie, ou depuis votre dernière confirmation LoTW (récupérée de votre journal), jusqu'à présent."
+msgstr ""
+"Wavelog utilisera le nom d'utilisateur et le mot de passe LoTW stockés dans "
+"votre profil utilisateur pour télécharger le journal vers LoTW.<br/> Les "
+"téléchargements du journal Wavelog auront toutes les confirmations depuis la "
+"date choisie, ou depuis votre dernière confirmation LoTW (récupérée de votre "
+"journal), jusqu'à présent."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6758,7 +6807,11 @@ msgstr "Vos Notes"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "Vous n'avez actuellement aucune note.<br> C'est une manière fantastique de conserver vos données comme les réglages de boite d'accord, balises, notes sur les stations etc... et c'est bien mieux que des notes papiers que vous finirez par perdre !"
+msgstr ""
+"Vous n'avez actuellement aucune note.<br> C'est une manière fantastique de "
+"conserver vos données comme les réglages de boite d'accord, balises, notes "
+"sur les stations etc... et c'est bien mieux que des notes papiers que vous "
+"finirez par perdre !"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7659,7 +7712,9 @@ msgstr "Mode du Satellite"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "A noter : le contenu est utilisé par Wavelog uniquement et n'est pas exporté vers d'autre services."
+msgstr ""
+"A noter : le contenu est utilisé par Wavelog uniquement et n'est pas exporté "
+"vers d'autre services."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
@@ -8358,7 +8413,9 @@ msgstr "Message (QSLMSG) par défaut"
 #: application/views/station_profile/create.php:185
 #: application/views/station_profile/edit.php:289
 msgid "Define a default message that will be populated and sent for each QSO for this station location."
-msgstr "Vous pouvez définir un message par défaut qui sera renseigné et envoyé pour chaque QSO pour ce lieu station."
+msgstr ""
+"Vous pouvez définir un message par défaut qui sera renseigné et envoyé pour "
+"chaque QSO pour ce lieu station."
 
 #: application/views/station_profile/create.php:188
 #: application/views/station_profile/edit.php:328
@@ -8598,7 +8655,12 @@ msgstr ""
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
-msgstr "Les 'journaux de trafic' des stations vous permettent de regrouper les emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements au sein d'une même session ; visible dans le journal de trafic, jusqu'aux statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais qu'ils font partie du même cercle DXCC ou VUCC."
+msgstr ""
+"Les 'journaux de trafic' des stations vous permettent de regrouper les "
+"emplacements des stations.<br>Cela vous permet d'avoir tous les emplacements "
+"au sein d'une même session ; visible dans le journal de trafic, jusqu'aux "
+"statistiques. <br>Idéal lorsque vous travaillez sur plusieurs sites, mais "
+"qu'ils font partie du même cercle DXCC ou VUCC."
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9056,15 +9118,22 @@ msgstr "Enregistrer les heures de fin des QSO séparément"
 
 #: application/views/user/edit.php:350
 msgid "Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."
-msgstr "(Choisissez 'oui', si vous souhaitez enregistrer les heures de début et de fin des QSO séparément. Si la valeur est 'Non', l'heure de fin sera la même que l'heure de début)."
+msgstr ""
+"(Choisissez 'oui', si vous souhaitez enregistrer les heures de début et de "
+"fin des QSO séparément. Si la valeur est 'Non', l'heure de fin sera la même "
+"que l'heure de début)."
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Affiche l'image de profil du contact (depuis qrz.com/hamqth.com) dans la session QSO."
+msgstr ""
+"Affiche l'image de profil du contact (depuis qrz.com/hamqth.com) dans la "
+"session QSO."
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr "(Indiquer les éléments d'authentification pour qrz.com/hamqth.com dans le fichier de configuration (config.php))."
+msgstr ""
+"(Indiquer les éléments d'authentification pour qrz.com/hamqth.com dans le "
+"fichier de configuration (config.php))."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
@@ -9081,7 +9150,8 @@ msgstr "SOTA : Renseigner automatiquement le Locator et le nom du sommet."
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
 msgid "If set, name and gridsquare is fetched from the API and filled in location and locator."
-msgstr "(Si 'oui', le nom et le Locator seront récupérés depuis l'API et renseignés)."
+msgstr ""
+"(Si 'oui', le nom et le Locator seront récupérés depuis l'API et renseignés)."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
@@ -9105,7 +9175,9 @@ msgstr "Champ Quicklog"
 
 #: application/views/user/edit.php:433
 msgid "With this feature, you can log callsigns using the search field in the header."
-msgstr "(Si 'oui', vous pouvez enregistrer les indicatifs d'appel en utilisant le champ de recherche dans la barre du haut)."
+msgstr ""
+"(Si 'oui', vous pouvez enregistrer les indicatifs d'appel en utilisant le "
+"champ de recherche dans la barre du haut)."
 
 #: application/views/user/edit.php:437
 msgid "Quicklog - Action on press Enter"
@@ -9117,7 +9189,8 @@ msgstr "Enregistre l'indicatif"
 
 #: application/views/user/edit.php:443
 msgid "What action should be performed when Enter is pressed in the quicklog field?"
-msgstr "Action effectuée lorsque vous appuyez sur 'Entrée' dans le champ quicklog ?"
+msgstr ""
+"Action effectuée lorsque vous appuyez sur 'Entrée' dans le champ quicklog ?"
 
 #: application/views/user/edit.php:449
 msgid "Station Locations Quickswitch"
@@ -9169,7 +9242,9 @@ msgstr "Type de QSL pour le statut"
 
 #: application/views/user/edit.php:559
 msgid "Select the type of QSL to show in the previous QSOs section."
-msgstr "Sélectionner le type de QSL pour le statut à afficher dans la session 'Contacts précédents'."
+msgstr ""
+"Sélectionner le type de QSL pour le statut à afficher dans la session "
+"'Contacts précédents'."
 
 #: application/views/user/edit.php:565
 msgid "QRZ"
@@ -9342,11 +9417,16 @@ msgstr "Wavelog a besoin d'au moins un utilisateur configuré pour fonctionner."
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "Les utilisateurs peuvent se voir attribuer des rôles qui leur donnent différentes autorisations, telles que l'ajout de QSO au journal de trafic et l'accès aux API Wavelog."
+msgstr ""
+"Les utilisateurs peuvent se voir attribuer des rôles qui leur donnent "
+"différentes autorisations, telles que l'ajout de QSO au journal de trafic et "
+"l'accès aux API Wavelog."
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
-msgstr "L'utilisateur actuellement connecté est affiché en haut à droite de chaque page."
+msgstr ""
+"L'utilisateur actuellement connecté est affiché en haut à droite de chaque "
+"page."
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
