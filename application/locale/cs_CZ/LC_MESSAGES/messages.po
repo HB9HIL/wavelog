@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-06-25 13:16+0000\n"
-"Last-Translator: Ondřej Koloničný <ondra@ok1cdj.com>\n"
-"Language-Team: Czech <https://translate.wavelog.org/projects/wavelog/main-translation/cs/>\n"
+"PO-Revision-Date: 2024-07-09 13:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Czech <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/cs/>\n"
 "Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -731,7 +732,8 @@ msgstr ""
 
 #: application/controllers/Logbook.php:37
 msgid "No logbooks were found. You need to define a logbook under Station Logbooks! Do it here:"
-msgstr "Nebyly nalezeny žádné denníky. Musíte definovat denník! Udělejte to zde:"
+msgstr ""
+"Nebyly nalezeny žádné denníky. Musíte definovat denník! Udělejte to zde:"
 
 #: application/controllers/Logbook.php:37
 #: application/views/stationsetup/stationsetup.php:18
@@ -6560,7 +6562,10 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog použije uživatelské jméno a heslo LoTW uložené ve vašem uživatelském profilu, aby vám stáhl datz LoTW.Stažen budu data od nastaveného datumu nebo od posledního stažení až do teď."
+msgstr ""
+"Wavelog použije uživatelské jméno a heslo LoTW uložené ve vašem uživatelském "
+"profilu, aby vám stáhl datz LoTW.Stažen budu data od nastaveného datumu nebo "
+"od posledního stažení až do teď."
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6762,7 +6767,10 @@ msgstr "Tvoje poznámky"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "V současné době nemáte žádné poznámky, jedná se o fantastický způsob ukládání dat, jako je nastavení tuneru, poslechu majáků a další. Je to lepší než papír, protože je nemůžete ztratit!"
+msgstr ""
+"V současné době nemáte žádné poznámky, jedná se o fantastický způsob "
+"ukládání dat, jako je nastavení tuneru, poslechu majáků a další. Je to lepší "
+"než papír, protože je nemůžete ztratit!"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -6787,7 +6795,8 @@ msgstr "Motiv"
 
 #: application/views/options/appearance.php:51
 msgid "Global Theme Choice, this is used when users arent logged in."
-msgstr "Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni."
+msgstr ""
+"Globální volba motivu, která se používá, když uživatelé nejsou přihlášeni."
 
 #: application/views/options/appearance.php:61
 msgid "Dashboard Notification Banner"
@@ -6807,7 +6816,8 @@ msgstr ""
 
 #: application/views/options/appearance.php:76
 msgid "This allows the map on the dashboard to be disabled or placed on the right."
-msgstr "Toto umožňuje zakázat mapu na palubní desce nebo ji umístit na pravou stranu."
+msgstr ""
+"Toto umožňuje zakázat mapu na palubní desce nebo ji umístit na pravou stranu."
 
 #: application/views/options/appearance.php:80
 msgid "Logbook Map"
@@ -6958,7 +6968,9 @@ msgstr ""
 
 #: application/views/options/index.php:13
 msgid "Wavelog Options are global settings used for all users of the installation, which are overridden if there's a setting on a user level."
-msgstr "Možnosti Wavelogu jsou globální nastavení používaná pro všechny uživatele instalace, která jsou přepsána, pokud je nastavení na úrovni uživatele."
+msgstr ""
+"Možnosti Wavelogu jsou globální nastavení používaná pro všechny uživatele "
+"instalace, která jsou přepsána, pokud je nastavení na úrovni uživatele."
 
 #: application/views/options/oqrs.php:39
 msgid "Global text"
@@ -6966,7 +6978,8 @@ msgstr "Globální text"
 
 #: application/views/options/oqrs.php:41
 msgid "This text is an optional text that can be displayed on top of the OQRS page."
-msgstr "Tento text je nepovinný text, který lze zobrazit na horní části stránky OQRS."
+msgstr ""
+"Tento text je nepovinný text, který lze zobrazit na horní části stránky OQRS."
 
 #: application/views/options/oqrs.php:45
 msgid "Grouped search"
@@ -6982,7 +6995,9 @@ msgstr ""
 
 #: application/views/options/oqrs.php:50
 msgid "When this is on, all station locations with OQRS active, will be searched at once."
-msgstr "Když je tato možnost zapnutá, budou všechny stanice s aktivním OQRS vyhledávány najednou."
+msgstr ""
+"Když je tato možnost zapnutá, budou všechny stanice s aktivním OQRS "
+"vyhledávány najednou."
 
 #: application/views/options/oqrs.php:54
 msgid "Show station location name in grouped search results"
@@ -6998,7 +7013,9 @@ msgstr "Upozornění na časový limit rádia"
 
 #: application/views/options/radios.php:39
 msgid "The Radio Timeout Warning is used on the QSO entry panel to alert you to radio interface disconnects."
-msgstr "Upozornění na časový limit rádia se používá na panelu vstupu QSO k upozornění na odpojení rozhraní rádia."
+msgstr ""
+"Upozornění na časový limit rádia se používá na panelu vstupu QSO k "
+"upozornění na odpojení rozhraní rádia."
 
 #: application/views/options/radios.php:41
 msgid "This number is in seconds."
@@ -9006,7 +9023,8 @@ msgstr "Formát data"
 
 #: application/views/user/edit.php:200
 msgid "Select how you would like dates shown when logged into your account."
-msgstr "Vyberte, jak chcete, aby byla data zobrazena při přihlášení do vašeho účtu."
+msgstr ""
+"Vyberte, jak chcete, aby byla data zobrazena při přihlášení do vašeho účtu."
 
 #: application/views/user/edit.php:204
 msgid "Measurement preference"
@@ -9066,11 +9084,15 @@ msgstr ""
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
-msgstr "Zobrazit profilový obrázek partnera z QSO záznamu z profilu qrz.com/hamqth.com v sekci protokolu QSO."
+msgstr ""
+"Zobrazit profilový obrázek partnera z QSO záznamu z profilu qrz.com/"
+"hamqth.com v sekci protokolu QSO."
 
 #: application/views/user/edit.php:361
 msgid "Please set your qrz.com/hamqth.com credentials in the general config file."
-msgstr "Prosím, nastavte své přihlašovací údaje pro qrz.com/hamqth.com v obecném konfiguračním souboru."
+msgstr ""
+"Prosím, nastavte své přihlašovací údaje pro qrz.com/hamqth.com v obecném "
+"konfiguračním souboru."
 
 #: application/views/user/edit.php:366
 msgid "Location auto lookup."
@@ -9087,7 +9109,9 @@ msgstr "Automatické vyhledávání lokátoru a jména pro SOTA vrchol."
 #: application/views/user/edit.php:382 application/views/user/edit.php:392
 #: application/views/user/edit.php:402
 msgid "If set, name and gridsquare is fetched from the API and filled in location and locator."
-msgstr "Pokud je nastaveno, jméno a lokátor jsou získány z API a vyplněny do umístění a lokátoru."
+msgstr ""
+"Pokud je nastaveno, jméno a lokátor jsou získány z API a vyplněny do "
+"umístění a lokátoru."
 
 #: application/views/user/edit.php:386
 msgid "WWFF auto lookup gridsquare and name for reference."
@@ -9235,7 +9259,9 @@ msgstr "Email nebo značka volacího znaku Club Logu"
 
 #: application/views/user/edit.php:762
 msgid "The Email or Callsign you use to login to Club Log"
-msgstr "E-mail nebo značka volacího znaku, kterou používáte pro přihlášení do Club Logu"
+msgstr ""
+"E-mail nebo značka volacího znaku, kterou používáte pro přihlášení do Club "
+"Logu"
 
 #: application/views/user/edit.php:767
 msgid "Club Log Password"
@@ -9344,15 +9370,19 @@ msgstr "Seznam uživatelů"
 
 #: application/views/user/main.php:33
 msgid "Wavelog needs at least one user configured in order to operate."
-msgstr "Wavelog potřebuje alespoň jednoho uživatele nastaveného pro svůj provoz."
+msgstr ""
+"Wavelog potřebuje alespoň jednoho uživatele nastaveného pro svůj provoz."
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "Uživatelům mohou být přiděleny role, které jim udělují různá oprávnění, jako je přidávání QSO do logu a přístup k Wavelog API."
+msgstr ""
+"Uživatelům mohou být přiděleny role, které jim udělují různá oprávnění, jako "
+"je přidávání QSO do logu a přístup k Wavelog API."
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
-msgstr "Nyní přihlášený uživatel je zobrazen v pravém horním rohu každé stránky."
+msgstr ""
+"Nyní přihlášený uživatel je zobrazen v pravém horním rohu každé stránky."
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
