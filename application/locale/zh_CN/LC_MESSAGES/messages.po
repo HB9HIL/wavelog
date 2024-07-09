@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-07-01 05:27+0000\n"
-"Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
-"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/wavelog/main-translation/zh_Hans/>\n"
+"PO-Revision-Date: 2024-07-09 13:46+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
+"dev-project/dev-translations/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1881,7 +1882,8 @@ msgstr ""
 
 #: application/controllers/User.php:804
 msgid "Sorry. This instance is currently in maintenance mode. If this message appears unexpectedly or keeps showing up, please contact an administrator. Only administrators are currently allowed to log in."
-msgstr "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管理员登入。"
+msgstr "抱歉，本站正处于维护模式。如果本消息持续显示，请联系本站管理员。当前只允许管"
+"理员登入。"
 
 #: application/controllers/User.php:807
 msgid "Incorrect username or password!"
@@ -2550,7 +2552,8 @@ msgstr "导入时忽略台站的呼号"
 
 #: application/views/adif/import.php:154
 msgid "If selected, Wavelog will try to import <b>all</b> QSO's of the ADIF, regardless if they match to the chosen station-location."
-msgstr "如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> QSO，而不判断是否与所选台站位置匹配"
+msgstr "如果选择，Wavelog 会尝试导入 ADIF 文件中的 <b>所有</b> "
+"QSO，而不判断是否与所选台站位置匹配"
 
 #: application/views/adif/import.php:158 application/views/adif/import.php:273
 #: application/views/hrdlog/export.php:50 application/views/qrz/export.php:54
@@ -2620,7 +2623,9 @@ msgstr "将 QSO 标记为导出到 LoTW"
 #: application/views/adif/import.php:242
 #, php-format
 msgid "Go to %s and export your logbook with confirmed DOKs. To speed up the process you can select only DL QSOs to download (i.e. put 'DL' into Prefix List). The downloaded ADIF file can be uploaded here in order to update QSOs with DOK info."
-msgstr "前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。您可在此处上传已下载的 ADIF 日志，系统将以此更新 DOK 信息。"
+msgstr ""
+"前往 %s 导出已确认的 DOK，可选择仅导出 DL QSO 以加快速度。"
+"您可在此处上传已下载的 ADIF 日志，系统将以此更新 DOK 信息。"
 
 #: application/views/adif/import.php:249
 msgid "Only import DOK data from QSOs confirmed on DCL."
@@ -2718,11 +2723,13 @@ msgstr "API 密钥"
 
 #: application/views/api/help.php:17
 msgid "The Wavelog API (Application Programming Interface) lets third party systems access Wavelog in a controlled way. Access to the API is managed via API keys."
-msgstr "Wavelog API 允许第三方应用在受控条件下，与网站交互数据，通过创建 API Key 访问 API 资源。"
+msgstr "Wavelog API 允许第三方应用在受控条件下，与网站交互数据，通过创建 API Key "
+"访问 API 资源。"
 
 #: application/views/api/help.php:18
 msgid "You will need to generate an API key for each tool you wish to use (e.g. WLgate). Generate a read-write key if the application needs to send data to Wavelog. Generate a read-only key if the application only needs to obtain data from Wavelog."
-msgstr "您需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 API Key。"
+msgstr "您需要为每一个应用单独生成一个 API Key，根据需要创建 读-写 或 只读 权限的 "
+"API Key。"
 
 #: application/views/api/help.php:19
 msgid "API URL"
@@ -2878,7 +2885,8 @@ msgstr ""
 
 #: application/views/awards/counties/index.php:9
 msgid "USA-CA is available to all licensed amateurs worldwide and is issued to individuals for all county contacts made, regardless of callsigns used, operating locations, or dates."
-msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，无论使用的呼号、操作地点或日期如何"
+msgstr "USA-CA 可供全世界所有获得许可的业余爱好者使用，并颁发给所有县联络人的个人，无"
+"论使用的呼号、操作地点或日期如何"
 
 #: application/views/awards/counties/index.php:10
 msgid "Special USA-CA awards are also available to SWLs on a heard basis."
@@ -2923,7 +2931,8 @@ msgstr "CQ 杂志 WAZ 奖状"
 
 #: application/views/awards/cq/index.php:19
 msgid "The CQ Magazine is located in the US and one of the most popular amateur radio magazines in the world. The magazine first appeared in January 1945 and focuses on awards and the practical aspects of amateur radio."
-msgstr "CQ 杂志来自美国，是世界上最受欢迎的业余无线电杂志之一 该杂志于 1945 年 1 月首次出版，重点关注业余无线电的奖项和实用方面"
+msgstr "CQ 杂志来自美国，是世界上最受欢迎的业余无线电杂志之一 该杂志于 1945 年 1 "
+"月首次出版，重点关注业余无线电的奖项和实用方面"
 
 #: application/views/awards/cq/index.php:20
 msgid "The WAZ Award stands for 'Worked All Zones' and requires radio contacts to all 40 CQ Zones along with the corresponding confirmation."
@@ -3127,11 +3136,18 @@ msgstr "DOK 奖状"
 
 #: application/views/awards/dok/index.php:8
 msgid "Germany extends over 630 km from East to West and nearly 900 km from North to South. Around 70,000 of Germany's 82 million inhabitants are licensed hams, with more than 40,000 of them being members of DARC. DOK is a system that provides individual local chapters with an identifier and means 'Deutscher Ortsverband Kenner' (English: 'German Local Association Identifier')."
-msgstr "德国从东到西绵延 630 多公里，从北到南绵延近 900 公里 德国 8200 万居民中约有 70,000 人是有执照的HAM，其中 40,000 多人是 DARC 的成员 DOK 是一个为各个地方分会提供标识符的系统，其意思是“Deutscher Ortsverband Kenner”（英语：“德国地方协会标识符”）"
+msgstr ""
+"德国从东到西绵延 630 多公里，从北到南绵延近 900 公里 德国 8200 万居民中约有 "
+"70,000 人是有执照的HAM，其中 40,000 多人是 DARC 的成员 DOK "
+"是一个为各个地方分会提供标识符的系统，其意思是“Deutscher Ortsverband "
+"Kenner”（英语：“德国地方协会标识符”）"
 
 #: application/views/awards/dok/index.php:9
 msgid "The DOK consists of a letter for the district and a two-digit number for the local chapter, like P03 Friedrichshafen (city of the 'Hamradio exhibition') or F41 Baunatal (location of the DARC headquarters). Note: A zero in a DOK is a common mistake, often being logged as the letter O."
-msgstr "DOK 由代表地区的字母和代表地方分会的两位数字组成，例如 P03 Friedrichshafen（“Hamradio 展览”所在城市）或 F41 Baunatal（DARC 总部所在地） 注意：DOK 中的零是一个常见错误，通常被记录为字母 O"
+msgstr ""
+"DOK 由代表地区的字母和代表地方分会的两位数字组成，例如 P03 Friedrichshafen（“"
+"Hamradio 展览”所在城市）或 F41 Baunatal（DARC 总部所在地） 注意：DOK "
+"中的零是一个常见错误，通常被记录为字母 O"
 
 #: application/views/awards/dok/index.php:10
 #, php-format
@@ -3193,7 +3209,11 @@ msgstr ""
 
 #: application/views/awards/dxcc/index.php:17
 msgid "Important Note: Over time, the criteria for the DXCC List have changed. The List remains unchanged until an entity no longer satisfies the criteria under which it was added, at which time it is moved to the Deleted List. You will find Deleted DXCC entities also in the lists on Wavelog. Be aware that these DXCC entities are outdated and no longer valid."
-msgstr "重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” 您还会在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC 实体已过时且不再有效（如 伪满洲国曾经也是一个合法的DXCC实体）"
+msgstr ""
+"重要提示：随着时间的推移，DXCC 列表的标准已经发生变化 该列表将保持不变，直到"
+"实体不再满足添加该实体时所依据的标准，此时该实体将被移至“已删除列表” "
+"您还会在 Wavelog 的列表中找到已删除的 DXCC 实体 请注意，这些 DXCC "
+"实体已过时且不再有效（如 伪满洲国曾经也是一个合法的DXCC实体）"
 
 #: application/views/awards/dxcc/index.php:32
 #: application/views/awards/iota/index.php:33
@@ -3285,7 +3305,9 @@ msgstr "弗雷德·菲什纪念奖"
 
 #: application/views/awards/ffma/index.php:9
 msgid "The Fred Fish Memorial Award was created in honor of Fred Fish, W5FF (SK), who was the first amateur to have worked and confirmed all 488 Maidenhead grid squares in the 48 contiguous United States on 6 Meters."
-msgstr "Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 米波段上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者"
+msgstr ""
+"Fred Fish 纪念奖是为了纪念 Fred Fish, W5FF (SK) 而设立，他是第一个在 6 "
+"米波段上通联并确认了美国 48 个邻近地区的所有 488 个网格的业余爱好者"
 
 #: application/views/awards/ffma/index.php:10
 msgid "The award will be given to any amateur who can duplicate W5FF's accomplishment."
@@ -3302,7 +3324,10 @@ msgstr "美国网格大师奖状"
 
 #: application/views/awards/gridmaster/index.php:8
 msgid "The GridMaster Award is the most prestigious AMSAT award, first introduced in 2014 by the Star Comm Group. It is available to all amateur radio operators worldwide who manage to work all 488 grid squares in the USA via satellite and can provide QSL confirmations for each contact."
-msgstr "GridMaster 奖是最负盛名的 AMSAT 奖项，由 Star Comm Group 于 2014 年首次推出 全球所有业余无线电操作员都可以使用它，他们可以通过卫星在美国所有 488 个网格方格通联，并且可以为每个通联到的人提供 QSL 确认"
+msgstr ""
+"GridMaster 奖是最负盛名的 AMSAT 奖项，由 Star Comm Group 于 2014 年首次推出 "
+"全球所有业余无线电操作员都可以使用它，他们可以通过卫星在美国所有 488 "
+"个网格方格通联，并且可以为每个通联到的人提供 QSL 确认"
 
 #: application/views/awards/gridmaster/index.php:9
 #, php-format
@@ -3323,11 +3348,15 @@ msgstr ""
 
 #: application/views/awards/helvetia/index.php:19
 msgid "The USKA (Union of Swiss Shortwave Amateurs) sponsors two awards, the HELVETIA 26 (H26) Award and the SWITZERLAND Award, aimed at promoting activities on the bands by encouraging contacts across as many Swiss cantons as possible on multiple bands."
-msgstr "USKA（瑞士短波业余爱好者联盟）设立两个奖项：HELVETIA 26（H26）奖和 SWITZERLAND 奖，旨在通过鼓励在多个波段上通联尽可能多的瑞士州。"
+msgstr ""
+"USKA（瑞士短波业余爱好者联盟）设立两个奖项：HELVETIA 26（H26）奖和 "
+"SWITZERLAND 奖，旨在通过鼓励在多个波段上通联尽可能多的瑞士州。"
 
 #: application/views/awards/helvetia/index.php:20
 msgid "These awards come in two versions: one for HF bands and the other for VHF (including SHF and UHF) bands. Valid connections for these awards date back to January 1, 1980"
-msgstr "这些奖项有两类：一个适用于 HF 频段，另一个适用于 VHF（包括 SHF 和 UHF）频段。这些奖项的有效连接可追溯到 1980 年 1 月 1 日"
+msgstr ""
+"这些奖项有两类：一个适用于 HF 频段，另一个适用于 VHF（包括 SHF 和 UHF）频段。"
+"这些奖项的有效连接可追溯到 1980 年 1 月 1 日"
 
 #: application/views/awards/helvetia/index.php:21
 #: application/views/awards/jcc/index.php:19
@@ -3358,11 +3387,22 @@ msgstr "IOTA 奖状"
 
 #: application/views/awards/iota/index.php:17
 msgid "IOTA is an exciting and innovative activity program that has captured the interest of thousands of radio amateurs worldwide. Established in 1964, it promotes radio contacts with stations located on islands around the world to enhance the experience of all those active on the amateur bands. To achieve this, it draws on the widespread mystique surrounding islands."
-msgstr "IOTA 是一项令人兴奋且创新的活动，吸引了全球数千名无线电爱好者的兴趣 它成立于 1964 年，致力于促进与世界各地岛屿电台的无线电联系，以增强所有活跃在业余频段的用户的体验 为了实现这一目标，它利用了岛屿周围普遍存在的神秘感"
+msgstr ""
+"IOTA 是一项令人兴奋且创新的活动，吸引了全球数千名无线电爱好者的兴趣 它成立于 "
+"1964 年，致力于促进与世界各地岛屿电台的无线电联系，"
+"以增强所有活跃在业余频段的用户的体验 "
+"为了实现这一目标，它利用了岛屿周围普遍存在的神秘感"
 
 #: application/views/awards/iota/index.php:18
 msgid "It is administered by Islands On The Air (IOTA) Ltd (referred to as IOTA Management) in partnership with the Radio Society of Great Britain (RSGB). IOTA Management has grouped the world's islands into approximately 1200 'IOTA groups,' each having varying numbers of 'counters,' which are qualifying islands. These listings are published in the IOTA Directory and on the IOTA website. The objective for the IOTA Island Chaser is to make radio contact with at least one counter in as many of these groups as possible. The program has a well-defined set of rules and encourages friendly competition among chasers by publishing participant performance in an Honor Roll and annual listings, as well as recognizing it with certificates and prestigious awards."
-msgstr "它由Islands On The Air (IOTA) Ltd（简称IOTA Management）与英国无线电协会（RSGB）合作管理 IOTA管理层将世界上的岛屿分为大约1200个“IOTA组”，每个组都有不同数量的“counters”，这些“counters”都是合格的岛屿 这些列表发布在 IOTA 目录和 IOTA 网站上 IOTA Island Chaser 的目标是与尽可能多的这些组中的至少一个进行无线电通联 该计划有一套明确的规则，通过在荣誉榜和年度名单中公布参与者的表现，并通过证书和享有盛誉的奖项来认可，鼓励追逐者之间的友好竞争"
+msgstr ""
+"它由Islands On The Air (IOTA) Ltd（简称IOTA "
+"Management）与英国无线电协会（RSGB）合作管理 IOTA管理层将世界上的岛屿分为大约"
+"1200个“IOTA组”，每个组都有不同数量的“counters”，这些“counters”都是合格的岛屿 "
+"这些列表发布在 IOTA 目录和 IOTA 网站上 IOTA Island Chaser "
+"的目标是与尽可能多的这些组中的至少一个进行无线电通联 该计划有一套明确的规则，"
+"通过在荣誉榜和年度名单中公布参与者的表现，并通过证书和享有盛誉的奖项来认可，"
+"鼓励追逐者之间的友好竞争"
 
 #: application/views/awards/iota/index.php:19
 #, php-format
@@ -3445,7 +3485,10 @@ msgstr "通联（收听）并收到日本 100 个不同城市的电台卡片，�
 
 #: application/views/awards/jcc/index.php:18
 msgid "JCC-200, 300, 400, 500, 600, 700 and 800 will be issued as separate awards. A list of QSL cards should be arranged in order of JCC reference number, however names of city may be omitted. An additional sticker will be issued at every 50 contacts like 150, 250, 350, 450, 550, 650, 750 cities."
-msgstr "此外 JCC 还有数量为 200, 300, 400, 500, 600, 700 and 800 的奖项类别。QSL 卡片应记录 JCC 标识代号，城市名称为无效。额外的贴纸会在每 50 个通联记录发放，如 150, 250, 350, 450, 550, 650, 750 个城市数量"
+msgstr ""
+"此外 JCC 还有数量为 200, 300, 400, 500, 600, 700 and 800 的奖项类别。QSL "
+"卡片应记录 JCC 标识代号，城市名称为无效。额外的贴纸会在每 50 个通联记录发放，"
+"如 150, 250, 350, 450, 550, 650, 750 个城市数量"
 
 #: application/views/awards/jcc/index.php:115
 msgid "Show JCC Map"
@@ -3487,11 +3530,15 @@ msgstr "POTA 奖状"
 
 #: application/views/awards/pota/index.php:8
 msgid "Parks on the Air® (POTA) started in early 2017 when the ARRL's National Parks on the Air special event ended. A group of volunteers wanted to continue the fun beyond the one-year event, and thus, POTA was born."
-msgstr "Parks on the Air® (POTA 中文又名 空中花园) 于 2017 年初启动，当时 ARRL 的 National Parks on the Air 特别活动结束后 一群爱好者希望在一年的活动之后继续享受乐趣，因此，POTA 诞生了"
+msgstr ""
+"Parks on the Air® (POTA 中文又名 空中花园) 于 2017 年初启动，当时 ARRL 的 "
+"National Parks on the Air 特别活动结束后 "
+"一群爱好者希望在一年的活动之后继续享受乐趣，因此，POTA 诞生了"
 
 #: application/views/awards/pota/index.php:9
 msgid "POTA works similarly to SOTA, with Activators and Hunters. For the awards, there are several categories based on the number of parks, geographic areas, and more."
-msgstr "POTA 的工作原理与 SOTA 类似，都有激活者和猎人 奖项根据公园数量、地理区域等分为多个类别"
+msgstr "POTA 的工作原理与 SOTA 类似，都有激活者和猎人 "
+"奖项根据公园数量、地理区域等分为多个类别"
 
 #: application/views/awards/pota/index.php:10
 #, php-format
@@ -3522,11 +3569,13 @@ msgstr "SIG 或签名类别提供了对 Wavelog 中未实施的奖励使用任�
 
 #: application/views/awards/sig/index.php:9
 msgid "The reason for this is that the common ADIF format provides only a few dedicated fields for certain awards. SIG still makes it possible to use and evaluate all other types of signature markers."
-msgstr "其原因是常见的 ADIF 格式仅为某些奖项提供了几个专用字段 SIG 仍然可以使用和评估所有其他类型的签名标记"
+msgstr "其原因是常见的 ADIF 格式仅为某些奖项提供了几个专用字段 SIG "
+"仍然可以使用和评估所有其他类型的签名标记"
 
 #: application/views/awards/sig/index.php:10
 msgid "In the QSO processing, you will find two fields: 'SIG' contains the actual marker, which is also visible in the award evaluation, and 'SIG INFO,' which contains a description of the signature. Both fields are freely customizable."
-msgstr "在 QSO 处理中，您会发现两个字段：“SIG”包含实际标记，在奖励评估中也可见，“SIG INFO”包含签名的描述 这两个字段都可以自由定制"
+msgstr "在 QSO 处理中，您会发现两个字段：“SIG”包含实际标记，在奖励评估中也可见，“SIG "
+"INFO”包含签名的描述 这两个字段都可以自由定制"
 
 #: application/views/awards/sig/index.php:21
 msgid "Award Type"
@@ -3580,11 +3629,17 @@ msgstr "SOTA 奖状"
 
 #: application/views/awards/sota/index.php:8
 msgid "SOTA (Summits On The Air) is an award scheme for radio amateurs that encourages portable operation in mountainous areas."
-msgstr "SOTA（空中山峰）是一项针对无线电业余爱好者的奖励计划，鼓励在山区进行便携式操作"
+msgstr "SOTA（空中山峰）是一项针对无线电业余爱好者的奖励计划，鼓励在山区进行便携式操"
+"作"
 
 #: application/views/awards/sota/index.php:9
 msgid "It is fully operational in nearly a hundred countries worldwide. Each country has its own Association that defines the recognized SOTA summits within that Association. Each summit earns the activators and chasers a score related to the height of the summit. Certificates are available for various scores, leading to the prestigious 'Mountain Goat' and 'Shack Sloth' trophies. An Honor Roll for Activators and Chasers is maintained in the SOTA online database."
-msgstr "它在全球近百个国家全面运营 每个国家/地区都有自己的协会，该协会定义了该协会内公认的 SOTA 峰会 每次登顶都会为激活者和追逐者赢得与峰顶高度相关的分数 各种分数均可获得证书，最终获得著名的“山羊”和“棚屋树懒”奖杯 激活者和追赶者的荣誉榜保存在 SOTA 在线数据库中"
+msgstr ""
+"它在全球近百个国家全面运营 每个国家/地区都有自己的协会，"
+"该协会定义了该协会内公认的 SOTA 峰会 "
+"每次登顶都会为激活者和追逐者赢得与峰顶高度相关的分数 "
+"各种分数均可获得证书，最终获得著名的“山羊”和“棚屋树懒”奖杯 "
+"激活者和追赶者的荣誉榜保存在 SOTA 在线数据库中"
 
 #: application/views/awards/vucc/index.php:7
 msgid "VUCC - VHF/UHF Century Club Award"
@@ -3617,7 +3672,8 @@ msgstr "WAB - 通联大不列颠奖"
 
 #: application/views/awards/wab/index.php:13
 msgid "WAB, Worked All Britain squares in Amateur Radio, encourages licensed ham radio operators to work all the squares in Great Britain."
-msgstr "WAB（Worked All Britain squares in Amateur Ra​​dio）鼓励业余无线电操作员通联英国所有网格"
+msgstr "WAB（Worked All Britain squares in Amateur "
+"Ra​​dio）鼓励业余无线电操作员通联英国所有网格"
 
 #: application/views/awards/wab/index.php:14
 msgid "May be claimed for having contacted an amateur station located in the required amount of squares, described on the page linked below."
@@ -3637,11 +3693,14 @@ msgstr "WAJA - 通联全日本都道府县奖状"
 
 #: application/views/awards/waja/index.php:18
 msgid "WAJA, Worked All Japan prefectures in Amateur Radio, encourages licensed ham radio operators to work all the prefectures in Japan."
-msgstr "WAJA，通联全日本都道府县奖状，鼓励许可的业余无线电操作者与所有日本都道府县的电台通联"
+msgstr "WAJA，通联全日本都道府县奖状，鼓励许可的业余无线电操作者与所有日本都道府县的"
+"电台通联"
 
 #: application/views/awards/waja/index.php:19
 msgid "May be claimed for having contacted (heard) and received a QSL card from an amateur station located in each of the 47 prefectures of Japan. A list of QSL cards should be arranged in order of WAJA (HAJA) reference number, however names of prefectures may be omitted."
-msgstr "也许可以通过展示出已经通联（或收听）过来自日本47个都道府县的电台发来的QSL卡片，并按照WAJA(HAJA)的顺序进行排列，都道府县的名称可以忽略"
+msgstr ""
+"也许可以通过展示出已经通联（或收听）过来自日本47个都道府县的电台发来的QSL卡片"
+"，并按照WAJA(HAJA)的顺序进行排列，都道府县的名称可以忽略"
 
 #: application/views/awards/waja/index.php:116
 msgid "Show WAJA Map"
@@ -3657,11 +3716,17 @@ msgstr "WAS 奖状"
 
 #: application/views/awards/was/index.php:19
 msgid "ARRL's most popular award is the Worked All States Award. Thousands upon thousands of awards have been issued to hams around the world. In ARRL's 101st year, they have redesigned the certificates and the program in hopes of streamlining and improving the award program."
-msgstr "ARRL 最受欢迎的奖项是“Worked All States Award” 已向世界各地的HAM颁发了数以千计的奖项 在ARRL成立101周年之际，他们重新设计了证书和项目，希望能够精简和完善奖励项目"
+msgstr ""
+"ARRL 最受欢迎的奖项是“Worked All States Award” "
+"已向世界各地的HAM颁发了数以千计的奖项 "
+"在ARRL成立101周年之际，他们重新设计了证书和项目，希望能够精简和完善奖励项目"
 
 #: application/views/awards/was/index.php:20
 msgid "The WAS (Worked All States) Award is available to all amateurs worldwide who submit proof with written confirmation of contacts with each of the 50 states of the United States of America. Amateurs in the U.S. and its possessions must be members of ARRL to apply for a WAS. Applicants from outside the U.S. are exempt from this requirement."
-msgstr "WAS（在所有州通联过）奖面向全世界所有提交证明并书面确认与美利坚合众国 50 个州联系的业余爱好者 美国及其属地的业余爱好者必须是 ARRL 的成员才能申请 WAS 来自美国境外的申请人不受此要求的约束"
+msgstr ""
+"WAS（在所有州通联过）奖面向全世界所有提交证明并书面确认与美利坚合众国 50 "
+"个州联系的业余爱好者 美国及其属地的业余爱好者必须是 ARRL 的成员才能申请 WAS "
+"来自美国境外的申请人不受此要求的约束"
 
 #: application/views/awards/was/index.php:21
 #, php-format
@@ -3679,11 +3744,13 @@ msgstr "WWFF - 世界动植物奖"
 
 #: application/views/awards/wwff/index.php:8
 msgid "WWFF, World Wide Flora and Fauna in Amateur Radio, encourages licensed ham radio operators to leave their shacks and operate portable in Protected Flora & Fauna areas (PFF) worldwide."
-msgstr "WWFF，即“业余无线电世界动植物群”，鼓励获得许可的业余无线电操作员离开棚屋，在全球动植物保护区 (PFF) 进行便携式操作"
+msgstr "WWFF，即“业余无线电世界动植物群”，鼓励获得许可的业余无线电操作员离开棚屋，"
+"在全球动植物保护区 (PFF) 进行便携式操作"
 
 #: application/views/awards/wwff/index.php:9
 msgid "More than 26,000 Protected Flora & Fauna (PFF) areas worldwide are already registered in the WWFF Directory. Hunters and Activators can apply for colorful awards, both globally and nationally."
-msgstr "全球已有超过 26,000 个动植物保护区 (PFF) 已在 WWFF 名录中注册 猎人和激活者可以申请全球和国内的丰富多彩的奖项"
+msgstr "全球已有超过 26,000 个动植物保护区 (PFF) 已在 WWFF 名录中注册 "
+"猎人和激活者可以申请全球和国内的丰富多彩的奖项"
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:224 application/views/qso/index.php:469
@@ -5483,7 +5550,8 @@ msgstr "版本信息"
 
 #: application/views/interface_assets/footer.php:660
 msgid "Stop here for a Moment. Your chosen DXCC is outdated and not valid anymore. Check which DXCC for this particular location is the correct one. If you are sure, ignore this warning."
-msgstr "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC 实体，如果您十分确认，请忽略该警告。"
+msgstr "请稍等，您选择的 DXCC 已经失效，请确认最新的 DXCC "
+"实体，如果您十分确认，请忽略该警告。"
 
 #: application/views/interface_assets/footer.php:1354
 #: application/views/interface_assets/footer.php:1358
@@ -6552,7 +6620,10 @@ msgstr ""
 
 #: application/views/lotw/import.php:61
 msgid "Wavelog will use the LoTW username and password stored in your user profile to download a report from LoTW for you. The report Wavelog downloads will have all confirmations since chosen date, or since your last LoTW confirmation (fetched from your log), up until now."
-msgstr "Wavelog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW 上为你下载报告Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 LoTW 确认信息（目前日志当中）以来的所有确认"
+msgstr ""
+"Wavelog 将会使用储存在你个人用户信息当中的 LoTW 用户名和密码从 LoTW "
+"上为你下载报告Wavelog 下载的这份报告将会包括自你所选之日以来的或者你最后的 "
+"LoTW 确认信息（目前日志当中）以来的所有确认"
 
 #: application/views/lotw/import.php:64
 msgid "Import LoTW Matches"
@@ -6754,7 +6825,8 @@ msgstr "你的笔记"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "你目前没有任何笔记，这里特别适合用来储存一些诸如 ATU 设置，信标和电台笔记等信息。同时，他们不会像纸片那样容易丢失"
+msgstr "你目前没有任何笔记，这里特别适合用来储存一些诸如 ATU "
+"设置，信标和电台笔记等信息。同时，他们不会像纸片那样容易丢失"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7026,7 +7098,8 @@ msgstr "发布版的更新内容和自定义文字"
 
 #: application/views/options/version_dialog.php:68
 msgid "The Version Info is shown to every user. The user has the option to dismiss the dialog after he read it. Select if you want to show only release notes (fetched from github), only custom text or both."
-msgstr "版本信息将会对所有用户显示. 用户可以选择在阅读后关闭对话框，选择是否显示 GitHub 上发布版的更新内容还是自定义文字，或者两者"
+msgstr "版本信息将会对所有用户显示. 用户可以选择在阅读后关闭对话框，选择是否显示 "
+"GitHub 上发布版的更新内容还是自定义文字，或者两者"
 
 #: application/views/options/version_dialog.php:72
 msgid "Version Info Custom Text"
@@ -7978,11 +8051,16 @@ msgstr "简单快速日志输入 (FLE)"
 
 #: application/views/simplefle/index.php:13
 msgid "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and efficiently. Due to its syntax, only a minimum of input is required to log many QSOs with as little effort as possible."
-msgstr "“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 由于其语法，只需最少的输入即可以尽可能少的努力记录许多 QSO。"
+msgstr ""
+"“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 "
+"由于其语法，只需最少的输入即可以尽可能少的努力记录许多 QSO。"
 
 #: application/views/simplefle/index.php:14
 msgid "FLE was originally written by DF3CB. He offers a program for Windows on his website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides a web interface to log QSOs."
-msgstr "FLE 最初由 DF3CB 编写。 他在他的网站上提供了一个适用于 Windows 的程序。 Simple FLE 是 OK2CQR 基于 DF3CB 的 FLE 编写的，并提供了一个 Web 界面来记录 QSO。"
+msgstr ""
+"FLE 最初由 DF3CB 编写。 他在他的网站上提供了一个适用于 Windows 的程序。 "
+"Simple FLE 是 OK2CQR 基于 DF3CB 的 FLE 编写的，并提供了一个 Web 界面来记录 "
+"QSO。"
 
 #: application/views/simplefle/index.php:15
 #, php-format
@@ -8108,7 +8186,8 @@ msgstr ""
 
 #: application/views/simplefle/syntax_help.php:1
 msgid "Before starting to log a QSO, please note the basic rules."
-msgstr "FLE 语法是一种简单的语法，用于快速记录 QSO。它的工作原理是，您只需输入每个 QSO 的更改部分。"
+msgstr "FLE 语法是一种简单的语法，用于快速记录 QSO。它的工作原理是，您只需输入每个 "
+"QSO 的更改部分。"
 
 #: application/views/simplefle/syntax_help.php:2
 msgid "- Each new QSO should be on a new line."
@@ -8120,15 +8199,25 @@ msgstr "例如，如果您在 20m 上与 DF3CB 进行了两次 QSO，您可以�
 
 #: application/views/simplefle/syntax_help.php:4
 msgid "To begin, ensure you have already filled in the form on the left with the date, station call, and operator's call. The main data includes the band (or QRG in MHz, e.g., '7.145'), mode, and time. After the time, you provide the first QSO, which is essentially the callsign."
-msgstr "如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO 不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 分钟。"
+msgstr ""
+"如果您不提供任何 RST 信息，语法将使用 59 (599 用于数据)。我们的下一个 QSO "
+"不是双方都是 59，所以我们首先提供发送的 RST 信息。它比第一个 QSO 晚了 2 "
+"分钟。"
 
 #: application/views/simplefle/syntax_help.php:9
 msgid "For example, a QSO that started at 21:34 (UTC) with 4W7EST on 20m SSB."
-msgstr "第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。我们写下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省略了这些数据。"
+msgstr ""
+"第一个 QSO 是在 21:34，第二个 QSO 在 21:36，比第一个 QSO 晚了 2 分钟。"
+"我们写下 6，因为这是这里唯一改变的数据。关于波段和模式的信息没有改变，因此省"
+"略了这些数据。"
 
 #: application/views/simplefle/syntax_help.php:10
 msgid "If you don't provide any RST information, the syntax will use 59 (599 for data). Our next QSO wasn't 59 on both sides, so we provide the information with the sent RST first. It was 2 minutes later than the first QSO."
-msgstr "我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，但仍然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，我们可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD 格式。"
+msgstr ""
+"我们的下一个 QSO 是在 2021 年 5 月 14 日的 21:40，我们将波段更改为 40m，"
+"但仍然在 SSB 上。如果没有给出 RST 信息，语法将为每个新的 QSO 使用 59。因此，"
+"我们可以添加另一个 QSO，它在两天后的同一时间发生。日期必须是 YYYY-MM-DD "
+"格式。"
 
 #: application/views/simplefle/syntax_help.php:16
 msgid "The first QSO was at 21:34, and the second one 2 minutes later at 21:36. We write down 6 because this is the only data that changed here. The information about band and mode didn't change, so this data is omitted."
@@ -8592,7 +8681,8 @@ msgstr "取消链接的台站位置"
 
 #: application/views/stationsetup/stationsetup.php:21
 msgid "Station Logbooks allow you to group Station Locations, this allows you to see all the locations across one session from the logbook areas to the analytics. Great for when your operating in multiple locations but they are part of the same DXCC or VUCC Circle."
-msgstr "台站日志可以让您对自己的台站位置进行分组，这对在同一 DXCC 或 VUCC 下的不同站点位置非常方便"
+msgstr "台站日志可以让您对自己的台站位置进行分组，这对在同一 DXCC 或 VUCC "
+"下的不同站点位置非常方便"
 
 #: application/views/stationsetup/stationsetup.php:32
 msgid "Linked locations"
@@ -9050,7 +9140,8 @@ msgstr "单独记录 QSO 结束时间"
 
 #: application/views/user/edit.php:350
 msgid "Choose yes here if you want to log QSO start and end times separately. If set to 'No' the end time will be the same as start time."
-msgstr "如果想分别记录QSO的开始和结束时间，选择'是'，若选择'否'则QSO开始与结束时间相同"
+msgstr "如果想分别记录QSO的开始和结束时间，选择'是'，若选择'否'则QSO开始与结束时间相"
+"同"
 
 #: application/views/user/edit.php:355
 msgid "Show profile picture of QSO partner from qrz.com/hamqth.com profile in the log QSO section."
@@ -9291,7 +9382,8 @@ msgstr "只显示可通联的过境"
 
 #: application/views/user/edit.php:861
 msgid "If enabled shows only workable passes based on the gridsquare set in your hams.at account. Requires private feed key to be set."
-msgstr "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private Feed Key。"
+msgstr "如果启用，仅显示基于在 hams.at 设置好的位置信息计算过境，需要设置好 Private "
+"Feed Key。"
 
 #: application/views/user/edit.php:873
 msgid "Save Account"
@@ -9336,7 +9428,8 @@ msgstr "Wavelog 至少需要配置一个用户才能运行。"
 
 #: application/views/user/main.php:34
 msgid "Users can be assigned roles which give them different permissions, such as adding QSOs to the logbook and accessing Wavelog APIs."
-msgstr "用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO 和访问 Wavelog API。"
+msgstr "用户可以被分配不同的角色，这些角色赋予他们不同的权限，例如向日志簿添加 QSO "
+"和访问 Wavelog API。"
 
 #: application/views/user/main.php:35
 msgid "The currently logged-in user is displayed at the upper-right of each page."
@@ -9344,7 +9437,8 @@ msgstr "页面右上方显示当前登录的用户。"
 
 #: application/views/user/main.php:36
 msgid "With the password reset button, you can send a user an email containing a link to reset their password. To achieve this, ensure that the email settings in the global options are configured correctly."
-msgstr "通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。您需要确保全局设定中的邮件设置配置正确"
+msgstr "通过'重置密码'按钮，你可以向用户发送一封带有重置密码链接的邮件。您需要确保全"
+"局设定中的邮件设置配置正确"
 
 #: application/views/user/main.php:38
 msgid "Create user"
