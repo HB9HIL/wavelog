@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
 "POT-Creation-Date: 2024-07-08 12:02+0000\n"
-"PO-Revision-Date: 2024-07-09 09:00+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
-"Language-Team: Bulgarian <https://translate.wavelog.org/projects/dev-project/dev-translations/bg/>\n"
+"PO-Revision-Date: 2024-07-09 13:45+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"Language-Team: Bulgarian <https://translate.wavelog.org/projects/dev-project/"
+"dev-translations/bg/>\n"
 "Language: bg_BG\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6623,7 +6624,8 @@ msgstr "Не е синхронизиран"
 
 #: application/views/lotw_views/index.php:129
 msgid "You need to upload some LoTW p12 certificates to use this area."
-msgstr "Трябва да качите някои LoTW p12 сертификати, за да използвате тази област."
+msgstr ""
+"Трябва да качите някои LoTW p12 сертификати, за да използвате тази област."
 
 #: application/views/lotw_views/index.php:144
 msgid "Information"
@@ -6758,7 +6760,10 @@ msgstr "Вашите бележки"
 
 #: application/views/notes/main.php:32
 msgid "You don't currently have any notes, these are a fantastic way of storing data like ATU settings, beacons and general station notes and its better than paper as you can't lose them!"
-msgstr "В момента нямате бележки, това е фантастичен начин за съхранение на данни като настройки на ATU, маяци и общи бележки за станции и е по-добре от хартия, тъй като не можете да ги загубите!"
+msgstr ""
+"В момента нямате бележки, това е фантастичен начин за съхранение на данни "
+"като настройки на ATU, маяци и общи бележки за станции и е по-добре от "
+"хартия, тъй като не можете да ги загубите!"
 
 #: application/views/notes/view.php:21
 msgid "Delete Note"
@@ -7659,7 +7664,9 @@ msgstr "Режим на сателита"
 
 #: application/views/qso/index.php:538
 msgid "Note content is used within Wavelog only and is not exported to other services."
-msgstr "Съдържанието на бележката се използва само в Wavelog и не се експортира в други услуги."
+msgstr ""
+"Съдържанието на бележката се използва само в Wavelog и не се експортира в "
+"други услуги."
 
 #: application/views/qso/index.php:604
 msgid "Reset to Default"
