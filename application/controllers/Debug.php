@@ -169,17 +169,53 @@ class Debug extends CI_Controller
 	public function selfupdate() {
 		if (file_exists('.git')) {
 			try {
+				// enter maintenance mode
 				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
-				$st=exec('git stash push --include-untracked');
+
+				// to stay compatible with old installations and don't break them during updated to the lastest version 
+				// we have to take care of some old files, we stash everything else
+				$this->process_deprecated(1);
+				$st=exec('git stash push --keep-index --include-untracked');
+				$this->process_deprecated(2);
+
+				// perform the pull
 				$st=exec('git fetch');
 				$st=exec('git pull');
+
+				// due the fact we discarded the other files we can now pop all other changes
 				$st=exec('git stash pop');
+
+				// exit maintenance mode
 				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
-               		} catch (\Throwable $th) {
+				
+               	} catch (\Throwable $th) {
 				log_message("Error","Error at selfupdating");
 			}
 		}
 		redirect('debug');
+	}
+
+	private function process_deprecated($step) {
+		$files = array('assets/json/dok.txt', 'assets/json/pota.txt', 'assets/json/sota.txt', 'assets/json/wwff.txt', 'updates/clublog_scp.txt');
+
+		if ($step == 1) {
+			foreach($files as $file) {
+				if (file_exists($file)) {
+					exec('git add ' . $file);
+				}
+			}
+		}
+		if ($step == 2) {
+			// unstage all files
+			exec('git restore --staged .');
+
+			// and restore the deprecated files (discard changes)
+			foreach($files as $file) {
+				if (file_exists($file)) {
+					exec('git restore ' . $file);
+				}
+			}
+		}
 	}
 
 	public function wavelog_fetch() {
