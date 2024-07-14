@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 09:36+0000\n"
+"POT-Creation-Date: 2024-07-14 10:31+0000\n"
 "PO-Revision-Date: 2024-07-11 15:53+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
@@ -624,7 +624,7 @@ msgstr "无 QSO 可供上传。"
 msgid "KML Export"
 msgstr "KML 导出"
 
-#: application/controllers/Labels.php:40 application/views/labels/index.php:26
+#: application/controllers/Labels.php:40 application/views/labels/index.php:30
 msgid "QSL Card Labels"
 msgstr "QSL 卡片标签"
 
@@ -639,12 +639,12 @@ msgstr "标签名称"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:403
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr "纸张类型"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:404
-#: application/views/labels/index.php:38 application/views/labels/index.php:73
+#: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr "测量单位"
 
@@ -940,7 +940,7 @@ msgstr "Clublog"
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:131
+#: application/views/simplefle/index.php:144
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -974,7 +974,7 @@ msgstr "模式"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:142 application/views/qso/index.php:177
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:132
+#: application/views/simplefle/index.php:145
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
@@ -1001,7 +1001,7 @@ msgstr "信号报告(发)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/qso/edit_ajax.php:147 application/views/qso/index.php:182
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:133
+#: application/views/simplefle/index.php:146
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1100,7 +1100,7 @@ msgstr "州"
 #: application/views/contesting/index.php:210
 #: application/views/dashboard/index.php:13
 #: application/views/gridmap/index.php:152
-#: application/views/labels/index.php:121
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:178
@@ -1117,7 +1117,7 @@ msgstr "州"
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:134
+#: application/views/simplefle/index.php:147
 #: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:228 application/views/user/edit.php:130
@@ -1211,7 +1211,7 @@ msgstr "距离"
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:130
+#: application/views/simplefle/index.php:143
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1261,7 +1261,7 @@ msgstr "频率"
 #: application/views/qslcard/searchresult.php:87
 #: application/views/qso/components/previous_contacts.php:91
 #: application/views/search/search_result_ajax.php:17
-#: application/views/simplefle/index.php:100
+#: application/views/simplefle/index.php:112
 #: application/views/user/edit.php:240 application/views/user/edit.php:262
 #: application/views/user/edit.php:284 application/views/user/edit.php:306
 #: application/views/user/edit.php:329
@@ -1558,7 +1558,7 @@ msgstr "您尚未创建台站地址，请前往 %s 创建！"
 #: application/views/dashboard/index.php:64
 #: application/views/dashboard/index.php:73
 #: application/views/dashboard/index.php:82
-#: application/views/simplefle/index.php:15
+#: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "这里"
 
@@ -1607,7 +1607,7 @@ msgstr "QSO 尚未在 LoTW 确认，但已在 QSO 日期后上传呼号"
 #: application/controllers/Station.php:35
 #: application/controllers/Station.php:78 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:120
+#: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:300
 #: application/views/search/search_result_ajax.php:18
@@ -1743,7 +1743,7 @@ msgstr "启用的台站"
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:113
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
-#: application/views/simplefle/index.php:27
+#: application/views/simplefle/index.php:28
 #: application/views/station_profile/index.php:76
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
@@ -1752,8 +1752,8 @@ msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56 application/views/labels/index.php:43
-#: application/views/labels/index.php:79
+#: application/views/cron/index.php:56 application/views/labels/index.php:47
+#: application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:511
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
@@ -1799,7 +1799,7 @@ msgstr "确定要删除台站 '%s' 吗？这会删除此台站下的所有 QSO�
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/labels/index.php:44 application/views/labels/index.php:80
+#: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:512
 #: application/views/lotw_views/index.php:118
 #: application/views/mode/index.php:55
@@ -2343,7 +2343,7 @@ msgstr "未找到！"
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:152
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
-#: application/views/hamsat/index.php:30 application/views/labels/index.php:119
+#: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/index.php:504
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:39
@@ -2360,7 +2360,7 @@ msgstr "未找到！"
 #: application/views/search/lotw_unconfirmed.php:33
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:129
+#: application/views/simplefle/index.php:142
 #: application/views/station_profile/edit.php:36
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/main.php:4
@@ -2443,7 +2443,7 @@ msgstr "与 DCL 相比，日志中 DOK 的数据不同"
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:127
+#: application/views/simplefle/index.php:140
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -2478,7 +2478,7 @@ msgstr "日期"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:128
+#: application/views/simplefle/index.php:141
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:227
 #: application/views/timeplotter/index.php:5
@@ -2570,6 +2570,7 @@ msgid "Add QSOs to Contest"
 msgstr "向竞赛中添加 QSO"
 
 #: application/views/adif/import.php:71
+#: application/views/simplefle/index.php:82
 msgid "No Contest"
 msgstr "无竞赛"
 
@@ -2804,7 +2805,7 @@ msgstr "如用于描述用途的名字。"
 #: application/views/qso/components/winkeysettings.php:90
 #: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
-#: application/views/simplefle/index.php:21
+#: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "保存"
 
@@ -3024,7 +3025,7 @@ msgstr "已确认的县"
 #: application/views/awards/waja/index.php:177
 #: application/views/awards/was/index.php:177
 #: application/views/dashboard/index.php:217
-#: application/views/simplefle/index.php:26
+#: application/views/simplefle/index.php:27
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
@@ -3604,7 +3605,7 @@ msgstr ""
 #: application/views/contesting/index.php:153
 #: application/views/contesting/index.php:171
 #: application/views/dashboard/index.php:18
-#: application/views/labels/index.php:37 application/views/labels/index.php:71
+#: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:557
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
@@ -4202,7 +4203,7 @@ msgstr "创建波段"
 #: application/views/interface_assets/footer.php:31
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
-#: application/views/simplefle/index.php:20
+#: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
 msgstr "关闭"
@@ -4404,6 +4405,7 @@ msgstr ""
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
+#: application/views/simplefle/index.php:80
 msgid "Contest"
 msgstr ""
 
@@ -5548,7 +5550,7 @@ msgstr ""
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:19
-#: application/views/simplefle/index.php:63
+#: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr "QSO 数据"
 
@@ -6247,7 +6249,7 @@ msgid "Total height of one label"
 msgstr ""
 
 #: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:76
+#: application/views/labels/edit.php:107 application/views/labels/index.php:80
 msgid "Font Size"
 msgstr ""
 
@@ -6305,14 +6307,14 @@ msgstr ""
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr ""
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr ""
@@ -6328,86 +6330,90 @@ msgid ""
 "the label style."
 msgstr ""
 
-#: application/views/labels/index.php:29
+#: application/views/labels/index.php:2
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Mark QSL as printed"
+msgstr ""
+
+#: application/views/labels/index.php:3 application/views/labels/index.php:128
+msgid "Print"
+msgstr "打印"
+
+#: application/views/labels/index.php:33
 msgid "Create New Label Type"
 msgstr ""
 
-#: application/views/labels/index.php:30
+#: application/views/labels/index.php:34
 msgid "Create New Paper Type"
 msgstr ""
 
-#: application/views/labels/index.php:33
+#: application/views/labels/index.php:37
 msgid "Paper types"
 msgstr ""
 
-#: application/views/labels/index.php:39 application/views/labels/index.php:74
+#: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Width"
 msgstr ""
 
-#: application/views/labels/index.php:40 application/views/labels/index.php:75
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Height"
 msgstr ""
 
-#: application/views/labels/index.php:41
+#: application/views/labels/index.php:45
 msgid "Used by labels"
 msgstr ""
 
-#: application/views/labels/index.php:42
+#: application/views/labels/index.php:46
 msgid "Orientation"
 msgstr ""
 
-#: application/views/labels/index.php:67
+#: application/views/labels/index.php:71
 msgid "Label types"
 msgstr ""
 
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:81
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr ""
 
-#: application/views/labels/index.php:78
+#: application/views/labels/index.php:82
 msgid "Use For Print"
 msgstr ""
 
-#: application/views/labels/index.php:88
+#: application/views/labels/index.php:92
 msgid "No paper assigned"
 msgstr ""
 
-#: application/views/labels/index.php:113
+#: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
 msgstr ""
 
-#: application/views/labels/index.php:122
+#: application/views/labels/index.php:126
 msgid "QSOs Waiting"
 msgstr ""
 
-#: application/views/labels/index.php:123
+#: application/views/labels/index.php:127
 msgid "View QSOs"
 msgstr ""
 
-#: application/views/labels/index.php:124
-#: application/views/labels/startatform.php:27
-msgid "Print"
-msgstr "打印"
-
-#: application/views/labels/startatform.php:3
+#: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
 msgstr "包含网格？"
 
-#: application/views/labels/startatform.php:9
+#: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr "包含标识代码？(SIG, SOTA, POTA, IOTA, WWFF; 如存在则显示)"
 
-#: application/views/labels/startatform.php:15
+#: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
 msgstr ""
 
-#: application/views/labels/startatform.php:21
+#: application/views/labels/startatform.php:22
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
 msgstr "开始打印编号？"
@@ -6858,8 +6864,8 @@ msgstr ""
 
 #: application/views/logbookadvanced/index.php:520
 #: application/views/lotw_views/index.php:47
-#: application/views/simplefle/index.php:19
-#: application/views/simplefle/index.php:158
+#: application/views/simplefle/index.php:20
+#: application/views/simplefle/index.php:171
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
@@ -7759,7 +7765,7 @@ msgid "Time of request"
 msgstr ""
 
 #: application/views/oqrs/showrequests.php:81
-#: application/views/simplefle/index.php:69
+#: application/views/simplefle/index.php:74
 msgid "QSO Date"
 msgstr "QSO 日期"
 
@@ -7885,7 +7891,7 @@ msgid "Remove"
 msgstr "删除"
 
 #: application/views/qslprint/qslprint.php:33
-#: application/views/simplefle/index.php:120
+#: application/views/simplefle/index.php:133
 msgid "QSO List"
 msgstr "QSO 列表"
 
@@ -8506,11 +8512,11 @@ msgstr "在 HamQTH 上查询"
 msgid "Query"
 msgstr ""
 
-#: application/views/simplefle/index.php:12
+#: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
 msgstr "简单快速日志输入 (FLE)"
 
-#: application/views/simplefle/index.php:13
+#: application/views/simplefle/index.php:14
 msgid ""
 "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and "
 "efficiently. Due to its syntax, only a minimum of input is required to log "
@@ -8519,7 +8525,7 @@ msgstr ""
 "“快速日志输入”，或简称“FLE”，是一个非常快速、高效地记录 QSO 的系统。 由于其语"
 "法，只需最少的输入即可以尽可能少的努力记录许多 QSO。"
 
-#: application/views/simplefle/index.php:14
+#: application/views/simplefle/index.php:15
 msgid ""
 "FLE was originally written by DF3CB. He offers a program for Windows on his "
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
@@ -8529,7 +8535,7 @@ msgstr ""
 "Simple FLE 是 OK2CQR 基于 DF3CB 的 FLE 编写的，并提供了一个 Web 界面来记录 "
 "QSO。"
 
-#: application/views/simplefle/index.php:15
+#: application/views/simplefle/index.php:16
 #, php-format
 msgid ""
 "A common use-case is if you have to import your paperlogs from an outdoor "
@@ -8537,124 +8543,135 @@ msgid ""
 "the syntax and how FLE works can be found %s."
 msgstr ""
 
-#: application/views/simplefle/index.php:16
-#: application/views/simplefle/index.php:157
+#: application/views/simplefle/index.php:17
+#: application/views/simplefle/index.php:170
 msgid "Syntax Help"
 msgstr "FLE 语法帮助"
 
-#: application/views/simplefle/index.php:17
+#: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
 msgstr "FLE 语法帮助"
 
-#: application/views/simplefle/index.php:18
+#: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
 msgstr "关闭并加载示例数据"
 
-#: application/views/simplefle/index.php:22
+#: application/views/simplefle/index.php:23
 msgid "Band is missing!"
 msgstr "找不到波段！"
 
-#: application/views/simplefle/index.php:23
+#: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
 msgstr "找不到模式！"
 
-#: application/views/simplefle/index.php:24
+#: application/views/simplefle/index.php:25
 msgid "Time is not set!"
 msgstr "时间未设定！"
 
-#: application/views/simplefle/index.php:25
+#: application/views/simplefle/index.php:26
 msgid "Invalid date"
 msgstr "日期格式错误！"
 
-#: application/views/simplefle/index.php:28
+#: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
 msgstr "未选择呼叫的电台站！"
 
-#: application/views/simplefle/index.php:29
+#: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
 msgstr "未输入操作员呼号！"
 
-#: application/views/simplefle/index.php:30
+#: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
 msgstr "警告！您确定要重置日志会话吗？"
 
-#: application/views/simplefle/index.php:31
+#: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
 msgstr "警告！您不能记录 QSO 列表，因为某些 QSO 没有定义波段和模式！"
 
-#: application/views/simplefle/index.php:32
+#: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
 msgstr "警告！您不能记录 QSO 列表，因为某些 QSO 没有定义时间！"
 
-#: application/views/simplefle/index.php:33
+#: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr "警告！您不能记录 QSO 列表，因为您正在使用示例数据！"
 
-#: application/views/simplefle/index.php:34
+#: application/views/simplefle/index.php:35
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr "确认保存 QSO 到日志并清空会话？"
 
-#: application/views/simplefle/index.php:35
+#: application/views/simplefle/index.php:36
 msgid "QSO Logged!"
 msgstr "QSO 已记录!"
 
-#: application/views/simplefle/index.php:36
+#: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook!"
 msgstr "QSO 已成功记录到日志。"
 
-#: application/views/simplefle/index.php:39
+#: application/views/simplefle/index.php:40
 msgid "What is that?"
 msgstr "这是什么?"
 
-#: application/views/simplefle/index.php:71
-msgid "If you don't choose a date, today's date will be used."
-msgstr "如果您不选择日期，则将使用今天的日期。"
-
-#: application/views/simplefle/index.php:75
+#: application/views/simplefle/index.php:43
 msgid "Current UTC Time"
 msgstr "当前 UTC 时间"
 
-#: application/views/simplefle/index.php:83
+#: application/views/simplefle/index.php:76
+msgid "If you don't choose a date, today's date will be used."
+msgstr "如果您不选择日期，则将使用今天的日期。"
+
+#: application/views/simplefle/index.php:88
+msgid "You can add the entered QSOs to a contest."
+msgstr ""
+
+#: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
 msgstr "位置"
 
-#: application/views/simplefle/index.php:95
-msgid "If you did operate from a new location, first create a new <a href="
+#: application/views/simplefle/index.php:107
+#, php-format
+msgid ""
+"If you did operate from a new location, first create a new <a "
+"href='%s'>Station Location</a>"
 msgstr ""
 
-#: application/views/simplefle/index.php:100
+#: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
 msgstr "例如 BA1AA"
 
-#: application/views/simplefle/index.php:112
+#: application/views/simplefle/index.php:115
+msgid "This is callsign of the operator. Without any pre- or suffixes."
+msgstr ""
+
+#: application/views/simplefle/index.php:125
 msgid "Enter the Data"
 msgstr "输入信息"
 
-#: application/views/simplefle/index.php:135
+#: application/views/simplefle/index.php:148
 msgid "Refs"
 msgstr "对方网格"
 
-#: application/views/simplefle/index.php:147
+#: application/views/simplefle/index.php:160
 msgid ""
 "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
 msgstr "标识代码可以是 <u>S</u>OTA、<u>I</u>OTA、<u>P</u>OTA 或 <u>W</u>WFF"
 
-#: application/views/simplefle/index.php:154
+#: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
 msgstr "重新加载 QSO 列表"
 
-#: application/views/simplefle/index.php:155
+#: application/views/simplefle/index.php:168
 msgid "Save in Wavelog"
 msgstr "保存 QSO 列表"
 
-#: application/views/simplefle/index.php:156
+#: application/views/simplefle/index.php:169
 msgid "Clear Logging Session"
 msgstr "清除记录会话"
 

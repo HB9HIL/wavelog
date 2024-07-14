@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-14 09:36+0000\n"
+"POT-Creation-Date: 2024-07-14 10:31+0000\n"
 "PO-Revision-Date: 2024-07-12 05:15+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
@@ -631,7 +631,7 @@ msgstr "Не найдены QSO для загрузки."
 msgid "KML Export"
 msgstr "Экспорт KML"
 
-#: application/controllers/Labels.php:40 application/views/labels/index.php:26
+#: application/controllers/Labels.php:40 application/views/labels/index.php:30
 msgid "QSL Card Labels"
 msgstr "наклейки QSL карточек"
 
@@ -646,12 +646,12 @@ msgstr "Название наклейки"
 
 #: application/controllers/Labels.php:79 application/controllers/Labels.php:403
 #: application/views/labels/create.php:28 application/views/labels/edit.php:28
-#: application/views/labels/index.php:72
+#: application/views/labels/index.php:76
 msgid "Paper Type"
 msgstr "Тип бумаги"
 
 #: application/controllers/Labels.php:80 application/controllers/Labels.php:404
-#: application/views/labels/index.php:38 application/views/labels/index.php:73
+#: application/views/labels/index.php:42 application/views/labels/index.php:77
 msgid "Measurement"
 msgstr "Единицы измерения"
 
@@ -953,7 +953,7 @@ msgstr "Clublog"
 #: application/views/search/lotw_unconfirmed_result.php:8
 #: application/views/search/result_search.php:7
 #: application/views/search/search_result_ajax.php:4
-#: application/views/simplefle/index.php:131
+#: application/views/simplefle/index.php:144
 #: application/views/statistics/custom.php:60
 #: application/views/statistics/custom_result.php:62
 #: application/views/statistics/custom_result.php:88
@@ -987,7 +987,7 @@ msgstr "Вид модуляции"
 #: application/views/qso/components/previous_contacts.php:79
 #: application/views/qso/edit_ajax.php:142 application/views/qso/index.php:177
 #: application/views/search/search_result_ajax.php:5
-#: application/views/simplefle/index.php:132
+#: application/views/simplefle/index.php:145
 #: application/views/user/edit.php:230 application/views/user/edit.php:252
 #: application/views/user/edit.php:274 application/views/user/edit.php:296
 #: application/views/user/edit.php:319
@@ -1014,7 +1014,7 @@ msgstr "RST (TX)"
 #: application/views/qso/components/previous_contacts.php:80
 #: application/views/qso/edit_ajax.php:147 application/views/qso/index.php:182
 #: application/views/search/search_result_ajax.php:6
-#: application/views/simplefle/index.php:133
+#: application/views/simplefle/index.php:146
 #: application/views/user/edit.php:231 application/views/user/edit.php:253
 #: application/views/user/edit.php:275 application/views/user/edit.php:297
 #: application/views/user/edit.php:320
@@ -1113,7 +1113,7 @@ msgstr "Область/штат"
 #: application/views/contesting/index.php:210
 #: application/views/dashboard/index.php:13
 #: application/views/gridmap/index.php:152
-#: application/views/labels/index.php:121
+#: application/views/labels/index.php:125
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:178
@@ -1130,7 +1130,7 @@ msgstr "Область/штат"
 #: application/views/search/cqzones_result.php:12
 #: application/views/search/result.php:33
 #: application/views/search/search_result_ajax.php:13
-#: application/views/simplefle/index.php:134
+#: application/views/simplefle/index.php:147
 #: application/views/station_profile/index.php:44
 #: application/views/stationsetup/stationsetup.php:125
 #: application/views/timeline/index.php:228 application/views/user/edit.php:130
@@ -1224,7 +1224,7 @@ msgstr "Дистанция"
 #: application/views/search/lotw_unconfirmed_result.php:9
 #: application/views/search/result_search.php:10
 #: application/views/search/search_result_ajax.php:15
-#: application/views/simplefle/index.php:130
+#: application/views/simplefle/index.php:143
 #: application/views/stationsetup/exportmapoptions.php:31
 #: application/views/statistics/custom.php:53
 #: application/views/statistics/custom_result.php:55
@@ -1274,7 +1274,7 @@ msgstr "Частота"
 #: application/views/qslcard/searchresult.php:87
 #: application/views/qso/components/previous_contacts.php:91
 #: application/views/search/search_result_ajax.php:17
-#: application/views/simplefle/index.php:100
+#: application/views/simplefle/index.php:112
 #: application/views/user/edit.php:240 application/views/user/edit.php:262
 #: application/views/user/edit.php:284 application/views/user/edit.php:306
 #: application/views/user/edit.php:329
@@ -1571,7 +1571,7 @@ msgstr "У вас нет профиля QTH. Перейдите по ссылк�
 #: application/views/dashboard/index.php:64
 #: application/views/dashboard/index.php:73
 #: application/views/dashboard/index.php:82
-#: application/views/simplefle/index.php:15
+#: application/views/simplefle/index.php:16
 msgid "here"
 msgstr "здесь"
 
@@ -1622,7 +1622,7 @@ msgstr ""
 #: application/controllers/Station.php:35
 #: application/controllers/Station.php:78 application/views/csv/index.php:19
 #: application/views/dxatlas/index.php:19
-#: application/views/labels/index.php:120
+#: application/views/labels/index.php:124
 #: application/views/logbookadvanced/edit.php:18
 #: application/views/qslprint/index.php:20 application/views/qso/index.php:300
 #: application/views/search/search_result_ajax.php:18
@@ -1760,7 +1760,7 @@ msgstr "Активный профиль QTH"
 #: application/controllers/Stationsetup.php:354
 #: application/views/interface_assets/header.php:113
 #: application/views/qso/edit_ajax.php:33 application/views/qso/index.php:20
-#: application/views/simplefle/index.php:27
+#: application/views/simplefle/index.php:28
 #: application/views/station_profile/index.php:76
 #: application/views/stationsetup/stationsetup.php:161
 #: application/views/user/main.php:87 application/views/user/main.php:89
@@ -1769,8 +1769,8 @@ msgstr "QSO"
 
 #: application/controllers/Stationsetup.php:359
 #: application/views/api/help.php:57 application/views/contesting/add.php:59
-#: application/views/cron/index.php:56 application/views/labels/index.php:43
-#: application/views/labels/index.php:79
+#: application/views/cron/index.php:56 application/views/labels/index.php:47
+#: application/views/labels/index.php:83
 #: application/views/logbookadvanced/index.php:511
 #: application/views/mode/index.php:52 application/views/satellite/edit.php:39
 #: application/views/satellite/index.php:25
@@ -1818,7 +1818,7 @@ msgstr ""
 
 #: application/controllers/Stationsetup.php:372
 #: application/views/api/help.php:61 application/views/contesting/add.php:62
-#: application/views/labels/index.php:44 application/views/labels/index.php:80
+#: application/views/labels/index.php:48 application/views/labels/index.php:84
 #: application/views/logbookadvanced/index.php:512
 #: application/views/lotw_views/index.php:118
 #: application/views/mode/index.php:55
@@ -2364,7 +2364,7 @@ msgstr "Не найдено!"
 #: application/views/csv/index.php:23 application/views/dashboard/index.php:152
 #: application/views/dxatlas/index.php:23 application/views/eqsl/import.php:41
 #: application/views/eqslcard/index.php:28
-#: application/views/hamsat/index.php:30 application/views/labels/index.php:119
+#: application/views/hamsat/index.php:30 application/views/labels/index.php:123
 #: application/views/logbookadvanced/index.php:504
 #: application/views/logbookadvanced/qslcarousel.php:30
 #: application/views/lotw_views/index.php:39
@@ -2381,7 +2381,7 @@ msgstr "Не найдено!"
 #: application/views/search/lotw_unconfirmed.php:33
 #: application/views/search/lotw_unconfirmed_result.php:6
 #: application/views/search/result.php:11
-#: application/views/simplefle/index.php:129
+#: application/views/simplefle/index.php:142
 #: application/views/station_profile/edit.php:36
 #: application/views/stationsetup/linkedlocations.php:17
 #: application/views/user/edit.php:123 application/views/user/main.php:4
@@ -2464,7 +2464,7 @@ msgstr "Данные DOK в вашем логе отличаются от DCL"
 #: application/views/search/cqzones_result.php:7
 #: application/views/search/result_search.php:4
 #: application/views/search/search_result_ajax.php:89
-#: application/views/simplefle/index.php:127
+#: application/views/simplefle/index.php:140
 #: application/views/statistics/custom.php:38
 #: application/views/statistics/custom_result.php:40
 #: application/views/statistics/custom_result.php:85
@@ -2499,7 +2499,7 @@ msgstr "Дата"
 #: application/views/search/cqzones_result.php:8
 #: application/views/search/result_search.php:5
 #: application/views/search/search_result_ajax.php:91
-#: application/views/simplefle/index.php:128
+#: application/views/simplefle/index.php:141
 #: application/views/statistics/custom_result.php:86
 #: application/views/timeline/index.php:227
 #: application/views/timeplotter/index.php:5
@@ -2591,6 +2591,7 @@ msgid "Add QSOs to Contest"
 msgstr "Добавить QSO к контесту"
 
 #: application/views/adif/import.php:71
+#: application/views/simplefle/index.php:82
 msgid "No Contest"
 msgstr "Контест не выбран"
 
@@ -2839,7 +2840,7 @@ msgstr "Простое название, описывающее назначен
 #: application/views/qso/components/winkeysettings.php:90
 #: application/views/qso/components/winkeysettings_results.php:90
 #: application/views/satellite/create.php:70
-#: application/views/simplefle/index.php:21
+#: application/views/simplefle/index.php:22
 msgid "Save"
 msgstr "Сохранить"
 
@@ -3067,7 +3068,7 @@ msgstr "Подтверждённые графства"
 #: application/views/awards/waja/index.php:177
 #: application/views/awards/was/index.php:177
 #: application/views/dashboard/index.php:217
-#: application/views/simplefle/index.php:26
+#: application/views/simplefle/index.php:27
 #: application/views/statistics/qsotable.php:10
 #: application/views/statistics/qsotable.php:23
 #: application/views/statistics/satqsotable.php:10
@@ -3685,7 +3686,7 @@ msgstr "Показать карту IOTA"
 #: application/views/contesting/index.php:153
 #: application/views/contesting/index.php:171
 #: application/views/dashboard/index.php:18
-#: application/views/labels/index.php:37 application/views/labels/index.php:71
+#: application/views/labels/index.php:41 application/views/labels/index.php:75
 #: application/views/logbookadvanced/index.php:557
 #: application/views/logbookadvanced/qslcarousel.php:34
 #: application/views/logbookadvanced/useroptions.php:54
@@ -4327,7 +4328,7 @@ msgstr "Лобавить диапазон"
 #: application/views/interface_assets/footer.php:31
 #: application/views/qso/components/winkeysettings.php:91
 #: application/views/qso/components/winkeysettings_results.php:91
-#: application/views/simplefle/index.php:20
+#: application/views/simplefle/index.php:21
 #: application/views/version_dialog/index.php:79
 msgid "Close"
 msgstr "Закрыть"
@@ -4533,6 +4534,7 @@ msgstr "Нет контестов"
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
+#: application/views/simplefle/index.php:80
 msgid "Contest"
 msgstr "Контест"
 
@@ -5715,7 +5717,7 @@ msgstr "Турецкий"
 
 #: application/views/distances/index.php:7
 #: application/views/interface_assets/footer.php:19
-#: application/views/simplefle/index.php:63
+#: application/views/simplefle/index.php:68
 msgid "QSO Data"
 msgstr "Данные QSO"
 
@@ -6450,7 +6452,7 @@ msgid "Total height of one label"
 msgstr "Полная высота одной наклейки"
 
 #: application/views/labels/create.php:105
-#: application/views/labels/edit.php:107 application/views/labels/index.php:76
+#: application/views/labels/edit.php:107 application/views/labels/index.php:80
 msgid "Font Size"
 msgstr "Размер шрифта"
 
@@ -6510,14 +6512,14 @@ msgstr "Ориентация бумаги"
 
 #: application/views/labels/createpaper.php:68
 #: application/views/labels/editpaper.php:68
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Landscape"
 msgstr "Ландшафтная"
 
 #: application/views/labels/createpaper.php:69
 #: application/views/labels/editpaper.php:69
-#: application/views/labels/index.php:56
+#: application/views/labels/index.php:60
 msgctxt "Orientation"
 msgid "Portrait"
 msgstr "Портретная"
@@ -6535,87 +6537,91 @@ msgstr ""
 "Название наклейки используется для отображения, поэтому выберите что-нибудь "
 "осмысленное, к примеру, стиль наклейки."
 
-#: application/views/labels/index.php:29
+#: application/views/labels/index.php:2
+#: application/views/logbookadvanced/startatform.php:27
+msgid "Mark QSL as printed"
+msgstr ""
+
+#: application/views/labels/index.php:3 application/views/labels/index.php:128
+msgid "Print"
+msgstr "Печать"
+
+#: application/views/labels/index.php:33
 msgid "Create New Label Type"
 msgstr "Добавить новый тип наклейки"
 
-#: application/views/labels/index.php:30
+#: application/views/labels/index.php:34
 msgid "Create New Paper Type"
 msgstr "Добавить новый тип бумаги"
 
-#: application/views/labels/index.php:33
+#: application/views/labels/index.php:37
 msgid "Paper types"
 msgstr "Типы бумаги"
 
-#: application/views/labels/index.php:39 application/views/labels/index.php:74
+#: application/views/labels/index.php:43 application/views/labels/index.php:78
 msgid "Width"
 msgstr "Ширина"
 
-#: application/views/labels/index.php:40 application/views/labels/index.php:75
+#: application/views/labels/index.php:44 application/views/labels/index.php:79
 msgid "Height"
 msgstr "Высота"
 
-#: application/views/labels/index.php:41
+#: application/views/labels/index.php:45
 msgid "Used by labels"
 msgstr "Используется для наклеек"
 
-#: application/views/labels/index.php:42
+#: application/views/labels/index.php:46
 msgid "Orientation"
 msgstr "Ориентация"
 
-#: application/views/labels/index.php:67
+#: application/views/labels/index.php:71
 msgid "Label types"
 msgstr "Тип наклеек"
 
-#: application/views/labels/index.php:77
+#: application/views/labels/index.php:81
 #: application/views/statistics/index.php:59
 #: application/views/statistics/index.php:96
 #: application/views/widgets/qsos.php:3
 msgid "QSOs"
 msgstr "QSO"
 
-#: application/views/labels/index.php:78
+#: application/views/labels/index.php:82
 msgid "Use For Print"
 msgstr "Используется для печати"
 
-#: application/views/labels/index.php:88
+#: application/views/labels/index.php:92
 msgid "No paper assigned"
 msgstr "Не выбрана бумага"
 
-#: application/views/labels/index.php:113
+#: application/views/labels/index.php:117
 msgid "QSL Card Labels Pending"
 msgstr "Наклейки для QSL-карточек в ожидании"
 
-#: application/views/labels/index.php:122
+#: application/views/labels/index.php:126
 msgid "QSOs Waiting"
 msgstr "QSO в ожидании"
 
-#: application/views/labels/index.php:123
+#: application/views/labels/index.php:127
 msgid "View QSOs"
 msgstr "Просмотр QSO"
 
-#: application/views/labels/index.php:124
-#: application/views/labels/startatform.php:27
-msgid "Print"
-msgstr "Печать"
-
-#: application/views/labels/startatform.php:3
+#: application/views/labels/startatform.php:4
 #: application/views/logbookadvanced/startatform.php:3
 msgid "Include Grid?"
 msgstr "Включить квадрат?"
 
-#: application/views/labels/startatform.php:9
+#: application/views/labels/startatform.php:10
 #: application/views/logbookadvanced/startatform.php:9
 msgid ""
 "Include reference? (SIG, SOTA, POTA, IOTA, WWFF; If available in location)"
 msgstr ""
 "Включить референцию (SIG, SOTA, POTA, IOTA, WWFF; если указано в профиле QTH)"
 
-#: application/views/labels/startatform.php:15
+#: application/views/labels/startatform.php:16
 msgid "Include Via (if filled)?"
 msgstr "Включить via (если заполнено)?"
 
-#: application/views/labels/startatform.php:21
+#: application/views/labels/startatform.php:22
 #: application/views/logbookadvanced/startatform.php:21
 msgid "Start printing at?"
 msgstr "Начать печать в?"
@@ -7066,8 +7072,8 @@ msgstr "Глобус"
 
 #: application/views/logbookadvanced/index.php:520
 #: application/views/lotw_views/index.php:47
-#: application/views/simplefle/index.php:19
-#: application/views/simplefle/index.php:158
+#: application/views/simplefle/index.php:20
+#: application/views/simplefle/index.php:171
 #: application/views/stationsetup/exportmapoptions.php:5
 #: application/views/statistics/custom.php:31
 #: application/views/statistics/custom_result.php:33
@@ -8029,7 +8035,7 @@ msgid "Time of request"
 msgstr "Время запроса"
 
 #: application/views/oqrs/showrequests.php:81
-#: application/views/simplefle/index.php:69
+#: application/views/simplefle/index.php:74
 msgid "QSO Date"
 msgstr "Дата QSO"
 
@@ -8167,7 +8173,7 @@ msgid "Remove"
 msgstr "Убрать"
 
 #: application/views/qslprint/qslprint.php:33
-#: application/views/simplefle/index.php:120
+#: application/views/simplefle/index.php:133
 msgid "QSO List"
 msgstr "Список QSO"
 
@@ -8802,11 +8808,11 @@ msgstr "Поиск в HamQTH"
 msgid "Query"
 msgstr "Запрос"
 
-#: application/views/simplefle/index.php:12
+#: application/views/simplefle/index.php:13
 msgid "Simple Fast Log Entry (FLE)"
 msgstr "Простой быстрый ввод журнала (FLE)"
 
-#: application/views/simplefle/index.php:13
+#: application/views/simplefle/index.php:14
 msgid ""
 "'Fast Log Entry', or simply 'FLE' is a system to log QSOs very quickly and "
 "efficiently. Due to its syntax, only a minimum of input is required to log "
@@ -8817,7 +8823,7 @@ msgstr ""
 "большого количества QSO требуется минимум вводных данных при минимальных "
 "усилиях."
 
-#: application/views/simplefle/index.php:14
+#: application/views/simplefle/index.php:15
 msgid ""
 "FLE was originally written by DF3CB. He offers a program for Windows on his "
 "website. Simple FLE was written by OK2CQR based on DF3CB's FLE and provides "
@@ -8827,7 +8833,7 @@ msgstr ""
 "для Windows. Программа Simple FLE была написана OK2CQR на основе FLE от "
 "DF3CB и предоставляет веб-интерфейс для регистрации QSO."
 
-#: application/views/simplefle/index.php:15
+#: application/views/simplefle/index.php:16
 #, php-format
 msgid ""
 "A common use-case is if you have to import your paperlogs from an outdoor "
@@ -8838,48 +8844,48 @@ msgstr ""
 "сессии, и теперь SimpleFLE также доступен в Wavelog. Информацию о синтаксисе "
 "и работе FLE можно найти в %s."
 
-#: application/views/simplefle/index.php:16
-#: application/views/simplefle/index.php:157
+#: application/views/simplefle/index.php:17
+#: application/views/simplefle/index.php:170
 msgid "Syntax Help"
 msgstr "Помощь по синтаксису"
 
-#: application/views/simplefle/index.php:17
+#: application/views/simplefle/index.php:18
 msgid "Syntax for FLE"
 msgstr "Синтакс FLE"
 
-#: application/views/simplefle/index.php:18
+#: application/views/simplefle/index.php:19
 msgid "Close and Load Sample Data"
 msgstr "Закройте и загрузите образец данных"
 
-#: application/views/simplefle/index.php:22
+#: application/views/simplefle/index.php:23
 msgid "Band is missing!"
 msgstr "Отсутствует диапазон!"
 
-#: application/views/simplefle/index.php:23
+#: application/views/simplefle/index.php:24
 msgid "Mode is missing!"
 msgstr "Отсутствует вид модуляции!"
 
-#: application/views/simplefle/index.php:24
+#: application/views/simplefle/index.php:25
 msgid "Time is not set!"
 msgstr "Время не установлено!"
 
-#: application/views/simplefle/index.php:25
+#: application/views/simplefle/index.php:26
 msgid "Invalid date"
 msgstr "Некорректная дата"
 
-#: application/views/simplefle/index.php:28
+#: application/views/simplefle/index.php:29
 msgid "Station Call is not selected"
 msgstr "Позывной не выбран"
 
-#: application/views/simplefle/index.php:29
+#: application/views/simplefle/index.php:30
 msgid "'Operator' Field is empty"
 msgstr "Поле 'Оператор' пусто"
 
-#: application/views/simplefle/index.php:30
+#: application/views/simplefle/index.php:31
 msgid "Warning! Do you really want to reset everything?"
 msgstr "Предупреждение! Вы уверены, что хотите всё сбросить?"
 
-#: application/views/simplefle/index.php:31
+#: application/views/simplefle/index.php:32
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have band and/or "
 "mode defined!"
@@ -8887,7 +8893,7 @@ msgstr ""
 "Предупреждение! Вы не можете записать в журнал список QSO потому, что для "
 "некоторых QSO не указаны диапазон и/или вид модуляции!"
 
-#: application/views/simplefle/index.php:32
+#: application/views/simplefle/index.php:33
 msgid ""
 "Warning! You can't log the QSO List, because some QSO don't have a time "
 "defined!"
@@ -8895,72 +8901,83 @@ msgstr ""
 "Предупреждение! Вы не можете записать в журнал список QSO потому, что для "
 "некоторых QSO не определено время!"
 
-#: application/views/simplefle/index.php:33
+#: application/views/simplefle/index.php:34
 msgid ""
 "Attention! The Data Field containes example data. First Clear Logging "
 "Session!"
 msgstr "Внимание! Поле данных содержит пример данных. Сначала очистите сессию!"
 
-#: application/views/simplefle/index.php:34
+#: application/views/simplefle/index.php:35
 msgid ""
 "Are you sure that you want to add these QSO to the Log and clear the session?"
 msgstr "Вы уверены, что хотите записаь данные QSO в журнал и очистить сессию?"
 
-#: application/views/simplefle/index.php:35
+#: application/views/simplefle/index.php:36
 msgid "QSO Logged!"
 msgstr "QSO записаны!"
 
-#: application/views/simplefle/index.php:36
+#: application/views/simplefle/index.php:37
 msgid "The QSO were successfully logged in the logbook!"
 msgstr "QSO были успешно записаны в журнал!"
 
-#: application/views/simplefle/index.php:39
+#: application/views/simplefle/index.php:40
 msgid "What is that?"
 msgstr "Что это?"
 
-#: application/views/simplefle/index.php:71
-msgid "If you don't choose a date, today's date will be used."
-msgstr "Если вы не выберете дату, будет использована сегодняшняя."
-
-#: application/views/simplefle/index.php:75
+#: application/views/simplefle/index.php:43
 msgid "Current UTC Time"
 msgstr "Текущее время UTC"
 
-#: application/views/simplefle/index.php:83
+#: application/views/simplefle/index.php:76
+msgid "If you don't choose a date, today's date will be used."
+msgstr "Если вы не выберете дату, будет использована сегодняшняя."
+
+#: application/views/simplefle/index.php:88
+msgid "You can add the entered QSOs to a contest."
+msgstr ""
+
+#: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
 msgstr "Позывной/Профиль QTH"
 
-#: application/views/simplefle/index.php:95
-msgid "If you did operate from a new location, first create a new <a href="
-msgstr "Если вы работаете на новом месте, сначала создайте новый <a href="
+#: application/views/simplefle/index.php:107
+#, php-format
+msgid ""
+"If you did operate from a new location, first create a new <a "
+"href='%s'>Station Location</a>"
+msgstr ""
 
-#: application/views/simplefle/index.php:100
+#: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
 msgstr "к примеру, OK2CQR"
 
-#: application/views/simplefle/index.php:112
+#: application/views/simplefle/index.php:115
+msgid "This is callsign of the operator. Without any pre- or suffixes."
+msgstr ""
+
+#: application/views/simplefle/index.php:125
 msgid "Enter the Data"
 msgstr "Введите данные"
 
-#: application/views/simplefle/index.php:135
+#: application/views/simplefle/index.php:148
 msgid "Refs"
 msgstr "Референции"
 
-#: application/views/simplefle/index.php:147
+#: application/views/simplefle/index.php:160
 msgid ""
 "The Refs can be either <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA or <u>W</u>WFF"
 msgstr ""
 "Референции могут быть: <u>S</u>OTA, <u>I</u>OTA, <u>P</u>OTA или <u>W</u>WFF"
 
-#: application/views/simplefle/index.php:154
+#: application/views/simplefle/index.php:167
 msgid "Reload QSO List"
 msgstr "Перезагрузить список QSO"
 
-#: application/views/simplefle/index.php:155
+#: application/views/simplefle/index.php:168
 msgid "Save in Wavelog"
 msgstr "Сохранить в Wavelog"
 
-#: application/views/simplefle/index.php:156
+#: application/views/simplefle/index.php:169
 msgid "Clear Logging Session"
 msgstr "Очистить сессию"
 
@@ -10724,6 +10741,9 @@ msgstr "Пометить QSO как экспортированные в QO-100 D
 #: application/views/webadif/mark_webadif.php:16
 msgid "The QSOs are marked as exported to QO-100 Dx Club."
 msgstr "QSO отмечены как экспортированные в QO-100 Dx Club."
+
+#~ msgid "If you did operate from a new location, first create a new <a href="
+#~ msgstr "Если вы работаете на новом месте, сначала создайте новый <a href="
 
 #~ msgid "API Key is required do not change this field"
 #~ msgstr "Требуется ключ API (не изменяйте это поле)"
