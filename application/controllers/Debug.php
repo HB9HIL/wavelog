@@ -175,6 +175,10 @@ class Debug extends CI_Controller
 				// to stay compatible with old installations and don't break them during updated to the lastest version 
 				// we have to take care of some old files, we stash everything else
 				$this->process_deprecated(1);
+
+				// we need atleast one file which gets stashed. this file should not be in .gitignore
+				$st=exec('touch '.realpath(APPPATH.'../').'/.updater');
+
 				$st=exec('git stash push --keep-index --include-untracked');
 				$this->process_deprecated(2);
 
@@ -187,6 +191,9 @@ class Debug extends CI_Controller
 
 				// exit maintenance mode
 				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
+
+				// and delete the stash file
+				$st=exec('rm '.realpath(APPPATH.'../').'/.updater');
 				
                	} catch (\Throwable $th) {
 				log_message("Error","Error at selfupdating");
