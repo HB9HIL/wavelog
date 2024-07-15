@@ -167,17 +167,52 @@ class Debug extends CI_Controller
 	}
 
 	public function selfupdate() {
+
+		$stashfile = realpath(APPPATH.'../').'/.updater';
+		$maintenancefile = realpath(APPPATH.'../').'/.maintenance';
+
 		if (file_exists('.git')) {
 			try {
-				$st=exec('touch '.realpath(APPPATH.'../').'/.maintenance');
-				$st=exec('git stash push --include-untracked');
-				$st=exec('git fetch');
-				$st=exec('git pull');
-				$st=exec('git stash pop');
-				$st=exec('rm '.realpath(APPPATH.'../').'/.maintenance');
-               		} catch (\Throwable $th) {
+				// enter maintenance mode
+				exec('touch '.$maintenancefile);
+				log_message('debug', 'Updater: entered Maintenance mode by creating .maintenance file');
+
+				// we need atleast one file which gets stashed. this file should NOT be in .gitignore
+				// this way we can avoid to pop old stashed
+				exec('touch '.$stashfile);
+				log_message('debug', 'Updater: created stashfile');
+
+				// stash everything (if no changes available we stash only the stashfile)
+				exec('git stash push --include-untracked');
+				log_message('debug', 'Updater: stash everything');
+
+				// perform the pull
+				exec('git fetch');
+				exec('git pull');
+				log_message('debug', 'Updater: git fetch and git pull');
+
+				// we can now pop the latest stash
+				exec('git stash pop');
+				log_message('debug', 'Updater: pop latest stash');
+
+				// Show success message
+				$this->session->set_flashdata('success', __("Wavelog was updated successfully!"));
+				
+               	} catch (\Throwable $th) {
 				log_message("Error","Error at selfupdating");
+				// Show error message
+				$this->session->set_flashdata('error', __("Update failed. Try in directly in CLI!"));
 			}
+		}
+		// delete the stash file
+		if(file_exists($stashfile)) {
+			exec('rm '.$stashfile);
+			log_message('debug', 'Updater: deleted stashfile');
+		}
+		// exit maintenance mode
+		if(file_exists($maintenancefile)) {
+			exec('rm '.$maintenancefile);
+			log_message('debug', 'Updater: delete .maintenance file to exit Maintenance Mode');
 		}
 		redirect('debug');
 	}
