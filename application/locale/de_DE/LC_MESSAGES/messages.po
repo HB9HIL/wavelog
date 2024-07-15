@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-07-15 06:36+0000\n"
-"PO-Revision-Date: 2024-07-11 14:51+0000\n"
-"Last-Translator: Fabian Berg <hb9hil@wavelog.org>\n"
+"POT-Creation-Date: 2024-07-15 22:51+0000\n"
+"PO-Revision-Date: 2024-07-15 09:29+0000\n"
+"Last-Translator: Jörg Dorgeist <wavelog@dj7nt.de>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
 "Language: de_DE\n"
@@ -1119,6 +1119,7 @@ msgstr "Staat"
 #: application/views/logbookadvanced/edit.php:8
 #: application/views/logbookadvanced/index.php:10
 #: application/views/logbookadvanced/index.php:166
+#: application/views/logbookadvanced/index.php:556
 #: application/views/logbookadvanced/qslcarousel.php:39
 #: application/views/logbookadvanced/useroptions.php:126
 #: application/views/lookup/index.php:5
@@ -2072,23 +2073,23 @@ msgstr "unbekannt"
 
 #: application/views/accumulate/index.php:2
 msgid "Accumulated number of DXCCs worked"
-msgstr ""
+msgstr "Kumulierte Anzahl gearbeiteter DXCC"
 
 #: application/views/accumulate/index.php:3
 msgid "Accumulated number of States worked"
-msgstr ""
+msgstr "Kumulierte Anzahl gearbeiteter Staaten"
 
 #: application/views/accumulate/index.php:4
 msgid "Accumulated number of IOTAs worked"
-msgstr ""
+msgstr "Kumulierte Anzahl gearbeiteter IOTAs"
 
 #: application/views/accumulate/index.php:5
 msgid "Accumulated number of CQ Zones worked"
-msgstr ""
+msgstr "Kumulierte Anzahl gearbeiteter CQ-Zonen"
 
 #: application/views/accumulate/index.php:6
 msgid "Accumulated number of VUCC Grids worked"
-msgstr ""
+msgstr "Kumulierte Anzahl gearbeiteter VUCC-Planquadrate"
 
 #: application/views/accumulate/index.php:7
 #: application/views/dashboard/index.php:222
@@ -2219,7 +2220,7 @@ msgstr "Worked All Zones (WAZ)"
 
 #: application/views/accumulate/index.php:77
 msgid "VHF/UHF Century Club (VUCC)"
-msgstr ""
+msgstr "VHF/UHF Century Club (VUCC)"
 
 #: application/views/accumulate/index.php:82
 msgid "Period"
@@ -4561,6 +4562,7 @@ msgstr "Keine Contests"
 #: application/views/contestcalendar/index.php:14
 #: application/views/logbookadvanced/edit.php:21
 #: application/views/logbookadvanced/index.php:288
+#: application/views/logbookadvanced/index.php:607
 #: application/views/logbookadvanced/useroptions.php:122
 #: application/views/qso/edit_ajax.php:39
 #: application/views/simplefle/index.php:80
@@ -6572,7 +6574,7 @@ msgstr ""
 #: application/views/labels/index.php:2
 #: application/views/logbookadvanced/startatform.php:27
 msgid "Mark QSL as printed"
-msgstr ""
+msgstr "Markiere QSL als gedruckt"
 
 #: application/views/labels/index.php:3 application/views/labels/index.php:128
 msgid "Print"
@@ -8975,7 +8977,7 @@ msgstr "Wenn du kein Datum auswählst, wird das heutige Datum verwendet."
 
 #: application/views/simplefle/index.php:88
 msgid "You can add the entered QSOs to a contest."
-msgstr ""
+msgstr "Füge die eingegebenen QSO zu seinem Contest hinzu."
 
 #: application/views/simplefle/index.php:95
 msgid "Station Call/Location"
@@ -8987,6 +8989,8 @@ msgid ""
 "If you did operate from a new location, first create a new <a "
 "href='%s'>Station Location</a>"
 msgstr ""
+"Falls du von einem neuen Standort gefunkt hast, erstelle erst einen neuen <a "
+"href='%s'>Stationsstandort</a>"
 
 #: application/views/simplefle/index.php:112
 msgid "e.g. OK2CQR"
@@ -8995,6 +8999,7 @@ msgstr "z.B. OK2CQR"
 #: application/views/simplefle/index.php:115
 msgid "This is callsign of the operator. Without any pre- or suffixes."
 msgstr ""
+"Dies ist das Rufzeichen des Operators. Ohne irgendwelche Pre- oder Suffixe."
 
 #: application/views/simplefle/index.php:125
 msgid "Enter the Data"
