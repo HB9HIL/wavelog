@@ -14,6 +14,7 @@
 /assets/qslcard/*
 /assets/js/sections/custom.js
 /userdata/*
+/node_modules
 .idea/*
 .DS_Store
 sync.sh
