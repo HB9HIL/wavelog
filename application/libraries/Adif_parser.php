@@ -22,7 +22,7 @@ class ADIF_Parser
     var $datasplit; // one entry is one QSO in the array
     var $currentarray = 0; // current place in the array
 	var $i = 0; //the iterator
-	var $headers = array();
+	var $headers = array(); // TEST
 	
 	public function initialize() //this function locates the <EOH>
 	{
