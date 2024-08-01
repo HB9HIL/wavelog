@@ -20,6 +20,9 @@ jobs:
           restore-keys: |
             cypress-
 
+      - name: Install Docker
+        run: sudo curl -sSL https://get.docker.com | sh
+
       - name: Install Cypress
         run: npm install cypress
 
