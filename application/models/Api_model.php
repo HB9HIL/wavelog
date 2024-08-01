@@ -48,6 +48,11 @@ class API_Model extends CI_Model {
 
     }
 
+	function test_api() {
+		$this->db->where('user_id', $this->session->userdata('user_id'));
+    	return $this->db->get('api');
+	}
+
 
     function delete_key($key) {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
