@@ -23,3 +23,5 @@ sync.sh
 .maintenance
 .demo
 .htaccess
+
+megalinter-reports/
