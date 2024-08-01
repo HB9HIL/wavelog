@@ -20,14 +20,11 @@ jobs:
           restore-keys: |
             cypress-
 
-      - name: Install Docker
-        run: sudo curl -sSL https://get.docker.com | sh
-
       - name: Install Cypress
         run: npm install cypress
 
       - name: Build Docker services
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Wait for services to start
         run: sleep 5
