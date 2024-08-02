@@ -48,7 +48,19 @@ RUN set -e; \
     mv ./htaccess.sample ./.htaccess; \
     sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php; \
     \
-    chown -R www-data:www-data /var/www/html;
+    chown -R root:www-data /var/www/html; \
+    \
+    cd /var/www/html; \
+    chmod -R g+rw ./application/cache/; \
+    chmod -R g+rw ./application/config/; \
+    chmod -R g+rw ./application/logs/; \
+    chmod -R g+rw ./assets/; \
+    chmod -R g+rw ./backup/; \
+    chmod -R g+rw ./updates/; \
+    chmod -R g+rw ./uploads/; \
+    chmod -R g+rw ./userdata/; \
+    chmod -R g+rw ./images/eqsl_card_images/; \
+    chmod -R g+rw ./install/;
 
 # Create the cron job
 RUN set -e; \
