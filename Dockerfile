@@ -50,16 +50,16 @@ RUN set -e; \
     \
     chown -R root:www-data /var/www/html; \
     \
-    chmod -R g+rw ./application/cache/; \
-    chmod -R g+rw ./application/config/; \
-    chmod -R g+rw ./application/logs/; \
-    chmod -R g+rw ./assets/; \
-    chmod -R g+rw ./backup/; \
-    chmod -R g+rw ./updates/; \
-    chmod -R g+rw ./uploads/; \
-    chmod -R g+rw ./userdata/; \
-    chmod -R g+rw ./images/eqsl_card_images/; \
-    chmod -R g+rw ./install/;
+    chmod -R g+rw /var/www/html/application/cache/; \
+    chmod -R g+rw /var/www/html/application/config/; \
+    chmod -R g+rw /var/www/html/application/logs/; \
+    chmod -R g+rw /var/www/html/assets/; \
+    chmod -R g+rw /var/www/html/backup/; \
+    chmod -R g+rw /var/www/html/updates/; \
+    chmod -R g+rw /var/www/html/uploads/; \
+    chmod -R g+rw /var/www/html/userdata/; \
+    chmod -R g+rw /var/www/html/images/eqsl_card_images/; \
+    chmod -R g+rw /var/www/html/install/;
 
 # Create the cron job
 RUN set -e; \
