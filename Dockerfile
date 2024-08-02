@@ -7,12 +7,18 @@ RUN set -e; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         libzip-dev \
+        libpng-dev \
+        libonig-dev \
+        libxml2-dev \
         cron \
     ; \
     \
     docker-php-ext-install -j "$(nproc)" \
         mysqli \
         zip \
+        gd \
+        mbstring \
+        xml \
     ; \
     \
     a2enmod rewrite; \
