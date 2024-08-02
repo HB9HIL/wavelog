@@ -19,7 +19,6 @@ RUN set -e; \
         gd \
         mbstring \
         xml \
-        curl \
     ; \
     \
     a2enmod rewrite; \
