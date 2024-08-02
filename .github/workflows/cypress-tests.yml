@@ -31,3 +31,9 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress results
+          path: /home/runner/work/wavelog/wavelog/cypress/
