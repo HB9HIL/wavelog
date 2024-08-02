@@ -1,0 +1,29 @@
+networks:
+  mynet:
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html:rw
+    depends_on:
+      - wavelog-db
+    networks:
+      - mynet
+
+  wavelog-db:
+    image: mariadb:latest
+    container_name: wavelog-db
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: wavelog
+      MARIADB_USER: wavelog
+      MARIADB_PASSWORD: wavelog
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mynet
+volumes:
+  db_data: {}
