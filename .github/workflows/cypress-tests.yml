@@ -29,11 +29,12 @@ jobs:
       - name: Wait for services to start
         run: sleep 5
 
+      - name: Run Cypress tests
+        run: npx cypress run
+      
       - name: Upload artifacts
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: cypress results
           path: /home/runner/work/wavelog/wavelog/cypress/
-          
-      - name: Run Cypress tests
-        run: npx cypress run
