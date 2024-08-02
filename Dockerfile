@@ -52,7 +52,7 @@ RUN set -e; \
     \
     chmod -R g+rw /var/www/html/application/cache/; \
     chmod -R g+rw /var/www/html/application/config/; \
-    chmod -R g+rw /var/www/html/application/logs/; \
+    chmod -R 777 /var/www/html/application/logs/; \
     chmod -R g+rw /var/www/html/assets/; \
     chmod -R g+rw /var/www/html/backup/; \
     chmod -R g+rw /var/www/html/updates/; \
