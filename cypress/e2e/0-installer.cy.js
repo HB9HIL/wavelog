@@ -7,7 +7,7 @@ describe("Installer Test", () => {
 
 	// Helper function to click the "Continue" button
 	function clickContinueButton() {
-		cy.get('button[id="ContinueButton"]').wait(200).click();
+		cy.get('button[id="ContinueButton"]').wait(500).click();
 	}
 
 	// Test case: Display the installer
@@ -44,7 +44,7 @@ describe("Installer Test", () => {
 		cy.get('input[id="db_password"]').type(db_password);
 
 		// Click the connection test button
-		cy.get('button[id="db_connection_test_button"]').wait(200).click();
+		cy.get('button[id="db_connection_test_button"]').wait(500).click();
 
 		// The result box should be green (class "alert-success")
 		cy.get('div[id="db_connection_testresult"]')
@@ -72,7 +72,7 @@ describe("Installer Test", () => {
 		cy.get('input[id="db_password"]').type(db_password);
 
 		// Click the connection test button
-		cy.get('button[id="db_connection_test_button"]').wait(200).click();
+		cy.get('button[id="db_connection_test_button"]').wait(500).click();
 
 		// The result box should be green (class "alert-success")
 		cy.get('div[id="db_connection_testresult"]')
@@ -107,7 +107,7 @@ describe("Installer Test", () => {
 
 		clickContinueButton(); // Last Tab
 
-		cy.get('button[id="submit"]').wait(200).click();
+		cy.get('button[id="submit"]').wait(500).click();
 
 		// Check if the installer is running
 		cy.get("body").wait(1000).contains("Installation").should("be.visible");
