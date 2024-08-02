@@ -74,3 +74,5 @@ RUN set -e; \
     mkdir -p /var/log/cron; \
     \
     sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground;
+
+EXPOSE 80
