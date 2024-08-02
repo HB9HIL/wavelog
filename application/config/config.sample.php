@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
-| Install Options
+| Install Options Testing
 |--------------------------------------------------------------------------
 |
 |	'app_name'		Name of the App 'Wavelog'
