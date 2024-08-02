@@ -24,7 +24,7 @@ jobs:
         run: npm install cypress
 
       - name: Build Docker services
-        run: docker compose up -d
+        run: docker compose -f cypress_testserver.yml up -d
 
       - name: Wait for services to start
         run: sleep 5
