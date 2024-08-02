@@ -11,6 +11,7 @@ RUN set -e; \
         libonig-dev \
         libxml2-dev \
         cron \
+        curl \
     ; \
     \
     docker-php-ext-install -j "$(nproc)" \
@@ -19,6 +20,7 @@ RUN set -e; \
         gd \
         mbstring \
         xml \
+        curl \
     ; \
     \
     a2enmod rewrite; \
