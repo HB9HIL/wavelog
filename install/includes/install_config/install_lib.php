@@ -61,14 +61,16 @@ function verify_log() {
     global $logfile;
 
     if (!file_exists($logfile)) {
-        if (touch($logfile)) {
-            if(is_writable($logfile)) {
-				$log_header = "Wavelog Installer Debug Log\n-------\nLog Location: $logfile\n\n";
-				file_put_contents($logfile, $log_header, FILE_APPEND);
-				return true;
-			} else {
-				return false;
-			}
+        $handle = fopen($logfile, 'w');
+        if ($handle) {
+            fclose($handle);
+            if (is_writable($logfile)) {
+                $log_header = "Wavelog Installer Debug Log\n-------\nLog Location: $logfile\n\n";
+                file_put_contents($logfile, $log_header, FILE_APPEND);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
