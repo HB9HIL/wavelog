@@ -3,6 +3,7 @@ describe("Installer Test", () => {
 	function visitInstallerPage() {
 		cy.visit("/index.php");
 		cy.url().should("include", "/install");
+		cy.get("body").contains("Welcome to the Wavelog Installer").should("be.visible");
 	}
 
 	// Helper function to click the "Continue" button
