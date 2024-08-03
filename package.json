@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "cypress": "^13.13.2"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.0"
   }
 }
