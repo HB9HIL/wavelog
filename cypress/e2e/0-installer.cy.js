@@ -47,49 +47,49 @@ describe("Installer Test", () => {
 	});
 
 	// Test case: Run the complete installer
-	it("Should run through the complete installer", () => {
+it("Should run through the complete installer", () => {
 
-		const env_db = Cypress.env('db');
-    	const env_user = Cypress.env('user');
+    const env_db = Cypress.env('db');
+    const env_user = Cypress.env('user');
 
-		visitInstallerPage();
-		clickContinueButton(); // Prechecks tab
-		clickContinueButton(); // Configuration tab
-		clickContinueButton(); // Database tab
+    visitInstallerPage();
+    clickContinueButton(); // Prechecks tab
+    clickContinueButton(); // Configuration tab
+    clickContinueButton(); // Database tab
 
-		// Type the credentials into the fields
-		cy.get('input[id="db_hostname"]').type(env_db.host);
-		cy.get('input[id="db_name"]').type(env_db.name);
-		cy.get('input[id="db_username"]').type(env_db.user);
-		cy.get('input[id="db_password"]').type(env_db.password);
+    // Type the credentials into the fields
+    cy.get('input[id="db_hostname"]').type(env_db.host);
+    cy.get('input[id="db_name"]').type(env_db.name);
+    cy.get('input[id="db_username"]').type(env_db.user);
+    cy.get('input[id="db_password"]').type(env_db.password);
 
-		// Click the connection test button
-		cy.get('button[id="db_connection_test_button"]').wait(500).click();
+    // Click the connection test button
+    cy.get('button[id="db_connection_test_button"]').click();
 
-		// The result box should be green (class "alert-success")
-		cy.get('div[id="db_connection_testresult"]')
-			.should("be.visible")
-			.and("have.class", "alert-success");
+    // The result box should be green (class "alert-success")
+    cy.get('div[id="db_connection_testresult"]', { timeout: 10000 })
+        .should("be.visible")
+        .and("have.class", "alert-success");
 
-		clickContinueButton(); // First User tab
+    clickContinueButton(); // First User tab
 
-		// Type the data into the fields
-		cy.get('input[id="firstname"]').type(env_user.firstname);
-		cy.get('input[id="lastname"]').type(env_user.lastname);
-		cy.get('input[id="callsign"]').type(env_user.callsign);
-		cy.get('input[id="city"]').type(env_user.city);
-		cy.get('input[id="userlocator"]').type(env_user.userlocator);
-		cy.get('select[id="dxcc_id"]').select(env_user.dxcc_id);
-		cy.get('input[id="username"]').type(env_user.username);
-		cy.get('input[id="password"]').type(env_user.password);
-		cy.get('input[id="cnfm_password"]').type(env_user.cnfm_password);
-		cy.get('input[id="user_email"]').type(env_user.user_email);
+    // Type the data into the fields
+    cy.get('input[id="firstname"]').type(env_user.firstname);
+    cy.get('input[id="lastname"]').type(env_user.lastname);
+    cy.get('input[id="callsign"]').type(env_user.callsign);
+    cy.get('input[id="city"]').type(env_user.city);
+    cy.get('input[id="userlocator"]').type(env_user.userlocator);
+    cy.get('select[id="dxcc_id"]').select(env_user.dxcc_id);
+    cy.get('input[id="username"]').type(env_user.username);
+    cy.get('input[id="password"]').type(env_user.password);
+    cy.get('input[id="cnfm_password"]').type(env_user.cnfm_password);
+    cy.get('input[id="user_email"]').type(env_user.email);
 
-		clickContinueButton(); // Last Tab
+    clickContinueButton(); // Last Tab
 
-		cy.get('button[id="submit"]').wait(500).click();
+    cy.get('button[id="submit"]').click();
 
-		// Check if the installer is running
+    // Check if the installer is running
 		cy.get("body").wait(500).contains("Installation").should("be.visible");
 
 		// Check if all steps show green after some time

@@ -24,10 +24,10 @@ Cypress.env('user', {
     city: "Zurich",
     userlocator: "JN47RI",
     dxcc_id: "287",
-    cnfm_password: "superSafePa33word",
     email: "john@example.com",
     username: "john.smith",
     password: "superSafePa33word",
+    cnfm_password: "superSafePa33word",
     wrong_password: "wrongPassword"
 });
 
