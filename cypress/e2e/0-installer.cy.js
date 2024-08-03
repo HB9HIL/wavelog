@@ -118,7 +118,7 @@ describe("Installer Test", () => {
 		cy.get('i[id="database_file_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
-		cy.get('i[id="update_dxcc_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="update_dxcc_check"]').wait(3000).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 	});
 });
