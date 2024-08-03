@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./:/var/www/html:rw
+      - wavelog_data:/var/www/html
     depends_on:
       - wavelog-db
     networks:
@@ -26,4 +26,5 @@ services:
     networks:
       - mynet
 volumes:
+  wavelog_data:
   db_data: {}
