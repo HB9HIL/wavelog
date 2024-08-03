@@ -9,27 +9,27 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Default database credentials
-const db_host = "wavelog-db";
-const db_name = "wavelog";
-const db_user = "wavelog";
-const db_password = "wavelog";
+// Set global variables
+Cypress.env('db', {
+    host: "wavelog-db",
+    name: "wavelog",
+    user: "wavelog",
+    password: "wavelog"
+});
 
-
-// Default first user data
-const firstname = "John";
-const lastname = "Smith";
-const callsign = "HB9ABC";
-const city = "Zurich";
-const userlocator = "JN47RI";
-const dxcc_id = "287";
-const cnfm_password = "superSafePa33word";
-const user_email = "john@example.com";
-
-
-const username = "john.smith";
-const password = "superSafePa33word";
-const wrong_password = "wrongPassword";
+Cypress.env('user', {
+    firstname: "John",
+    lastname: "Smith",
+    callsign: "HB9ABC",
+    city: "Zurich",
+    userlocator: "JN47RI",
+    dxcc_id: "287",
+    cnfm_password: "superSafePa33word",
+    email: "john@example.com",
+    username: "john.smith",
+    password: "superSafePa33word",
+    wrong_password: "wrongPassword"
+});
 
 
 // Import commands.js using ES2015 syntax:

@@ -1,4 +1,8 @@
 describe("Installer Test", () => {
+
+	const env_db = Cypress.env('db');
+    const env_user = Cypress.env('user');
+
 	// Helper function to visit the installer page
 	function visitInstallerPage() {
 		cy.visit("/index.php");
@@ -32,10 +36,10 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Configuration tab
 		clickContinueButton(); // Database tab
 
-		cy.get('input[id="db_hostname"]').type(db_host);
-		cy.get('input[id="db_name"]').type(db_name);
-		cy.get('input[id="db_username"]').type(db_user);
-		cy.get('input[id="db_password"]').type(db_password);	// Click the connection test button
+		cy.get('input[id="db_hostname"]').type(env_db.db_host);
+		cy.get('input[id="db_name"]').type(env_db.db_name);
+		cy.get('input[id="db_username"]').type(env_db.db_user);
+		cy.get('input[id="db_password"]').type(env_db.db_password);	// Click the connection test button
 		cy.get('button[id="db_connection_test_button"]').wait(500).click();	// The result box should be green (class "alert-success")
 		cy.get('div[id="db_connection_testresult"]')
 			.should("be.visible")
@@ -50,10 +54,10 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Database tab
 
 		// Type the credentials into the fields
-		cy.get('input[id="db_hostname"]').type(db_host);
-		cy.get('input[id="db_name"]').type(db_name);
-		cy.get('input[id="db_username"]').type(db_user);
-		cy.get('input[id="db_password"]').type(db_password);
+		cy.get('input[id="db_hostname"]').type(env_db.db_host);
+		cy.get('input[id="db_name"]').type(env_db.db_name);
+		cy.get('input[id="db_username"]').type(env_db.db_user);
+		cy.get('input[id="db_password"]').type(env_db.db_password);
 
 		// Click the connection test button
 		cy.get('button[id="db_connection_test_button"]').wait(500).click();
@@ -66,16 +70,16 @@ describe("Installer Test", () => {
 		clickContinueButton(); // First User tab
 
 		// Type the data into the fields
-		cy.get('input[id="firstname"]').type(firstname);
-		cy.get('input[id="lastname"]').type(lastname);
-		cy.get('input[id="callsign"]').type(callsign);
-		cy.get('input[id="city"]').type(city);
-		cy.get('input[id="userlocator"]').type(userlocator);
-		cy.get('select[id="dxcc_id"]').select(dxcc_id);
-		cy.get('input[id="username"]').type(username);
-		cy.get('input[id="password"]').type(password);
-		cy.get('input[id="cnfm_password"]').type(cnfm_password);
-		cy.get('input[id="user_email"]').type(user_email);
+		cy.get('input[id="firstname"]').type(env_user.firstname);
+		cy.get('input[id="lastname"]').type(env_user.lastname);
+		cy.get('input[id="callsign"]').type(env_user.callsign);
+		cy.get('input[id="city"]').type(env_user.city);
+		cy.get('input[id="userlocator"]').type(env_user.userlocator);
+		cy.get('select[id="dxcc_id"]').select(env_user.dxcc_id);
+		cy.get('input[id="username"]').type(env_user.username);
+		cy.get('input[id="password"]').type(env_user.password);
+		cy.get('input[id="cnfm_password"]').type(env_user.cnfm_password);
+		cy.get('input[id="user_email"]').type(env_user.user_email);
 
 		clickContinueButton(); // Last Tab
 
