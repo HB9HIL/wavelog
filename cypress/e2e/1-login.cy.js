@@ -7,5 +7,5 @@ describe("Login Test", () => {
         cy.url().should("include", "/dashboard");
 
     });
-    
+
 });

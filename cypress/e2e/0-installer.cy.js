@@ -32,11 +32,6 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Configuration tab
 		clickContinueButton(); // Database tab
 
-		// Default database credentials
-		const db_host = "wavelog-db";
-		const db_name = "wavelog";
-		const db_user = "wavelog";
-		const db_password = "wavelog";	// Type the credentials into the fields
 		cy.get('input[id="db_hostname"]').type(db_host);
 		cy.get('input[id="db_name"]').type(db_name);
 		cy.get('input[id="db_username"]').type(db_user);
@@ -54,12 +49,6 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Configuration tab
 		clickContinueButton(); // Database tab
 
-		// Default database credentials
-		const db_host = "wavelog-db";
-		const db_name = "wavelog";
-		const db_user = "wavelog";
-		const db_password = "wavelog";
-
 		// Type the credentials into the fields
 		cy.get('input[id="db_hostname"]').type(db_host);
 		cy.get('input[id="db_name"]').type(db_name);
@@ -75,18 +64,6 @@ describe("Installer Test", () => {
 			.and("have.class", "alert-success");
 
 		clickContinueButton(); // First User tab
-
-		// Default first user data
-		const firstname = "John";
-		const lastname = "Smith";
-		const callsign = "HB9ABC";
-		const city = "Zurich";
-		const userlocator = "JN47RI";
-		const dxcc_id = "287";
-		const username = "john.smith";
-		const password = "superSafePa33word";
-		const cnfm_password = "superSafePa33word";
-		const user_email = "john@example.com";
 
 		// Type the data into the fields
 		cy.get('input[id="firstname"]').type(firstname);
