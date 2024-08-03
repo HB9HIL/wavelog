@@ -12,46 +12,40 @@ describe("Installer Test", () => {
 	}
 
 	// Test case: Display the installer
-	// it("Should show the Installer", () => {
-	// 	visitInstallerPage();
-	// });
+	it("Should show the Installer", () => {
+		visitInstallerPage();
+	});
 
 	// Test case: Click "Continue"
-	// it("Should be able to click 'Continue'", () => {
-	// 	visitInstallerPage();
-	// 	clickContinueButton();
+	it("Should be able to click 'Continue'", () => {
+		visitInstallerPage();
+		clickContinueButton();
 
-	// 	// Check if the php-curl module is visible
-	// 	cy.get("body").contains("php-curl").should("be.visible");
-	// });
+		// Check if the php-curl module is visible
+		cy.get("body").contains("php-curl").should("be.visible");
+	});
 
 	// Test case: Show positive database connection for Docker setup
-	// it("Should show positive db connection for docker setup", () => {
-	// 	visitInstallerPage();
-	// 	clickContinueButton(); // Prechecks tab
-	// 	clickContinueButton(); // Configuration tab
-	// 	clickContinueButton(); // Database tab
+	it("Should show positive db connection for docker setup", () => {
+		visitInstallerPage();
+		clickContinueButton(); // Prechecks tab
+		clickContinueButton(); // Configuration tab
+		clickContinueButton(); // Database tab
 
-	// 	// Default database credentials
-	// 	const db_host = "wavelog-db";
-	// 	const db_name = "wavelog";
-	// 	const db_user = "wavelog";
-	// 	const db_password = "wavelog";
-
-	// 	// Type the credentials into the fields
-	// 	cy.get('input[id="db_hostname"]').type(db_host);
-	// 	cy.get('input[id="db_name"]').type(db_name);
-	// 	cy.get('input[id="db_username"]').type(db_user);
-	// 	cy.get('input[id="db_password"]').type(db_password);
-
-	// 	// Click the connection test button
-	// 	cy.get('button[id="db_connection_test_button"]').wait(500).click();
-
-	// 	// The result box should be green (class "alert-success")
-	// 	cy.get('div[id="db_connection_testresult"]')
-	// 		.should("be.visible")
-	// 		.and("have.class", "alert-success");
-	// });
+		// Default database credentials
+		const db_host = "wavelog-db";
+		const db_name = "wavelog";
+		const db_user = "wavelog";
+		const db_password = "wavelog";	// Type the credentials into the fields
+		cy.get('input[id="db_hostname"]').type(db_host);
+		cy.get('input[id="db_name"]').type(db_name);
+		cy.get('input[id="db_username"]').type(db_user);
+		cy.get('input[id="db_password"]').type(db_password);	// Click the connection test button
+		cy.get('button[id="db_connection_test_button"]').wait(500).click();	// The result box should be green (class "alert-success")
+		cy.get('div[id="db_connection_testresult"]')
+			.should("be.visible")
+			.and("have.class", "alert-success");
+	});
 
 	// Test case: Run the complete installer
 	it("Should run through the complete installer", () => {
@@ -120,7 +114,7 @@ describe("Installer Test", () => {
 		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 		// Click the log button to stop the countdown timer
 		cy.get('button[id="toggleLogButton"]').click();
-		cy.get('i[id="update_dxcc_check"]', { timeout: 40000 }).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="update_dxcc_check"]', { timeout: 60000 }).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 
 		// Click the success button to get to the login page

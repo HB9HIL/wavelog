@@ -7,7 +7,7 @@ on:
 
 jobs:
   cypress-e2e-tests:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,11 +20,11 @@ jobs:
           restore-keys: |
             cypress-
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Cypress
+        run: npm install cypress
 
       - name: Build Docker services
-        run: sudo docker compose -f cypress_testserver.yml up -d
+        run: docker compose -f cypress_testserver.yml up -d
 
       - name: Wait for services to start
         run: sleep 5
@@ -32,9 +32,9 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
       
-      - name: Shutdown the container
-        run: sudo docker compose -f cypress_testserver.yml down
-
-      - name: Remove the docker volumes
-        run: sudo docker volume rm wavelog-web-1 && sudo docker volume rm wavelog-db
-
+      - name: Upload artifacts
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress results
+          path: /home/runner/work/wavelog/wavelog/cypress/
