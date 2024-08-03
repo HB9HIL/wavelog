@@ -1,8 +1,5 @@
 describe("Installer Test", () => {
 
-	const env_db = Cypress.env('db');
-    const env_user = Cypress.env('user');
-
 	// Helper function to visit the installer page
 	function visitInstallerPage() {
 		cy.visit("/index.php");
@@ -31,6 +28,9 @@ describe("Installer Test", () => {
 
 	// Test case: Show positive database connection for Docker setup
 	it("Should show positive db connection for docker setup", () => {
+
+		const env_db = Cypress.env('db');
+		
 		visitInstallerPage();
 		clickContinueButton(); // Prechecks tab
 		clickContinueButton(); // Configuration tab
@@ -48,6 +48,10 @@ describe("Installer Test", () => {
 
 	// Test case: Run the complete installer
 	it("Should run through the complete installer", () => {
+
+		const env_db = Cypress.env('db');
+    	const env_user = Cypress.env('user');
+
 		visitInstallerPage();
 		clickContinueButton(); // Prechecks tab
 		clickContinueButton(); // Configuration tab
