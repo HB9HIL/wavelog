@@ -32,9 +32,9 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
       
-      - name: Upload artifacts
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress results
-          path: /home/runner/work/wavelog/wavelog/cypress/
+      - name: Shutdown the container
+        run: sudo docker compose -f cypress_testserver.yml down
+
+      - name: Remove the docker volumes
+        run: sudo docker volume rm wavelog-web-1 && sudo docker volume rm wavelog-db
+
