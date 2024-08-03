@@ -36,10 +36,10 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Configuration tab
 		clickContinueButton(); // Database tab
 
-		cy.get('input[id="db_hostname"]').type(env_db.db_host);
-		cy.get('input[id="db_name"]').type(env_db.db_name);
-		cy.get('input[id="db_username"]').type(env_db.db_user);
-		cy.get('input[id="db_password"]').type(env_db.db_password);	// Click the connection test button
+		cy.get('input[id="db_hostname"]').type(env_db.host); 
+    	cy.get('input[id="db_name"]').type(env_db.name);     
+    	cy.get('input[id="db_username"]').type(env_db.user); 
+    	cy.get('input[id="db_password"]').type(env_db.password);
 		cy.get('button[id="db_connection_test_button"]').wait(500).click();	// The result box should be green (class "alert-success")
 		cy.get('div[id="db_connection_testresult"]')
 			.should("be.visible")
@@ -58,10 +58,10 @@ describe("Installer Test", () => {
 		clickContinueButton(); // Database tab
 
 		// Type the credentials into the fields
-		cy.get('input[id="db_hostname"]').type(env_db.db_host);
-		cy.get('input[id="db_name"]').type(env_db.db_name);
-		cy.get('input[id="db_username"]').type(env_db.db_user);
-		cy.get('input[id="db_password"]').type(env_db.db_password);
+		cy.get('input[id="db_hostname"]').type(env_db.host);
+		cy.get('input[id="db_name"]').type(env_db.name);
+		cy.get('input[id="db_username"]').type(env_db.user);
+		cy.get('input[id="db_password"]').type(env_db.password);
 
 		// Click the connection test button
 		cy.get('button[id="db_connection_test_button"]').wait(500).click();
