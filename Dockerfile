@@ -50,7 +50,6 @@ RUN set -e; \
     \
     chown -R root:www-data /var/www/html; \
     \
-    cd /var/www/html; \
     chmod -R g+rw ./application/cache/; \
     chmod -R g+rw ./application/config/; \
     chmod -R g+rw ./application/logs/; \
@@ -75,5 +74,3 @@ RUN set -e; \
     mkdir -p /var/log/cron; \
     \
     sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground;
-
-EXPOSE 80
