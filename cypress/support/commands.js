@@ -6,8 +6,8 @@ Cypress.Commands.add("login", () => {
     const username = "john.smith";
     const password = "superSafePa33word";
 
-    cy.get('input[id="username"]').type(username);
-	cy.get('input[id="password"]').type(password);
+    cy.get('input[name="user_name"]').type(username);
+	cy.get('input[name="user_password"]').type(password);
 
     cy.get('button[type="submit"]').wait(100).click();
 
