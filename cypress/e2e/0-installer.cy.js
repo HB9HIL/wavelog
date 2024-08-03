@@ -122,5 +122,11 @@ describe("Installer Test", () => {
 		cy.get('button[id="toggleLogButton"]').click();
 		cy.get('i[id="update_dxcc_check"]').wait(25000).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+
+		// Click the success button to get to the login page
+		cy.get('a.btn.btn-primary').contains('Done. Go to the user login ->').should('be.visible').wait(300).click();
+
+		// Check if the login page shows up
+		cy.get("body").wait(300).contains("Congrats! Wavelog was successfully installed. You can now login for the first time.").should("be.visible");
 	});
 });
