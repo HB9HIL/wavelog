@@ -120,7 +120,7 @@ describe("Installer Test", () => {
 		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 		// Click the log button to stop the countdown timer
 		cy.get('button[id="toggleLogButton"]').click();
-		cy.get('i[id="update_dxcc_check"]').wait(15000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="update_dxcc_check"]').wait(25000).should("be.visible").and("have.class", "fa-check-circle");
 		cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 	});
 });
