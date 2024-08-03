@@ -12,9 +12,9 @@ describe("Installer Test", () => {
 	}
 
 	// Test case: Display the installer
-	it("Should show the Installer", () => {
-		visitInstallerPage();
-	});
+	// it("Should show the Installer", () => {
+	// 	visitInstallerPage();
+	// });
 
 	// Test case: Click "Continue"
 	// it("Should be able to click 'Continue'", () => {
@@ -54,79 +54,79 @@ describe("Installer Test", () => {
 	// });
 
 	// Test case: Run the complete installer
-	// it("Should run through the complete installer", () => {
-	// 	visitInstallerPage();
-	// 	clickContinueButton(); // Prechecks tab
-	// 	clickContinueButton(); // Configuration tab
-	// 	clickContinueButton(); // Database tab
+	it("Should run through the complete installer", () => {
+		visitInstallerPage();
+		clickContinueButton(); // Prechecks tab
+		clickContinueButton(); // Configuration tab
+		clickContinueButton(); // Database tab
 
-	// 	// Default database credentials
-	// 	const db_host = "wavelog-db";
-	// 	const db_name = "wavelog";
-	// 	const db_user = "wavelog";
-	// 	const db_password = "wavelog";
+		// Default database credentials
+		const db_host = "wavelog-db";
+		const db_name = "wavelog";
+		const db_user = "wavelog";
+		const db_password = "wavelog";
 
-	// 	// Type the credentials into the fields
-	// 	cy.get('input[id="db_hostname"]').type(db_host);
-	// 	cy.get('input[id="db_name"]').type(db_name);
-	// 	cy.get('input[id="db_username"]').type(db_user);
-	// 	cy.get('input[id="db_password"]').type(db_password);
+		// Type the credentials into the fields
+		cy.get('input[id="db_hostname"]').type(db_host);
+		cy.get('input[id="db_name"]').type(db_name);
+		cy.get('input[id="db_username"]').type(db_user);
+		cy.get('input[id="db_password"]').type(db_password);
 
-	// 	// Click the connection test button
-	// 	cy.get('button[id="db_connection_test_button"]').wait(500).click();
+		// Click the connection test button
+		cy.get('button[id="db_connection_test_button"]').wait(500).click();
 
-	// 	// The result box should be green (class "alert-success")
-	// 	cy.get('div[id="db_connection_testresult"]')
-	// 		.should("be.visible")
-	// 		.and("have.class", "alert-success");
+		// The result box should be green (class "alert-success")
+		cy.get('div[id="db_connection_testresult"]')
+			.should("be.visible")
+			.and("have.class", "alert-success");
 
-	// 	clickContinueButton(); // First User tab
+		clickContinueButton(); // First User tab
 
-	// 	// Default first user data
-	// 	const firstname = "John";
-	// 	const lastname = "Smith";
-	// 	const callsign = "HB9ABC";
-	// 	const city = "Zurich";
-	// 	const userlocator = "JN47RI";
-	// 	const dxcc_id = "287";
-	// 	const username = "john.smith";
-	// 	const password = "superSafePa33word";
-	// 	const cnfm_password = "superSafePa33word";
-	// 	const user_email = "john@example.com";
+		// Default first user data
+		const firstname = "John";
+		const lastname = "Smith";
+		const callsign = "HB9ABC";
+		const city = "Zurich";
+		const userlocator = "JN47RI";
+		const dxcc_id = "287";
+		const username = "john.smith";
+		const password = "superSafePa33word";
+		const cnfm_password = "superSafePa33word";
+		const user_email = "john@example.com";
 
-	// 	// Type the data into the fields
-	// 	cy.get('input[id="firstname"]').type(firstname);
-	// 	cy.get('input[id="lastname"]').type(lastname);
-	// 	cy.get('input[id="callsign"]').type(callsign);
-	// 	cy.get('input[id="city"]').type(city);
-	// 	cy.get('input[id="userlocator"]').type(userlocator);
-	// 	cy.get('select[id="dxcc_id"]').select(dxcc_id);
-	// 	cy.get('input[id="username"]').type(username);
-	// 	cy.get('input[id="password"]').type(password);
-	// 	cy.get('input[id="cnfm_password"]').type(cnfm_password);
-	// 	cy.get('input[id="user_email"]').type(user_email);
+		// Type the data into the fields
+		cy.get('input[id="firstname"]').type(firstname);
+		cy.get('input[id="lastname"]').type(lastname);
+		cy.get('input[id="callsign"]').type(callsign);
+		cy.get('input[id="city"]').type(city);
+		cy.get('input[id="userlocator"]').type(userlocator);
+		cy.get('select[id="dxcc_id"]').select(dxcc_id);
+		cy.get('input[id="username"]').type(username);
+		cy.get('input[id="password"]').type(password);
+		cy.get('input[id="cnfm_password"]').type(cnfm_password);
+		cy.get('input[id="user_email"]').type(user_email);
 
-	// 	clickContinueButton(); // Last Tab
+		clickContinueButton(); // Last Tab
 
-	// 	cy.get('button[id="submit"]').wait(500).click();
+		cy.get('button[id="submit"]').wait(500).click();
 
-	// 	// Check if the installer is running
-	// 	cy.get("body").wait(500).contains("Installation").should("be.visible");
+		// Check if the installer is running
+		cy.get("body").wait(500).contains("Installation").should("be.visible");
 
-	// 	// Check if all steps show green after some time
-	// 	cy.get('i[id="config_file_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
-	// 	cy.get('i[id="database_file_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
-	// 	cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
-	// 	cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
-	// 	// Click the log button to stop the countdown timer
-	// 	cy.get('button[id="toggleLogButton"]').click();
-	// 	cy.get('i[id="update_dxcc_check"]').wait(25000).should("be.visible").and("have.class", "fa-check-circle");
-	// 	cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		// Check if all steps show green after some time
+		cy.get('i[id="config_file_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="database_file_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="database_tables_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
+		// Click the log button to stop the countdown timer
+		cy.get('button[id="toggleLogButton"]').click();
+		cy.get('i[id="update_dxcc_check"]').wait(25000).should("be.visible").and("have.class", "fa-check-circle");
+		cy.get('i[id="installer_lock_check"]').wait(1000).should("be.visible").and("have.class", "fa-check-circle");
 
-	// 	// Click the success button to get to the login page
-	// 	cy.get('a.btn.btn-primary').contains('Done. Go to the user login ->').should('be.visible').wait(300).click();
+		// Click the success button to get to the login page
+		cy.get('a.btn.btn-primary').contains('Done. Go to the user login ->').should('be.visible').wait(300).click();
 
-	// 	// Check if the login page shows up
-	// 	cy.get("body").wait(300).contains("Congrats! Wavelog was successfully installed. You can now login for the first time.").should("be.visible");
-	// });
+		// Check if the login page shows up
+		cy.get("body").wait(300).contains("Congrats! Wavelog was successfully installed. You can now login for the first time.").should("be.visible");
+	});
 });
