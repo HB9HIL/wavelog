@@ -31,6 +31,10 @@ Cypress.env('user', {
     wrong_password: "wrongPassword"
 });
 
+Cypress.env('stationsetup', {
+    public_slug: "cypress"
+});
+
 
 // Import commands.js using ES2015 syntax:
 import './commands'
