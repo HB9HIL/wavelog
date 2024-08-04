@@ -26,6 +26,5 @@ Cypress.Commands.add("wrong_login", () => {
 	cy.get('input[name="user_password"]').type(env_user.wrong_password);
 
     cy.get('button[type="submit"]').wait(100).click();
-
-    cy.url().wait(300).should("include", "/dashboard");
+    
 });
