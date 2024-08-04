@@ -1,7 +1,7 @@
 describe("Station Setup", () => {
 
 	before(() => {
-		cy.setCookie('language', 'english')
+		cy.setCookie('language', 'english');
 	});
 
 	it("Should show the Stationsetup page", () => {
