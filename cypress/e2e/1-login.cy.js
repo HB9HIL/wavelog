@@ -1,4 +1,9 @@
 describe("Login Test", () => {
+
+	before(() => {
+		cy.setCookie('language', 'english');
+	});
+
     it("Should be able to login", () => {
         // Login
         cy.login();
@@ -17,9 +22,33 @@ describe("Login Test", () => {
             .contains("Incorrect username or password!")
             .should("be.visible");
     });
+
+	it("Should display and open the forgot password page", () => {
+		// Visit the login page
+		cy.visit("/index.php/user/login");
+
+		// Click the "Forgot Password?" link
+		cy.get("a")
+			.contains("Forgot your password?")
+			.should("be.visible")
+			.click();
+
+		// Check if the correct page has been loaded by checking the URL
+		cy.url()
+			.should("include", "/forgot_password");
+
+		// Content check to be sure
+		cy.get('body')
+			.contains("You can reset your password here.");
+	});
 });
 
 describe("Version Info Modal", () => {
+
+	before(() => {
+		cy.setCookie('language', 'english');
+	});
+
 	beforeEach(() => {
 		cy.login();
 	});
@@ -40,7 +69,7 @@ describe("Version Info Modal", () => {
 		cy.get("button")
 			.contains("Close")
 			.should("be.visible")
-			.wait(500)
+			.wait(300)
 			.click();
 
 		// check if the modal is not visible
@@ -59,7 +88,7 @@ describe("Version Info Modal", () => {
 		cy.get("button")
 			.contains("Don't show again")
 			.should("be.visible")
-			.wait(500)
+			.wait(300)
 			.click();
 
 		// check if the modal is not visible

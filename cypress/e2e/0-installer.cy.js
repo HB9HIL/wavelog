@@ -24,6 +24,7 @@ describe("Installer Test", () => {
 	// Clear the localStorage to avoid conflicts
 	before(() => {
 		cy.clearLocalStorageSnapshot();
+		cy.setCookie('install_lang', 'en_US');
 	});
 
 	// Before each Test we have to call the installer again
@@ -36,26 +37,14 @@ describe("Installer Test", () => {
 		cy.saveLocalStorage();
 	});
 
-	// Test case: Display the installer
-	it("Should show the Installer", () => {
-		visitInstallerPage();
-	});
+	
+	// Test case: Run the complete installer
+	it("Should run the installer", () => {
+		
+		cy.log("Invoking the installer tests. This can take a while...");
 
-	// Test case: Click "Continue"
-	it("Should be able to click 'Continue'", () => {
-		clickContinueButton();
-
-		// Check if the php-curl module is visible. This indicates the pre-checks tab.
-		cy.get("body")
-			.contains("php-curl")
-			.should("be.visible");
-	});
-
-	// Test case: Show positive database connection for Docker setup
-	it("Should show positive db connection for docker setup", () => {
-
-		// Load variables
 		const env_db = Cypress.env('db');
+		const env_user = Cypress.env('user');
 
 		clickContinueButton(); // Show Prechecks tab
 		clickContinueButton(); // Show Configuration tab
@@ -76,16 +65,6 @@ describe("Installer Test", () => {
 			.should("be.visible")
 			.and("have.class", "alert-success");
 
-	});
-
-	// Test case: Run the complete installer
-	it("Should run through the complete installer", () => {
-
-		const env_user = Cypress.env('user');
-
-		clickContinueButton(); // Show Prechecks tab
-		clickContinueButton(); // Show Configuration tab
-		clickContinueButton(); // Show Database tab
 		clickContinueButton(); // Show First User tab
 
 		// Type the data into the fields
@@ -134,6 +113,9 @@ describe("Installer Test", () => {
 		cy.get('i[id="installer_lock_check"]', { timeout: 2000 })
 			.should("be.visible")
 			.and("have.class", "fa-check-circle");
+
+		// Check the browser language
+		cy.setCookie('language', 'english');
 
 		// Click the success button to get to the login page
 		cy.get('a.btn.btn-primary')
