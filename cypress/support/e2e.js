@@ -39,5 +39,8 @@ Cypress.env('stationsetup', {
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+// Support for localStorage
+import "cypress-localstorage-commands";
+
 // Alternatively, you can use CommonJS syntax:
 // require('./commands')
