@@ -24,6 +24,7 @@ describe("Installer Test", () => {
 	// Clear the localStorage to avoid conflicts
 	before(() => {
 		cy.clearLocalStorageSnapshot();
+		cy.setCookie('install_lang', 'en_US')
 	});
 
 	// Before each Test we have to call the installer again

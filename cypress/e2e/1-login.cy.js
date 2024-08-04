@@ -1,4 +1,9 @@
 describe("Login Test", () => {
+
+	before(() => {
+		cy.setCookie('language', 'english')
+	});
+
     it("Should be able to login", () => {
         // Login
         cy.login();
@@ -39,6 +44,11 @@ describe("Login Test", () => {
 });
 
 describe("Version Info Modal", () => {
+
+	before(() => {
+		cy.setCookie('language', 'english')
+	});
+	
 	beforeEach(() => {
 		cy.login();
 	});
