@@ -2,12 +2,21 @@ describe("Station Setup", () => {
 
 	before(() => {
 		cy.setCookie('language', 'english');
+		cy.login();
+		cy.getCookies().then(cookies => {
+			cy.writeFile('cypress/fixtures/cookies.json', cookies);
+		});
+	});
+
+	beforeEach(() => {
+		cy.readFile('cypress/fixtures/cookies.json').then(cookies => {
+			cookies.forEach(cookie => {
+				cy.setCookie(cookie.name, cookie.value);
+			});
+		});
 	});
 
 	it("Should show the Stationsetup page", () => {
-		// Login
-		cy.login();
-
 		// Visit the Stationsetup Page
 		cy.visit("/index.php/stationsetup");
 
@@ -22,9 +31,6 @@ describe("Station Setup", () => {
 	});
 
 	it("Should be possible to enable visitor site", () => {
-		// Login
-		cy.login();
-
 		// Visit the Stationsetup Page
 		cy.visit("/index.php/stationsetup");
 
@@ -85,9 +91,6 @@ describe("Station Setup", () => {
 	});
 
 	it("Should be possible to create a new station logbook", () => {
-		// Login
-		cy.login();
-
 		// Load variables
 		const env_stationsetup = Cypress.env('stationsetup');
 
@@ -114,9 +117,6 @@ describe("Station Setup", () => {
 	});
 
 	it("Should be possible to create a new station location", () => {
-		// Login
-		cy.login();
-
 		// Load variables
 		const env_stationsetup = Cypress.env('stationsetup');
 
@@ -137,10 +137,9 @@ describe("Station Setup", () => {
 
 		cy.get('select[id="dxcc_id"]')
 			.select(env_stationsetup.station_dxcc);
-		
+
 		cy.get('input[id="stationGridsquareInput"]')
 			.type(env_stationsetup.station_gridsquare);
-		
 
 		// and save it
 		cy.get('button[type="submit"]')
