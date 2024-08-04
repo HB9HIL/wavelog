@@ -6,15 +6,15 @@
 $http_scheme = is_https() ? "https" : "http";
 
 // Config Paths
-$db_config_path = '../application/config/';
+$db_config_path = str_replace('/install/includes/install_config', '', __DIR__ . '/application/config/');
 if (isset($_ENV['CI_ENV'])) {
-	$db_config_path = '../application/config/' . $_ENV['CI_ENV'] . '/';
+	$db_config_path = str_replace('/install/includes/install_config', '', __DIR__ . '/application/config/' . $_ENV['CI_ENV'] . '/');
 }
 $db_file_path = $db_config_path . "database.php";
 
 // Logfile Path
 global $logfile;
-$logfile = '../application/logs/installer_debug.log';
+$logfile = str_replace('/install/includes/install_config', '', __DIR__ . '/application/logs/installer_debug.log');
 
 // Wanted Pre-Check Parameters
 // PHP
