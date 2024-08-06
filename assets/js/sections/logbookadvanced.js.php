@@ -1,3 +1,4 @@
+<script>
 var callBookProcessingDialog = null;
 var inCallbookProcessing = false;
 var inCallbookItemProcessing = false;
@@ -1087,3 +1088,4 @@ function saveOptions() {
 		},
 	});
 }
+</script>

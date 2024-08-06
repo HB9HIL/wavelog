@@ -1,3 +1,4 @@
+<script>
 var clicklines = [];
 var map;
 var maidenhead;
@@ -711,3 +712,4 @@ $(document).ready(function() {
         setTimeout(set_advancedmap_height, 400);
     });
 });
+</script>

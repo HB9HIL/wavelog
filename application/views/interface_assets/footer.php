@@ -2734,6 +2734,11 @@ if (isset($scripts) && is_array($scripts)){
 		<?php
 	}
 }
+if (isset($scripts_php) && is_array($scripts_php)){
+	foreach($scripts_php as $script){
+		require_once($script);
+	}
+}
 ?>
 
   </body>

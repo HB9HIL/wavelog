@@ -1,3 +1,4 @@
+<script>
 function reassign(call, target_profile_id) {
 	let qsoids = [];
 	let elements = document.getElementsByName("cBox[]");
@@ -87,17 +88,18 @@ function update_version_check(local_branch) {
 		if (is_latest_version !== null && last_repo_commit != '') {
 			if (is_latest_version) {
 				$('#version_check_result').addClass('alert alert-success');
-				$('#version_check_result').text("Wavelog is up to date!");
+				$('#version_check_result').text("<?= __("Wavelog is up to date!"); ?>");
 			} else {
 				$('#version_check_result').addClass('alert alert-warning');
-				$('#version_check_result').text("There is a newer version available: " + last_repo_commit);
+				$('#version_check_result').text("<?= __("There is a newer version TEST available"); ?>: " + last_repo_commit);
 				$('#version_update_button').show();
 			}
 		} else {
 			$('#version_check_result').addClass('alert alert-warning');
-			$('#version_check_result').text("The Remote Repository doesn't know your branch.");
+			$('#version_check_result').text("<?= __("The Remote Repository doesn't know your branch."); ?>");
 		}
 
-		$('#last_version_check').text("Last version check: " + new Date(timestamp).toUTCString());
+		$('#last_version_check').text("<?= __("Last version check:"); ?> " + new Date(timestamp).toUTCString());
 	});
 }
+</script>

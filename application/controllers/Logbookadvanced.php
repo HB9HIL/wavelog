@@ -88,15 +88,19 @@ class Logbookadvanced extends CI_Controller {
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',
 			'assets/js/datetime-moment.js',
-			'assets/js/sections/logbookadvanced.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced.js")),
-			'assets/js/sections/logbookadvanced_edit.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_edit.js")),
-			'assets/js/sections/logbookadvanced_map.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/logbookadvanced_map.js")),
 			'assets/js/sections/cqmap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/cqmap_geojson.js")),
 			'assets/js/sections/itumap_geojson.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/itumap_geojson.js")),
 			'assets/js/leaflet/L.Terminator.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/leaflet/L.Terminator.js")),
 			'assets/js/leaflet/geocoding.js',
 			'assets/js/globe/globe.gl.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/globe/globe.gl.js")),
 			'assets/js/bootstrap-multiselect.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/bootstrap-multiselect.js")),
+		];
+		
+		$footerData['scripts_php'] = [
+			'assets/js/sections/logbookadvanced.js.php',
+			'assets/js/sections/logbookadvanced_edit.js.php',
+			'assets/js/sections/logbookadvanced_map.js.php',
+
 		];
 
 		$this->load->view('interface_assets/header', $data);

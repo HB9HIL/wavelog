@@ -24,7 +24,7 @@ class Debug extends CI_Controller
 		$this->load->model('cron_model');
 
 		$footerData = [];
-		$footerData['scripts'] = ['assets/js/sections/debug.js'];
+		$footerData['scripts_php'] = ['assets/js/sections/debug.js.php'];
 
 		$data['stations'] = $this->Stations->all();
 

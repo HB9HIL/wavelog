@@ -1,3 +1,4 @@
+<script>
 function editQsos() {
 	var elements = $('#qsoList tbody input:checked');
 	var nElements = elements.length;
@@ -291,3 +292,4 @@ function changeState(dxcc) {
 		}
 	});
 }
+</script>
