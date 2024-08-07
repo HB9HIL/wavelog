@@ -459,6 +459,8 @@ class User_Model extends CI_Model {
 			$qrg_unit = $this->session->userdata("qrgunit_$band") ?? ($this->user_options_model->get_options('frequency', array('option_name' => 'unit', 'option_key' => $band))->row()->option_value ?? '');
 			if ($qrg_unit !== '') {
 				$userdata['qrgunit_'.$band] = $qrg_unit;
+			} else {
+				$userdata['qrgunit_'.$band] = $this->frequency->defaultFrequencies[$band]['UNIT'];
 			}
 		}
 	
