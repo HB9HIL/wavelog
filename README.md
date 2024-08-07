@@ -3,7 +3,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/wavelog/wavelog)
 
 
-# Wavelog
+# Wavelog TESTING
 
 > Important: Only accepting PRs on the "dev" branch.
 
