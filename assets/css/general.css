@@ -9,6 +9,49 @@ body {
 	}
 }
 
+@media (max-width: 991px) {
+
+	.h-lg-25 {
+		height: 25% !important;
+	}
+
+	.h-lg-50 {
+		height: 50% !important;
+	}
+
+	.h-lg-75 {
+		height: 75% !important;
+	}
+
+	.h-lg-100 {
+		height: 100% !important;
+	}
+
+	.h-lg-auto {
+		height: auto !important;
+	}
+
+	.w-lg-25 {
+		width: 25% !important;
+	}
+
+	.w-lg-50 {
+		width: 50% !important;
+	}
+
+	.w-lg-75 {
+		width: 75% !important;
+	}
+
+	.w-lg-100 {
+		width: 100% !important;
+	}
+
+	.w-lg-auto {
+		width: auto !important;
+	}
+
+}
 /* ============  HEADER MENU ============ */
 /* Adapted from https://bootstrap-menu.com/detail-multilevel.html  */
 /* ============ desktop view ============ */
@@ -358,6 +401,16 @@ TD.lotw {
 
 .lotw-red {
 	color: #f00 !important;
+	font-size: 1.1em;
+}
+
+.lotw-grey {
+	color: #dddddd !important;
+	font-size: 1.1em;
+}
+
+.lotw-yellow {
+	color: #d39e00 !important;
 	font-size: 1.1em;
 }
 
@@ -989,4 +1042,32 @@ label {
 
 .blank-row {
 	height: 20px !important;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.tables-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Optional: add some space between tables */
+    justify-content: center;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+	max-width: 100%; /* Ensure the container doesn't exceed the viewport width */
+    padding: 10px; /* Optional: add some padding */
+    box-sizing: border-box;
+}
+
+.table-wrapper {
+    flex: 1 1 400px; /* Adjust the base width of tables */
+    box-sizing: border-box;
+}
+
+.multiselect-container.dropdown-menu {
+    --bs-dropdown-padding-y: 0;
+}
+
+#dxcc + .btn-group .multiselect-container .multiselect-option input[type="radio"] {
+    display: none;
 }

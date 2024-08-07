@@ -7,6 +7,17 @@
 
     var base_url = "<?php echo base_url(); ?>"; // Base URL
     var site_url = "<?php echo site_url(); ?>"; // Site URL
+	let measurement_base = 'K';
+
+	<?php
+	if ($this->session->userdata('user_measurement_base') == NULL) {
+		?>
+		measurement_base = '<?php echo $this->config->item('measurement_base'); ?>';
+	<?php }
+	else { ?>
+		measurement_base = '<?php echo $this->session->userdata('user_measurement_base'); ?>';
+	<?php }
+	?>
 
     var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
 
@@ -31,6 +42,7 @@
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
+    var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
 
 </script>
 
@@ -68,12 +80,39 @@
     });
 </script>
 
-<script>
+
+<!-- DATATABLES LANGUAGE -->
+<?php
+$local_code = $language['locale'];
+$lang_code = $language['code'];
+$file_path = base_url() . "assets/json/datatables_languages/" . $local_code . ".json";
+
+// Check if the file exists
+if ($lang_code != 'en' && !file_exists(FCPATH . "assets/json/datatables_languages/" . $local_code . ".json")) {
+    $datatables_language_url = '';
+} else {
+    $datatables_language_url = $file_path;
+}
+?>
+
+<script type="text/javascript">
     function getDataTablesLanguageUrl() {
-        datatables_language_url = "<?php echo base_url() ;?>assets/json/datatables_languages/" + "<?php echo $language['locale']; ?>" + ".json";
-        return datatables_language_url;
+        locale = "<?php echo $local_code ?>";
+        lang_code = "<?php echo $lang_code; ?>";
+        datatables_language_url = "<?php echo $datatables_language_url; ?>";
+
+        // if language is set to english we don't need to load any language files
+        if (lang_code != 'en') {
+            if (datatables_language_url !== '') {
+                return datatables_language_url;
+            } else {
+                console.error("Datatables language file does not exist for locale: " + locale);
+                return null;
+            }
+        }
     }
 </script>
+<!-- DATATABLES LANGUAGE END -->
 
 <script>
     // converts Hertz to user defined unit
@@ -182,7 +221,7 @@ if($this->session->userdata('user_id') != null) {
 <?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
 <script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
 <script>
-	<?php 
+	<?php
 	# Set some variables for better readability
     $op_call = $this->session->userdata('operator_callsign');
 	$account_call = $this->session->userdata('user_callsign');
@@ -190,14 +229,14 @@ if($this->session->userdata('user_id') != null) {
 
     // JS variable which is used in operator.js
     let sc_account_call = '<?php echo $account_call; ?>'
-    
-	<?php 
+
+	<?php
     # if the operator call and the account call is the same we show the dialog (except for admins!)
     if ($op_call == $account_call && $user_type != '99') { ?>
 
         // load the dialog with javascript
         displayOperatorDialog();
-    
+
     <?php } ?>
 </script>
 <?php } ?>
@@ -237,7 +276,7 @@ if($this->session->userdata('user_id') != null) {
     <script id="dxccmapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/dxccmap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
-<?php if ($this->uri->segment(1) == "statistics") { ?>
+<?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chart.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chartjs-plugin-piechart-outlabels.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/statistics.js"></script>
@@ -426,17 +465,17 @@ $(function () {
     $('#btn-save').on('click', function() {
         var resultquery = $('#builder').queryBuilder('getRules');
         if (!$.isEmptyObject(resultquery)) {
-            let message = 'Description: <input class="form-control input-group-sm getqueryname">'
+            let message = '<?= __("Description:"); ?> <input class="form-control input-group-sm getqueryname">'
 
             BootstrapDialog.confirm({
-                title: 'Query description',
+                title: '<?= __("Query description"); ?>',
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'description-dialog',
                 closable: true,
                 nl2br: false,
                 message: message,
-                btnCancelLabel: 'Cancel',
-                btnOKLabel: 'Save',
+                btnCancelLabel: lang_general_word_cancel,
+                btnOKLabel: lang_admin_save,
                 callback: function(result) {
                     if (result) {
                         $.post("<?php echo site_url('search/save_query'); ?>", {
@@ -445,16 +484,16 @@ $(function () {
                             })
                             .done(function(data) {
                                 $(".alert").remove();
-                                $(".card-body.main").append('<div class="alert alert-success">Your query has been saved!</div>');
+                                $(".card-body.main").append('<div class="alert alert-success"><?= __("Your query has been saved!"); ?></div>');
                                 if ($("#querydropdown option").length == 0) {
-                                    var dropdowninfo = ' <button class="btn btn-sm btn-primary" onclick="edit_stored_query_dialog()" id="btn-edit">Edit queries</button></p>' +
+                                    var dropdowninfo = ' <button class="btn btn-sm btn-primary" onclick="edit_stored_query_dialog()" id="btn-edit"><?= __("Edit queries"); ?></button></p>' +
                                     '<div class="mb-3 row querydropdownform">' +
-                                        '<label class="col-md-2 control-label" for="querydropdown">  Stored queries:</label>' +
+                                        '<label class="col-md-2 control-label" for="querydropdown">  <?= __("Stored queries:"); ?></label>' +
                                         '<div class="col-md-3">' +
                                             '<select id="querydropdown" name="querydropdown" class="form-select form-select-sm">' +
                                             '</select>' +
                                         '</div>' +
-                                        '<button class="btn btn-sm btn-primary ld-ext-right runbutton" onclick="run_query()">Run Query<div class="ld ld-ring ld-spin"></div></button>' +
+                                        '<button class="btn btn-sm btn-primary ld-ext-right runbutton" onclick="run_query()"><?= __("Run Query"); ?><div class="ld ld-ring ld-spin"></div></button>' +
                                     '</div>';
                                     $("#btn-save").after(dropdowninfo);
                                 }
@@ -466,12 +505,12 @@ $(function () {
 
         } else {
             BootstrapDialog.show({
-                title: 'Stored Queries',
+                title: '<?= __("Stored Queries"); ?>',
                 type: BootstrapDialog.TYPE_WARNING,
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'queries-dialog',
                 nl2br: false,
-                message: 'You need to make a query before you search!',
+                message: '<?= __("You need to make a query before you search!"); ?>',
                 buttons: [{
                     label: lang_admin_close,
                     action: function(dialogItself) {
@@ -492,7 +531,7 @@ $(function () {
             })
             .done(function(data) {
 
-                $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_stored_query(' + id + ')">Export to ADIF</button>');
+                $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_stored_query(' + id + ')"><?= __("Export to ADIF"); ?></button>');
                 $('.card-body.result').empty();
                 $(".search-results-box").show();
 
@@ -529,8 +568,8 @@ $(function () {
 
     function delete_stored_query(id) {
         BootstrapDialog.confirm({
-            title: 'DANGER',
-            message: 'Warning! Are you sure you want delete this stored query?',
+            title: '<?= __("DANGER"); ?>',
+            message: '<?= __("Warning! Are you sure you want delete this stored query?"); ?>',
             type: BootstrapDialog.TYPE_DANGER,
             closable: true,
             draggable: true,
@@ -544,7 +583,7 @@ $(function () {
                             'id': id
                         },
                         success: function(data) {
-                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The stored query has been deleted!</div>');
+                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("The stored query has been deleted!"); ?></div>');
                             $("#query_" + id).remove(); // removes query from table in dialog
                             $("#querydropdown option[value='" + id + "']").remove(); // removes query from dropdown
                             if ($("#querydropdown option").length == 0) {
@@ -553,7 +592,7 @@ $(function () {
                             };
                         },
                         error: function() {
-                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">The stored query could not be deleted. Please try again!</div>');
+                            $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("The stored query could not be deleted. Please try again!"); ?></div>');
                         },
                     });
                 }
@@ -564,12 +603,12 @@ $(function () {
     function edit_stored_query(id) {
         $('#description_' + id).attr('contenteditable', 'true');
         $('#description_' + id).focus();
-        $('#edit_' + id).html('<a class="btn btn-primary btn-sm" href="javascript:save_edited_query(' + id + ');">Save</a>'); // Change to save button
+        $('#edit_' + id).html('<a class="btn btn-primary btn-sm" href="javascript:save_edited_query(' + id + ');"><?= __("Save"); ?></a>'); // Change to save button
     }
 
     function save_edited_query(id) {
         $('#description_' + id).attr('contenteditable', 'false');
-        $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');">Edit</a>');
+        $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');"><?= __("Edit"); ?></a>');
         $.ajax({
             url: base_url + 'index.php/search/save_edited_query',
             type: 'post',
@@ -578,12 +617,12 @@ $(function () {
                 description: $('#description_' + id).html(),
             },
             success: function(html) {
-                $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');">Edit</a>'); // Change to edit button
-                $(".bootstrap-dialog-message").prepend('<div class="alert alert-success">The query description has been updated!</div>');
+                $('#edit_' + id).html('<a class="btn btn-outline-primary btn-sm" href="javascript:edit_stored_query(' + id + ');"><?= __("Edit"); ?></a>'); // Change to edit button
+                $(".bootstrap-dialog-message").prepend('<div class="alert alert-success"><?= __("The query description has been updated!"); ?></div>');
                 $("#querydropdown option[value='" + id + "']").text($('#description_' + id).html()); // Change text in dropdown
             },
             error: function() {
-                $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger">Something went wrong with the save. Please try again!</div>');
+                $(".bootstrap-dialog-message").prepend('<div class="alert alert-danger"><?= __("Something went wrong with the save. Please try again!"); ?></div>');
             },
         });
     }
@@ -595,7 +634,7 @@ $(function () {
             type: 'post',
             success: function(html) {
                 BootstrapDialog.show({
-                    title: 'Stored Queries',
+                    title: '<?= __("Stored Queries"); ?>',
                     size: BootstrapDialog.SIZE_WIDE,
                     cssClass: 'queries-dialog',
                     nl2br: false,
@@ -623,7 +662,7 @@ $(function () {
                     temp: "testvar"
                 })
                 .done(function(data) {
-                    $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();">Export to ADIF</button>');
+                    $('.exportbutton').html('<button class="btn btn-sm btn-primary" onclick="export_search_result();"><?= __("Export to ADIF"); ?></button>');
 
                     $('.card-body.result').empty();
                     $(".search-results-box").show();
@@ -659,12 +698,12 @@ $(function () {
                 });
         } else {
             BootstrapDialog.show({
-                title: 'Stored Queries',
+                title: '<?= __("Stored Queries"); ?>',
                 type: BootstrapDialog.TYPE_WARNING,
                 size: BootstrapDialog.SIZE_NORMAL,
                 cssClass: 'queries-dialog',
                 nl2br: false,
-                message: 'You need to make a query before you search!',
+                message: '<?= __("You need to make a query before you search!"); ?>',
                 buttons: [{
                     label: lang_admin_close,
                     action: function(dialogItself) {
@@ -718,6 +757,12 @@ $('#dxcc_id').ready(function() {
 
 $('#dxcc_id').on('change', function() {
     printWarning();
+	let dxccadif = $('#dxcc_id').val();
+	let dxccinfo = dxccarray.filter(function(dxcc) {
+		return dxcc.adif == dxccadif;
+	});
+	$("#stationCQZoneInput").val(dxccinfo[0].cq);
+	// $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
 });
 </script>
 
@@ -892,7 +937,7 @@ function findincorrectcqzones() {
 function searchButtonPress() {
     if (event) { event.preventDefault(); }
     if ($('#callsign').val()) {
-        let fixedcall = $('#callsign').val();
+        let fixedcall = $('#callsign').val().trim();
         $('#partial_view').load("logbook/search_result/" + fixedcall.replace('Ø', '0'), function() {
             $('[data-bs-toggle="tooltip"]').tooltip();
             $('.table-responsive .dropdown-toggle').off('mouseenter').on('mouseenter', function() {
@@ -1012,7 +1057,7 @@ $($('#callsign')).on('keypress',function(e) {
 
   <script type="text/javascript">
 
-    var manual = <?php echo $_GET['manual']; ?>;
+    var manual = <?php echo $manual_mode; ?>;
 
 <?php if ($this->session->userdata('user_qso_end_times')  == 1) { ?>
     $('#callsign').focusout(function() {
@@ -1202,7 +1247,7 @@ $($('#callsign')).on('keypress',function(e) {
 					    if (data.error == 'not_logged_in') {
 						    $(".radio_cat_state" ).remove();
 						    if($('.radio_login_error').length == 0) {
-							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> You\'re not logged it. Please <a href="<?php echo base_url();?>">login</a></div>');
+							    $('.qso_panel').prepend('<div class="alert alert-danger radio_login_error" role="alert"><i class="fas fa-broadcast-tower"></i> <?= sprintf(__("You're not logged it. Please <a href='%s'>login</a>"), base_url()); ?></div>');
 						    }
 					    }
 					    // Put future Errorhandling here
@@ -1329,7 +1374,15 @@ $(document).ready(function(){
 		$(".ld-ext-right").addClass("running");
 		$(".ld-ext-right").prop("disabled", true);
         $('#dxcc_update_status').show();
-        $.ajax({url:"update/dxcc"});
+        $.ajax({
+            url:"update/dxcc",
+            success: function(response) {
+                if (response == 'success') {
+                    $(".ld-ext-right").removeClass("running");
+                    $(".ld-ext-right").prop("disabled", false);
+                }
+            }
+        });
         setTimeout(update_stats,5000);
     });
     function update_stats(){
@@ -1473,7 +1526,7 @@ $(document).ready(function(){
 <?php if ($this->uri->segment(1) == "gridsquares" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">All</option>')
+  $('#gridsquare_bands').append('<option value="All"><?= __("All"); ?></option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -1612,7 +1665,7 @@ $(document).ready(function(){
 <?php if ($this->uri->segment(1) == "activated_grids" && $this->uri->segment(2) == "band") { ?>
 
   var bands_available = <?php echo $bands_available; ?>;
-  $('#gridsquare_bands').append('<option value="All">All</option>')
+  $('#gridsquare_bands').append('<option value="All"><?= __("All"); ?></option>')
   $.each(bands_available, function(key, value) {
      $('#gridsquare_bands')
          .append($("<option></option>")
@@ -1966,6 +2019,13 @@ $(document).ready(function(){
 
     <?php if ($this->uri->segment(1) == "timeline") { ?>
         <script>
+         $.fn.dataTable.ext.buttons.clear = {
+               className: 'buttons-clear',
+               action: function ( e, dt, node, config ) {
+                  dt.search('');
+                  dt.draw();
+               }
+            };
             $('.timelinetable').DataTable({
                 "pageLength": 25,
                 responsive: false,
@@ -1979,7 +2039,13 @@ $(document).ready(function(){
                 },
                 dom: 'Bfrtip',
                 buttons: [
-                    'csv'
+                    {
+                        extend: 'csv'
+                    },
+                    {
+                        extend: 'clear',
+                        text: lang_admin_clear
+                    }
                 ]
             });
 
@@ -2123,9 +2189,9 @@ function viewQsl(picture, callsign) {
                 textAndPic.append('<img class="img-fluid w-qsl" style="height:auto;width:auto;"src="'+base_url+webpath_qsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
-                title = 'QSL Card';
+                title = '<?= __("QSL Card"); ?>';
             } else {
-                title = 'QSL Card for ' + callsign.replace('0', '&Oslash;');
+                title = '<?= __("QSL Card for "); ?>' + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({
@@ -2144,8 +2210,8 @@ function viewQsl(picture, callsign) {
 <script>
 function deleteQsl(id) {
             BootstrapDialog.confirm({
-                title: 'DANGER',
-                message: 'Warning! Are you sure you want to delete this QSL card?'  ,
+                title: '<?= __("DANGER"); ?>',
+                message: '<?= __("Warning! Are you sure you want to delete this QSL card?"); ?>'  ,
                 type: BootstrapDialog.TYPE_DANGER,
                 closable: true,
                 draggable: true,
@@ -2185,9 +2251,9 @@ function viewEqsl(picture, callsign) {
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
             var title = '';
             if (callsign == null) {
-                title = 'eQSL Card';
+                title = '<?= __("eQSL Card"); ?>';
             } else {
-                title = 'eQSL Card for ' + callsign.replace('0', '&Oslash;');
+                title = '<?= __("eQSL Card for "); ?>' + callsign.replace('0', '&Oslash;');
             }
 
             BootstrapDialog.show({
@@ -2348,8 +2414,8 @@ function viewEqsl(picture, callsign) {
                 if (data.status.front.status == 'Success') {
                     if ($('.qsltable').length > 0) {
                         $('.qsltable tr:last').after('<tr><td style="text-align: center">'+data.status.front.filename+'</td>' +
-                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger">Delete</button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success">View</button></td>'+
+                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
@@ -2360,14 +2426,14 @@ function viewEqsl(picture, callsign) {
                         $("#qslupload").prepend('<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">'+
                             '<thead>'+
                                '<tr>'+
-                            '<th style="text-align: center">QSL image file</th>'+
+                            '<th style="text-align: center"><?= __("QSL image file"); ?></th>'+
                             '<th style="text-align: center"></th>'+
                             '<th style="text-align: center"></th>'+
                             '</tr>'+
                             '</thead><tbody>'+
                                 '<tr><td style="text-align: center">'+data.status.front.filename+'</td>' +
-                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger">Delete</button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success">View</button></td>'+
+                            '<td id="'+data.status.front.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.front.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.front.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
                             '</tr>'+
                         '</tbody></table>');
                         $('.qslcardtab').removeAttr('hidden');
@@ -2379,7 +2445,7 @@ function viewEqsl(picture, callsign) {
                     }
 
                 } else if (data.status.front.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">Front QSL Card:' +
+                    $("#qslupload").append('<div class="alert alert-danger"><?= __("Front QSL Card:"); ?> ' +
                     data.status.front.error +
                         '</div>');
                 }
@@ -2387,8 +2453,8 @@ function viewEqsl(picture, callsign) {
                     var qsoid = $("#qsoid").text();
                     if ($('.qsltable').length > 0) {
                         $('.qsltable tr:last').after('<tr><td style="text-align: center">'+data.status.back.filename+'</td>' +
-                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger">Delete</button></td>' +
-                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success">View</button></td>'+
+                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
+                            '<td style="text-align: center"><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
                             '</tr>');
                         var quantity = $(".carousel-indicators li").length;
                         $(".carousel-indicators").append('<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="'+quantity+'"></li>');
@@ -2399,14 +2465,14 @@ function viewEqsl(picture, callsign) {
                         $("#qslupload").prepend('<table style="width:100%" class="qsltable table table-sm table-bordered table-hover table-striped table-condensed">'+
                             '<thead>'+
                             '<tr>'+
-                            '<th style="text-align: center">QSL image file</th>'+
+                            '<th style="text-align: center"><?= __("QSL image file"); ?></th>'+
                             '<th style="text-align: center"></th>'+
                             '<th style="text-align: center"></th>'+
                             '</tr>'+
                             '</thead><tbody>'+
                             '<tr><td style="text-align: center">'+data.status.back.filename+'</td>' +
-                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger">Delete</button></td>' +
-                            '<td><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success">View</button></td>'+
+                            '<td id="'+data.status.back.insertid+'"style="text-align: center"><button onclick="deleteQsl('+data.status.back.insertid+');" class="btn btn-sm btn-danger"><?= __("Delete"); ?></button></td>' +
+                            '<td><button onclick="viewQsl(\'' + data.status.back.filename + '\')" class="btn btn-sm btn-success"><?= __("View"); ?></button></td>'+
                             '</tr>'+
                             '</tbody></table>');
                         $('.qslcardtab').removeAttr('hidden');
@@ -2417,7 +2483,7 @@ function viewEqsl(picture, callsign) {
                         $("#qslcardback").val(null);
                     }
                 } else if (data.status.back.status != '') {
-                    $("#qslupload").append('<div class="alert alert-danger">\nBack QSL Card: ' +
+                    $("#qslupload").append('<div class="alert alert-danger">\n<?= __("Back QSL Card:"); ?> ' +
                     data.status.back.error +
                         '</div>');
                 }
@@ -2428,7 +2494,7 @@ function viewEqsl(picture, callsign) {
 <script>
 
 	function addQsosToQsl(filename) {
-		var title = 'Add additional QSOs to a QSL Card';
+		var title = '<?= __("Add additional QSOs to a QSL Card"); ?>';
 
 		$.ajax({
 			url: base_url + 'index.php/qsl/loadSearchForm',
@@ -2453,7 +2519,7 @@ function viewEqsl(picture, callsign) {
 	}
 
 	function addQsoToQsl(qsoid, filename, id) {
-		var title = 'Add additional QSOs to a QSL Card';
+		var title = '<?= __("Add additional QSOs to a QSL Card"); ?>';
 
 		$.ajax({
 			url: base_url + 'index.php/qsl/addQsoToQsl',
@@ -2464,7 +2530,7 @@ function viewEqsl(picture, callsign) {
 					location.reload();
 				} else {
 					$(".alert").remove();
-					$('#searchresult').prepend('<div class="alert alert-danger">Something went wrong. Please try again!</div>');
+					$('#searchresult').prepend('<div class="alert alert-danger"><?= __("Something went wrong. Please try again!"); ?></div>');
 				}
 			}
 		});
@@ -2484,7 +2550,7 @@ function viewEqsl(picture, callsign) {
 </script>
 <?php if ($this->uri->segment(1) == "contesting" && ($this->uri->segment(2) != "add" && $this->uri->segment(2) != "edit")) { ?>
     <script>
-        var manual = <?php echo $_GET['manual']; ?>;
+        var manual = <?php echo $manual_mode; ?>;
     </script>
     <script src="<?php echo base_url() ;?>assets/js/sections/contesting.js?v2"></script>
 <?php } ?>

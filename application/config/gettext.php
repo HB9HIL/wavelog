@@ -50,9 +50,13 @@ $config['gettext_domain'] = NULL;
 |  Site languages
 | -------------------------------------------------------------------
 | A list of enabled languages. These are the language that will be
-| used on the site.
+| used on the site and in the installer. 
 |
-|  IMPORTANT: If you add new languages also add this at the end of application/views/debug/index.php
+| Checklist to add a new language:
+|	- Add the new language to this array
+|	- Add the language at the bottom of application/views/debug/index.php
+|	- Add the language at the array in install/includes/gettext/gettext_conf.php
+|	- Add the language at the bottom of install/index.php
 |
 */
 $config['languages'] = array(
@@ -166,6 +170,16 @@ $config['languages'] = array(
 		'direction' => 'ltr',
 		'code'      => 'pl',
 		'flag'      => 'pl',
+	),
+	'portuguese' => array(
+		'name'      => 'Português',
+		'name_en'   => 'Portuguese',
+		'folder'    => 'portuguese',
+		'locale'    => 'pt-PT',
+		'gettext'   => 'pt_PT',
+		'direction' => 'ltr',
+		'code'      => 'pt',
+		'flag'      => 'pt',
 	),
 	'russian' => array(
 		'name'      => 'Русский',

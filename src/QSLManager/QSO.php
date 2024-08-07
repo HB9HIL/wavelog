@@ -62,6 +62,7 @@ class QSO
 	private string $qsl;
 	private string $lotw;
 	private string $eqsl;
+	private string $clublog;
 	/** Lotw callsign info **/
 	private string $callsign;
 	private string $lastupload;
@@ -196,6 +197,7 @@ class QSO
 		$this->qsl = $this->getQslString($data, $custom_date_format);
 		$this->lotw = $this->getLotwString($data, $custom_date_format);
 		$this->eqsl = $this->getEqslString($data, $custom_date_format);
+		$this->clublog = $this->getClublogString($data, $custom_date_format);
 
 		$this->cqzone = ($data['COL_CQZ'] === null) ? '' : $this->geCqLink($data['COL_CQZ']);
 		$this->ituzone = $data['COL_ITUZ'] ?? '';
@@ -361,30 +363,50 @@ class QSO
 
 		$lotwstring = '<span ';
 
+		$timestamp = '';
+		if ($data['COL_LOTW_QSLSDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_LOTW_QSLSDATE']));
+		}
 		if ($data['COL_LOTW_QSL_SENT'] == "Y") {
-			$lotwstring .= "title=\"" . __("LoTW")." ".__("Sent");
-			if ($data['COL_LOTW_QSLSDATE'] != null) {
-				$timestamp = strtotime($data['COL_LOTW_QSLSDATE']);
-				$lotwstring .= " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
-			}
-			$lotwstring .= "\" data-bs-toggle=\"tooltip\"";
+			$lotwstring .= "title=\"" . __("Sent");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+		} elseif ($data['COL_LOTW_QSL_SENT'] == "I") {
+			$lotwstring .= "title=\"" . __("Invalid (Ignore)");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-grey\"";
+		} elseif ($data['COL_LOTW_QSL_SENT'] == "R") {
+			$lotwstring .= "title=\"" . __("Requested");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
+		} else {
+			$lotwstring .= "class=\"lotw-red\"";
 		}
 
-		$lotwstring .= ' class="lotw-' . (($data['COL_LOTW_QSL_SENT']=='Y') ? 'green' : 'red') . '">&#9650;</span>';
+		$lotwstring .= '>&#9650;</span>';
 		$lotwstring .= '<span ';
 
+		$timestamp = '';
+		if ($data['COL_LOTW_QSLRDATE'] != null) {
+			$timestamp = date($custom_date_format, strtotime($data['COL_LOTW_QSLRDATE']));
+		}
 		if ($data['COL_LOTW_QSL_RCVD'] == "Y") {
-			$lotwstring .= "title=\"". __("LoTW") ." ". __("Received");
-
-			if ($data['COL_LOTW_QSLRDATE'] != null) {
-				$timestamp = strtotime($data['COL_LOTW_QSLRDATE']);
-				$lotwstring .=  " ". ($timestamp != '' ? date($custom_date_format, $timestamp) : '');
-			}
-
-			$lotwstring .= "\" data-bs-toggle=\"tooltip\"";
+			$lotwstring .= "title=\"". __("Received");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-green\"";
+		} elseif ($data['COL_LOTW_QSL_RCVD'] == "I") {
+			$lotwstring .= "title=\"" . __("Invalid (Ignore)");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-grey\"";
+		} elseif ($data['COL_LOTW_QSL_RCVD'] == "R") {
+			$lotwstring .= "title=\"" . __("Requested");
+			$lotwstring .= $timestamp != '' ? " ".$timestamp : '';
+			$lotwstring .= "\" data-bs-toggle=\"tooltip\" class=\"lotw-yellow\"";
+		} else {
+			$lotwstring .= "class=\"lotw-red\"";
 		}
 
-		$lotwstring .= ' class="lotw-' . (($data['COL_LOTW_QSL_RCVD']=='Y') ? 'green':'red') . '">&#9660;</span>';
+		$lotwstring .= '>&#9660;</span>';
 
 		return $lotwstring;
 	}
@@ -392,6 +414,41 @@ class QSO
 	/**
 	 * @return string
 	 */
+	function getClublogString($data, $custom_date_format): string {
+		$CI =& get_instance();
+
+		$clublogstring = '<span ';
+
+		if ($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Sent");
+
+			if ($data['COL_CLUBLOG_QSO_UPLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_UPLOAD_DATE']);
+				$clublogstring .=  " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_UPLOAD_STATUS'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
+
+		if ($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS'] == "Y") {
+			$clublogstring .= "title=\"".__("Received");
+
+			if ($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE'] != null) {
+				$timestamp = strtotime($data['COL_CLUBLOG_QSO_DOWNLOAD_DATE']);
+				$clublogstring .= " ".($timestamp!=''?date($custom_date_format, $timestamp):'');
+			}
+			$clublogstring .= "\" data-bs-toggle=\"tooltip\"";
+		}
+
+		$clublogstring .= ' class="clublog-' . (($data['COL_CLUBLOG_QSO_DOWNLOAD_STATUS']=='Y') ? 'green':'red') . '">&#9660;</span>';
+
+		$clublogstring .= '</span>';
+
+		return $clublogstring;
+	}
+
 	function getEqslString($data, $custom_date_format): string
 	{
 		$CI =& get_instance();
@@ -399,7 +456,7 @@ class QSO
 		$eqslstring = '<span ';
 
 		if ($data['COL_EQSL_QSL_SENT'] == "Y") {
-			$eqslstring .= "title=\"".__("eQSL")." ".__("Sent");
+			$eqslstring .= "title=\"".__("Sent");
 
 			if ($data['COL_EQSL_QSLSDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLSDATE']);
@@ -412,7 +469,7 @@ class QSO
 		$eqslstring .= ' class="eqsl-' . (($data['COL_EQSL_QSL_SENT'] =='Y') ? 'green':'red') . '">&#9650;</span><span ';
 
 		if ($data['COL_EQSL_QSL_RCVD'] == "Y") {
-			$eqslstring .= "title=\"".__("eQSL")." ".__("Received");
+			$eqslstring .= "title=\"".__("Received");
 
 			if ($data['COL_EQSL_QSLRDATE'] != null) {
 				$timestamp = strtotime($data['COL_EQSL_QSLRDATE']);
@@ -755,6 +812,14 @@ class QSO
 	/**
 	 * @return string
 	 */
+	public function getclublog(): string
+	{
+		return $this->clublog;
+	}
+
+	/**
+	 * @return string
+	 */
 	public function geteqsl(): string
 	{
 		return $this->eqsl;
@@ -814,6 +879,7 @@ class QSO
 			'qsl' => $this->getqsl(),
 			'lotw' => $this->getlotw(),
 			'eqsl' => $this->geteqsl(),
+			'clublog' => $this->getclublog(),
 			'qslMessage' => $this->getQSLMsg(),
 			'name' => $this->getName(),
 			'dxcc' => $this->getDXCC(),
