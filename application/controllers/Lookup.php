@@ -65,9 +65,7 @@ class Lookup extends CI_Controller {
 
 	public function scp() {
 		session_write_close();
-		if($_POST['callsign']) {
-			$uppercase_callsign = strtoupper($_POST['callsign']);
-		}
+		$uppercase_callsign = strtoupper($this->input->post('callsign', TRUE) ?? '');
 
 		// SCP results from logbook
 		$this->load->model('logbook_model');
@@ -180,8 +178,8 @@ class Lookup extends CI_Controller {
     public function get_county() {
         $json = [];
 
-        if(!empty($this->input->get("query"))) {
-            $county = $this->input->get("state");
+        if(!empty($this->security->xss_clean($this->input->get("query")))) {
+            $county = $this->security->xss_clean($this->input->get("state"));
             $cleanedcounty = explode('(', $county);
             $cleanedcounty = trim($cleanedcounty[0]);
 

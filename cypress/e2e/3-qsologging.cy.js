@@ -81,7 +81,31 @@ describe("QSO Logging", () => {
 		cy.get("#mode")
 			.select("SSB");
 		cy.get('button[id="saveQso"]')
-			.wait(500)
+			.wait(300)
+			.click();
+
+		// Check if the QSO has been saved
+		cy.get('body')
+			.contains("QSO Added");
+	});
+
+	it("Log a second QSO to check if worked before", () => {
+		// Visit the QSO Live Logging Page
+		cy.visit("/index.php/qso?manual=0");
+
+		// Fill in the QSO data
+		cy.get("#callsign")
+			.type("DK0TU");
+		cy.get("body")
+			.click()
+			.contains("worked before")
+			.should("be.visible", { timeout: 1000 });
+		cy.get("#band")
+			.select("40m");
+		cy.get("#mode")
+			.select("AM");
+		cy.get('button[id="saveQso"]')
+			.wait(300)
 			.click();
 
 		// Check if the QSO has been saved
