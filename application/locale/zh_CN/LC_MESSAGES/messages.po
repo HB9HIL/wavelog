@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-08-13 19:24+0000\n"
-"PO-Revision-Date: 2024-08-12 15:29+0000\n"
+"POT-Creation-Date: 2024-08-14 10:34+0000\n"
+"PO-Revision-Date: 2024-08-14 08:35+0000\n"
 "Last-Translator: Karuru <karuru@aerodefense.co.uk>\n"
 "Language-Team: Chinese (Simplified) <https://translate.wavelog.org/projects/"
 "wavelog/main-translation/zh_Hans/>\n"
@@ -2131,31 +2131,31 @@ msgstr "HRDlog：无 QSO 可供上传，台站呼号为： "
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog：无台站配置信息。"
 
-#: application/models/Logbook_model.php:4129
+#: application/models/Logbook_model.php:4143
 msgid "QSO could not be matched"
 msgstr "QSO 无法匹配"
 
-#: application/models/Logbook_model.php:4135
+#: application/models/Logbook_model.php:4149
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "已经通过 LoTW/Clublog/eQSL/竞赛 确认"
 
-#: application/models/Logbook_model.php:4140
+#: application/models/Logbook_model.php:4154
 msgid "confirmed by award manager"
 msgstr "已经通过奖项管理员确认"
 
-#: application/models/Logbook_model.php:4143
+#: application/models/Logbook_model.php:4157
 msgid "confirmed by cross-check of DCL data"
 msgstr "已经通过 DCL 数据交叉检查确认"
 
-#: application/models/Logbook_model.php:4146
+#: application/models/Logbook_model.php:4160
 msgid "confirmation pending"
 msgstr "等待确认"
 
-#: application/models/Logbook_model.php:4149
+#: application/models/Logbook_model.php:4163
 msgid "unconfirmed"
 msgstr "未确认"
 
-#: application/models/Logbook_model.php:4152
+#: application/models/Logbook_model.php:4166
 msgid "unknown"
 msgstr "未知"
 
@@ -2371,7 +2371,7 @@ msgstr "显示"
 #: application/views/sattimers/index.php:38
 #: application/views/statistics/index.php:112
 msgid "Satellite"
-msgstr "卫星（Satellite）"
+msgstr "卫星"
 
 #: application/views/activated_gridmap/index.php:30
 #: application/views/awards/dxcc/index.php:147
@@ -5169,7 +5169,7 @@ msgstr "您没有日志本。单击%s执行此操作："
 #, php-format
 msgid "You have had %d QSO today"
 msgid_plural "You have had %d QSOs today"
-msgstr[0] "你今天有%d个QSO"
+msgstr[0] "你今天有 %d 个QSO"
 
 #: application/views/dashboard/index.php:97
 msgid "You have made no QSOs today; time to turn on the radio!"
