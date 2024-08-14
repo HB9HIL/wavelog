@@ -4,7 +4,8 @@
  *
  * An open source application development framework for PHP
  *
- * This content is released under the MIT License (MIT)
+ * This content is released under the MIT License (MIT) 
+ * BLAAA
  *
  * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
  *
