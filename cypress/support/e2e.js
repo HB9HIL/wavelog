@@ -20,8 +20,8 @@ Cypress.env('db', {
 Cypress.env('user', {
     firstname: "John",
     lastname: "Smith",
-    callsign: "HB9ABC",
-    city: "Zurich",
+    callsign: "4W7EST",
+    city: "Test City",
     userlocator: "JN47RI",
     dxcc: "switzerl",
     dxcc_selectname: "Switzerland - HB",
@@ -36,9 +36,9 @@ Cypress.env('stationsetup', {
     public_slug: "cypress",
     logbook_name: "Log 2",
     location_name: "Portable",
-    station_callsign: "HB9ABC/P",
+    station_callsign: "4W7EST/P",
     station_dxcc: "287",
-    station_gridsquare: "JN47RH"
+    station_gridsquare: "JN48RI"
 });
 
 
