@@ -736,8 +736,8 @@ function showActivatorsMap(call, count, grids) {
 
     var maidenhead = new L.maidenheadactivators(grid_four).addTo(map);
 
-    var osmUrl='<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
-    var osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osmUrl = '<?php echo $this->optionslib->get_option('option_map_tile_server');?>';
+    var osmAttrib = option_map_tile_server_copyright;
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});
 
     map.addLayer(osm);
@@ -776,24 +776,6 @@ function showActivatorsMap(call, count, grids) {
       });
     </script>
 <?php } ?>
-
-
-
-<?php if ($this->uri->segment(1) == "radio") { ?>
-<!-- If this is the admin/radio page run the JS -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        setInterval(function() {
-            // Get Mode
-            $.get('radio/status/', function(result) {
-                    //$('.status').append(result);
-                    $('.status').html(result);
-            });
-        }, 2000);
- });
-</script>
-<?php } ?>
-
 
 
 <script type="text/javascript">
