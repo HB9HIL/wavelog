@@ -487,7 +487,7 @@ $options = json_decode($options);
         <div class="row pt-2">
             <div class="mb-3 d-flex align-items-center col-lg d-flex flex-row justify-content-center align-items-center">
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".quickfilterbody"><?= __("Quickfilters"); ?></button>
-                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Filters"); ?></button>
+                <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".qslfilterbody"><?= __("QSL Fers"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".filterbody"><?= __("Filters"); ?></button>
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
                 <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
