@@ -42,108 +42,92 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		Justin Hyland www.justinhyland.com
  * @link        https://github.com/jhyland87/CI3_Plugin_System
  */
-class Plugins_model extends CI_Model
+abstract class CI3_plugin_system
 {
     /**
-     * Get Plugins
+     * @access protected    Must be protected so the trait can use it as well
+     * @var object          Object reference to the CI Instance
+     */
+    protected static $CI;
+
+    /**
+     * Constructor
      *
-     * Get all plugins, return an array of the plugins from the database, with the system_name
-     * as the keys
+     * Set the local static CI reference, get the name of the extending class for
+     * the plugin name, and set a reference handler to the plugin in the static
+     * $plugins variable in the Plugins library
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        self::$CI =& get_instance();
+
+        $plugin = strtolower(get_called_class());
+
+        Plugins_lib::$plugins[ $plugin ][ 'handler' ] = &$this;
+
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * Install Plugin
+     *
+     * Anything that needs to happen when this plugin gets installed
      *
      * @access public
      * @since   0.1.0
-     * @return array|bool
+     * @return bool    TRUE by default
      */
-    public function get_plugins()
+    public static function install($data = NULL)
     {
-        $query = $this->db->get('plugins');
-
-        if( ! $result = $query->result())
-        {
-            log_message('error','Error retrieving plugins from database');
-
-            return FALSE;
-        }
-
-        $return = array();
-
-        foreach($result as $r)
-        {
-            if( ! empty($r->data))
-            {
-                $r->data = unserialize($r->data);
-            }
-
-            $return[$r->system_name] = $r;
-        }
-
-        return $return;
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * Update Plugin Info
-     *
-     * Update the plugin information in the database. This is typically executed by the
-     * Plugins_lib::update_headers() which parses the comments of the plugin for the info
-     *
-     * @param   str     $plugin     The system_name of the plugin
-     * @param   array   $settings   New settings for plugin
-     * @access  public
-     * @since   0.1.0
-     * @return  bool
-     */
-    public function update_plugin_info($plugin, array $settings)
-    {
-        return $this->db->where('system_name', $plugin)->update('plugins', $settings);
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * Set Status
-     *
-     * Enable/Disable plugin
-     *
-     * @param   string  $plugin     Plugin system name
-     * @param   bool    $status     Status to set plugin as
-     * @access  public
-     * @since   0.1.0
-     * @return  bool
-     */
-    public function set_status($plugin, $status)
-    {
-        log_message("error","PLUGIN: $plugin; STATUS: $status");
-
-        if( ! $this->db
-            ->where('system_name', $plugin)
-            ->update('plugins', ['status' => $status]))
-        {
-            return FALSE;
-        }
-
         return TRUE;
     }
 
     // ------------------------------------------------------------------------
 
     /**
-     * Get Plugin
+     * Activate Plugin
      *
-     * Retrieve the data from the database for a single plugin by the plugin system name
+     * Anything that needs to happen when this plugin gets activate
      *
-     * @param  string   $plugin  Plugin System Name
      * @access public
      * @since   0.1.0
-     * @return bool|object
+     * @return bool    TRUE by default
      */
-    public function get_plugin($plugin)
+    public function activate($data = NULL)
     {
-        $query = $this->db->get_where('plugins', ['system_name' => $plugin]);
-
-        $result = $query->result();
-
-        return ( ! @empty($result[0]) ? $result[0] : FALSE);
+        return TRUE;
     }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * Deactivate Plugin
+     *
+     * Anything that needs to happen when this plugin gets deactivate
+     *
+     * @access public
+     * @since   0.1.0
+     * @return bool    TRUE by default
+     */
+    public function deactivate($data = NULL)
+    {
+        return TRUE;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * NOTE: Uncomment this abstract class to require controllers for plugins
+     * Plugin Controller
+     *
+     * Main controller for plugin, handles all the output, as well as input from the output
+     *
+     * @access  protected
+     * @since   0.1.0
+     * @return  string      HTML for form
+     */
+    //abstract public function controller($plugin_data = array());
 }

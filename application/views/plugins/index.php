@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <p class="card-text">
-                <?= __("You can install third-party plugins by adding the packages to the folder 'application/plugins'."); ?>
+                <?= sprintf(__("You can install third-party plugins by adding the packages to the folder %s."), "'application/" . basename($this->config->item('plugin_dir')) . "'"); ?>
             </p>
         </div>
     </div>

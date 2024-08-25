@@ -29,7 +29,7 @@
 
 /*
 | -------------------------------------------------------------------
-|  Auto-load Packges
+|  Auto-load Packges DEPRECATED
 | -------------------------------------------------------------------
 | Prototype:
 |
@@ -37,7 +37,7 @@
 |
 */
 
-$autoload['packages'] = array(APPPATH.'third_party');
+$autoload['packages'] = array();
 
 
 /*
@@ -52,7 +52,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'curl', 'OptionsLib', 'Paths', 'Frequency');
+$autoload['libraries'] = array('database', 'session', 'curl', 'OptionsLib', 'Paths', 'Frequency', 'Plugins_lib');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'curl', 'OptionsLib', 'Pat
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'security', 'language');
+$autoload['helper'] = array('url', 'security', 'language', 'plugin');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'security', 'language');
 |
 */
 
-$autoload['config'] = array('wavelog', 'bands', 'lotw', 'gettext');
+$autoload['config'] = array('wavelog', 'bands', 'lotw', 'gettext', 'plugins');
 
 /*
 | -------------------------------------------------------------------
@@ -92,7 +92,7 @@ $autoload['config'] = array('wavelog', 'bands', 'lotw', 'gettext');
 |
 */
 
-$autoload['model'] = array('user_options_model', 'logbooks_model', 'stations', 'oqrs_model');
+$autoload['model'] = array('user_options_model', 'logbooks_model', 'stations', 'oqrs_model', 'plugins_model');
 
 
 /* End of file autoload.php */

@@ -6,11 +6,6 @@
  *
  */
 
-
-// Uses 'phpass' from http://www.openwall.com/phpass/ to implement password hashing
-// TODO migration away from this?
-//require_once('application/third_party/PasswordHash.php');
-
 class User_Model extends CI_Model {
 
 	// FUNCTION: object get($username)
