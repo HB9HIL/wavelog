@@ -75,6 +75,7 @@ class cron extends CI_Controller {
 					$cronjob = $this->cronexpression;
 					$dt = new DateTime();
 					$isdue = $cronjob->isMatching($dt);
+					$set_status = true;
 
 					$next_run = $cronjob->getNext();
 					$next_run_date = date('Y-m-d H:i:s', $next_run);
@@ -88,7 +89,10 @@ class cron extends CI_Controller {
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . "\n";
 						echo "CRON: " . $cron->id . " -> RUNNING...\n";
 
-						$url = base_url() . $cron->function;
+						$url = local_url() . $cron->function;
+                        if (ENVIRONMENT == "development") {
+						    echo "CRON: " . $cron->id . " -> URL: " . $url . "\n";
+                        }
 
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL, $url);
@@ -112,6 +116,7 @@ class cron extends CI_Controller {
 						$isdue_result = 'false';
 						echo "CRON: " . $cron->id . " -> is due: " . $isdue_result . " -> Next Run: " . $next_run_date . "\n";
 						$status = 'healthy';
+						$set_status = false;
 					}
 				} else {
 					echo 'CRON: ' . $cron->id . " is disabled. skipped..\n";
@@ -120,7 +125,9 @@ class cron extends CI_Controller {
 					// Set the next_run timestamp to null to indicate in the view/database that this cron is disabled
 					$this->cron_model->set_next_run($cron->id, null);
 				}
-				$this->cron_model->set_status($cron->id, $status);
+				if ($set_status == true) {
+					$this->cron_model->set_status($cron->id, $status);
+				}
 				$this->cronexpression = null;
 			}
 
