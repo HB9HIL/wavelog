@@ -497,6 +497,7 @@ $options = json_decode($options);
                 <button type="button" class="btn btn-sm btn-primary me-1 lba_buttons" data-bs-toggle="collapse" data-bs-target=".actionbody"><?= __("Actions"); ?></button>
                 <label for="qsoResults" class="me-2"><?= __("# Results"); ?></label>
                 <select id="qsoResults" name="qsoresults" class="form-select form-select-sm me-2 w-auto">
+                    <option value="100">100</option>
                     <option value="250">250</option>
                     <option value="1000">1000</option>
                     <option value="2500">2500</option>
