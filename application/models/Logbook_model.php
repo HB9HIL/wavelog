@@ -187,30 +187,34 @@ class Logbook_model extends CI_Model {
     if ($this->input->post('copyexchangeto')) {
       switch($this->input->post('copyexchangeto')) {
         case 'dok':
-          $darc_dok = $srx_string;
+          $darc_dok = strtoupper($srx_string);
           break;
         case 'locator':
           // Matching 4-10 character-locator
           if ( preg_match('/^[A-R]{2}[0-9]{2}([A-X]{2}([0-9]{2}([A-X]{2})?)?)?$/',$srx_string) ) {
-            $qso_locator = $srx_string;
+            $qso_locator = strtoupper($srx_string);
           }
           break;
 		case 'qth':
 		  $qso_qth = ucfirst($srx_string);
 		  break;
         case 'name':
-          $qso_name = $srx_string;
+          $qso_name = ucfirst($srx_string);
           break;
         case 'age':
-          $qso_age = intval($srx_string);
+			if (is_numeric($srx_string))	{   // ADIF spec say this has to be a number https://adif.org/314/ADIF_314.htm#QSO_Field_AGE
+				$qso_age = intval($srx_string);
+			}
           break;
         case 'state':
           if ( preg_match('/^[A-Za-z]*$/', $srx_string) && $srx_string != "DX" ) {
-            $qso_state = $srx_string;
+            $qso_state = strtoupper($srx_string);
           }
           break;
         case 'power':
-          $qso_rx_power = intval($srx_string);
+		  if (is_numeric($srx_string))	{  		// ADIF spec say this has to be a number https://adif.org/314/ADIF_314.htm#QSO_Field_RX_PWR
+          	$qso_rx_power = intval($srx_string);
+		  }
           break;
         // Example for more sophisticated exchanges and their split into the db:
         //case 'name/power':
@@ -273,7 +277,7 @@ class Logbook_model extends CI_Model {
             'COL_QSL_SENT_VIA' => $this->input->post('qsl_sent_method'),
             'COL_QSL_RCVD_VIA' => $this->input->post('qsl_rcvd_method'),
             'COL_QSL_VIA' => $this->input->post('qsl_via'),
-            'COL_QSLMSG' => $this->session->userdata('operator_firstname') ?? '',
+            'COL_QSLMSG' => $this->input->post('qslmsg'),
             'COL_OPERATOR' => $this->input->post('operator_callsign') ?? $this->session->userdata('operator_callsign'),
             'COL_QTH' => $qso_qth,
             'COL_PROP_MODE' => $prop_mode,
@@ -1565,9 +1569,9 @@ class Logbook_model extends CI_Model {
 
     function call_us_county($callsign) {
         $this->db->select('COL_CALL, COL_CNTY');
-		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
         $this->db->where('COL_CALL', $callsign);
-		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
         $where = "COL_CNTY != \"\"";
 
         $this->db->where($where);
@@ -1582,7 +1586,51 @@ class Logbook_model extends CI_Model {
             $qsl_county = substr($qsl_county, (strpos($qsl_county, ',')+1));
             return $qsl_county;
         } else {
-			return NULL;
+            return NULL;
+        }
+    }
+
+    function call_ituzone($callsign) {
+        $this->db->select('COL_CALL, COL_ITUZ');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->where('COL_CALL', $callsign);
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $where = "COL_ITUZ != \"\"";
+
+        $this->db->where($where);
+
+        $this->db->order_by("COL_TIME_ON", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get($this->config->item('table_name'));
+        if ($query->num_rows() > 0)
+        {
+            $data = $query->row();
+            $qsl_ituz = $data->COL_ITUZ;
+            return $qsl_ituz;
+        } else {
+            return NULL;
+        }
+    }
+
+    function call_cqzone($callsign) {
+        $this->db->select('COL_CALL, COL_CQZ');
+        $this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+        $this->db->where('COL_CALL', $callsign);
+        $this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+        $where = "COL_CQZ != \"\"";
+
+        $this->db->where($where);
+
+        $this->db->order_by("COL_TIME_ON", "desc");
+        $this->db->limit(1);
+        $query = $this->db->get($this->config->item('table_name'));
+        if ($query->num_rows() > 0)
+        {
+            $data = $query->row();
+            $qsl_cqz = $data->COL_CQZ;
+            return $qsl_cqz;
+        } else {
+            return NULL;
         }
     }
 
@@ -3412,7 +3460,7 @@ function lotw_last_qsl_date($user_id) {
 	  return '1900-01-01 00:00:00.000';
   }
 
-    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $operatorFirstname = NULL) {
+    function import_bulk($records, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false) {
 		$this->load->model('user_model');
 		$custom_errors='';
 		$a_qsos=[];
@@ -3469,8 +3517,7 @@ function lotw_last_qsl_date($user_id) {
      * $markHrd - used in ADIF import to mark QSOs as exported to HRDLog.net Logbook when importing QSOs
      * $skipexport - used in ADIF import to skip the realtime upload to QRZ Logbook when importing QSOs from ADIF
      */
-
-  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null, $operatorFirstname = null) {
+  function import($record, $station_id = "0", $skipDuplicate = false, $markClublog = false, $markLotw = false, $dxccAdif = false, $markQrz = false, $markHrd = false,$skipexport = false, $operatorName = false, $apicall = false, $skipStationCheck = false, $batchmode = false, $station_id_ok = false, $station_profile = null) {
 	  // be sure that station belongs to user
 	  $this->load->model('stations');
 	  if ($station_id_ok == false) {
@@ -4024,7 +4071,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_QSL_SENT' => $input_qsl_sent,
 			  'COL_QSL_SENT_VIA' => $input_qsl_sent_via,
 			  'COL_QSL_VIA' => (!empty($record['qsl_via'])) ? $record['qsl_via'] : '',
-			  'COL_QSLMSG' => $operatorFirstname ?? '',
+			  'COL_QSLMSG' => (!empty($record['qslmsg'])) ? $record['qslmsg'] : '',
 			  'COL_QSLRDATE' => $input_qslrdate,
 			  'COL_QSLSDATE' => $input_qslsdate,
 			  'COL_QSO_COMPLETE' => (!empty($record['qso_complete'])) ? $record['qso_complete'] : '',
