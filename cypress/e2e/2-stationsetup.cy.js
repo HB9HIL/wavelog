@@ -119,6 +119,7 @@ describe("Station Setup", () => {
 	it("Should be possible to create a new station location", () => {
 		// Load variables
 		const env_stationsetup = Cypress.env('stationsetup');
+		const env_user = Cypress.env('user');
 
 		// Visit the Stationsetup Page
 		cy.visit("/index.php/stationsetup");
@@ -135,8 +136,15 @@ describe("Station Setup", () => {
 		cy.get('input[id="stationCallsignInput"]')
 			.type(env_stationsetup.station_callsign);
 
-		cy.get('select[id="dxcc_id"]')
-			.select(env_stationsetup.station_dxcc);
+		cy.get('button[data-bs-toggle="dropdown"]')
+			.click();
+		cy.get('input[class="multiselect-search form-control"]')
+			.type(env_user.dxcc)
+			.wait(300);
+		cy.get('button')
+			.filter(`[title*="${env_user.dxcc_selectname}"]`)
+			.should('be.visible')
+			.click();
 
 		cy.get('input[id="stationGridsquareInput"]')
 			.type(env_stationsetup.station_gridsquare);
