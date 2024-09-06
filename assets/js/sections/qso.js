@@ -18,6 +18,8 @@ $( document ).ready(function() {
 		enableFiltering: true,
 		enableFullValueFiltering: false,
 		enableCaseInsensitiveFiltering: true,
+		filterPlaceholder: lang_general_word_search,
+		widthSynchronizationMode: 'always',
 		numberDisplayed: 1,
 		inheritClass: true,
 		buttonWidth: '100%',
@@ -681,6 +683,8 @@ $( document ).ready(function() {
 		$("#transmit_power").val(activeStationTXPower);
 		$("#sat_name").val("");
 		$("#sat_mode").val("");
+		$("#ant_az").val("");
+		$("#ant_el").val("");
 	}
 
 	/* Function: reset_fields is used to reset the fields on the QSO page */
@@ -697,6 +701,7 @@ $( document ).ready(function() {
 		$('#hamqth_info').text("").hide();
 		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
+		$('#ituz').val("");
 		$('#name').val("");
 		$('#qth').val("");
 		$('#locator').val("");
@@ -892,8 +897,17 @@ $( document ).ready(function() {
 
 							$('#dxcc_id').val(result.dxcc.adif).multiselect('refresh');
 							await updateStateDropdown('#dxcc_id', '#stateInputLabel', '#location_us_county', '#stationCntyInputEdit');
-							$('#cqz').val(result.dxcc.cqz);
-							$('#ituz').val(result.dxcc.ituz);
+							if (result.callsign_cqz != '') {
+								$('#cqz').val(result.callsign_cqz);
+							} else {
+								$('#cqz').val(result.dxcc.cqz);
+							}
+
+							if (result.callsign_ituz != '') {
+								$('#ituz').val(result.callsign_ituz);
+							} else {
+								$('#ituz').val(result.dxcc.ituz);
+							}
 
 							var redIcon = L.icon({
 								iconUrl: icon_dot_url,
@@ -1312,6 +1326,7 @@ function highlight(term, base) {
 		$('#continent').val("");
 		$('#dxcc_id').val("").multiselect('refresh');
 		$('#cqz').val("");
+		$('#ituz').val("");
 		$('#name').val("");
 		$('#qth').val("");
 		$('#locator').val("");

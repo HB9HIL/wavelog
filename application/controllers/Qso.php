@@ -33,7 +33,7 @@ class QSO extends CI_Controller {
 		$data['notice'] = false;
 		$data['stations'] = $this->stations->all_of_user();
 		$data['radios'] = $this->cat->radios();
-        $data['radio_last_updated'] = $this->cat->last_updated()->row();
+		$data['radio_last_updated'] = $this->cat->last_updated()->row();
 		$data['query'] = $this->logbook_model->last_custom('5');
 		$data['dxcc'] = $this->logbook_model->fetchDxcc();
 		$data['iota'] = $this->logbook_model->fetchIota();
@@ -147,16 +147,16 @@ class QSO extends CI_Controller {
 			//change to create_qso function as add and create_qso duplicate functionality
 			$this->logbook_model->create_qso();
 
-			$retuner=[];
-                	$actstation=$this->stations->find_active() ?? '';
-                	$returner['activeStationId'] = $actstation;
-                	$profile_info = $this->stations->profile($actstation)->row();
-                	$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
-                	$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
+			$returner=[];
+			$actstation=$this->stations->find_active() ?? '';
+			$returner['activeStationId'] = $actstation;
+			$profile_info = $this->stations->profile($actstation)->row();
+			$returner['activeStationTXPower'] = xss_clean($profile_info->station_power);
+			$returner['activeStationOP'] = xss_clean($this->session->userdata('operator_callsign'));
 			$returner['message']='success';
 
 			// Get last 5 qsos
-            		echo json_encode($returner);
+			echo json_encode($returner);
 		}
 	}
 
@@ -205,13 +205,9 @@ class QSO extends CI_Controller {
         $this->load->model('winkey');
 
         // call settings from model winkey
-        $data['result'] = $this->winkey->settings($this->session->userdata('user_id'), $this->session->userdata('station_profile_id'));
+        $data['result'] = $this->winkey->settings($this->session->userdata('user_id'), $this->stations->find_active());
 
-        if ($data['result'] == false) {
-            $this->load->view('qso/components/winkeysettings', $data);
-        } else {
-            $this->load->view('qso/components/winkeysettings_results', $data);
-        }
+		$this->load->view('qso/components/winkeysettings', $data);
     }
 
     function cwmacrosave(){
@@ -233,7 +229,7 @@ class QSO extends CI_Controller {
 
         $data = [
             'user_id' => $this->session->userdata('user_id'),
-            'station_location_id' => $this->session->userdata('station_profile_id'),
+            'station_location_id' => $this->stations->find_active(),
 			'function1_name'  => $function1_name,
             'function1_macro' => $function1_macro,
             'function2_name'  => $function2_name,
@@ -262,7 +258,7 @@ class QSO extends CI_Controller {
         header('Content-Type: application/json; charset=utf-8');
 
         // Call settings_json from model winkey
-        echo $this->winkey->settings_json($this->session->userdata('user_id'), $this->session->userdata('station_profile_id'));
+        echo $this->winkey->settings_json($this->session->userdata('user_id'), $this->stations->find_active());
     }
 
     function edit_ajax() {
@@ -271,7 +267,7 @@ class QSO extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('modes');
         $this->load->model('bands');
-		$this->load->model('contesting_model');
+        $this->load->model('contesting_model');
 
         $this->load->library('form_validation');
 
@@ -340,20 +336,20 @@ class QSO extends CI_Controller {
     function qsl_sent_ajax() {
         $id = str_replace('"', "", $this->input->post("id", TRUE));
         $method = str_replace('"', "", $this->input->post("method", TRUE));
-        
+
         $this->load->model('logbook_model');
         $this->load->model('user_model');
-        
+
         header('Content-Type: application/json');
-        
+
         if(!$this->user_model->authorize(2)) {
             echo json_encode(array('message' => 'Error'));
-            
+
         }
         else {
             // Update Logbook to Mark Paper Card Sent
             $this->logbook_model->paperqsl_update_sent($id, $method);
-            
+
             echo json_encode(array('message' => 'OK'));
         }
     }
@@ -600,14 +596,15 @@ class QSO extends CI_Controller {
 
    // Return Previous QSOs Made in the active logbook
    public function component_past_contacts() {
-	   if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
-	   $this->load->model('logbook_model');
-	   session_write_close();
+      $this->load->library('Qra');
+      if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+      $this->load->model('logbook_model');
+      session_write_close();
 
-	   $data['query'] = $this->logbook_model->last_custom('5');
+      $data['query'] = $this->logbook_model->last_custom('5');
 
-	   // Load view
-	   $this->load->view('qso/components/previous_contacts', $data);
+      // Load view
+      $this->load->view('qso/components/previous_contacts', $data);
    }
 
    public function get_eqsl_default_qslmsg() {	// Get ONLY Default eQSL-Message with this function. This is ONLY for QSO relevant!

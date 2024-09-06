@@ -34,15 +34,20 @@
     var lang_general_word_warning = "<?= __("Warning"); ?>";
     var lang_general_word_cancel = "<?= __("Cancel"); ?>";
     var lang_general_word_ok = "<?= __("OK"); ?>";
+    var lang_general_word_search = "<?= __("Search"); ?>";
     var lang_qso_delete_warning = "<?= __("Warning! Are you sure you want delete QSO with "); ?>";
     var lang_general_word_colors = "<?= __("Colors"); ?>";
     var lang_general_word_confirmed = "<?= __("Confirmed"); ?>";
     var lang_general_word_worked_not_confirmed = "<?= __("Worked not confirmed"); ?>";
     var lang_general_word_not_worked = "<?= __("Not worked"); ?>";
+    var lang_general_gridsquares = "<?= __("Gridsquares"); ?>";
     var lang_admin_close = "<?= __("Close"); ?>";
     var lang_admin_save = "<?= __("Save"); ?>";
     var lang_admin_clear = "<?= __("Clear"); ?>";
     var lang_lotw_propmode_hint = "<?= __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); ?>";
+    var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
+    var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
+    var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
 
 </script>
 
@@ -688,7 +693,9 @@ $('#dxcc_id').on('change', function() {
             return dxcc.adif == dxccadif;
         });
         $("#stationCQZoneInput").val(dxccinfo[0].cq);
-        // $("#stationITUZoneInput").val(dxccinfo[0].itu); // Commented out, since we do not have itu data.
+        if (dxccadif == 0) {
+            $("#stationITUZoneInput").val(dxccinfo[0].itu); // Only set ITU zone to none if DXCC none is selected. We don't have ITU data for other DXCCs.
+        }
     <?php } ?>
 });
 </script>
@@ -720,9 +727,9 @@ function showActivatorsMap(call, count, grids) {
     let re = /,/g;
     grids = grids.replace(re, ', ');
 
-    var result = "Callsign: "+call.replace('0', '&Oslash;')+"<br />";
-    result +=    "Count: "+count+"<br/>";
-    result +=    "Grids: "+grids+"<br/><br />";
+    var result = '<?= __("Callsign: "); ?>'+call.replace('0', '&Oslash;')+"<br />";
+    result +=    '<?= __("Count: "); ?>'+count+"<br/>";
+    result +=    '<?= __("Grids: "); ?>'+grids+"<br/><br />";
 
     $(".activatorsmapResult").html(result);
 
@@ -1190,7 +1197,7 @@ $($('#callsign')).on('keypress',function(e) {
 						    }
 					    } else {
 						    $(".radio_timeout_error" ).remove();
-						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> '+(Math.round(parseInt(data.frequency)/100)/10000).toFixed(4)+' MHz';
+						    text = '<i class="fas fa-broadcast-tower"></i><span style="margin-left:10px;"></span><b>TX:</b> ' + data.frequency_formatted;
 						    if(data.mode != null) {
 							    text = text+'<span style="margin-left:10px"></span>'+data.mode;
 						    }
@@ -1205,7 +1212,7 @@ $($('#callsign')).on('keypress',function(e) {
 							    }
 						    }
 						    if(data.frequency_rx != null && data.frequency_rx != 0) {
-							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + (Math.round(parseInt(data.frequency_rx)/1000)/1000).toFixed(3) + ' MHz';
+							    ptext = ptext + '<span style="margin-left:10px"></span><b>RX:</b> ' + data.frequency_rx_formatted;
 						    }
 						    if( ptext != '') { text = text + '<span style="margin-left:10px"></span>(' + ptext + ')';}
 						    if (! $('#radio_cat_state').length) {
@@ -1281,15 +1288,17 @@ $($('#callsign')).on('keypress',function(e) {
 <script>
 $(document).ready(function(){
     $('#btn_update_dxcc').bind('click', function(){
-		$(".ld-ext-right").addClass("running");
-		$(".ld-ext-right").prop("disabled", true);
+		$("#btn_update_dxcc").addClass("running");
+		$("#btn_update_dxcc").prop("disabled", true);
         $('#dxcc_update_status').show();
         $.ajax({
             url:"update/dxcc",
             success: function(response) {
                 if (response == 'success') {
-                    $(".ld-ext-right").removeClass("running");
-                    $(".ld-ext-right").prop("disabled", false);
+                    setTimeout(function() {
+                        $("#btn_update_dxcc").removeClass("running");
+                        $("#btn_update_dxcc").prop("disabled", false);
+                    }, 2000);
                 }
             }
         });
@@ -1302,8 +1311,8 @@ $(document).ready(function(){
             if ((val  === null) || (val.substring(0,4) !="DONE")){
                 setTimeout(update_stats, 5000);
             } else {
-				$(".ld-ext-right").removeClass("running");
-				$(".ld-ext-right").prop("disabled", false);
+				$("#btn_update_dxcc").removeClass("running");
+				$("#btn_update_dxcc").prop("disabled", false);
 			}
         });
 
@@ -1964,7 +1973,7 @@ $(document).ready(function(){
                 $(".buttons-csv").css("color", "white");
             }
 
-            function displayTimelineContacts(querystring, band, mode, type) {
+            function displayTimelineContacts(querystring, band, mode, propmode, type) {
                 var baseURL= "<?php echo base_url();?>";
                 $.ajax({
                     url: baseURL + 'index.php/timeline/details',
@@ -1972,6 +1981,7 @@ $(document).ready(function(){
                     data: {'Querystring': querystring,
                         'Band': band,
                         'Mode': mode,
+                        'Propmode': propmode,
                         'Type': type
                     },
                     success: function(html) {
@@ -2572,6 +2582,47 @@ function viewEqsl(picture, callsign) {
 	</script>
 <?php } ?>
 
+<?php if ($this->uri->segment(1) == "distancerecords") { ?>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+        <script>
+            $.fn.dataTable.moment('<?php echo $usethisformat ?>');
+            $.fn.dataTable.ext.buttons.clear = {
+                className: 'buttons-clear',
+                action: function ( e, dt, node, config ) {
+                   dt.search('').draw();
+                }
+            };
+            $('#distrectable').DataTable({
+                "pageLength": 25,
+                responsive: false,
+                ordering: true,
+                "columnDefs": [ 2, 'num' ],
+                "scrollCollapse": true,
+                "paging":         false,
+                "scrollX": true,
+                "language": {
+                    url: getDataTablesLanguageUrl(),
+                },
+                "order": [ 2, 'desc' ],
+                dom: 'Bfrtip',
+                buttons: [
+                   {
+                      extend: 'csv'
+                   },
+                   {
+                      extend: 'clear',
+                      text: lang_admin_clear
+                   }
+                ]
+            });
+            // change color of csv-button if dark mode is chosen
+            if (isDarkModeTheme()) {
+               $('[class*="buttons"]').css("color", "white");
+            }
+        </script>
+<?php } ?>
+
 <?php if ($this->uri->segment(1) == "awards") {
 	// Get Date format
 	if($this->session->userdata('user_date_format')) {
@@ -2704,6 +2755,32 @@ function viewEqsl(picture, callsign) {
             // change color of csv-button if dark mode is chosen
             if (isDarkModeTheme()) {
                $('[class*="buttons"]').css("color", "white");
+            }
+        </script>
+    <?php } else if ($this->uri->segment(2) == "wac") { ?>
+        <script>
+            $('#band2').change(function(){
+				var band = $("#band2 option:selected").text();
+				if (band != "SAT") {
+					$("#sats").val('All');
+					$("#orbits").val('All');
+					$("#satrow").hide();
+					$("#orbitrow").hide();
+				} else {
+					$("#satrow").show();
+					$("#orbitrow").show();
+				}
+			});
+
+			$('#sats').change(function(){
+				var sat = $("#sats option:selected").text();
+				$("#band2").val('SAT');
+				if (sat != "All") {
+				}
+			});
+            // change color of csv-button if dark mode is chosen
+            if (isDarkModeTheme()) {
+            	$('[class*="buttons"]').css("color", "white");
             }
         </script>
     <?php } ?>
