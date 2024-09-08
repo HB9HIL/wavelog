@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-06 13:22+0000\n"
-"PO-Revision-Date: 2024-09-02 09:11+0000\n"
+"POT-Creation-Date: 2024-09-07 07:18+0000\n"
+"PO-Revision-Date: 2024-09-07 07:18+0000\n"
 "Last-Translator: Michael Skolsky <r1blh@yandex.ru>\n"
 "Language-Team: Russian <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -78,7 +78,23 @@ msgstr ""
 #: application/controllers/Reg1test.php:102
 #: application/controllers/Reg1test.php:130
 #: application/controllers/Reg1test.php:164
-#: application/controllers/Satellite.php:15
+#: application/controllers/Satellite.php:18
+#: application/controllers/Satellite.php:37
+#: application/controllers/Satellite.php:44
+#: application/controllers/Satellite.php:53
+#: application/controllers/Satellite.php:72
+#: application/controllers/Satellite.php:87
+#: application/controllers/Satellite.php:95
+#: application/controllers/Satellite.php:103
+#: application/controllers/Satellite.php:117
+#: application/controllers/Satellite.php:135
+#: application/controllers/Satellite.php:146
+#: application/controllers/Satellite.php:162
+#: application/controllers/Satellite.php:190
+#: application/controllers/Satellite.php:201
+#: application/controllers/Satellite.php:223
+#: application/controllers/Satellite.php:236
+#: application/controllers/Satellite.php:244
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -116,6 +132,7 @@ msgstr "Карта активированных квадратов"
 #: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:43
+#: application/views/visitor/layout/footer.php:22
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
 msgstr "Квадраты"
@@ -477,7 +494,7 @@ msgstr "Зоны ITU"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:284
@@ -661,7 +678,7 @@ msgstr ""
 #: application/controllers/Distancerecords.php:59
 #: application/views/interface_assets/header.php:146
 msgid "Satellite Distance Records"
-msgstr ""
+msgstr "Рекорды расстояний QSO через спутники"
 
 #: application/controllers/Distances.php:17
 #: application/views/distances/index.php:5
@@ -681,7 +698,7 @@ msgstr "и диапазоне"
 
 #: application/controllers/Distances.php:83
 msgid "and propagation"
-msgstr ""
+msgstr "и тип прохождения"
 
 #: application/controllers/Dxatlas.php:19
 #: application/views/interface_assets/header.php:394
@@ -1822,11 +1839,11 @@ msgstr "CAT-интерфейсные радиостанции не найден�
 msgid "Export EDI"
 msgstr "Экспорт EDI"
 
-#: application/controllers/Satellite.php:37
+#: application/controllers/Satellite.php:39
 msgid "Create Satellite"
 msgstr "Добавить спутник"
 
-#: application/controllers/Satellite.php:60
+#: application/controllers/Satellite.php:66
 msgid "Edit Satellite"
 msgstr "Редактировать спутник"
 
@@ -2620,7 +2637,7 @@ msgstr "Разница"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
-#: application/views/visitor/layout/footer.php:170
+#: application/views/visitor/layout/footer.php:171
 msgid "All"
 msgstr "Все"
 
@@ -4797,10 +4814,14 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Спонсируемый Международным союзом радиолюбителей (IARU), диплом Worked All "
+"Continents выдается за работу и подтверждение связи со всеми шестью "
+"континентами. Это Северная Америка, Южная Америка, Океания, Азия, Европа и "
+"Африка."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Дипломы - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -5799,7 +5820,7 @@ msgstr "ошибка"
 
 #: application/views/cron/index.php:74
 msgid "pending"
-msgstr ""
+msgstr "в ожидании"
 
 #: application/views/cron/index.php:79
 msgid "disabled"
@@ -6917,7 +6938,7 @@ msgstr "Не сработано"
 
 #: application/views/interface_assets/footer.php:46
 #: application/views/qso/index.php:623
-#: application/views/visitor/layout/footer.php:245
+#: application/views/visitor/layout/footer.php:246
 msgid "Clear"
 msgstr "Очистить"
 
@@ -6929,7 +6950,7 @@ msgstr "Режим распространения не поддерживает�
 
 #: application/views/interface_assets/footer.php:48
 msgid "No states for this DXCC available"
-msgstr "Для этого DXCC нет доступных штатов."
+msgstr "Для этого DXCC нет доступных штатов"
 
 #: application/views/interface_assets/footer.php:49
 msgid "Compute QRB and QTF"
@@ -8522,11 +8543,11 @@ msgstr ""
 
 #: application/views/options/appearance.php:107
 msgid "Public Login Button"
-msgstr ""
+msgstr "Кнопка общего входа"
 
 #: application/views/options/appearance.php:112
 msgid "This enables the button to login to Wavelog in the public view"
-msgstr ""
+msgstr "Включить кнопку для входа в Wavelog в публичном режиме"
 
 #: application/views/options/dxcluster.php:38
 msgid "Provider of DXClusterCache"
@@ -9260,19 +9281,19 @@ msgstr "Вид модуляции (для спутника)"
 
 #: application/views/qso/edit_ajax.php:268 application/views/qso/index.php:545
 msgid "Antenna Azimuth (°)"
-msgstr ""
+msgstr "Азимут антенны (°)"
 
 #: application/views/qso/edit_ajax.php:270 application/views/qso/index.php:547
 msgid "Antenna azimuth in decimal degrees."
-msgstr ""
+msgstr "Азимут антенны в десятичных градусах."
 
 #: application/views/qso/edit_ajax.php:274 application/views/qso/index.php:551
 msgid "Antenna Elevation (°)"
-msgstr ""
+msgstr "Возвышение антенны (°)"
 
 #: application/views/qso/edit_ajax.php:276 application/views/qso/index.php:553
 msgid "Antenna elevation in decimal degrees."
-msgstr ""
+msgstr "Возвышение антенны в десятичных градусах."
 
 #: application/views/qso/edit_ajax.php:383 application/views/qso/index.php:255
 #: application/views/qso/index.php:510 application/views/user/edit.php:599
@@ -9652,13 +9673,15 @@ msgstr "Высота антенны над землей."
 
 #: application/views/reg1test/index.php:134
 msgid "Band multiplicator"
-msgstr ""
+msgstr "Множитель диапазона"
 
 #: application/views/reg1test/index.php:136
 msgid ""
 "Band multiplicator. This is usually 1. Only change this if necessary "
 "according to the contest scoring rules."
 msgstr ""
+"Множитель диапазона. Обычно это 1. Изменяйте это только при необходимости в "
+"соответствии с правилами подсчета очков в контесте."
 
 #: application/views/reg1test/index.php:141
 msgid "Any other remarks."
@@ -11872,7 +11895,7 @@ msgstr "Отметить запрос QSL-карточки (напрямую)"
 msgid "eQSL picture"
 msgstr "изображение eQSL-карточки"
 
-#: application/views/visitor/layout/footer.php:241
+#: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
 

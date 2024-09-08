@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2024-09-06 13:22+0000\n"
-"PO-Revision-Date: 2024-09-05 17:33+0000\n"
+"POT-Creation-Date: 2024-09-07 07:18+0000\n"
+"PO-Revision-Date: 2024-09-06 14:36+0000\n"
 "Last-Translator: Fabian Berg <fabian.berg@hb9hil.org>\n"
 "Language-Team: German <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/de/>\n"
@@ -87,7 +87,23 @@ msgstr ""
 #: application/controllers/Reg1test.php:102
 #: application/controllers/Reg1test.php:130
 #: application/controllers/Reg1test.php:164
-#: application/controllers/Satellite.php:15
+#: application/controllers/Satellite.php:18
+#: application/controllers/Satellite.php:37
+#: application/controllers/Satellite.php:44
+#: application/controllers/Satellite.php:53
+#: application/controllers/Satellite.php:72
+#: application/controllers/Satellite.php:87
+#: application/controllers/Satellite.php:95
+#: application/controllers/Satellite.php:103
+#: application/controllers/Satellite.php:117
+#: application/controllers/Satellite.php:135
+#: application/controllers/Satellite.php:146
+#: application/controllers/Satellite.php:162
+#: application/controllers/Satellite.php:190
+#: application/controllers/Satellite.php:201
+#: application/controllers/Satellite.php:223
+#: application/controllers/Satellite.php:236
+#: application/controllers/Satellite.php:244
 #: application/controllers/Sattimers.php:9
 #: application/controllers/Search.php:13
 #: application/controllers/Simplefle.php:7
@@ -125,6 +141,7 @@ msgstr "Karte der aktivierten Planquadrate"
 #: application/controllers/Visitor.php:385
 #: application/views/activators/index.php:100
 #: application/views/interface_assets/footer.php:43
+#: application/views/visitor/layout/footer.php:22
 #: application/views/visitor/layout/header.php:68
 msgid "Gridsquares"
 msgstr "Planquadrate"
@@ -486,7 +503,7 @@ msgstr "ITU-Zonen"
 #: application/views/awards/wac/index.php:8
 #: application/views/interface_assets/header.php:174
 msgid "Worked All Continents (WAC)"
-msgstr ""
+msgstr "Worked All Continents (WAC)"
 
 #: application/controllers/Backup.php:15 application/views/backup/main.php:14
 #: application/views/interface_assets/header.php:284
@@ -1827,11 +1844,11 @@ msgstr "Keine CAT-verbundenen Funkgeräte gefunden."
 msgid "Export EDI"
 msgstr "Exportiere EDI"
 
-#: application/controllers/Satellite.php:37
+#: application/controllers/Satellite.php:39
 msgid "Create Satellite"
 msgstr "Erstelle Satelliten"
 
-#: application/controllers/Satellite.php:60
+#: application/controllers/Satellite.php:66
 msgid "Edit Satellite"
 msgstr "Bearbeite Satelliten"
 
@@ -2631,7 +2648,7 @@ msgstr "Differenz"
 #: application/views/timeplotter/index.php:27
 #: application/views/timeplotter/index.php:47
 #: application/views/user/edit.php:633
-#: application/views/visitor/layout/footer.php:170
+#: application/views/visitor/layout/footer.php:171
 msgid "All"
 msgstr "Alle"
 
@@ -4819,10 +4836,14 @@ msgid ""
 "Continents award is issued for working and confirming all six continents. "
 "These are North America, South America, Oceania, Asia, Europe and Africa."
 msgstr ""
+"Gesponsert von der International Amateur Radio Union (IARU), wird das Worked "
+"All Continents Diplom für das Arbeiten und Bestätigen aller sechs Kontinente "
+"vergeben. Diese sind Nordamerika, Südamerika, Ozeanien, Asien, Europa und "
+"Afrika."
 
 #: application/views/awards/wac/index.php:13
 msgid "Awards - Worked All Continents (WAC)"
-msgstr ""
+msgstr "Diplome - Worked All Continents (WAC)"
 
 #: application/views/awards/wac/index.php:151
 #: application/views/continents/index.php:62
@@ -6941,7 +6962,7 @@ msgstr "Nicht gearbeitet"
 
 #: application/views/interface_assets/footer.php:46
 #: application/views/qso/index.php:623
-#: application/views/visitor/layout/footer.php:245
+#: application/views/visitor/layout/footer.php:246
 msgid "Clear"
 msgstr "Zurücksetzen"
 
@@ -11936,7 +11957,7 @@ msgstr "Markiere QSL-Karte als angefragt (Direkt)"
 msgid "eQSL picture"
 msgstr "eQSL Bild"
 
-#: application/views/visitor/layout/footer.php:241
+#: application/views/visitor/layout/footer.php:242
 msgid "CSV"
 msgstr "CSV"
 
