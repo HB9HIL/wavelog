@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
 
 	<br>
     <?php if($this->session->flashdata('message')) { ?>
@@ -200,6 +200,67 @@
 					</div>
 				</div>
 			</div>
+			<?php if ($archived_stations->num_rows() > 0) { ?>
+			<div class="card">
+				<div class="card-header archivedlocationsheader" data-bs-toggle="collapse" data-bs-target=".archivedlocationsbody">
+					<?= __("Archived Station Locations"); ?>
+				</div>
+				<div class="card-body collapse archivedlocationsbody">
+					<p class="card-text">
+						<?= __("You have marked these locations as archived, so they are stored in this table."); ?><br>
+						<?= __("You can either restore or delete them."); ?>
+						<?= __("These station locations are still synchronized with third-party services like QRZ.com, LoTW, or other configured services."); ?>
+					</p>
+
+					<div class="table-responsive">
+						<table id="archived_locations_table" class="table-sm table table-hover table-striped table-condensed">
+							<thead>
+								<tr>
+									<th scope="col"><?= __("ID"); ?></th>
+									<th scope="col"><?= __("Profile Name"); ?></th>
+									<th scope="col"><?= __("Station Callsign"); ?></th>
+									<th scope="col"><?= __("Country"); ?></th>
+									<th scope="col"><?= __("Gridsquare"); ?></th>
+									<th></th>
+									<th scope="col"><?= __("Linked"); ?></th>
+									<th scope="col"><?= __("Copy"); ?></th>
+									<th scope="col"><?= __("Restore"); ?></th>
+									<th scope="col"><?= __("Empty Log"); ?></th>
+									<th scope="col"><?= __("Delete"); ?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($archived_stations->result() as $row) { ?>
+									<tr>
+										<td><span class="badge bg-info"><?php echo $row->station_id; ?></span></td>
+										<td><?php echo $row->station_profile_name; ?></td>
+										<td><?php echo $row->station_callsign; ?></td>
+										<td><?php echo $row->station_country == '' ? '- NONE -' : $row->station_country; if ($row->dxcc_end != NULL) { echo ' <span class="badge badge-danger">' . __("Deleted DXCC") . '</span>'; } ?></td>
+										<td><?php echo $row->station_gridsquare; ?></td>
+										<td><span class="badge bg-light"><?php echo $row->qso_total; ?> <?= __("QSO"); ?></span></td>
+										<td></td>
+										<td><a href="<?php echo site_url('station/copy') . "/" . $row->station_id; ?>" title=<?= __("Copy"); ?> class="btn btn-outline-primary btn-sm"><i class="fas fa-copy"></i></a></td>
+										<td><a href="<?php echo site_url('station/restore') . "/" . $row->station_id; ?>" title=<?= __("Restore"); ?> class="btn btn-success btn-sm"><i class="fas fa-box-open"></i></a></td>
+										<td>
+											<?php
+											$cnfmsg = __("Are you sure you want to delete all QSOs within this station profile?")
+											?>
+											<a href="<?php echo site_url('station/deletelog') . "/" . $row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Empty Log"); ?> onclick="return confirm('<?php echo $cnfmsg; ?>');"><i class="fas fa-trash-alt"></i></a>
+										</td>
+										<td>
+											<?php if ($row->station_active != 1) {
+												$cnfmsg = sprintf(__("Are you sure you want delete station profile '%s'? This will delete all QSOs within this station profile."), $row->station_profile_name); ?>
+											<a href="<?php echo site_url('station/delete') . "/" . $row->station_id; ?>" class="btn btn-danger btn-sm" title=<?= __("Delete"); ?> onclick="return confirm('<?= $cnfmsg ?>');"><i class="fas fa-trash-alt"></i></a>
+										<?php } ?>
+										</td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

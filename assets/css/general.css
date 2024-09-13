@@ -926,6 +926,28 @@ label {
 	content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
+.archivedlocationsheader:after {
+	content: "\02795"; /* Unicode character for "plus" sign (+) */
+	float: right;
+	margin-left: 5px;
+	color: #000000;
+	background-image: linear-gradient(
+		to right,
+		white 0,
+		white 12ch,
+		black 12ch,
+		black 100%
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;
+}
+
+.archivedlocationsheaderopened:after {
+	content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
 .coordinates {
     position: absolute;
     bottom: 0;
@@ -972,6 +994,11 @@ label {
 }
 
 #station_logbooks_table tbody td, #station_locations_table tbody td {
+	text-align: center; 
+	vertical-align: middle;
+}
+
+#archived_locations_table tbody td, #archived_locations_table tbody td {
 	text-align: center; 
 	vertical-align: middle;
 }

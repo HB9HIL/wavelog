@@ -84,6 +84,17 @@ $(document).ready(function () {
 			url: getDataTablesLanguageUrl(),
 		},
 	});
+
+	$(document).on('click', '.archivedlocationsheader', function () {
+		$('.archivedlocationsheader').toggleClass('archivedlocationsheaderopened');
+	});
+
+	$("#archived_locations_table").DataTable({
+		stateSave: true,
+		language: {
+			url: getDataTablesLanguageUrl(),
+		},
+	});
 });
 
 	async function do_ajax(ajax_uri, ajax_field, succ_callback, event_target) {
@@ -419,6 +430,25 @@ function reloadStations() {
 			});
 		},
 	});
+	$.ajax({
+		url: base_url + 'index.php/stationsetup/fetchArchivedLocations',
+		type: 'post',
+		dataType: 'json',
+		success: function (data) {
+			loadArchivedLocationTable(data);
+		},
+		error: function (data) {
+			BootstrapDialog.alert({
+				title: 'ERROR',
+				message: 'An error ocurred while making the request',
+				type: BootstrapDialog.TYPE_DANGER,
+				closable: false,
+				draggable: false,
+				callback: function (result) {
+				}
+			});
+		},
+	});
 	return false;
 }
 
@@ -583,6 +613,60 @@ function loadLocationTable(rows) {
 		if (locations.station_favorite != ''){
 			data.push(locations.station_favorite);
 		}
+		data.push(locations.station_emptylog);
+		data.push(locations.station_delete);
+
+		let createdRow = table.row.add(data).index();
+	}
+	table.draw();
+	$('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+function loadArchivedLocationTable(rows) {
+	var uninitialized = $('#archived_locations_table').filter(function() {
+		return !$.fn.DataTable.fnIsDataTable(this);
+	});
+
+	uninitialized.each(function() {
+		$(this).DataTable({
+			searching: false,
+			responsive: false,
+			ordering: true,
+			"scrollY": window.innerHeight - $('#searchForm').innerHeight() - 250,
+			"scrollCollapse": true,
+			"paging":         false,
+			"scrollX": true,
+			"language": {
+				url: getDataTablesLanguageUrl(),
+			},
+			'columnDefs': [
+				{ 'targets':0,
+				  'createdCell':  function (td, cellData, rowData, row, col) {
+				  			(td).attr('data-order', 1);	// not sure how to add ID dynamic here
+						  }
+				}
+			]
+		});
+	});
+
+	var table = $('#archived_locations_table').DataTable();
+
+	table.clear();
+
+	for (i = 0; i < rows.length; i++) {
+		let locations = rows[i];
+
+		var data = [];
+
+		data.push(locations.station_id);
+		data.push(locations.station_name);
+		data.push(locations.station_callsign);
+		data.push(locations.station_country);
+		data.push(locations.station_gridsquare);
+		data.push(locations.station_badge);
+		data.push(locations.station_linked);
+		data.push(locations.station_copylog);
+		data.push(locations.station_restore);
 		data.push(locations.station_emptylog);
 		data.push(locations.station_delete);
 

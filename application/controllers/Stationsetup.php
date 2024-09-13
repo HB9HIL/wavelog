@@ -23,6 +23,7 @@ class Stationsetup extends CI_Controller {
 		$data['my_logbooks'] = $this->logbooks_model->show_all();
 
 		$data['stations'] = $this->stations->all_with_count();
+		$data['archived_stations'] = $this->stations->all_archived();
 		$data['current_active'] = $this->stations->find_active();
 		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
 
@@ -39,7 +40,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function DeleteStation_json() {
-		$id2del=xss_clean($this->input->post('id2del',true));
+		$id2del=$this->input->post('id2del',true);
 		if ($id2del ?? '' != '') {
 			$this->load->model('stations');
 			if ($this->stations->check_station_is_accessible($id2del)) {
@@ -57,7 +58,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function EmptyStation_json() {
-		$id2empty=xss_clean($this->input->post('id2Empty',true));
+		$id2empty=$this->input->post('id2Empty',true);
 		if ($id2empty ?? '' != '') {
 			$this->load->model('stations');
 			if ($this->stations->check_station_is_accessible($id2empty)) {
@@ -75,7 +76,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function setActiveStation_json() {
-		$id2act=xss_clean($this->input->post('id2setActive',true));
+		$id2act=$this->input->post('id2setActive',true);
 		if ($id2act ?? '' != '') {
 			$this->load->model('stations');
 			$current=$this->stations->find_active();
@@ -95,7 +96,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function setFavorite_json() {
-		$id2fav = xss_clean($this->input->post('id2Favorite', true));
+		$id2fav = $this->input->post('id2Favorite', true);
 		if ($id2fav ?? '' != '') {
 			$this->load->model('stations');
 			$this->stations->edit_favourite($id2fav);
@@ -108,7 +109,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function setActiveLogbook_json() {
-		$id2act=xss_clean($this->input->post('id2setActive',true));
+		$id2act=$this->input->post('id2setActive',true);
 		if ($id2act ?? '' != '') {
 			$this->load->model('logbooks_model');
 			$this->logbooks_model->set_logbook_active($id2act);
@@ -121,7 +122,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function deleteLogbook_json() {
-		$id2del=xss_clean($this->input->post('id2delete',true));
+		$id2del=$this->input->post('id2delete',true);
 		if ($id2del ?? '' != '') {
 			$this->load->model('logbooks_model');
 			$this->logbooks_model->delete($id2del);
@@ -144,7 +145,7 @@ class Stationsetup extends CI_Controller {
 			echo json_encode($data);
 		} else {
 			$this->load->model('logbooks_model');
-			$newId=$this->logbooks_model->add(xss_clean($this->input->post('stationLogbook_Name', true)));
+			$newId=$this->logbooks_model->add($this->input->post('stationLogbook_Name', true));
 			if ($newId > 0) {
 				$data['success']=1;
 			} else {
@@ -162,7 +163,7 @@ class Stationsetup extends CI_Controller {
 
 	public function editContainerName() {
 		$this->load->model('stationsetup_model');
-		$data['container'] = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$data['container'] = $this->stationsetup_model->getContainer($this->input->post('id', true))->row();
 		$data['page_title'] = __("Edit container name");
 		$this->load->view('stationsetup/edit', $data);
 	}
@@ -175,7 +176,7 @@ class Stationsetup extends CI_Controller {
 	public function editLinkedLocations() {
 		$this->load->model('logbooks_model');
 		$data['station_locations_list'] = $this->stations->all_of_user();
-		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$station_logbook_details_query = $this->logbooks_model->logbook($this->input->post('id', true));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_linked'] = $this->logbooks_model->list_logbooks_linked($this->input->post('id', true));
 		$data['page_title'] = __("Edit linked locations");
@@ -184,7 +185,7 @@ class Stationsetup extends CI_Controller {
 
 	public function editVisitorLink() {
 		$this->load->model('logbooks_model');
-		$station_logbook_details_query = $this->logbooks_model->logbook(xss_clean($this->input->post('id', true)));
+		$station_logbook_details_query = $this->logbooks_model->logbook($this->input->post('id', true));
 		$data['station_logbook_details'] = $station_logbook_details_query->row();
 		$data['station_locations_list'] = $this->stations->all_of_user();
 		$data['page_title'] = __("Edit visitor site");
@@ -192,8 +193,8 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function saveVisitorLink() {
-		$name = xss_clean($this->input->post('name', true));
-		$id = xss_clean($this->input->post('id', true));
+		$name = $this->input->post('name', true);
+		$id = $this->input->post('id', true);
 
 		$this->load->model('stationsetup_model');
 		$result = $this->stationsetup_model->is_public_slug_available($name);
@@ -318,6 +319,32 @@ class Stationsetup extends CI_Controller {
 		echo json_encode($hres);
 	}
 
+	public function fetchArchivedLocations() {
+		$this->load->model('stations');
+		$this->load->model('Logbook_model');
+
+		$result = $this->stations->all_archived()->result();
+		$data['is_there_qsos_with_no_station_id'] = $this->Logbook_model->check_for_station_id();
+
+		$hres=[];
+		foreach ($result as $entry) {
+			$single=(Object)[];
+			$single->station_id = $this->stationid2html($entry->station_id);
+			$single->station_name = $entry->station_profile_name;
+			$single->station_callsign = $entry->station_callsign;
+			$single->station_country = $this->stationcountry2html($entry->station_country, $entry->dxcc_end);
+			$single->station_gridsquare = $entry->station_gridsquare;
+			$single->station_badge = $this->stationqso2html($entry->qso_total);
+			$single->station_emptylog = $this->stationemptylog2html($entry->station_id);
+			$single->station_copylog = $this->stationcopy2html($entry->station_id);
+			$single->station_restore = $this->stationrestore2html($entry->station_id);
+			$single->station_delete = $this->stationdelete2html($entry->station_id, $entry->station_profile_name, $entry->station_active);
+			$single->station_linked = $this->stationlinked2html($entry->linked);
+			array_push($hres,$single);
+		}
+		echo json_encode($hres);
+	}
+
 	private function stationlinked2html($linked) {
 		if ($linked == 1) {
 			return '<i class="fa fa-check text-success" aria-hidden="true"></i>';
@@ -355,6 +382,15 @@ class Stationsetup extends CI_Controller {
 		return $returntext;
 	}
 
+	private function stationqso2html($qso_total) {
+		$returntext ='<span class="badge bg-dark">' . $qso_total .' '. __("QSO") . '</span>';
+		return $returntext;
+	}
+
+	private function stationrestore2html($id) {
+		return '<a href="' . site_url('stationsetup/restore')."/" . $id . '" title="' . __("Restore") . '" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i></a>';
+	}
+
 	private function stationedit2html($id) {
 		return '<a href="' . site_url('station/edit')."/" . $id . '" title="' . __("Edit") . '" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit"></i></a>';
 	}
@@ -385,7 +421,7 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function remove_publicslug() {
-		$id = xss_clean($this->input->post('id',true));
+		$id = $this->input->post('id',true);
 		if ($id ?? '' != '') {
 				$this->load->model('stationsetup_model');
 				$this->stationsetup_model->remove_public_slug($id);
@@ -398,8 +434,8 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function togglePublicSearch() {
-		$id = xss_clean($this->input->post('id',true));
-		$publicSearch = xss_clean($this->input->post('checked',true));
+		$id = $this->input->post('id',true);
+		$publicSearch = $this->input->post('checked',true);
 		if ($id ?? '' != '') {
 				$this->load->model('stationsetup_model');
 				$this->stationsetup_model->togglePublicSearch($id, $publicSearch);
@@ -412,8 +448,8 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function unLinkLocations() {
-		$containerid = xss_clean($this->input->post('containerid',true));
-		$locationid = xss_clean($this->input->post('locationid',true));
+		$containerid = $this->input->post('containerid',true);
+		$locationid = $this->input->post('locationid',true);
 		$this->load->model('stationsetup_model');
 		$this->stationsetup_model->unLinkLocations($containerid, $locationid);
 		$data['success']=1;
@@ -421,8 +457,8 @@ class Stationsetup extends CI_Controller {
 	}
 
 	public function linkLocations() {
-		$containerid = xss_clean($this->input->post('containerid',true));
-		$locationid = xss_clean($this->input->post('locationid',true));
+		$containerid = $this->input->post('containerid',true);
+		$locationid = $this->input->post('locationid',true);
 
 		$this->load->model('stationsetup_model');
 
@@ -445,9 +481,9 @@ class Stationsetup extends CI_Controller {
 
 		$data['bands'] = $this->bands->get_user_bands();
 
-		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$container = $this->stationsetup_model->getContainer($this->input->post('id', true))->row();
 		$slug = $container->public_slug;
-		$data['logbookid'] = xss_clean($this->input->post('id', true));
+		$data['logbookid'] = $this->input->post('id', true);
 		$data['slug'] = $slug;
 
 		$exportmapoptions['gridsquare_layer'] = $this->user_options_model->get_options('ExportMapOptions',array('option_name'=>'gridsquare_layer','option_key'=>$slug))->row();
@@ -465,16 +501,44 @@ class Stationsetup extends CI_Controller {
 
 	public function saveExportmapOptions() {
 		$this->load->model('stationsetup_model');
-		$container = $this->stationsetup_model->getContainer(xss_clean($this->input->post('id', true)))->row();
+		$container = $this->stationsetup_model->getContainer($this->input->post('id', true))->row();
 		$slug = $container->public_slug;
 
 		$this->load->model('user_options_model');
 
-		$this->user_options_model->set_option('ExportMapOptions', 'gridsquare_layer',  array($slug => xss_clean($this->input->post('gridsquare_layer'))));
-		$this->user_options_model->set_option('ExportMapOptions', 'path_lines',  array($slug => xss_clean($this->input->post('path_lines'))));
-		$this->user_options_model->set_option('ExportMapOptions', 'cqzone_layer',  array($slug => xss_clean($this->input->post('cqzone_layer'))));
-		$this->user_options_model->set_option('ExportMapOptions', 'nightshadow_layer',  array($slug => xss_clean($this->input->post('nightshadow_layer'))));
-		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => xss_clean($this->input->post('qsocount'))));
-		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => xss_clean($this->input->post('band'))));
+		$this->user_options_model->set_option('ExportMapOptions', 'gridsquare_layer',  array($slug => $this->input->post('gridsquare_layer', TRUE)));
+		$this->user_options_model->set_option('ExportMapOptions', 'path_lines',  array($slug => $this->input->post('path_lines', TRUE)));
+		$this->user_options_model->set_option('ExportMapOptions', 'cqzone_layer',  array($slug => $this->input->post('cqzone_layer', TRUE)));
+		$this->user_options_model->set_option('ExportMapOptions', 'nightshadow_layer',  array($slug => $this->input->post('nightshadow_layer', TRUE)));
+		$this->user_options_model->set_option('ExportMapOptions', 'qsocount',  array($slug => $this->input->post('qsocount', TRUE)));
+		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => $this->input->post('band', TRUE)));
+	}
+
+	public function archivStation() {
+		$id = $this->input->post('id', TRUE);
+		if ($id ?? '' != '') {
+			$this->load->model('stations');
+			$this->stations->archive($id);
+			$data['success'] = 1;
+			log_message('info', 'Station archived: ' . $id);
+		} else {
+			$data['success'] = 0;
+			log_message('error', 'Error archiving station. No ID provided.');
+		}
+		echo json_encode($data);
+	}
+
+	public function restoreStation() {
+		$id = $this->input->post('id', TRUE);
+		if ($id ?? '' != '') {
+			$this->load->model('stations');
+			$this->stations->restore($id);
+			$data['success'] = 1;
+			log_message('info', 'Station restored: ' . $id);
+		} else {
+			$data['success'] = 0;
+			log_message('error', 'Error restoring station. No ID provided.');
+		}
+		echo json_encode($data);
 	}
 }

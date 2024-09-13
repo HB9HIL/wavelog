@@ -11,7 +11,21 @@ class Stations extends CI_Model {
         $this->db->join($this->config->item('table_name'),'station_profile.station_id = '.$this->config->item('table_name').'.station_id','left');
         $this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
 		$this->db->group_by('station_profile.station_id');
+		$this->db->where('station_profile.archived', NULL);
 		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->or_where('station_profile.user_id =', NULL);
+
+		return $this->db->get();
+	}
+
+	function all_archived() {
+		$this->db->select('station_profile.*, dxcc_entities.name as station_country, dxcc_entities.end as dxcc_end, count('.$this->config->item('table_name').'.station_id) as qso_total, exists(select 1 from station_logbooks_relationship where station_location_id = station_profile.station_id and station_logbook_id = '.($this->session->userdata('active_station_logbook') ?? 0).') as linked');
+        $this->db->from('station_profile');
+        $this->db->join($this->config->item('table_name'),'station_profile.station_id = '.$this->config->item('table_name').'.station_id','left');
+        $this->db->join('dxcc_entities','station_profile.station_dxcc = dxcc_entities.adif','left outer');
+		$this->db->group_by('station_profile.station_id');
+		$this->db->where('station_profile.user_id', $this->session->userdata('user_id'));
+		$this->db->where('station_profile.archived', 1);
 		$this->db->or_where('station_profile.user_id =', NULL);
 
 		return $this->db->get();
@@ -593,6 +607,18 @@ class Stations extends CI_Model {
 		if (!empty($station_active)) { list($station_lat, $station_lng) = $this->qra->qra2latlong($station_active->station_gridsquare); }
 		if (($station_lat!=0)&&($station_lng!=0)) { $_jsonresult = array('lat'=>$station_lat,'lng'=>$station_lng,'html'=>$station_active->station_gridsquare,'label'=>$station_active->station_profile_name,'icon'=>'stationIcon'); }
 		return (count($_jsonresult)>0)?(array('station'=>$_jsonresult)):array();
+	}
+
+	// archive station
+	public function archive($id) {
+		$this->db->where('station_id', $id);
+		$this->db->update('station_profile', array('archived' => 1));
+	}
+
+	// restore station
+	public function restore($id) {
+		$this->db->where('station_id', $id);
+		$this->db->update('station_profile', array('archived' => null));
 	}
 }
 
