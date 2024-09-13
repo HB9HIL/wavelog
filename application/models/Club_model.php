@@ -1,5 +1,5 @@
 <?php
 
-class Cat extends CI_Model {
+class Club_model extends CI_Model {
 
 }
