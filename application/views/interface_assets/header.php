@@ -154,6 +154,8 @@
 								<li><a class="dropdown-item" href="<?php echo site_url('timeplotter'); ?>" title="View time when worked"><i class="fas fa-chart-area"></i> <?= __("Timeplotter"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('continents'); ?>" title="Continents"><i class="fas fa-globe-europe"></i> <?= __("Continents"); ?></a></li>
+								<div class="dropdown-divider"></div>
+								<li><a class="dropdown-item" href="<?php echo site_url('operatorstats'); ?>" title="Operator Statistik"><i class="fas fa-users"></i> <?= __("Operator Statistik"); ?></a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown"> <!-- AWARDS -->
