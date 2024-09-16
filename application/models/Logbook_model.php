@@ -21,7 +21,7 @@ class Logbook_model extends CI_Model {
     $callsign = str_replace('Ø', '0', $this->input->post('callsign'));
     // Join date+time
     $datetime = date("Y-m-d",strtotime($this->input->post('start_date')))." ". $this->input->post('start_time');
-    if ($this->input->post('end_time') != null) {
+    if ( ($this->input->post('end_time') ?? '') != '') {
         $datetime_off = date("Y-m-d",strtotime($this->input->post('start_date')))." ". $this->input->post('end_time');
         // if time off < time on, and time off is on 00:xx >> add 1 day (concidering start and end are between 23:00 and 00:59) //
         $_tmp_datetime_off = strtotime($datetime_off);
@@ -738,7 +738,9 @@ class Logbook_model extends CI_Model {
 
 			  $result = $this->exists_clublog_credentials($data['station_id']);
 			  if (isset($result->ucp) && isset($result->ucn) && (($result->ucp ?? '') != '') && (($result->ucn ?? '') != '') && ($result->clublogrealtime == 1)) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
+				  }
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -752,7 +754,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_hrdlog_credentials($data['station_id']);
 			  // Push qso to hrdlog if code is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->hrdlog_code) && isset($result->hrdlog_username) && $result->hrdlogrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+					$this->load->library('AdifHelper');
+				  }
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -765,7 +769,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_qrz_api_key($data['station_id']);
 			  // Push qso to qrz if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->qrzapikey) && $result->qrzrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -778,7 +784,9 @@ class Logbook_model extends CI_Model {
 			  $result = $this->exists_webadif_api_key($data['station_id']);
 			  // Push qso to webadif if apikey is set, and realtime upload is enabled, and we're not importing an adif-file
 			  if (isset($result->webadifapikey) && $result->webadifrealtime == 1) {
-				  $this->load->library('AdifHelper');
+				  if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 				  $qso = $this->get_qso($last_id,true)->result();
 
 				  $adif = $this->adifhelper->getAdifLine($qso[0]);
@@ -1071,10 +1079,10 @@ class Logbook_model extends CI_Model {
    * Function marks QSOs as uploaded to QRZ.
    * $primarykey is the unique id for that QSO in the logbook
    */
-    function mark_qrz_qsos_sent($primarykey) {
+    function mark_qrz_qsos_sent($primarykey, $state = 'Y') {
         $data = array(
          'COL_QRZCOM_QSO_UPLOAD_DATE' => date("Y-m-d H:i:s", strtotime("now")),
-         'COL_QRZCOM_QSO_UPLOAD_STATUS' => 'Y',
+         'COL_QRZCOM_QSO_UPLOAD_STATUS' => $state,
         );
 
         $this->db->where('COL_PRIMARY_KEY', $primarykey);
@@ -3361,7 +3369,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
     }
 
-    function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid) {
+    function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status, $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $station_callsign, $qsoid, $station_ids) {
 
 	    $data = array(
 		    'COL_LOTW_QSLRDATE' => $qsl_date,
@@ -3388,7 +3396,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    }
 
 	    // Check if QRZ or ClubLog is already uploaded. If so, set qso to reupload to qrz.com (M) or clublog
-	    $qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ?";
+	    $qsql = "select COL_CLUBLOG_QSO_UPLOAD_STATUS as CL_STATE, COL_QRZCOM_QSO_UPLOAD_STATUS as QRZ_STATE from ".$this->config->item('table_name')." where COL_BAND=? and COL_CALL=? and COL_STATION_CALLSIGN=? and date_format(COL_TIME_ON, '%Y-%m-%d %H:%i') = ? and COL_PRIMARY_KEY = ? and station_id in (".$station_ids.')';
 	    $query = $this->db->query($qsql, array($band, $callsign,$station_callsign,$datetime,$qsoid));
 	    $row = $query->row();
 	    if (($row->QRZ_STATE ?? '') == 'Y') {
@@ -3407,7 +3415,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 	    $this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = ',$datetime);
 	    $this->db->where('COL_STATION_CALLSIGN', $station_callsign);
 	    $this->db->where('COL_PRIMARY_KEY', $qsoid);
-
+	    $this->db->where('station_id in ('.$station_ids.')');
 
 	    $this->db->update($this->config->item('table_name'), $data);
 	    unset($data);
@@ -3422,6 +3430,7 @@ function check_if_callsign_worked_in_logbook($callsign, $StationLocationsArray =
 		    $this->db->where('COL_BAND', $band);
 		    $this->db->where('COL_PRIMARY_KEY', $qsoid);
 		    $this->db->join('station_profile', $this->config->item('table_name').'.station_id = station_profile.station_id', 'left outer');
+		    $this->db->where('station_profile.station_id in ('.$station_ids.')');
 		    $this->db->limit(1);
 		    $query = $this->db->get($this->config->item('table_name'));
 		    $row = $query->row();
@@ -3993,7 +4002,7 @@ function lotw_last_qsl_date($user_id) {
 			  'COL_AWARD_GRANTED' => (!empty($record['award_granted'])) ? $record['award_granted'] : '',
 			  'COL_AWARD_SUBMITTED' => (!empty($record['award_submitted'])) ? $record['award_submitted'] : '',
 			  'COL_BAND' => $band,
-			  'COL_BAND_RX' => $band_rx,
+			  'COL_BAND_RX' => $band_rx ?? '',
 			  'COL_BIOGRAPHY' => (!empty($record['biography'])) ? $record['biography'] : '',
 			  'COL_CALL' => (!empty($record['call'])) ? strtoupper($record['call']) : '',
 			  'COL_CHECK' => (!empty($record['check'])) ? $record['check'] : '',
@@ -4477,6 +4486,7 @@ function lotw_last_qsl_date($user_id) {
 						    $row['adif'] = 0;
 						    $row['cont'] = '';
 						    $row['entity'] = '- NONE -';
+						    $row['ituz'] = 0;
 						    $row['cqz'] = 0;
 						    $row['long'] = '0';
 						    $row['lat'] = '0';
@@ -4492,12 +4502,13 @@ function lotw_last_qsl_date($user_id) {
 		    $dxcc_array=[];
 
 		    // Fetch all candidates in one shot instead of looping
-		    $dxcc_result=$this->db->query("SELECT *
+		    $dxcc_result=$this->db->query("SELECT `dxcc_prefixes`.`record`, `dxcc_prefixes`.`call`, `dxcc_prefixes`.`entity`, `dxcc_prefixes`.`adif`, `dxcc_prefixes`.`cqz`, `dxcc_entities`.`ituz`, `dxcc_prefixes`.`cont`, `dxcc_prefixes`.`long`, `dxcc_prefixes`.`lat`, `dxcc_prefixes`.`start`, `dxcc_prefixes`.`end`
 			    FROM `dxcc_prefixes`
+			    LEFT JOIN `dxcc_entities` ON `dxcc_entities`.`adif` = `dxcc_prefixes`.`adif`
 			    WHERE ? like concat(`call`,'%')
-			    and `call` like ?
-			    AND (`start` <= ?  OR start is null)
-			    AND (`end` >= ?  OR end is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
+			    and `dxcc_prefixes`.`call` like ?
+			    AND (`dxcc_prefixes`.`start` <= ?  OR `dxcc_prefixes`.`start` is null)
+			    AND (`dxcc_prefixes`.`end` >= ?  OR `dxcc_prefixes`.`end` is null) order by length(`call`) desc limit 1",array($call,substr($call,0,1).'%',$date,$date));
 
 		    foreach($dxcc_result->result_array() as $row){
 			    $dxcc_array[$row['call']]=$row;
@@ -4517,6 +4528,7 @@ function lotw_last_qsl_date($user_id) {
 	    return array(
 			'adif' => 0,
 			'cqz' => 0,
+			'ituz' => 0,
 			'long' => '',
 			'lat' => '',
 			'entity' => 'None',

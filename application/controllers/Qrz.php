@@ -113,7 +113,9 @@ class Qrz extends CI_Controller {
 		$data['qsos'] = $this->logbook_model->get_qrz_qsos($station_id, $trusted);
 		$errormessages=array();
 
-		$this->load->library('AdifHelper');
+		if (!$this->load->is_loaded('AdifHelper')) {
+			$this->load->library('AdifHelper');
+		}
 
 		if ($data['qsos']) {
 			foreach ($data['qsos']->result() as $qso) {
@@ -129,6 +131,16 @@ class Qrz extends CI_Controller {
 					$this->markqso($qso->COL_PRIMARY_KEY);
 					$i++;
 					$result['status'] = 'OK';
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'add_qso: outside date range')) ) {
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$result['status'] = 'Error';
+					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
+				} elseif ( ($result['status']=='error') && (str_contains($result['message'],'wrong station_callsign')) ) {
+					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
+					$this->markqso($qso->COL_PRIMARY_KEY,'I');
+					$result['status'] = 'Error';
+					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
 				} elseif ( ($result['status']=='error') && (substr($result['message'],0,11)  == 'STATUS=AUTH')) {
 					log_message('error', 'QRZ upload failed for qso for Station_ID '.$station_id.' //  Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON . ' // Message: '.$result['message']);
 					$errormessages[] = $result['message'] . ' Call: ' . $qso->COL_CALL . ' Band: ' . $qso->COL_BAND . ' Mode: ' . $qso->COL_MODE . ' Time: ' . $qso->COL_TIME_ON;
@@ -160,8 +172,8 @@ class Qrz extends CI_Controller {
 	/*
 	 * Function marks QSO with given primarykey as uploaded to qrz
 	 */
-	function markqso($primarykey) {
-		$this->logbook_model->mark_qrz_qsos_sent($primarykey);
+	function markqso($primarykey,$state = 'Y') {
+		$this->logbook_model->mark_qrz_qsos_sent($primarykey, $state);
 	}
 
 	/*
@@ -368,7 +380,9 @@ class Qrz extends CI_Controller {
 		ini_set('memory_limit', '-1');
 		set_time_limit(0);
 
-		$this->load->library('adif_parser');
+		if (!$this->load->is_loaded('adif_parser')) {
+			$this->load->library('adif_parser');
+		}
 
 		$this->adif_parser->load_from_file($filepath);
 

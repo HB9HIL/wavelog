@@ -48,7 +48,7 @@
     var lang_no_states_for_dxcc_available = "<?= html_entity_decode(__("No states for this DXCC available")); ?>";
     var lang_qrbcalc_title = '<?= __("Compute QRB and QTF"); ?>';
     var lang_qrbcalc_errmsg = '<?= __("Error in locators. Please check."); ?>';
-
+    var lang_general_refresh_list = '<?= __("Refresh List"); ?>';
 </script>
 
 <!-- General JS Files used across Wavelog -->
@@ -827,6 +827,32 @@ function findlotwunconfirmed(){
 function findincorrectcqzones() {
     event.preventDefault();
     $('#partial_view').load(base_url+"index.php/logbook/search_incorrect_cq_zones/"+$("#station_id").val(), function() {
+        $('.qsolist').DataTable({
+            "pageLength": 25,
+            responsive: false,
+            ordering: false,
+            "scrollY":        "500px",
+            "scrollCollapse": true,
+            "paging":         false,
+            "scrollX": true,
+            "language": {
+                url: getDataTablesLanguageUrl(),
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'csv'
+            ]
+        });
+        // change color of csv-button if dark mode is chosen
+        if (isDarkModeTheme()) {
+            $(".buttons-csv").css("color", "white");
+        }
+    });
+}
+
+function findincorrectituzones() {
+    event.preventDefault();
+    $('#partial_view').load(base_url+"index.php/logbook/search_incorrect_itu_zones/"+$("#station_id").val(), function() {
         $('.qsolist').DataTable({
             "pageLength": 25,
             responsive: false,
