@@ -19,7 +19,17 @@
                 foreach ($operator_entries as $entry): ?>
                 <tr>
                     <td class="text-center"><?php echo $i; ?></td>
-                    <td class="text-center"><?php echo htmlspecialchars($entry->COL_OPERATOR); ?></td>
+                    <td class="text-center">
+                        <?php 
+                        if ($i == 1) {
+                            echo '<i class="fas fa-trophy" style="color: #e6d500;"></i> ';
+                        } elseif ($i == 2) {
+                            echo '<i class="fas fa-trophy" style="color: #efefef;"></i> ';
+                        } elseif ($i == 3) {
+                            echo '<i class="fas fa-trophy" style="color: #c26709;"></i> ';
+                        }
+                        ?>
+                        <?php echo htmlspecialchars($entry->COL_OPERATOR); ?> <a target="_blank" href="https://www.qrz.com/db/<?php echo strtoupper($entry->COL_OPERATOR); ?>"><img style="vertical-align: baseline" width="16" height="16" src="<?php echo base_url(); ?>images/icons/qrz.png" alt="Lookup <?php echo strtoupper($entry->COL_OPERATOR); ?> on QRZ.com"></a></td>
                     <td class="text-center"><?php echo htmlspecialchars($entry->count_per_operator); ?></td>
                 </tr>
             <?php 
