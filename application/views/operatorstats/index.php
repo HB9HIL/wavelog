@@ -9,17 +9,22 @@
     <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark">
             <tr>
-                <th scope="col">Operator</th>
+                <th scope="col" class="text-center">Platz</th>
+                <th scope="col" class="text-center">Operator</th>
                 <th scope="col" class="text-center">Anzahl der QSO's</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($operator_entries as $entry): ?>
+            <?php $i=1;
+                foreach ($operator_entries as $entry): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($entry->COL_OPERATOR); ?></td>
+                    <td class="text-center"><?php echo $i; ?></td>
+                    <td class="text-center"><?php echo htmlspecialchars($entry->COL_OPERATOR); ?></td>
                     <td class="text-center"><?php echo htmlspecialchars($entry->count_per_operator); ?></td>
                 </tr>
-            <?php endforeach; ?>
+            <?php 
+            $i++;
+            endforeach; ?>
         </tbody>
     </table>
 </div>
