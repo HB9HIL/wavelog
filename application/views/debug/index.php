@@ -70,7 +70,11 @@
                         </tr>
                         <tr>
                             <td><?= __("Total QSO on this instance"); ?></td>
-                            <td><?php echo $qso_total . ' QSOs'; ?></td>
+                            <td><?php echo number_format($qso_total, 0, '.', ',') . ' QSOs'; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?= __("Total User"); ?></td>
+                            <td><?php echo number_format($users_total, 0, '.', ',') . ' ' . _ngettext("User", "Users", intval($users_total)); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -644,11 +648,14 @@
     <?= __("Czech"); ?>
     <?= __("Dutch"); ?>
     <?= __("English"); ?>
+    <?= __("Estonian"); ?>
     <?= __("Finnish"); ?>
     <?= __("French"); ?>
     <?= __("German"); ?>
     <?= __("Greek"); ?>
     <?= __("Italian"); ?>
+    <?= __("Latvian"); ?>
+    <?= __("Lithuanian"); ?>
     <?= __("Montenegrin"); ?>
     <?= __("Polish"); ?>
     <?= __("Portuguese"); ?>

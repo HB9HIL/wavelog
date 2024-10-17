@@ -52,7 +52,8 @@
 			\"wwff\":{\"show\":\"true\"},
 			\"sig\":{\"show\":\"true\"},
 			\"continent\":{\"show\":\"true\"},
-			\"qrz\":{\"show\":\"true\"}
+			\"qrz\":{\"show\":\"true\"},
+			\"profilename\":{\"show\":\"true\"}
         }";
     }
     $current_opts = json_decode($options);
@@ -113,6 +114,10 @@
         echo "\nvar o_template = { qrz: {show: 'true'}};";
         echo "\nuser_options={...user_options, ...o_template};";
     }
+	if (!isset($current_opts->profilename)) {
+        echo "\nvar o_template = { profilename: {show: 'true'}};";
+        echo "\nuser_options={...user_options, ...o_template};";
+    }
 
 
     foreach ($mapoptions as $mo) {
@@ -163,7 +168,6 @@ $options = json_decode($options);
                             <label class="form-label" for="dxcc"><?= __("DXCC"); ?></label>
                             <select class="form-control form-control-sm" id="dxcc" name="dxcc">
                                 <option value="">-</option>
-                                <option value="0"><?= _pgettext("Logbook Advanced DXCC Select", "- NONE - (e.g. /MM, /AM)"); ?></option>
                                 <?php
                                 foreach ($dxccarray as $dxcc) {
                                     echo '<option value=' . $dxcc->adif;
@@ -190,7 +194,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($modes as $modeId => $mode) {
-                                ?><option value="<?php echo htmlspecialchars($mode); ?>"><?php echo htmlspecialchars($mode); ?></option><?php
+                                ?><option value="<?php echo htmlspecialchars($mode ?? ''); ?>"><?php echo htmlspecialchars($mode ?? ''); ?></option><?php
                                                                                                                                 }
                                                                                                                                     ?>
                             </select>
@@ -201,7 +205,7 @@ $options = json_decode($options);
                                 <option value=""><?= __("All"); ?></option>
                                 <?php
                                 foreach ($bands as $band) {
-                                ?><option value="<?php echo htmlentities($band); ?>"><?php echo htmlspecialchars($band); ?></option><?php
+                                ?><option value="<?php echo htmlentities($band ?? ''); ?>"><?php echo htmlspecialchars($band ?? ''); ?></option><?php
                                                                                                                             }
                                                                                                                                 ?>
                             </select>
@@ -662,6 +666,9 @@ $options = json_decode($options);
                     } ?>
 					<?php if (($options->continent->show ?? "true") == "true") {
                         echo '<th>' . __("Continent") . '</th>';
+                    } ?>
+					<?php if (($options->profilename->show ?? "true") == "true") {
+                        echo '<th>' . __("Profile name") . '</th>';
                     } ?>
                 </tr>
             </thead>
