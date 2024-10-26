@@ -436,6 +436,7 @@
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="<?php echo site_url('api/help'); ?>" title="Manage API keys"><i class="fas fa-key"></i> <?= __("API Keys"); ?></a></li>
 								<li><a class="dropdown-item" href="<?php echo site_url('radio'); ?>" title="Interface with one or more radios"><i class="fas fa-broadcast-tower"></i> <?= __("Hardware Interfaces"); ?></a></li>
+								<li><a class="dropdown-item" href="<?php echo site_url('widgets'); ?>" title="<?= __("Widgets"); ?>"><i class="fas fa-shapes"></i> <?= __("Widgets"); ?></a></li>
 								<div class="dropdown-divider"></div>
 								<li><a class="dropdown-item" href="javascript:displayVersionDialog();" title="Version Information"><i class="fas fa-star"></i> <?= __("Version Info"); ?></a></li>
 								<li><a class="dropdown-item" target="_blank" href="https://github.com/wavelog/wavelog/wiki" title="Help"><i class="fas fa-question"></i> <?= __("Help"); ?></a></li>
