@@ -7,9 +7,18 @@
 
     <div class="card mt-3 mb-3">
         <div class="card-body">
+            <?php
+            $badgeNoJS = '<span class="badge bg-success ms-2 me-2">' . _pgettext("Badge to indicate if there is JavaScript in the code or not.", "No JS") . '</span>';
+            $badgeRequiresJS = '<span class="badge bg-danger ms-2 me-2">' . _pgettext("Badge to indicate if there is JavaScript in the code or not.", "Requires JS") . '</span>';
+            ?>
+
             <div class="card-text">
-                <p><?= __("Wavelog Widgets are small tools that can be embedded in other web pages to provide additional functionality."); ?></p>
-                <p><?= __("Use this page to generate the code to embed the widgets in your website."); ?></p>
+                <?= sprintf(
+                    __("Wavelog Widgets are small tools that can be embedded in other web pages to provide additional functionality. Use this page to generate the code needed to embed the widgets on your website.
+                                Some websites (like QRZ.com) do not allow JavaScript in embedded content, so we've added small badges (%s/%s) to indicate which widgets contain JavaScript and which do not."),
+                    $badgeNoJS,
+                    $badgeRequiresJS
+                ); ?>
             </div>
         </div>
     </div>
@@ -21,15 +30,18 @@
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-H_oqrs">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_oqrs" aria-expanded="true" aria-controls="panelsStayOpen-B_oqrs">
-                    <?= __("OQRS iFrame Box"); ?><span class="badge bg-success ms-3"><?= __("Javascript free"); ?></span></button>
+                    <?= __("OQRS iFrame Box");
+                    echo $badgeNoJS; ?>
+                </button>
             </h2>
             <div id="panelsStayOpen-B_oqrs" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-H_oqrs">
                 <div class="accordion-body">
                     <div class="row">
                         <div class="col border-end">
-                            <p><?= __("The OQRS iFrame Box is a little widget which can be used to quickly request a QSL card."); ?>
-                                <?= __("An operator can type in his callsign and will be redirected to the OQRS page if this instance."); ?></p>
-
+                            <div class="card-text">
+                                <?= __("The OQRS iFrame Box is a little widget which can be used to quickly request a QSL card. An operator can type in his callsign and will be redirected to the OQRS page if this instance."); ?>
+                            </div>
+                            <br>
                             <p><b><?= __("Settings"); ?></b></p>
 
                             <div class="row">
@@ -46,7 +58,7 @@
                                             <select id="oqrs_theme" class="form-select w-auto" aria-label="Theme">
                                                 <?php
                                                 foreach ($themes as $theme) {
-                                                    echo '<option value="' . $theme->foldername . '" ' . (( $global_theme == $theme->foldername)?'selected="selected"':"") . '>' . $theme->name . '</option>';
+                                                    echo '<option value="' . $theme->foldername . '" ' . (($global_theme == $theme->foldername) ? 'selected="selected"' : "") . '>' . $theme->name . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -97,6 +109,10 @@
                 </div>
             </div>
         </div>
+
+        <!-- Place more widgets here -->
+
+
 
 
 
