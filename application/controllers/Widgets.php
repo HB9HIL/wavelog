@@ -8,9 +8,29 @@
 
 class Widgets extends CI_Controller {
 
-	public function index()
-	{
-		// Show a help page
+	public function index() {
+
+		$this->load->model('user_model');
+		if (!$this->user_model->authorize(2)) { 
+			$this->session->set_flashdata('error', __("You're not allowed to do that!")); 
+			redirect('user/login'); 
+		}
+
+		$data['page_title'] = "Widgets";
+		$data['user_callsign'] = $this->session->userdata('user_callsign');
+		$data['themes'] = $this->user_model->getThemes();
+		$data['global_theme'] = $this->config->item('option_theme');
+
+		$footerData = [];
+		$footerData['scripts'] = [
+			'assets/js/sections/widgets.js?' . filemtime(realpath(__DIR__ . "/../../assets/js/sections/widgets.js")),
+		];
+
+		$this->load->library('form_validation');
+		$this->load->view('interface_assets/header', $data);
+		$this->load->view('widgets/index');
+		$this->load->view('interface_assets/footer', $footerData);
+
 	}
 	
 	
