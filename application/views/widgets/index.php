@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="mb-2 mt-4">
+                                        <div class="mb-2" style="margin-top: 32px;">
                                             <a class="btn btn-primary" id="generate_oqrs"><?= __("Update Preview"); ?></a>
                                         </div>
                                     </div>
