@@ -218,18 +218,26 @@
                                     <div class="mb-3 col-sm-6">
                                         <label for="dxcc_id"><?= __("DXCC"); ?></label>
                                         <select class="form-select" id="dxcc_id" name="dxcc_id" required>
-                                            <option value="0">- <?= __("NONE"); ?> -</option>
+                                            <option value=""><?= __("Please select one"); ?></option>
                                             <?php
-                                            foreach($dxcc as $d){
-                                                echo '<option value=' . $d->adif;
-                                                if ($qso->COL_DXCC == $d->adif) {
-                                                    echo " selected=\"selected\"";
+                                            foreach($dxcc as $d) {
+                                                if ($d->adif == '0') {
+                                                    echo '<option value='.$d->adif;
+                                                    if ($qso->COL_DXCC == $d->adif) {
+                                                        echo " selected=\"selected\"";
+                                                    }
+                                                    echo '>'.$d->name.'</option>';
+                                                } else {
+                                                    echo '<option value=' . $d->adif;
+                                                    if ($qso->COL_DXCC == $d->adif) {
+                                                        echo " selected=\"selected\"";
+                                                    }
+                                                    echo '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
+                                                    if ($d->Enddate != null) {
+                                                        echo ' ('.__("Deleted DXCC").')';
+                                                    }
+                                                    echo '</option>';
                                                 }
-                                                echo '>' . $d->prefix . ' - ' . ucwords(strtolower(($d->name)));
-                                                if ($d->Enddate != null) {
-                                                    echo ' ('.__("Deleted DXCC").')';
-                                                }
-                                                echo '</option>';
                                             }
                                             ?>
 
@@ -393,8 +401,9 @@
                             <!-- Notes Panel Contents -->
                             <div class="tab-pane fade" id="nav-qso-notes" role="tabpanel" aria-labelledby="nav-qso-notes-tab">
                                 <div class="mb-3">
-                                    <label for="notes"><?= __("Notes (for internal usage only)"); ?></label>
+                                    <label for="notes"><?= __("Notes"); ?></label>
                                     <textarea  type="text" class="form-control" id="notes" name="notes" rows="10"><?php echo $qso->COL_NOTES; ?></textarea>
+                                    <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                 </div>
                             </div>
 
@@ -409,6 +418,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><?= __("LoTW"); ?></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#qrz" role="tab" aria-controls="qrz" aria-selected="false"><?= __("QRZ"); ?></a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
@@ -500,14 +512,10 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <div>
-                                                <div class="alert alert-info" role="alert">
-                                                    <span class="badge text-bg-info"><?= __("Info"); ?></span> <?= __("This note content is exported to QSL services like eqsl.cc."); ?>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label for="qslmsg"><?= __("Notes"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
+                                                <label for="qslmsg"><?= __("QSL MSG"); ?><span class="qso_eqsl_qslmsg_update" title="<?= __("Get the default message for eQSL, for this station."); ?>"><i class="fas fa-redo-alt"></i></span></label>
                                                 <label class="position-absolute end-0 mb-2 me-3" for="qslmsg" id="charsLeft"> </label>
                                                 <textarea  type="text" class="form-control" id="qslmsg" name="qslmsg" rows="5" maxlength="240"><?php echo $qso->COL_QSLMSG; ?></textarea>
+                                                <div class="small form-text text-muted"><?= __("Note: Gets exported to third-party services.") ?></div>
                                                 <div id="qslmsg_hide" style="display:none;"><?php echo $qso->COL_QSLMSG; ?></div>
                                             </div>
                                         </div>
@@ -537,6 +545,33 @@
                                                     <option value="V" <?php if($qso->COL_LOTW_QSL_RCVD == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
                                                 </select>
                                                 <small id="lotw_propmode_hint" class="form-text text-muted"><?php if (in_array($qso->COL_PROP_MODE, $this->config->item('lotw_unsupported_prop_modes'))) { echo __("Propagation mode is not supported by LoTW. LoTW QSL fields disabled."); } else { echo "&nbsp;"; } ?></small>
+                                            </div>
+                                        </div>
+                                    </div>
+				                    <div class="tab-pane fade" id="qrz" role="tabpanel" aria-labelledby="qrz-tab">
+                                        <div class="mb-3 row">
+                                            <label for="sent" class="col-sm-3 col-form-label"><?= __("Sent"); ?></label>
+                                            <div class="col-sm-9">
+                                                <select class="form-select" id="qrz_sent" name="qrz_sent">
+                                                    <option value="N" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+                                                    <option value="Y" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+                                                    <option value="R" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
+                                                    <option value="Q" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "Q") { echo "selected=\"selected\""; } ?>><?= __("Queued"); ?></option>
+                                                    <option value="I" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    <option value="M" <?php if($qso->COL_QRZCOM_QSO_UPLOAD_STATUS == "M") { echo "selected=\"selected\""; } ?>><?= __("Modified"); ?></option>
+                                                </select></div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="sent" class="col-sm-3 col-form-label"><?= __("Received"); ?></label>
+                                            <div class="col-sm-9">
+                                                <select class="form-select" id="qrz_rcvd" name="qrz_rcvd">
+                                                    <option value="N" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+                                                    <option value="Y" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+                                                    <option value="R" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "R") { echo "selected=\"selected\""; } ?>><?= __("Requested"); ?></option>
+                                                    <option value="I" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "I") { echo "selected=\"selected\""; } ?>><?= __("Invalid (Ignore)"); ?></option>
+                                                    <option value="V" <?php if($qso->COL_QRZCOM_QSO_DOWNLOAD_STATUS == "V") { echo "selected=\"selected\""; } ?>><?= __("Verified (Match)"); ?></option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

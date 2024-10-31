@@ -73,6 +73,9 @@ function updateRow(qso) {
 	if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
 		cells.eq(c++).html(qso.lotw);
 	}
+	if (user_options.qrz.show == "true"){
+		cells.eq(c++).html(qso.qrz);
+	}
 	if (user_options.qslmsg.show == "true"){
 		cells.eq(c++).text(qso.qslMessage);
 	}
@@ -94,18 +97,6 @@ function updateRow(qso) {
 	if (user_options.pota.show == "true"){
 		cells.eq(c++).html(qso.pota);
 	}
-	if ( (user_options.operator) && (user_options.operator.show == "true")){
-		cells.eq(c++).html(qso.operator);
-	}
-	if ( (user_options.comment) && (user_options.comment.show == "true")){
-		cells.eq(c++).html(qso.comment);
-	}
-	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
-		cells.eq(c++).html(qso.propagation);
-	}
-	if ( (user_options.contest) && (user_options.contest.show == "true")){
-		cells.eq(c++).html(qso.contest);
-	}
 	if ( (user_options.sota) && (user_options.sota.show == "true")){
 		cells.eq(c++).html(qso.sota);
 	}
@@ -118,11 +109,26 @@ function updateRow(qso) {
 	if ( (user_options.sig) && (user_options.sig.show == "true")){
 		cells.eq(c++).html(qso.sig);
 	}
+	if ( (user_options.operator) && (user_options.operator.show == "true")){
+		cells.eq(c++).html(qso.operator);
+	}
+	if ( (user_options.comment) && (user_options.comment.show == "true")){
+		cells.eq(c++).html(qso.comment);
+	}
+	if ( (user_options.propagation) && (user_options.propagation.show == "true")){
+		cells.eq(c++).html(qso.propagation);
+	}
+	if ( (user_options.contest) && (user_options.contest.show == "true")){
+		cells.eq(c++).html(qso.contest);
+	}
 	if (user_options.myrefs.show == "true"){
 		cells.eq(c++).text(qso.deRefs);
 	}
 	if (user_options.continent.show == "true"){
 		cells.eq(c++).text(qso.continent);
+	}
+	if (user_options.profilename.show == "true"){
+		cells.eq(c++).text(qso.profilename);
 	}
 
 	$('[data-bs-toggle="tooltip"]').tooltip();
@@ -221,6 +227,9 @@ function loadQSOTable(rows) {
 		if ($(".lotwconfirmation")[0] && user_options.lotw.show == "true"){
 			data.push(qso.lotw);
 		}
+		if (user_options.qrz.show == "true"){
+			data.push(qso.qrz);
+		}
 		if (user_options.qslmsg.show == "true"){
 			data.push(qso.qslMessage);
 		}
@@ -242,18 +251,6 @@ function loadQSOTable(rows) {
 		if (user_options.pota.show == "true"){
 			data.push(qso.pota);
 		}
-		if (user_options.operator.show == "true"){
-			data.push(qso.operator);
-		}
-		if (user_options.comment.show == "true"){
-			data.push(qso.comment);
-		}
-		if (user_options.propagation.show == "true"){
-			data.push(qso.propagation);
-		}
-		if (user_options.contest.show == "true"){
-			data.push(qso.contest);
-		}
 		if (user_options.sota.show == "true"){
 			data.push(qso.sota);
 		}
@@ -265,6 +262,18 @@ function loadQSOTable(rows) {
 		}
 		if (user_options.sig.show == "true"){
 			data.push(qso.sig);
+		}
+		if (user_options.operator.show == "true"){
+			data.push(qso.operator);
+		}
+		if (user_options.comment.show == "true"){
+			data.push(qso.comment);
+		}
+		if (user_options.propagation.show == "true"){
+			data.push(qso.propagation);
+		}
+		if (user_options.contest.show == "true"){
+			data.push(qso.contest);
 		}
 		if (user_options.myrefs.show == "true"){
 			data.push(qso.deRefs);
@@ -279,6 +288,9 @@ function loadQSOTable(rows) {
 				// Continent is valid
 				data.push(qso.continent);
 			}
+		}
+		if (user_options.profilename.show == "true"){
+			data.push(qso.profilename);
 		}
 
 		let createdRow = table.row.add(data).index();
@@ -855,6 +867,7 @@ $(document).ready(function () {
 				callback: function (result) {
 				}
 			});
+			return;
 		}
 
 		elements.each(function() {
@@ -1136,6 +1149,8 @@ function saveOptions() {
 			wwff: $('input[name="wwff"]').is(':checked') ? true : false,
 			sig: $('input[name="sig"]').is(':checked') ? true : false,
 			continent: $('input[name="continent"]').is(':checked') ? true : false,
+			qrz: $('input[name="qrz"]').is(':checked') ? true : false,
+			profilename: $('input[name="profilename"]').is(':checked') ? true : false,
 			gridsquare_layer: $('input[name="gridsquareoverlay"]').is(':checked') ? true : false,
 			path_lines: $('input[name="pathlines"]').is(':checked') ? true : false,
 			cqzone_layer: $('input[name="cqzones"]').is(':checked') ? true : false,

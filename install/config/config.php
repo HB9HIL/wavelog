@@ -25,11 +25,11 @@ $config['datadir'] = null; // default to install directory
 |
 | 	'table_name'	SQL table where log can be found
 |	'locator'	Default locator used to calculate bearings/distance
-|	'display_freq'	Show or Hide frequnecy info 
+|	'display_freq'	Show or Hide frequnecy info
 */
 
-$config['table_name'] = 'TABLE_HRD_CONTACTS_V01'; 
-$config['locator'] = '%baselocator%'; 
+$config['table_name'] = 'TABLE_HRD_CONTACTS_V01';
+$config['locator'] = '%baselocator%';
 $config['display_freq'] = true;
 
 /*
@@ -64,7 +64,7 @@ $config['hamqth_password'] = '%hamqth_password%';
 |
 | 'use_auth'	False turns all authentication off, best used when setting up
 | 'auth_table'	MySQL Database Table defaults "users"
-| 'auth_mode'	Minimum user level required 0 = anonymous, 1 = viewer, 
+| 'auth_mode'	Minimum user level required 0 = anonymous, 1 = viewer,
 |				2 = editor, 3 = api user, 99 = owner
 | 'auth_level[]'	Defines level titles
 */
@@ -460,6 +460,17 @@ $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
+/* 
+ * To make sure we do not collect infinite session we set some garbage collection settings
+ * see https://www.php.net/manual/en/session.configuration.php#ini.session.gc-probability
+ * and https://www.php.net/manual/en/session.configuration.php#ini.session.gc-divisor
+ * and https://osvaldas.info/enabling-codeigniters-garbage-collector/
+ *
+ * set the probability to 1/1000 to make sure we do not collect too often
+*/
+$config['sess_gc_probability'] = 1;
+$config['sess_gc_divisor'] = 1000;
+
 /*
 |--------------------------------------------------------------------------
 | Cookie Related Variables
@@ -631,7 +642,7 @@ $config['disable_manual_qrz'] = false;
 | Disables QSL-Image-Feature
 |--------------------------------------------------------------------------
 |
-| This disabled the whole QSL image feature if you don't need it and want to hide it. 
+| This disabled the whole QSL image feature if you don't need it and want to hide it.
 | Set to true will hide all QSL image related stuff in Wavelog
 |
 */
@@ -643,7 +654,7 @@ $config['disable_qsl'] = false;
 | Disables OQRS-Feature
 |--------------------------------------------------------------------------
 |
-| This disabled the whole OQRS feature if you don't need it and want to hide it. 
+| This disabled the whole OQRS feature if you don't need it and want to hide it.
 | Set to true will hide all OQRS related stuff in Wavelog
 |
 */
@@ -658,18 +669,18 @@ $config['disable_oqrs'] = false;
 | This config switch is meant to use for Special Callsign operations in a dedicated Wavelog Installation
 | If this switch is set to true it will enable a dialog which pops up for each operator after login
 | to ask for his personal callsign. This causes the QSOs to get saved with the correct operator data.
-| Example:      Special Callsign:   DL250CDF 
+| Example:      Special Callsign:   DL250CDF
 |               Operator:           DF2TG
-| 
-| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI" 
-| More Information about this feature and how to use it, you can find here: 
+|
+| It is recommend to enable also "Disable Syncing to 3rd party-Services at UI"
+| More Information about this feature and how to use it, you can find here:
 | https://github.com/wavelog/wavelog/wiki/Recommended-Setup-for-Special-Callsigns-and-Clubs
 */
 
 $config['special_callsign'] = false;
 
 // hides the usermenu; takes action only if "special_callsign" is true
-$config['sc_hide_usermenu'] = true;  
+$config['sc_hide_usermenu'] = true;
 
 
 /*
@@ -679,10 +690,10 @@ $config['sc_hide_usermenu'] = true;
 |
 | This config switch disables the impersonate feature. This feauture is used to impersonate another user.
 | Impersonate is enabled by default. To disable it, set the value to false.
-| 
+|
 */
 
-$config['disable_impersonate'] = false;   
+$config['disable_impersonate'] = false;
 
 
 /*
@@ -692,7 +703,19 @@ $config['disable_impersonate'] = false;
 |
 | The cronmanager needs http or https with a valid certificate to work.
 | If you want to use it with https and a self-signed certificate, you need to set this to true.
-| 
+|
 */
 
-$config['cron_allow_insecure'] = false;   
+$config['cron_allow_insecure'] = false;
+
+/*
+|--------------------------------------------------------------------------
+| Update / version check
+|--------------------------------------------------------------------------
+
+| This config switch disables the check for newer releases on github and
+| hides the banner to admin users if a newer release as published.
+| Default ON.
+ */
+
+$config['disable_version_check'] = false;
