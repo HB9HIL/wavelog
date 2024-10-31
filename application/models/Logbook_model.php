@@ -382,6 +382,12 @@ class Logbook_model extends CI_Model {
 			$data['COL_MY_CNTY'] = strtoupper(trim($station['station_cnty']));
 			$data['COL_MY_CQ_ZONE'] = strtoupper(trim($station['station_cq']));
 			$data['COL_MY_ITU_ZONE'] = strtoupper(trim($station['station_itu']));
+
+			// if there are any static map images for this station, remove them so they can be regenerated
+			if (!$this->load->is_loaded('staticmap_model')) {
+				$this->load->model('staticmap_model');
+			}
+			$this->staticmap_model->remove_static_map_image($station_id);
 		}
 
 		// Decide whether its single gridsquare or a multi which makes it vucc_grids
@@ -1766,7 +1772,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to received
 	function paperqsl_update($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLRDATE' => date('Y-m-d H:i:s'),
@@ -1788,7 +1794,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to sent
 	function paperqsl_update_sent($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 			if ($method != '') {
 				$data = array(
 					'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1815,7 +1821,7 @@ class Logbook_model extends CI_Model {
 
 	// Set Paper to requested
 	function paperqsl_requested($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1835,7 +1841,7 @@ class Logbook_model extends CI_Model {
 
 
 	function paperqsl_ignore($qso_id, $method) {
-		if ($this->logbook_model->check_qso_is_accessible($qso_id)) {
+		if ($this->check_qso_is_accessible($qso_id)) {
 
 			$data = array(
 				'COL_QSLSDATE' => date('Y-m-d H:i:s'),
@@ -1940,7 +1946,7 @@ class Logbook_model extends CI_Model {
 	}
 
 	function get_qso($id, $trusted = false) {
-		if ($trusted || ($this->logbook_model->check_qso_is_accessible($id))) {
+		if ($trusted || ($this->check_qso_is_accessible($id))) {
 			$this->db->select($this->config->item('table_name') . '.*, station_profile.*, dxcc_entities.*, coalesce(dxcc_entities_2.name, "- NONE -") as station_country, dxcc_entities_2.end as station_end, eQSL_images.image_file as eqsl_image_file, lotw_users.callsign as lotwuser, lotw_users.lastupload, primary_subdivisions.subdivision');
 			$this->db->from($this->config->item('table_name'));
 			$this->db->join('dxcc_entities', $this->config->item('table_name') . '.col_dxcc = dxcc_entities.adif', 'left');
@@ -3614,7 +3620,7 @@ class Logbook_model extends CI_Model {
 		$amsat_status_upload = $this->user_model->get_user_amsat_status_upload_by_id($station_profile->user_id);
 
 		foreach ($records as $record) {
-			$one_error = $this->logbook_model->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
+			$one_error = $this->import($record, $station_id, $skipDuplicate, $markClublog, $markLotw, $dxccAdif, $markQrz, $markEqsl, $markHrd, $skipexport, $operatorName, $apicall, $skipStationCheck, true, $station_id_ok, $station_profile);
 			if ($one_error['error'] ?? '' != '') {
 				$custom_errors .= $one_error['error'] . "<br/>";
 			} else {	// No Errors / QSO doesn't exist so far
@@ -4023,6 +4029,13 @@ class Logbook_model extends CI_Model {
 				$input_qsl_sent_via = mb_strimwidth($record['qsl_sent_via'], 0, 1);
 			} else {
 				$input_qsl_sent_via = "";
+			}
+
+			if (isset($record['qslmsg'])) {
+				$input_qslmsg = $record['qslmsg'];
+			} else {
+				$options_object = $this->user_options_model->get_options('eqsl_default_qslmsg', array('option_name' => 'key_station_id', 'option_key' => $station_id), $station_profile->user_id)->result();
+				$input_qslmsg = (isset($options_object[0]->option_value)) ? $options_object[0]->option_value : '';
 			}
 
 			// Validate Clublog-Fields
