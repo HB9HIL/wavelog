@@ -514,7 +514,7 @@ class Stationsetup extends CI_Controller {
 		$this->user_options_model->set_option('ExportMapOptions', 'band',  array($slug => $this->input->post('band', TRUE)));
 	}
 
-	public function archivStation() {
+	public function archiveStation() {
 		$id = $this->input->post('id', TRUE);
 		if ($id ?? '' != '') {
 			$this->load->model('stations');
