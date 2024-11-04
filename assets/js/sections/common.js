@@ -28,6 +28,7 @@ function qsl_rcvd(id, method) {
             $(".ld-ext-right-r-"+method).prop('disabled', false);
             if (data.message == 'OK') {
                 $("#qsl_" + id).find("span:eq(1)").attr('class', 'qsl-green'); // Paints arrow green
+                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
                 $(".qsl_rcvd_" + id).remove(); // removes choice from menu
             }
             else {
@@ -47,6 +48,7 @@ function qsl_sent(id, method) {
         success: function(data) {
             if (data.message == 'OK') {
                 $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-green'); // Paints arrow green
+                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
                 $(".qsl_sent_" + id).remove(); // removes choice from menu
             }
             else {
@@ -72,6 +74,7 @@ function qsl_requested(id, method) {
             $(".ld-ext-right-t-"+method).prop('disabled', false);
             if (data.message == 'OK') {
                 $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // Paints arrow yellow
+                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
             }
             else {
                 $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
@@ -96,6 +99,7 @@ function qsl_ignore(id, method) {
             $(".ld-ext-right-ignore").prop('disabled', false);
             if (data.message == 'OK') {
                 $("#qsl_" + id).find("span:eq(0)").attr('class', 'qsl-grey'); // Paints arrow grey
+                $("#qrz_" + id).find("span:eq(0)").attr('class', 'qsl-yellow'); // marks the QRZ Upload as modified
             }
             else {
                 $(".bootstrap-dialog-message").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>You are not allowed to update QSL status!</div>');
@@ -731,6 +735,8 @@ function spawnLookupModal(searchphrase, searchtype) {
                             $("#quicklookupiota").val(searchphrase);
                         } else if (searchtype == 'cq') {
                             $("#quicklookupcqz").val(searchphrase);
+						} else if (searchtype == 'itu') {
+                            $("#quicklookupituz").val(searchphrase);
                         } else {
                             $("#quicklookuptext").val(searchphrase);
                         }
@@ -750,36 +756,24 @@ function spawnLookupModal(searchphrase, searchtype) {
 }
 
 function changeLookupType(type) {
+	$('#quicklookupdxcc').hide();
+	$('#quicklookupiota').hide();
+	$('#quicklookupcqz').hide();
+	$('#quicklookupituz').hide();
+	$('#quicklookupwas').hide();
+	$('#quicklookuptext').hide();
     if (type == "dxcc") {
         $('#quicklookupdxcc').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
     } else if (type == "iota") {
         $('#quicklookupiota').show();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
     } else if (type == "vucc" || type == "sota" || type == "wwff" || type == "lotw") {
         $('#quicklookuptext').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupwas').hide();
     } else if (type == "cq") {
         $('#quicklookupcqz').show();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookupwas').hide();
-        $('#quicklookuptext').hide();
+	} else if (type == "itu") {
+        $('#quicklookupituz').show();
     } else if (type == "was") {
         $('#quicklookupwas').show();
-        $('#quicklookupcqz').hide();
-        $('#quicklookupiota').hide();
-        $('#quicklookupdxcc').hide();
-        $('#quicklookuptext').hide();
     }
 }
 
@@ -800,6 +794,7 @@ function getLookupResult() {
 			sota: $('#quicklookuptext').val(),
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
+			ituz: $('#quicklookupituz').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
@@ -1121,6 +1116,26 @@ function newpath(latlng1, latlng2, locator1, locator2) {
         wrap: false,
         steps: 100
     }).addTo(map);
+}
+
+function disableMap() {
+    // console.log('disable map');
+    map.dragging.disable();
+    map.scrollWheelZoom.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
+}
+
+function enableMap() {
+    // console.log('enable map');
+    map.dragging.enable();
+    map.scrollWheelZoom.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +
