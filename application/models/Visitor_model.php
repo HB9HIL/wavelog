@@ -2,15 +2,34 @@
 
 class Visitor_model extends CI_Model {
 
-	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '') {
+	function get_qsos($num, $StationLocationsArray, $band = '', $continent = '', $orbit = '', $contest = '', $start_date = '', $end_date = '') {
 		$this->db->select($this->config->item('table_name').'.*, station_profile.*');
 		$this->db->from($this->config->item('table_name'));
 
 		$this->db->join('station_profile', 'station_profile.station_id = '.$this->config->item('table_name').'.station_id');
+		if ($band == 'SAT') {
+			$this->db->join('satellite', 'satellite.name = '.$this->config->item('table_name').'.COL_SAT_NAME', 'left');
+		}
+
+		if ($start_date != '') {
+			$start_date = date('Y-m-d', strtotime($start_date));
+			$this->db->where($this->config->item('table_name').'.COL_TIME_ON >=', $start_date);
+		}
+		if ($end_date != '') {
+			$end_date = date('Y-m-d', strtotime($end_date));
+			$this->db->where($this->config->item('table_name').'.COL_TIME_ON <=', $end_date);
+		}
 
 		if ($band != '') {
 			if ($band == 'SAT') {
 				$this->db->where($this->config->item('table_name').'.col_prop_mode', 'SAT');
+				if ($orbit == 'LEO') {
+					$this->db->where('satellite.orbit', 'LEO');
+				} else if ($orbit == 'MEO') {
+					$this->db->where('satellite.orbit', 'MEO');
+				} else if ($orbit == 'GEO') {
+					$this->db->where('satellite.orbit', 'GEO');
+				}
 			} else {
 				$this->db->where($this->config->item('table_name').'.col_prop_mode !="SAT"');
 				$this->db->where($this->config->item('table_name').'.col_band', $band);
@@ -21,6 +40,10 @@ class Visitor_model extends CI_Model {
 			$this->db->where($this->config->item('table_name').'.COL_CONT', $continent);
 		}
 
+		if ($contest != '') {
+			$this->db->where($this->config->item('table_name').'.COL_CONTEST_ID', $contest);
+		}
+
 		$this->db->group_start();
 		$this->db->where("(" . $this->config->item('table_name') . ".COL_GRIDSQUARE != '' AND " . $this->config->item('table_name') . ".COL_GRIDSQUARE IS NOT NULL)");
 		$this->db->or_where("(" . $this->config->item('table_name') . ".COL_VUCC_GRIDS != '' AND " . $this->config->item('table_name') . ".COL_VUCC_GRIDS IS NOT NULL)");
@@ -29,9 +52,13 @@ class Visitor_model extends CI_Model {
 		$this->db->where_in($this->config->item('table_name').'.station_id', $StationLocationsArray);
 		$this->db->order_by(''.$this->config->item('table_name').'.COL_TIME_ON', "desc");
 
-		$this->db->limit($num);
-
-		return $this->db->get();
+		if ($num == 'all' || $num > 5000) {
+			$this->db->limit('5000');
+			return $this->db->get();
+		} else {
+			$this->db->limit($num);
+			return $this->db->get();
+		}
 	}
 
 	function getlastqsodate ($slug) {

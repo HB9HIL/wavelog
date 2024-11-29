@@ -21,7 +21,7 @@ class Staticmap_model extends CI_Model {
      * @return bool  True if the image was rendered successfully, false if not
      */
 
-    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false) {
+    function render_static_map($qsos, $uid, $centerMap, $station_coordinates, $filepath, $continent = null, $thememode = null, $hide_home = false, $night_shadow = false, $pathlines = false, $cqzones = false, $ituzones = false, $watermark = true) {
 
         //===============================================================================================================================
         //=============================================== PREPARE AND LOAD DEPENDENCIES =================================================
@@ -220,6 +220,9 @@ class Staticmap_model extends CI_Model {
             $user_icondata['user_map_gridsquare_show'] = "0";
         }
 
+        // free memory
+        unset($options_object);
+
         // Map all available icons to the unicode
         $unicode_map = array(
             '0' => 'f192', // dot-circle is default
@@ -347,6 +350,9 @@ class Staticmap_model extends CI_Model {
             foreach ($terminatorLine as $coordinate) {
                 $night_shadow_polygon->addPoint(new Wavelog\StaticMapImage\LatLng($coordinate[0], $coordinate[1]));
             }
+
+            // free memory
+            unset($terminator);
         }
 
 
@@ -422,6 +428,10 @@ class Staticmap_model extends CI_Model {
                 }
         
                 $cqz_image->savePNG($cqz_cachedir . '/' . $cqz_filename);
+
+                // free memory
+                unset($cqzones_polygon_array);
+
             } else {
                 log_message('info', "Found cached CQ Zone Overlay. Using cached overlay...");
             }
@@ -498,6 +508,10 @@ class Staticmap_model extends CI_Model {
                 }
 
                 $ituz_image->savePNG($ituz_cachedir . '/' . $ituz_filename);
+
+                // free memory
+                unset($ituzones_polygon_array);
+                
             } else {
                 log_message('info', "Found cached ITU Zone Overlay. Using cached overlay...");
             }
@@ -549,9 +563,11 @@ class Staticmap_model extends CI_Model {
         $markersConfirmed->draw($image, $map->getMapData());
 
         // Add Wavelog watermark
-        $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
-        $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
-        $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        if ($watermark) {
+            $watermark = DantSu\PHPImageEditor\Image::fromPath('src/StaticMap/src/resources/watermark_static_map.png');
+            $watermark->resize(round($width * $watermark_size_mutiplier), round((($width * 3) / 4) * $watermark_size_mutiplier));
+            $image->pasteOn($watermark, $watermarkPosX, $watermarkPosY);
+        }
 
         // Add "Created with Wavelog" text
         $user = $this->user_model->get_by_id($uid)->row();
@@ -589,16 +605,13 @@ class Staticmap_model extends CI_Model {
      */
 
     function draw_pathline($start, $end, $continent, $color = 'ffffff', $weight = 1) {
-        // Start in Berlin 
-        $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
 
-        // End in honkong
+        $start = new \Wavelog\StaticMapImage\LatLng($start[0], $start[1]);
         $end = new \Wavelog\StaticMapImage\LatLng($end[0], $end[1]);
 
         $path = new \Wavelog\StaticMapImage\Line($color, $weight, !$continent);
-        $points = $path->geodesicPoints($start, $end);
 
-        foreach ($points as $point) {
+        foreach ($path->geodesicPoints($start, $end, $continent) as $point) {
             $path->addPoint($point);
         }
 

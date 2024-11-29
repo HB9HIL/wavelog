@@ -27,9 +27,19 @@ class Staticmap extends CI_Controller {
 
         // Optional override-parameters
         $band = $this->input->get('band', TRUE) ?? 'nbf';
-        $continent = $this->input->get('continent', TRUE) ?? 'nC';
-        $thememode = $this->input->get('theme', TRUE) ?? null;
+        $orbit = ($this->input->get('orbit', TRUE) ?? '') == '' ? 'nOrb' : strtoupper($this->input->get('orbit', TRUE));
+        $continent = ($this->input->get('continent', TRUE) ?? '') == '' ? 'nC' : strtoupper($this->input->get('continent', TRUE));
+        $thememode = ($this->input->get('theme', TRUE) ?? '') == '' ? '' : strtolower($this->input->get('theme', TRUE));
         $hide_home = $this->input->get('hide_home', TRUE) == 1 ? true : false;
+        $contest = ($this->input->get('contest', TRUE) ?? '') == '' ? 'nContest' : strtoupper($this->input->get('contest', TRUE));
+
+        $start_date = $this->input->get('start_date', TRUE) ?? 'noStart';   // Format YYYY-MM-DD
+        $end_date = $this->input->get('end_date', TRUE) ?? 'noEnd';          // Format YYYY-MM-DD
+
+        // if the user defines an Satellite Orbit, we need to set the band to SAT
+        if ($orbit != 'nOrb') {
+            $band = 'SAT';
+        }
 
         /**
          * Based on Export Settings -> Overlays and QSO Count
@@ -38,7 +48,7 @@ class Staticmap extends CI_Controller {
         $qsocount = $this->input->get('qsocount', TRUE) ?? '';
         // if the qso count is not a number, set it to the user option or 250 per default (same as used in stationsetup)
         $uid = $this->stationsetup_model->getContainer($logbook_id, false)->row()->user_id;
-        if ($qsocount == 0 || !is_numeric($qsocount)) {
+        if ($qsocount == 0 || (!is_numeric($qsocount) && $qsocount != 'all')) {
             $qsocount = $this->user_options_model->get_options('ExportMapOptions', array('option_name' => 'qsocount', 'option_key' => $slug), $uid)->row()->option_value ?? 250;
         }
 
@@ -70,6 +80,12 @@ class Staticmap extends CI_Controller {
             $ituzones = $r == 'true' ? true : false;
         }
 
+        // Watermark
+        $watermark = $this->input->get('wm', TRUE) ?? '';
+        if ($watermark == '' || ($watermark != 1 && $watermark != 0)) {
+            $watermark = true;
+        }
+
         // handling the theme mode
         $this->load->model('themes_model');
         if ($thememode == null || $thememode == '' || ($thememode != 'dark' && $thememode != 'light')) {
@@ -87,8 +103,24 @@ class Staticmap extends CI_Controller {
         // we need the realpath later for validation
         $cacheDir = realpath($cachepath . "staticmap_images/");
 
-        // create a unique filename for the cache
-        $filenameRaw = $uid . $logbook_id . $qsocount . $band . $thememode . $continent . $hide_home . ($night_shadow == false ? 0 : 1) . ($pathlines == false ? 0 : 1) . ($cqzones == false ? 0 : 1) . ($ituzones == false ? 0 : 1);
+        // create a unique filename for the cacheund e
+        $filenameRaw = $uid
+                     . $logbook_id
+                     . $qsocount
+                     . $band
+                     . $thememode
+                     . $continent
+                     . $hide_home
+                     . ($night_shadow == false ? 0 : 1)
+                     . ($pathlines == false ? 0 : 1)
+                     . ($cqzones == false ? 0 : 1)
+                     . ($ituzones == false ? 0 : 1)
+                     . $orbit
+                     . $contest
+                     . $start_date
+                     . $end_date
+                     . $watermark;   
+
         $filename = crc32('staticmap_' . $slug) . '_' . substr(md5($filenameRaw), 0, 12) . '.png';
         $filepath = $cacheDir . '/' . $filename;
 
@@ -142,9 +174,18 @@ class Staticmap extends CI_Controller {
                 }
                 $centerMap = $this->qra->getCenterLatLng($coordinates);
 
-                $qsos = $this->visitor_model->get_qsos($qsocount, $logbooks_locations_array, $band == 'nbf' ? '' : $band, $continent == 'nC' ? '' : $continent); // TODO: Allow 'all' option
+                $qsos = $this->visitor_model->get_qsos(
+                    $qsocount, 
+                    $logbooks_locations_array, 
+                    $band == 'nbf' ? '' : $band, 
+                    $continent == 'nC' ? '' : $continent, 
+                    $orbit == 'nOrb' ? '' : $orbit, 
+                    $contest == 'nContest' ? '' : $contest,
+                    $start_date == 'noStart' ? '' : $start_date,
+                    $end_date == 'noEnd' ? '' : $end_date
+                );
 
-                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones);
+                $image = $this->staticmap_model->render_static_map($qsos, $uid, $centerMap, $coordinates, $filepath, $continent, $thememode, $hide_home, $night_shadow, $pathlines, $cqzones, $ituzones, $watermark);
 
                 header('Content-Type: image/png');
 
@@ -161,5 +202,7 @@ class Staticmap extends CI_Controller {
                 echo $msg;
             }
         }
+
+        log_message('debug', 'Static map image generator took ' . round((memory_get_peak_usage() / 1024 / 1024)) . " MB of memory");
     }
 }
