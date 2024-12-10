@@ -51,7 +51,7 @@
 	<?php } ?>
 
 	<?php if (file_exists(APPPATH . '../assets/css/custom.css')) { ?>
-		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('assets/css/custom.css'); ?>">
+		<link rel="stylesheet" href="<?php echo $this->paths->cache_buster('assets/css/custom.css'); ?>" />
 	<?php } ?>
 
 	<script>
@@ -68,7 +68,7 @@
 	</script>
 
 	<?php if (file_exists(APPPATH . '../assets/js/sections/custom.js')) { ?>
-		<script src="<?php echo $this->paths->cache_buster('assets/js/sections/custom.js"></script>'); ?>">
+		<script src="<?php echo $this->paths->cache_buster('assets/js/sections/custom.js'); ?>"></script>
 	<?php } ?>
 
 	<link rel="icon" href="<?php echo $this->paths->cache_buster('favicon.ico'); ?>">
