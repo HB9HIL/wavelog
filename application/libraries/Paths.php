@@ -32,4 +32,12 @@ class Paths
         }
         return $datadir . "/" . $path;
 	}
+
+    function cache_buster($filepath) {
+        $fullpath = $_SERVER['DOCUMENT_ROOT'] . $filepath;
+        if (file_exists($fullpath)) {
+            return base_url($filepath) . '?v=' . filemtime($fullpath);
+        }
+        return base_url($filepath);
+    }
 }
