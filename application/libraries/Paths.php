@@ -38,7 +38,7 @@ class Paths
         if (file_exists($fullpath)) {
             return base_url($filepath) . '?v=' . filemtime($fullpath);
         } else {
-            log_message('debug', 'File does not exist: ' . $filepath);
+            log_message('error', 'CACHE BUSTER - File does not exist: ' . $filepath);
         }
         return base_url($filepath);
     }
