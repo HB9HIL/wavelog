@@ -37,6 +37,8 @@ class Paths
         $fullpath = $_SERVER['DOCUMENT_ROOT'] . $filepath;
         if (file_exists($fullpath)) {
             return base_url($filepath) . '?v=' . filemtime($fullpath);
+        } else {
+            log_message('debug', 'File does not exist: ' . $fullpath);
         }
         return base_url($filepath);
     }

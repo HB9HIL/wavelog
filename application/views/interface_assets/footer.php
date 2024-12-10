@@ -20,7 +20,7 @@
 	<?php }
 	?>
 
-    var icon_dot_url = "<?php echo base_url();?>assets/images/dot.png";
+    var icon_dot_url = "<?php echo $this->paths->cache_buster('/assets/images/dot.png');?>";
 
     // get the user_callsign from session
     var my_call = "<?php echo $this->session->userdata('user_callsign'); ?>".toUpperCase();
@@ -55,31 +55,31 @@
 </script>
 
 <!-- General JS Files used across Wavelog -->
-<script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.fancybox.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/Control.FullScreen.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/L.Maidenhead.qrb.js"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/jquery-3.3.1.min.js'); ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/jquery.fancybox.min.js'); ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap.bundle.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/Control.FullScreen.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.qrb.js'); ?>"></script>
 <?php if ($this->uri->segment(1) == "activators") { ?>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.activators.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.activators.js'); ?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/leaflet/leaflet.geodesic.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/radiohelpers.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/darkmodehelpers.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bootstrapdialog/js/bootstrap-dialog.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/easyprint.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/common.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/eqslcharcounter.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/version_dialog.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/showdown.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leaflet.geodesic.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/radiohelpers.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/darkmodehelpers.js'); ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrapdialog/js/bootstrap-dialog.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/easyprint.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/common.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/eqslcharcounter.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/version_dialog.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/showdown.min.js'); ?>"></script>
 
 <script type="module" defer>
-  		import { polyfillCountryFlagEmojis } from "<?php echo base_url() ;?>assets/js/country-flag-emoji-polyfill.js";
+  		import { polyfillCountryFlagEmojis } from "<?php echo $this->paths->cache_buster('/assets/js/country-flag-emoji-polyfill.js') ;?>";
 		polyfillCountryFlagEmojis();
 </script>
 
-<script src="<?php echo base_url(); ?>assets/js/htmx.min.js"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/htmx.min.js'); ?>"></script>
 
 <script>
     // Reinitialize tooltips after new content has been loaded
@@ -151,7 +151,7 @@ if($this->session->userdata('user_id') != null) {
 
 <!-- SPECIAL CALLSIGN OPERATOR FEATURE -->
 <?php if ($this->config->item('special_callsign') == true && $this->uri->segment(1) == "dashboard") { ?>
-<script type="text/javascript" src="<?php echo base_url() ;?>assets/js/sections/operator.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/operator.js'); ?>"></script>
 <script>
 	<?php
 	# Set some variables for better readability
@@ -187,12 +187,12 @@ if($this->session->userdata('user_id') != null) {
 </script>
 
 <?php if ($this->uri->segment(1) == "oqrs") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/oqrs.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/oqrs.js'); ?>"></script>
 <?php } ?>
 
 <!-- JS library to convert cron format to human readable -->
 <?php if ($this->uri->segment(1) == "cron") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/cronstrue.min.js"async></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/cronstrue.min.js'); ?>"async></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "options") { ?>
@@ -208,50 +208,50 @@ if($this->session->userdata('user_id') != null) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "iota") ) { ?>
-    <script id="iotamapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/iotamap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+    <script id="iotamapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/iotamap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "awards" && ($this->uri->segment(2) == "dxcc") ) { ?>
-    <script id="dxccmapjs" type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/dxccmap.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+    <script id="dxccmapjs" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/dxccmap.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "statistics" && $this->uri->segment(2) == "") { ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chartjs-plugin-piechart-outlabels.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/statistics.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chartjs-plugin-piechart-outlabels.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/statistics.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "continents") { ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/chartjs-plugin-piechart-outlabels.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/continents.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/chartjs-plugin-piechart-outlabels.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/continents.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" || $this->uri->segment(1) == "qrz" || $this->uri->segment(1) == "hrdlog" || $this->uri->segment(1) == "webadif" || $this->uri->segment(1) == "sattimers") { ?>
     <!-- Javascript used for ADIF Import and Export Areas -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "adif" ) { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/adif.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/jszip.min.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/adif.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/jszip.min.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "notes" && ($this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit") ) { ?>
     <!-- Javascript used for Notes Area -->
-    <script src="<?php echo base_url() ;?>assets/plugins/quill/quill.min.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/sections/notes.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/plugins/quill/quill.min.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/notes.js'); ?>"></script>
 <?php } ?>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/selectize.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datatables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/dataTables.buttons.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/buttons.html5.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/selectize.js'); ?>"></script>
 
 <?php if ($this->uri->segment(1) == "station") { ?>
-    <script language="javascript" src="<?php echo base_url() ;?>assets/js/HamGridSquare.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/sections/station_locations.js"></script>
-    <script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
+    <script language="javascript" src="<?php echo $this->paths->cache_buster('/assets/js/HamGridSquare.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/station_locations.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap-multiselect.js'); ?>"></script>
     <script>
         var position;
         function getLocation() {
@@ -270,7 +270,7 @@ if($this->session->userdata('user_id') != null) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "logbooks") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/station_logbooks.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/station_logbooks.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "debug") { ?>
@@ -321,7 +321,7 @@ $(function () {
 
 <?php if ($this->uri->segment(1) == "search" && $this->uri->segment(2) == "filter") { ?>
 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/query-builder.standalone.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/query-builder.standalone.min.js'); ?>"></script>
 
 <script type="text/javascript">
     $(".search-results-box").hide();
@@ -766,8 +766,8 @@ function showActivatorsMap(call, count, grids) {
 </script>
 
 <?php if ($this->uri->segment(1) == "" || $this->uri->segment(1) == "dashboard" ) { ?>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
-    <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
+    <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
 
     <script type="text/javascript">
       $(function () {
@@ -919,8 +919,8 @@ $($('#callsign')).on('keypress',function(e) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "logbook" && $this->uri->segment(2) != "view") { ?>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.Maidenhead.js"></script>
-    <script id="leafembed" type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/leafembed.js" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.Maidenhead.js'); ?>"></script>
+    <script id="leafembed" type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/leafembed.js'); ?>" tileUrl="<?php echo $this->optionslib->get_option('option_map_tile_server');?>"></script>
     <script type="text/javascript">
       $(function () {
          $('[data-bs-toggle="tooltip"]').tooltip()
@@ -950,10 +950,10 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php if ($this->uri->segment(1) == "qso") { ?>
 
-<script src="<?php echo base_url() ;?>assets/js/sections/qso.js"></script>
-<script src="<?php echo base_url() ;?>assets/js/bootstrap-multiselect.js"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/qso.js'); ?>"></script>
+<script src="<?php echo $this->paths->cache_buster('/assets/js/bootstrap-multiselect.js'); ?>"></script>
 <?php if ($this->session->userdata('isWinkeyEnabled')) { ?>
-	<script src="<?php echo base_url() ;?>assets/js/winkey.js"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/winkey.js'); ?>"></script>
 <?php }	?>
 	<script type="text/javascript">
 		var dxcluster_provider = '<?php echo base_url(); ?>index.php/dxcluster';
@@ -1159,9 +1159,9 @@ $($('#callsign')).on('keypress',function(e) {
 
 <?php } ?>
 <?php if ( $this->uri->segment(1) == "qso" || ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) != "add")) { ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sections/qrg_handler.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrg_handler.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
 
     <script>
     $( document ).ready(function() {
@@ -1365,7 +1365,7 @@ $(document).ready(function(){
 
 <?php if ($this->uri->segment(1) == "gridsquares" && !empty($this->uri->segment(2))) { ?>
 <script>var gridsquaremap = true;</script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.MaidenheadColoured.js'); ?>"></script>
 
 <script>
 
@@ -1517,7 +1517,7 @@ $(document).ready(function(){
 
 <?php if ($this->uri->segment(1) == "activated_grids" && !empty($this->uri->segment(2))) { ?>
 
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/leaflet/L.MaidenheadColoured.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/leaflet/L.MaidenheadColoured.js'); ?>"></script>
 
 <script>
   var layer = L.tileLayer('<?php echo $this->optionslib->get_option('option_map_tile_server');?>', {
@@ -1655,27 +1655,27 @@ $(document).ready(function(){
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "dayswithqso") { ?>
-    <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/sections/dayswithqso.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/dayswithqso.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "distances") { ?>
-    <script src="<?php echo base_url(); ?>assets/js/highstock.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/exporting.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/offline-exporting.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/export-data.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/sections/distances.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/exporting.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/offline-exporting.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/export-data.js'); ?>"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/distances.js'); ?>"></script>
 <?php } ?>
 
 
     <?php if ($this->uri->segment(1) == "hrdlog") { ?>
-		<script src="<?php echo base_url(); ?>assets/js/sections/hrdlog.js"></script>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/hrdlog.js'); ?>"></script>
     <?php } ?>
     <?php if ($this->uri->segment(1) == "qrz") { ?>
-		<script src="<?php echo base_url(); ?>assets/js/sections/qrzlogbook.js"></script>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/qrzlogbook.js'); ?>"></script>
     <?php } ?>
 	<?php if ($this->uri->segment(1) == "webadif") { ?>
-		<script src="<?php echo base_url(); ?>assets/js/sections/webadif.js"></script>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/webadif.js'); ?>"></script>
 	<?php } ?>
 
 <?php if ($this->uri->segment(2) == "dxcc") { ?>
@@ -2014,7 +2014,7 @@ $(document).ready(function(){
             }
 
             function displayTimelineContacts(querystring, band, mode, propmode, type) {
-                var baseURL= "<?php echo base_url();?>";
+                var baseURL= "<?php echo base_url(); ?>";
                 $.ajax({
                     url: baseURL + 'index.php/timeline/details',
                     type: 'post',
@@ -2052,24 +2052,24 @@ $(document).ready(function(){
 
 
     <?php if ($this->uri->segment(1) == "mode") { ?>
-		<script src="<?php echo base_url(); ?>assets/js/sections/mode.js"></script>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/mode.js'); ?>"></script>
     <?php } ?>
 
     <?php if ($this->uri->segment(1) == "band") { ?>
-		<script src="<?php echo base_url(); ?>assets/js/sections/bands.js"></script>
+		<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/bands.js'); ?>"></script>
     <?php } ?>
 
 <?php if ($this->uri->segment(1) == "accumulated") { ?>
-    <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/sections/accumulatedstatistics.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/chart.js'); ?>"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/accumulatedstatistics.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "timeplotter") { ?>
-    <script src="<?php echo base_url(); ?>assets/js/highstock.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/exporting.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/offline-exporting.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/highstock/export-data.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/sections/timeplot.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/exporting.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/offline-exporting.js'); ?>"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/highstock/export-data.js'); ?>"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/timeplot.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "qsl" || $this->uri->segment(1) == "eqsl") {
@@ -2095,8 +2095,8 @@ $(document).ready(function(){
     }
 
     ?>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+<script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <script>
         $.fn.dataTable.moment('<?php echo $usethisformat ?>');
         $.fn.dataTable.ext.buttons.clear = {
@@ -2206,7 +2206,7 @@ function deleteQsl(id) {
 <script>
 function viewEqsl(picture, callsign) {
             var webpath_eqsl = '<?php echo $this->paths->getPathEqsl(); ?>';
-            var baseURL= "<?php echo base_url();?>";
+            var baseURL= "<?php echo base_url(); ?>";
             var $textAndPic = $('<div></div>');
                 $textAndPic.append('<img class="img-fluid" style="height:auto;width:auto;"src="'+baseURL+webpath_eqsl+'/'+picture+'" />');
             var title = '';
@@ -2539,7 +2539,7 @@ function viewEqsl(picture, callsign) {
     }
 
     function displayCountyContacts(state, county) {
-        var baseURL= "<?php echo base_url();?>";
+        var baseURL= "<?php echo base_url(); ?>";
         $.ajax({
             url: baseURL + 'index.php/awards/counties_details_ajax',
             type: 'post',
@@ -2594,11 +2594,11 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "contesting" && $this->uri->segment(2) == "add") { ?>
-	<script src="<?php echo base_url() ;?>assets/js/sections/contestingnames.js"></script>
+	<script src="<?php echo $this->paths->cache_buster('/assets/js/sections/contestingnames.js'); ?>"></script>
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "themes") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/themes.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/themes.js'); ?>"></script>
 <?php } ?>
 
 
@@ -2622,8 +2622,8 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "distancerecords") { ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
         <script>
             $.fn.dataTable.moment('<?php echo $usethisformat ?>');
             $.fn.dataTable.ext.buttons.clear = {
@@ -2706,8 +2706,8 @@ function viewEqsl(picture, callsign) {
     }
 
     ?>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/datetime-moment.js"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/moment.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->paths->cache_buster('/assets/js/datetime-moment.js'); ?>"></script>
     <?php if ($this->uri->segment(2) == "wwff") { ?>
         <script>
             $.fn.dataTable.moment('<?php echo $usethisformat ?>');
@@ -2847,7 +2847,7 @@ function viewEqsl(picture, callsign) {
 <?php } ?>
 
 <?php if ($this->uri->segment(1) == "user") { ?>
-    <script src="<?php echo base_url() ;?>assets/js/sections/user.js"></script>
+    <script src="<?php echo $this->paths->cache_buster('/assets/js/sections/user.js'); ?>"></script>
 <?php } ?>
 
 <?php
