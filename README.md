@@ -18,7 +18,7 @@
  </a>
 </h1>
 
-Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection.
+Wavelog is a self-hosted PHP application that allows you to log your amateur radio contacts anywhere. All you need is a web browser and active internet connection. foobar
 
 Wavelog itself is an enhanced fork of Cloudlog by 2M0SQL.
 If you would like to contribute to Wavelog please see the [Contributing](#contributing) section below.
