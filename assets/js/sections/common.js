@@ -180,6 +180,7 @@ function single_callbook_update() {
                 fill_if_empty('#ituz_edit', data.dxcc.ituz);
             }
             fill_if_empty('#locator_edit', data.callsign_qra);
+            fill_if_empty('#email_edit', data.callsign_email);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
             fill_if_empty('#iota_ref_edit', data.callsign_iota);
             fill_if_empty('#name_edit', data.callsign_name);
@@ -213,7 +214,7 @@ async function fill_if_empty(field, data) {
     }
 
     // catch special case for grid
-    if (field == "#locator_edit") {
+    if (field == "#locator_edit" && $(field).val() == '') {
         $(field).val(data.toUpperCase()).css('border', border_color).trigger('change');
         return;
     }
@@ -950,10 +951,16 @@ function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     if (states.status == 'ok') {
         dropdown.prop('disabled', false);
         $.each(states.data, function(index, state) {
-            var option = $('<option>', {
-                value: state.state,
-                text: state.subdivision + ' (' + state.state + ')'
-            });
+            var d_text = '';
+            if (state.deprecated == '1') {
+                d_text = '\u26A0\uFE0F [' + lang_general_states_deprecated + '] - ';
+            }
+            if (state.state == set_state || state.deprecated != '1') {
+                var option = $('<option>', {
+                    value: state.state,
+                    text: d_text + state.subdivision + ' (' + state.state + ')'
+                });
+            }
             dropdown.append(option);
         });
         $(dropdown).val(set_state);
@@ -1151,6 +1158,30 @@ function enableMap() {
     map.doubleClickZoom.enable();
     map.boxZoom.enable();
     map.keyboard.enable();
+}
+
+function shareModal(qso_data) {
+    $.ajax({
+        url: base_url + 'index.php/qso/getShareModal',
+        type: 'post',
+        data: {
+            qso_data: qso_data
+        },
+        success: function (html) {
+            BootstrapDialog.show({
+                title: lang_general_share_qso,
+                cssClass: 'bg-black bg-opacity-50',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

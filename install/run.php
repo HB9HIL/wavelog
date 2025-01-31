@@ -39,7 +39,7 @@
                     <p><?= sprintf(__("All install steps went through. Redirect to user login in %s seconds..."), "<span id='countdown'>4</span>"); ?></p>
                 </div>
                 <div class="mb-3" id="success_button" style="display: none;">
-                    <a class="btn btn-primary" href="<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>index.php/user/login/1"><?= __("Done. Go to the user login ->"); ?></a>
+                    <a class="btn btn-primary" href="<?php echo $_POST['websiteurl']; ?>index.php/user/login/1"><?= __("Done. Go to the user login ->"); ?></a>
                 </div>
                 <div id="error_message"></div>
                 <div class="container mt-5">
@@ -148,7 +148,7 @@
                     }
                 },
                 error: async function(error) {
-                    await log_message('error', "Install Lock Check went wrong...");
+                    await log_message('error', "Install Lock Check went wrong... Ajax failed. Error: " + error.status);
                     reject(error);
                     window.location.href = "<?php echo str_replace('run.php', '', $websiteurl); ?>" + "index.php/user/login";
                 }
@@ -183,7 +183,7 @@
                     }
                 },
                 error: async function(error) {
-                    await log_message('error', 'File: Could not write file. Ajax failed.');
+                    await log_message('error', 'File: Could not write file. Ajax failed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     running(field, false, true);
                     reject(error);
                 }
@@ -218,7 +218,7 @@
                     }
                 },
                 error: async function(error) {
-                    await log_message('error', 'File: Could not write file. Ajax failed.');
+                    await log_message('error', 'File: Could not write file. Ajax failed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     running(field, false, true);
                     reject(error);
                 }
@@ -253,7 +253,7 @@
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Creating database tables failed. Ajax crashed.');
+                    await log_message('error', 'Creating database tables failed. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     reject(error);
                 }
             });
@@ -268,7 +268,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/migrate",
+                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/migrate",
                 dataType: 'json',
                 success: async function(response) {
                     if (response.status == 'success') {
@@ -283,7 +283,7 @@
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not migrate database. Ajax crashed.');
+                    await log_message('error', 'Could not migrate database. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     reject(error);
                 }
             });
@@ -297,7 +297,7 @@
 
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: "<?php echo $_POST['websiteurl'] ?? $websiteurl; ?>" + "index.php/update/dxcc",
+                url: "<?php echo $_POST['websiteurl']; ?>" + "index.php/update/dxcc",
                 success: async function(response) {
                     if (response == 'success') {
                         running(field, false);
@@ -305,13 +305,13 @@
                         resolve();
                     } else {
                         running(field, false, true);
-                        await log_message('error', 'Could not update DXCC data.');
+                        await log_message('error', 'Could not update DXCC data. Check application/logs for any error messages.');
                         reject("<?= __("Could not update DXCC data"); ?>");
                     }
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not update DXCC data. Ajax crashed.');
+                    await log_message('error', 'Could not update DXCC data. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     reject(error);
                 }
             });
@@ -343,7 +343,7 @@
                 },
                 error: async function(error) {
                     running(field, false, true);
-                    await log_message('error', 'Could not create .lock file. Ajax crashed');
+                    await log_message('error', 'Could not create .lock file. Ajax crashed. Status: ' + error.status + ' Status Text: ' + error.statusText);
                     reject(error);
                 }
             });

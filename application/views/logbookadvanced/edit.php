@@ -30,6 +30,9 @@
 			<option value="eqslsent"><?= __("eQSL Sent"); ?></option>
 			<option value="eqslreceived"><?= __("eQSL Received"); ?></option>
 			<option value="stationpower"><?= __("Station power"); ?></option>
+			<option value="region"><?= __("Region"); ?></option>
+			<option value="clublogsent"><?= __("Clublog Sent"); ?></option>
+			<option value="clublogreceived"><?= __("Clublog Received"); ?></option>
 		</select>
 		<div>&nbsp;</div>
 
@@ -82,7 +85,9 @@
 		<label style="display:none" id="editSatelliteModeLabel" class="mx-2 w-auto" for="editSatelliteMode"><?= __("SAT Mode"); ?></label>
 		<input style="display:none" class="form-control form-control-sm w-auto" id="editSatelliteMode" type="text" name="editSatelliteMode" placeholder="" aria-label="editSatelliteMode">
 
+		<label style="display:none" id="editBandTxLabel" class="mx-2 w-auto" for="editBand"><?= __("Band TX"); ?></label>
 		<select style="display:none" id="editBand" class="form-select w-auto form-select-sm" name="editBand">
+			<option value="">-</option>
 			<?php foreach($bands as $key=>$bandgroup) {
 					echo '<optgroup label="' . strtoupper($key) . '">';
 					foreach($bandgroup as $band) {
@@ -157,6 +162,14 @@
 			<option value="I"><?= __("Invalid"); ?></option>
 		</select>
 
+		<select style="display:none" class="form-select w-auto form-select-sm w-auto" id="editClublog"  name="clublog">
+			<option value="Y"><?= __("Yes"); ?></option>
+			<option value="N"><?= __("No"); ?></option>
+			<option value="R"><?= __("Requested"); ?></option>
+			<option value="I"><?= __("Invalid"); ?></option>
+			<option value="V"><?= __("Verified"); ?></option>
+		</select>
+
 		<select style="display:none" id="editContinent" name="continent" class="form-select w-auto form-select-sm w-auto">
 			<option value=""><?= __("None/Empty"); ?></option>
 			<option value="AF"><?= __("Africa"); ?></option>
@@ -166,5 +179,17 @@
 			<option value="EU"><?= __("Europe"); ?></option>
 			<option value="SA"><?= __("South America"); ?></option>
 			<option value="OC"><?= __("Oceania"); ?></option>
+		</select>
+
+		<select style="display:none" id="editRegion" name="region" class="form-select w-auto form-select-sm w-auto">
+			<option value=""></option>
+			<option value="NONE"><?= __("NONE"); ?></option>
+			<option value="AI"><?= __("African Italy"); ?></option>
+			<option value="BI"><?= __("Bear Island"); ?></option>
+			<option value="ET"><?= __("European Turkey"); ?></option>
+			<option value="IV"><?= __("ITU Vienna"); ?></option>
+			<option value="KO"><?= __("Kosovo"); ?></option>
+			<option value="SI"><?= __("Shetland Islands"); ?></option>
+			<option value="SY"><?= __("Sicily"); ?></option>
 		</select>
 	</form>

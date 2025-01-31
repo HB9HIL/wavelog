@@ -64,6 +64,10 @@
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
                         </tr>
+                        <tr>
+                            <td><?= __("System Time"); ?></td>
+                            <td><?php echo $system_time; ?></td>
+                        </tr>
                         <tr class="blank-row">
                             <td> </td>
                             <td> </td>
@@ -550,6 +554,11 @@
                             <td><?php echo $wwff_update->last_run ?? __("never"); ?></td>
                             <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_wwff'); ?>"><?= __("Update"); ?></a></td>
                         </tr>
+						<tr>
+                            <td><?= __("TLE update"); ?></td>
+                            <td><?php echo $tle_update->last_run ?? __("never"); ?></td>
+                            <td><a class="btn btn-sm btn-primary" href="<?php echo site_url('update/update_tle'); ?>"><?= __("Update"); ?></a></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -652,6 +661,7 @@
 ?>
 <div style="display: none">
     <?= __("Albanian"); ?>
+    <?= __("Armenian"); ?>
     <?= __("Bosnian"); ?>
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
@@ -672,6 +682,7 @@
     <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Serbian"); ?>
+    <?= __("Slovenian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>

@@ -218,7 +218,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sota_ref"><?= __("SOTA Reference"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="sota_ref" tabindex="12" type="text" name="sota_ref" value="" />
+                  <input class="form-control text-uppercase" id="sota_ref" tabindex="12" type="text" name="sota_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="sota_info" class="btn btn-secondary spw-buttons"></small>
@@ -230,7 +230,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="wwff_ref"><?= __("WWFF Reference"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="wwff_ref" tabindex="13" type="text" name="wwff_ref" value="" />
+                  <input class="form-control text-uppercase" id="wwff_ref" tabindex="13" type="text" name="wwff_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="wwff_info" class="btn btn-secondary spw-buttons"></small>
@@ -242,7 +242,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="pota_ref"><?= __("POTA Reference(s)"); ?></label>
                 <div class="col-sm-7 align-self-center">
-                  <input class="form-control" id="pota_ref" tabindex="14" type="text" name="pota_ref" value="" />
+                  <input class="form-control text-uppercase" id="pota_ref" tabindex="14" type="text" name="pota_ref" value="" />
                 </div>
                 <div class="col-sm-2 align-self-center">
                   <small id="pota_info" class="btn btn-secondary spw-buttons"></small>
@@ -254,14 +254,14 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sig"><?= __("Sig"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="sig" tabindex="15" type="text" name="sig" value="" />
+                  <input class="form-control text-uppercase" id="sig" tabindex="15" type="text" name="sig" value="" />
                 </div>
               </div>
 
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="sig_info"><?= __("Sig Info"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="sig_info" tabindex="16" type="text" name="sig_info" value="" />
+                  <input class="form-control text-uppercase" id="sig_info" tabindex="16" type="text" name="sig_info" value="" />
                 </div>
               </div>
               <?php } ?>
@@ -270,7 +270,7 @@
               <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label" for="darc_dok"><?= __("DOK"); ?></label>
                 <div class="col-sm-9">
-                  <input class="form-control" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
+                  <input class="form-control text-uppercase" id="darc_dok" tabindex="17" type="text" name="darc_dok" value="" />
                 </div>
               </div>
               <?php } ?>
@@ -355,10 +355,12 @@
               <small id="powerHelp" class="form-text text-muted"><?= __("Give power value in Watts. Include only numbers in the input."); ?></small>
             </div>
 
+            <?php if (clubaccess_check(9)) { ?>
             <div class="mb-3">
               <label for="operator_callsign"><?= __("Operator Callsign"); ?></label>
               <input type="text" class="form-control" id="operator_callsign" name="operator_callsign" value="<?php if ($this->session->userdata('operator_callsign')) { echo $this->session->userdata('operator_callsign'); } ?>" />
             </div>
+            <?php } ?>
 
         </div>
 
@@ -383,39 +385,57 @@
 
                   </select>
               </div>
-              <div class="mb-3">
-                  <label for="continent"><?= __("Continent"); ?></label>
-                  <select class="form-select" id="continent" name="continent">
-                      <option value=""></option>
-                      <option value="AF"><?= __("Africa"); ?></option>
-                      <option value="AN"><?= __("Antarctica"); ?></option>
-                      <option value="AS"><?= __("Asia"); ?></option>
-                      <option value="EU"><?= __("Europe"); ?></option>
-                      <option value="NA"><?= __("North America"); ?></option>
-                      <option value="OC"><?= __("Oceania"); ?></option>
-                      <option value="SA"><?= __("South America"); ?></option>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="cqz"><?= __("CQ Zone"); ?></label>
-                  <select class="form-select" id="cqz" name="cqz" required>
-                      <?php
-                      for ($i = 0; $i<=40; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
-              <div class="mb-3">
-                  <label for="ituz"><?= __("ITU Zone"); ?></label>
-                  <select class="form-select" id="ituz" name="ituz">
-                      <?php
-                      for ($i = 0; $i<=90; $i++) {
-                          echo '<option value="'. $i . '">'. $i .'</option>';
-                      }
-                      ?>
-                  </select>
-              </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="continent"><?= __("Continent"); ?></label>
+					  <select class="form-select" id="continent" name="continent">
+						  <option value=""></option>
+						  <option value="AF"><?= __("Africa"); ?></option>
+						  <option value="AN"><?= __("Antarctica"); ?></option>
+						  <option value="AS"><?= __("Asia"); ?></option>
+						  <option value="EU"><?= __("Europe"); ?></option>
+						  <option value="NA"><?= __("North America"); ?></option>
+						  <option value="OC"><?= __("Oceania"); ?></option>
+						  <option value="SA"><?= __("South America"); ?></option>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="region"><?= __("Region"); ?></label>
+					  <select class="form-select" id="region" name="region">
+						  <option value="" selected></option>
+						  <option value="NONE"><?= __("NONE"); ?></option>
+						  <option value="AI"><?= __("African Italy"); ?></option>
+						  <option value="BI"><?= __("Bear Island"); ?></option>
+						  <option value="ET"><?= __("European Turkey"); ?></option>
+						  <option value="IV"><?= __("ITU Vienna"); ?></option>
+						  <option value="KO"><?= __("Kosovo"); ?></option>
+						  <option value="SI"><?= __("Shetland Islands"); ?></option>
+						  <option value="SY"><?= __("Sicily"); ?></option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="row">
+				  <div class="mb-3 col">
+					  <label for="cqz"><?= __("CQ Zone"); ?></label>
+					  <select class="form-select" id="cqz" name="cqz" required>
+						  <?php
+						  for ($i = 0; $i<=40; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+				  <div class="mb-3 col">
+					  <label for="ituz"><?= __("ITU Zone"); ?></label>
+					  <select class="form-select" id="ituz" name="ituz">
+						  <?php
+						  for ($i = 0; $i<=90; $i++) {
+							  echo '<option value="'. $i . '">'. $i .'</option>';
+						  }
+						  ?>
+					  </select>
+				  </div>
+			  </div>
 
             <div class="mb-3">
               <div class="row">
@@ -488,7 +508,7 @@
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="sota_ref"><?= __("SOTA Reference"); ?></label>
-                <input class="form-control" id="sota_ref" type="text" name="sota_ref" value="" />
+                <input class="form-control text-uppercase" id="sota_ref" type="text" name="sota_ref" value="" />
                 <small id="sotaRefHelp" class="form-text text-muted"><?= __("For example: GM/NS-001."); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
@@ -501,7 +521,7 @@
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="wwff_ref"><?= __("WWFF Reference"); ?></label>
-                <input class="form-control" id="wwff_ref" type="text" name="wwff_ref" value="" />
+                <input class="form-control text-uppercase" id="wwff_ref" type="text" name="wwff_ref" value="" />
                 <small id="wwffRefHelp" class="form-text text-muted"><?= __("For example: DLFF-0069."); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
@@ -514,7 +534,7 @@
             <div class="row">
               <div class="mb-3 col-md-9">
                 <label for="pota_ref"><?= __("POTA Reference(s)"); ?></label>
-                <input class="form-control" id="pota_ref" type="text" name="pota_ref" value="" />
+                <input class="form-control text-uppercase" id="pota_ref" type="text" name="pota_ref" value="" />
                 <small id="potaRefHelp" class="form-text text-muted"><?= __("For example: PA-0150. Multiple values allowed."); ?></small>
               </div>
               <div class="mb-3 col-md-3 align-self-center">
@@ -526,13 +546,13 @@
             <?php if (!$user_sig_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="sig"><?= __("Sig"); ?></label>
-              <input class="form-control" id="sig" type="text" name="sig" value="" />
+              <input class="form-control text-uppercase" id="sig" type="text" name="sig" value="" />
               <small id="sigHelp" class="form-text text-muted"><?= __("For example: GMA"); ?></small>
             </div>
 
             <div class="mb-3">
               <label for="sig_info"><?= __("Sig Info"); ?></label>
-              <input class="form-control" id="sig_info" type="text" name="sig_info" value="" />
+              <input class="form-control text-uppercase" id="sig_info" type="text" name="sig_info" value="" />
               <small id="sigInfoHelp" class="form-text text-muted"><?= __("For example: DA/NW-357"); ?></small>
             </div>
             <?php } ?>
@@ -540,7 +560,7 @@
             <?php if (!$user_dok_to_qso_tab ?? false) { ?>
             <div class="mb-3">
               <label for="darc_dok"><?= __("DOK"); ?></label>
-              <input class="form-control" id="darc_dok" type="text" name="darc_dok" value="" />
+              <input class="form-control text-uppercase" id="darc_dok" type="text" name="darc_dok" value="" />
               <small id="dokHelp" class="form-text text-muted"><?= __("For example: Q03"); ?></small>
             </div>
             <?php } ?>
@@ -756,7 +776,7 @@
 
         </div>
       </div>
-      <small class="mt-0.5" style="float: right;"><?= __("Max. 5 previous contacts are shown"); ?></small>
+      <small style="float: right;"><?= sprintf(_ngettext("Max. %d previous contact is shown", "Max. %d previous contacts are shown", intval($qso_count)), intval($qso_count)); ?></small>
     </div>
   </div>
 
