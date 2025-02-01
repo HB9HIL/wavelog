@@ -6,13 +6,14 @@
 # Byt3 <falko@205er.de>, 2024.
 # "Francisco (F4VSE)" <kikosgc@gmail.com>, 2024.
 # "Francisco (F4VSE)" <kikosgc@users.noreply.github.com>, 2024, 2025.
-# F4JSU <f4jsu.radio@gmail.com>, 2024.
+# F4JSU <f4jsu.radio@gmail.com>, 2024, 2025.
+# Christian Egger <zone11@mac.com>, 2025.
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: translations@wavelog.org\n"
-"POT-Creation-Date: 2025-01-31 05:49+0000\n"
-"PO-Revision-Date: 2025-01-30 21:18+0000\n"
-"Last-Translator: \"Francisco (F4VSE)\" <kikosgc@users.noreply.github.com>\n"
+"POT-Creation-Date: 2025-02-01 12:44+0000\n"
+"PO-Revision-Date: 2025-02-01 10:12+0000\n"
+"Last-Translator: F4JSU <f4jsu.radio@gmail.com>\n"
 "Language-Team: French <https://translate.wavelog.org/projects/wavelog/main-"
 "translation/fr/>\n"
 "Language: fr_FR\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: application/controllers/Accumulated.php:12
 #: application/controllers/Activators.php:13
@@ -41,6 +42,8 @@ msgstr ""
 #: application/controllers/Cfdexport.php:29 application/controllers/Club.php:48
 #: application/controllers/Club.php:74 application/controllers/Club.php:122
 #: application/controllers/Club.php:151 application/controllers/Club.php:178
+#: application/controllers/Clublog.php:84
+#: application/controllers/Clublog.php:143
 #: application/controllers/Components.php:13
 #: application/controllers/Contestcalendar.php:15
 #: application/controllers/Contesting.php:14
@@ -700,8 +703,35 @@ msgstr "Le mode Maintenance est actif. Réessayer plus tard."
 
 #: application/controllers/Clublog.php:44
 #: application/controllers/Clublog.php:66
+#: application/controllers/Clublog.php:126
+#: application/controllers/Clublog.php:163
 msgid "No user has configured Clublog."
 msgstr "Aucun utilisateur n'a configuré Clublog."
+
+#: application/controllers/Clublog.php:89
+#: application/controllers/Logbook.php:672
+#: application/views/awards/dok/index.php:71
+#: application/views/awards/dxcc/index.php:77
+#: application/views/awards/jcc/index.php:68
+#: application/views/awards/wab/index.php:104
+#: application/views/awards/wae/index.php:70
+#: application/views/awards/waja/index.php:71
+#: application/views/logbookadvanced/useroptions.php:62
+#: application/views/qso/edit_ajax.php:431
+#: application/views/search/search_result_ajax.php:124
+#: application/views/station_profile/edit.php:352
+#: application/views/timeline/index.php:68
+#: application/views/update/index.php:20 application/views/user/edit.php:595
+#: application/views/user/edit.php:729
+#: application/views/view_log/partial/log_ajax.php:149
+#: application/views/view_log/qso.php:565
+#: application/views/view_log/qso.php:570
+msgid "Clublog"
+msgstr "Clublog"
+
+#: application/controllers/Clublog.php:145
+msgid "Clublog QSL Import"
+msgstr "Importation QSL Clublog"
 
 #: application/controllers/Contestcalendar.php:19
 #: application/views/interface_assets/header.php:263
@@ -1220,26 +1250,6 @@ msgstr "LoTW"
 #: application/views/user/edit.php:713 application/views/user/edit.php:779
 msgid "eQSL"
 msgstr "eQSL"
-
-#: application/controllers/Logbook.php:672
-#: application/views/awards/dok/index.php:71
-#: application/views/awards/dxcc/index.php:77
-#: application/views/awards/jcc/index.php:68
-#: application/views/awards/wab/index.php:104
-#: application/views/awards/wae/index.php:70
-#: application/views/awards/waja/index.php:71
-#: application/views/logbookadvanced/useroptions.php:62
-#: application/views/qso/edit_ajax.php:431
-#: application/views/search/search_result_ajax.php:124
-#: application/views/station_profile/edit.php:352
-#: application/views/timeline/index.php:68
-#: application/views/update/index.php:20 application/views/user/edit.php:595
-#: application/views/user/edit.php:729
-#: application/views/view_log/partial/log_ajax.php:149
-#: application/views/view_log/qso.php:565
-#: application/views/view_log/qso.php:570
-msgid "Clublog"
-msgstr "Clublog"
 
 #: application/controllers/Logbook.php:1281
 #: application/controllers/Radio.php:46
@@ -2020,7 +2030,7 @@ msgstr "Ajouter QSO"
 
 #: application/controllers/Qso.php:666
 msgid "You have to be logged in to access this URL."
-msgstr "Vous devez être connecté pour accéder à ce URL"
+msgstr "Vous devez être connecté pour accéder à ce URL."
 
 #: application/controllers/Qso.php:672
 msgid "Call Transfer"
@@ -2031,7 +2041,7 @@ msgid "No callsign provided."
 msgstr "Aucun indicatif fourni."
 
 #: application/controllers/Radio.php:17
-#: application/views/interface_assets/header.php:482
+#: application/views/interface_assets/header.php:483
 msgid "Hardware Interfaces"
 msgstr "Interfaces matérielles"
 
@@ -2262,7 +2272,7 @@ msgstr "Emplacement de la station en double :"
 
 #: application/controllers/Stationsetup.php:35
 #: application/views/interface_assets/header.php:399
-#: application/views/interface_assets/header.php:545
+#: application/views/interface_assets/header.php:546
 msgid "Station Setup"
 msgstr "Configuration de la station"
 
@@ -2329,7 +2339,7 @@ msgid "Set as Active Logbook"
 msgstr "Activer ce journal"
 
 #: application/controllers/Stationsetup.php:263
-#: application/views/interface_assets/header.php:543
+#: application/views/interface_assets/header.php:544
 #: application/views/stationsetup/stationsetup.php:46
 #: application/views/view_log/index.php:4
 msgid "Active Logbook"
@@ -2998,23 +3008,23 @@ msgstr ""
 msgid "HRDlog: No station profiles with HRDlog Credentials found."
 msgstr "HRDlog : Aucun profil de station avec les identifiants HRDlog trouvé."
 
-#: application/models/Logbook_model.php:3886
+#: application/models/Logbook_model.php:3851
 #, php-format
 msgid "Wrong station callsign %s while importing QSO with %s for %s: SKIPPED"
 msgstr ""
 "Indicatif d'appel de station incorrect %s lors de l'importation du QSO avec "
 "%s pour %s : IGNORÉ"
 
-#: application/models/Logbook_model.php:3887
+#: application/models/Logbook_model.php:3852
 #, php-format
 msgid "Check %s for hints about errors in ADIF files."
 msgstr "Vérifie %s pour des indices sur les erreurs dans les fichiers ADIF."
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid "QSO on"
 msgstr "QSO en"
 
-#: application/models/Logbook_model.php:3899
+#: application/models/Logbook_model.php:3864
 msgid ""
 "You tried to import a QSO without any given CALL. This QSO wasn't imported. "
 "It's invalid"
@@ -3022,62 +3032,62 @@ msgstr ""
 "Vous avez essayé d'importer un QSO sans indicatif donné. Ce QSO n'a pas été "
 "importé. Il est invalide"
 
-#: application/models/Logbook_model.php:4198
+#: application/models/Logbook_model.php:4163
 msgid "the qslrdate is invalid (YYYYMMDD)"
 msgstr "la qslrdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4209
+#: application/models/Logbook_model.php:4174
 msgid "the qslsdate is invalid (YYYYMMDD)"
 msgstr "la qslsdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4270
+#: application/models/Logbook_model.php:4235
 msgid "the clublog_qso_upload_date is invalid (YYYYMMDD)"
 msgstr "la clublog_qso_upload_date est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4290
+#: application/models/Logbook_model.php:4255
 msgid "the lotw_qslrdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslrdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4311
+#: application/models/Logbook_model.php:4276
 msgid "the lotw_qslsdate is invalid (YYYYMMDD)"
 msgstr "la lotw_qslsdate est invalide (AAAAMMJJ)"
 
-#: application/models/Logbook_model.php:4592
+#: application/models/Logbook_model.php:4557
 #: application/views/simplefle/index.php:41
 msgid "Duplicate for"
 msgstr "Dupliquer pour"
 
-#: application/models/Logbook_model.php:4653
+#: application/models/Logbook_model.php:4618
 msgid "QSO could not be matched"
 msgstr "pas de correspondance pour le QSO"
 
-#: application/models/Logbook_model.php:4659
+#: application/models/Logbook_model.php:4624
 msgid "confirmed by LoTW/Clublog/eQSL/Contest"
 msgstr "confirmé par LoTW/Clublog/eQSL/Contest"
 
-#: application/models/Logbook_model.php:4664
+#: application/models/Logbook_model.php:4629
 msgid "confirmed by award manager"
 msgstr "confirmé par le manager de l'Award"
 
-#: application/models/Logbook_model.php:4667
+#: application/models/Logbook_model.php:4632
 msgid "confirmed by cross-check of DCL data"
 msgstr "confirmé par recoupement des données DCL"
 
-#: application/models/Logbook_model.php:4670
+#: application/models/Logbook_model.php:4635
 msgid "confirmation pending"
 msgstr "confirmation en attente"
 
-#: application/models/Logbook_model.php:4673
+#: application/models/Logbook_model.php:4638
 msgid "unconfirmed"
 msgstr "non confirmé"
 
-#: application/models/Logbook_model.php:4676
+#: application/models/Logbook_model.php:4641
 #: application/views/satellite/index.php:52
 #: application/views/view_log/qso.php:287
 msgid "unknown"
 msgstr "inconnu"
 
-#: application/models/Logbook_model.php:5486
+#: application/models/Logbook_model.php:5453
 #: application/views/activated_gridmap/index.php:110
 #: application/views/awards/ffma/index.php:38
 #: application/views/awards/gridmaster/index.php:44
@@ -3747,6 +3757,7 @@ msgstr "Nbre d'activation minimum"
 #: application/views/awards/was/index.php:200
 #: application/views/awards/wwff/index.php:64
 #: application/views/callstats/index.php:129
+#: application/views/clublog/export.php:60
 #: application/views/distancerecords/index.php:52
 #: application/views/public_search/empty.php:3
 #: application/views/qrz/export.php:65 application/views/timeline/index.php:158
@@ -3990,9 +4001,10 @@ msgid "Maximum file upload size is "
 msgstr "La taille maximum d'un fichier à télécharger est "
 
 #: application/views/adif/import.php:65 application/views/adif/import.php:268
-#: application/views/adif/import.php:307 application/views/debug/index.php:193
-#: application/views/debug/index.php:210 application/views/debug/index.php:571
-#: application/views/hrdlog/export.php:25
+#: application/views/adif/import.php:307
+#: application/views/clublog/export.php:70
+#: application/views/debug/index.php:193 application/views/debug/index.php:210
+#: application/views/debug/index.php:571 application/views/hrdlog/export.php:25
 #: application/views/hrdlog/export.php:74
 #: application/views/interface_assets/footer.php:37
 #: application/views/qrz/export.php:75 application/views/qrz/export.php:96
@@ -4105,8 +4117,10 @@ msgstr ""
 "qu'ils correspondent ou non à la station-lieu choisie."
 
 #: application/views/adif/import.php:205 application/views/adif/import.php:322
-#: application/views/adif/import.php:360 application/views/hrdlog/export.php:50
-#: application/views/qrz/export.php:55 application/views/webadif/export.php:55
+#: application/views/adif/import.php:360
+#: application/views/clublog/export.php:50
+#: application/views/hrdlog/export.php:50 application/views/qrz/export.php:55
+#: application/views/webadif/export.php:55
 msgid "Upload"
 msgstr "Importer"
 
@@ -4134,8 +4148,8 @@ msgstr ""
 "avancé%s pour filtrer et exporter !"
 
 #: application/views/adif/import.php:225 application/views/adif/import.php:270
-#: application/views/cfd/index.php:15 application/views/csv/index.php:118
-#: application/views/dxatlas/index.php:118
+#: application/views/cfd/index.php:15 application/views/clublog/export.php:73
+#: application/views/csv/index.php:118 application/views/dxatlas/index.php:118
 #: application/views/hrdlog/export.php:77 application/views/kml/index.php:103
 #: application/views/lotw/import.php:39 application/views/qrz/export.php:78
 #: application/views/qrz/export.php:99 application/views/webadif/export.php:97
@@ -4269,29 +4283,35 @@ msgstr ""
 
 #: application/views/adif/import.php:343
 msgid "Contest Name, only if Contest ID in CBR is different"
-msgstr ""
+msgstr "Nom du concours, uniquement si l'ID du concours dans CBR est différent"
 
 #: application/views/adif/import.php:343
 msgid "Optional"
-msgstr ""
+msgstr "Optionnel"
 
 #: application/views/adif/import.php:353
 msgid ""
 "A serial number is ALWAYS part of the exchange for both parties in this "
 "contest."
 msgstr ""
+"Un numéro de série fait TOUJOURS partie de l'échange pour les deux parties "
+"dans ce concours."
 
 #: application/views/adif/import.php:355
 msgid ""
 "If you or your partner only sometimes exchange serial numbers, please leave "
 "this unchecked."
 msgstr ""
+"Si vous ou votre partenaire n'échangez que parfois des numéros de série, "
+"veuillez laisser cette case non cochée."
 
 #: application/views/adif/import.php:356
 msgid ""
 "If unchecked, this will erase the default serial number that (for example) "
 "N1MM+ produces. If checked, it will correct the serial number if necessary."
 msgstr ""
+"Si décoché, cela effacera le numéro de série par défaut que (par exemple) "
+"N1MM+ produit. Si coché, cela corrigera le numéro de série si nécessaire."
 
 #: application/views/adif/import_failed.php:15
 msgid "The ADIF file could not be parsed correctly."
@@ -4326,7 +4346,7 @@ msgstr "Les doublons ont été ignorés."
 
 #: application/views/adif/import_success.php:30
 msgid "You imported at least 1 QSO containing a contest ID."
-msgstr ""
+msgstr "Vous avez importé au moins 1 QSO contenant un identifiant de concours."
 
 #: application/views/adif/import_success.php:31
 msgid ""
@@ -4334,10 +4354,16 @@ msgid ""
 "not be imported properly from that softwares ADIF. If you like to correct "
 "that, switch to the CBR Import Tab of the ADIF Import page."
 msgstr ""
+"Parfois, selon votre logiciel de log concours, vos échanges ne seront pas "
+"importés correctement depuis l'ADIF de ce logiciel. Si vous souhaitez "
+"corriger cela, passez à l'onglet d'importation CBR de la page d'importation "
+"ADIF."
 
 #: application/views/adif/import_success.php:32
 msgid "We found the following numbers of QSOs for the following contest IDs:"
 msgstr ""
+"Nous avons trouvé les nombres de QSOs suivants pour les identifiants de "
+"concours suivants :"
 
 #: application/views/adif/import_success.php:44
 msgid "Import details / possible problems"
@@ -4395,7 +4421,7 @@ msgid "Save"
 msgstr "Enregistrer"
 
 #: application/views/api/index.php:8
-#: application/views/interface_assets/header.php:481
+#: application/views/interface_assets/header.php:482
 msgid "API Keys"
 msgstr "Clés API"
 
@@ -4459,6 +4485,8 @@ msgid ""
 "On Clubstations the API Keys are personal and not shared. Clubstation users "
 "can only see their own keys."
 msgstr ""
+"Sur les stations de club, les clés API sont personnelles et non partagées. "
+"Les utilisateurs des stations de club ne peuvent voir que leurs propres clés."
 
 #: application/views/api/index.php:24
 msgid "API Key"
@@ -4476,7 +4504,7 @@ msgstr "Dernière utilisation"
 
 #: application/views/api/index.php:28
 msgid "Created By"
-msgstr ""
+msgstr "Créé par"
 
 #: application/views/api/index.php:30
 msgid "Permissions"
@@ -4495,6 +4523,7 @@ msgstr "Statut"
 
 #: application/views/api/index.php:32
 #: application/views/club/permissions.php:226
+#: application/views/clublog/export.php:39
 #: application/views/hrdlog/export.php:39
 #: application/views/logbookadvanced/index.php:588
 #: application/views/qrz/export.php:44 application/views/user/index.php:33
@@ -4517,7 +4546,7 @@ msgstr "Test"
 #: application/views/api/index.php:73
 #, php-format
 msgid "Are you sure you want delete the API Key %s?"
-msgstr ""
+msgstr "Est-vous sûr de vouloir supprimer la clé API %s ?"
 
 #: application/views/api/index.php:86
 msgid "You have no API Keys."
@@ -5731,7 +5760,7 @@ msgstr ""
 
 #: application/views/awards/wae/index.php:161
 msgid "WAE Name"
-msgstr ""
+msgstr "Nom WAE"
 
 #: application/views/awards/waja/index.php:3
 msgctxt "Japan Prefecture"
@@ -5811,14 +5840,16 @@ msgstr ""
 msgctxt "uses 'here'"
 msgid "All information and rules for the ARRL WAS Award can be found %s."
 msgstr ""
+"Toutes les informations et les règles relatives à l'ARRL WAS Award peuvent "
+"être consultées à l'adresse suivante : %s."
 
 #: application/views/awards/was/index.php:114
 msgid "Show WAS Map"
-msgstr ""
+msgstr "Afficher la carte WAS"
 
 #: application/views/awards/wwff/index.php:7
 msgid "WWFF - World Wide Flora and Fauna Award"
-msgstr ""
+msgstr "WWFF - Diplome Mondial de la Flore et de la Faune"
 
 #: application/views/awards/wwff/index.php:8
 msgid ""
@@ -5826,6 +5857,9 @@ msgid ""
 "radio operators to leave their shacks and operate portable in Protected "
 "Flora & Fauna areas (PFF) worldwide."
 msgstr ""
+"WWFF, World Wide Flora and Fauna en radioamateur, encourage les opérateurs "
+"radioamateurs licenciés à quitter leur station et à opérer en portable dans "
+"les zones de flore et faune protégées (PFF) dans le monde entier."
 
 #: application/views/awards/wwff/index.php:9
 msgid ""
@@ -5833,6 +5867,10 @@ msgid ""
 "registered in the WWFF Directory. Hunters and Activators can apply for "
 "colorful awards, both globally and nationally."
 msgstr ""
+"Plus de 26 000 zones de flore et faune protégées (PFF) dans le monde sont "
+"déjà enregistrées dans le répertoire WWFF. Les chasseurs et les activateurs "
+"peuvent postuler pour des récompenses colorées, tant au niveau mondial que "
+"national."
 
 #: application/views/awards/wwff/index.php:31
 #: application/views/qso/index.php:231 application/views/qso/index.php:523
@@ -5847,11 +5885,13 @@ msgstr "Référence WWFF"
 msgid ""
 "The backup of your log completed successfully. The output can be found at"
 msgstr ""
+"La sauvegarde de votre journal s'est terminée avec succès. La sortie se "
+"trouve à"
 
 #: application/views/backup/adif_view.php:9
 #: application/views/backup/notes_view.php:9
 msgid "You could automate this process by making it a cronjob."
-msgstr ""
+msgstr "Vous pourrais automatiser ce processus en en faisant un cronjob."
 
 #: application/views/backup/adif_view.php:13
 #: application/views/backup/notes_view.php:13
@@ -5859,30 +5899,39 @@ msgid ""
 "Something went wrong during the backup process. Check that the backup folder "
 "exists and is writeable by your web server user / group."
 msgstr ""
+"Une erreur s'est produite lors du processus de sauvegarde. Vérifiez que le "
+"dossier de sauvegarde existe et qu'il est accessible en écriture par "
+"l'utilisateur/groupe de votre serveur web."
 
 #: application/views/backup/main.php:17
 msgid ""
 "Some of the data stored in Wavelog can be exported so that you can keep a "
 "backup copy elsewhere."
 msgstr ""
+"Certaines données stockées dans Wavelog peuvent être exportées afin que vous "
+"puissiez conserver une copie de sauvegarde ailleurs."
 
 #: application/views/backup/main.php:18
 msgid ""
 "It's recommended to create backups on a regular basis to protect your data."
 msgstr ""
+"Il est recommandé de créer des sauvegardes régulièrement pour protéger vos "
+"données."
 
 #: application/views/backup/main.php:19
 msgid "Backup ADIF data"
-msgstr ""
+msgstr "Sauvegarder les données ADIF"
 
 #: application/views/backup/main.php:20
 msgid "Backup Notes"
-msgstr ""
+msgstr "Notes de sauvegarde"
 
 #: application/views/backup/notes_view.php:7
 msgid ""
 "The backup of your notes completed successfully. The output can be found at"
 msgstr ""
+"La sauvegarde de vos notes a été effectuée avec succès. Le résultat se "
+"trouve à"
 
 #: application/views/bandmap/index.php:15 application/views/bandmap/list.php:53
 msgid "BandMap"
@@ -5890,7 +5939,7 @@ msgstr ""
 
 #: application/views/bandmap/index.php:18 application/views/bandmap/list.php:56
 msgid "BandList"
-msgstr ""
+msgstr "Liste des bandes"
 
 #: application/views/bandmap/index.php:27 application/views/bandmap/list.php:66
 #: application/views/contesting/index.php:19
@@ -5902,34 +5951,36 @@ msgstr "Aucun"
 
 #: application/views/bandmap/index.php:33 application/views/bandmap/list.php:80
 msgid "Spots de"
-msgstr ""
+msgstr "Spots de"
 
 #: application/views/bandmap/list.php:6 application/views/qso/log_qso.php:55
 msgid "Pop-up was blocked! Please allow pop-ups for this site permanently."
 msgstr ""
+"La fenêtre contextuelle a été bloquée ! Veuillez autoriser les fenêtres "
+"contextuelles pour ce site de manière permanente."
 
 #: application/views/bandmap/list.php:7
 msgid "Click to prepare logging."
-msgstr ""
+msgstr "Cliquez sur pour préparer la journalisation."
 
 #: application/views/bandmap/list.php:73
 msgid "DXCC-Status"
-msgstr ""
+msgstr "Statut DXCC"
 
 #: application/views/bandmap/list.php:78
 msgid "Not Confirmed"
-msgstr ""
+msgstr "Non confirmé"
 
 #: application/views/bandmap/list.php:117
 msgid "Spotter"
-msgstr ""
+msgstr "Spotter"
 
 #: application/views/bandmap/list.php:118
 #: application/views/oqrs/notinlogform.php:28
 #: application/views/oqrs/request.php:54
 #: application/views/oqrs/request_grouped.php:58
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: application/views/bandmap/list.php:119
 msgid "Last Worked"
@@ -5937,7 +5988,7 @@ msgstr ""
 
 #: application/views/bands/create.php:26 application/views/bands/edit.php:8
 msgid "Name of Band (E.g. 20m)"
-msgstr ""
+msgstr "Nom de la bande (ex.: 20m)"
 
 #: application/views/bands/create.php:29 application/views/bands/edit.php:11
 #: application/views/bands/index.php:61
@@ -5951,7 +6002,7 @@ msgstr ""
 #: application/views/bands/create.php:34 application/views/bands/edit.php:16
 #: application/views/bands/index.php:62
 msgid "SSB QRG"
-msgstr ""
+msgstr "SSB QRG"
 
 #: application/views/bands/create.php:36 application/views/bands/edit.php:18
 msgid "Frequency for SSB QRG in band (must be in Hz)"
@@ -5960,7 +6011,7 @@ msgstr ""
 #: application/views/bands/create.php:39 application/views/bands/edit.php:21
 #: application/views/bands/index.php:63
 msgid "DATA QRG"
-msgstr ""
+msgstr "Données QRG"
 
 #: application/views/bands/create.php:41 application/views/bands/edit.php:23
 msgid "Frequency for DATA QRG in band (must be in Hz)"
@@ -5969,7 +6020,7 @@ msgstr ""
 #: application/views/bands/create.php:44 application/views/bands/edit.php:26
 #: application/views/bands/index.php:64
 msgid "CW QRG"
-msgstr ""
+msgstr "QRG CW"
 
 #: application/views/bands/create.php:46 application/views/bands/edit.php:28
 msgid "Frequency for CW QRG in band (must be in Hz)"
@@ -6007,7 +6058,7 @@ msgstr ""
 #: application/views/bands/index.php:59
 #: application/views/interface_assets/header.php:248
 msgid "WAS"
-msgstr ""
+msgstr "WAS"
 
 #: application/views/bands/index.php:65
 msgid "QRG Unit"
@@ -6015,23 +6066,23 @@ msgstr ""
 
 #: application/views/bands/index.php:98
 msgid "Hz"
-msgstr ""
+msgstr "Hz"
 
 #: application/views/bands/index.php:99
 msgid "kHz"
-msgstr ""
+msgstr "kHz"
 
 #: application/views/bands/index.php:100
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 #: application/views/bands/index.php:101
 msgid "GHz"
-msgstr ""
+msgstr "GHz"
 
 #: application/views/bands/index.php:151 application/views/bands/index.php:157
 msgid "Create a band"
-msgstr ""
+msgstr "Créer une bande"
 
 #: application/views/bands/index.php:152
 #: application/views/club/permissions.php:142
@@ -6049,15 +6100,15 @@ msgstr "Fermer"
 
 #: application/views/bands/index.php:153
 msgid "Warning! Are you sure you want to delete the following band: "
-msgstr ""
+msgstr "Attention ! Êtes-vous sûr de vouloir supprimer la bande suivante : "
 
 #: application/views/bands/index.php:154
 msgid "Warning! Are you sure you want to activate all bands?"
-msgstr ""
+msgstr "Attention ! Es-tu sûr de vouloir activer toutes les bandes ?"
 
 #: application/views/bands/index.php:155
 msgid "Warning! Are you sure you want to deactivate all bands?"
-msgstr ""
+msgstr "Attention ! Es-tu sûr de vouloir désactiver toutes les bandes ?"
 
 #: application/views/bands/index.php:158
 #: application/views/contesting/add.php:77 application/views/mode/index.php:89
@@ -6071,7 +6122,7 @@ msgstr "Désactiver tout"
 
 #: application/views/cabrillo/cbr_success.php:12
 msgid "Results of CBR Contest Data Update"
-msgstr ""
+msgstr "Résultats du concours CBR Mise à jour"
 
 #: application/views/cabrillo/cbr_success.php:17
 msgid ""
@@ -6080,11 +6131,11 @@ msgstr ""
 
 #: application/views/cabrillo/cbr_success.php:19
 msgid "No QSOs were updated by your Cabrillo file."
-msgstr ""
+msgstr "Aucun QSO n'a été mis à jour par votre fichier Cabrillo."
 
 #: application/views/cabrillo/cbr_success.php:25
 msgid "CBR errors"
-msgstr ""
+msgstr "Erreurs CBR"
 
 #: application/views/cabrillo/index.php:2
 #: application/views/cabrillo/index.php:34 application/views/oqrs/index.php:59
@@ -6124,7 +6175,7 @@ msgstr "Sélectionner le lieu de la Station :"
 #: application/views/cabrillo/index.php:44
 #: application/views/reg1test/index.php:53
 msgid "Club"
-msgstr ""
+msgstr "Club"
 
 #: application/views/cabrillo/index.php:48
 msgid ""
@@ -6132,6 +6183,10 @@ msgid ""
 "For foreign stations LOCATION must be 'DX'. This information is required for "
 "IARU-HF and for all ARRL and CQ contests."
 msgstr ""
+"Pour les stations des États-Unis et du Canada, la LOCALISATION doit être "
+"l'abréviation de la section ARRL. Pour les stations étrangères, la "
+"LOCALISATION doit être 'DX'. Cette information est requise pour l'IARU-HF et "
+"pour tous les concours ARRL et CQ."
 
 #: application/views/cabrillo/index.php:48
 msgid "For the RDXC contest this contains the RDA number."
@@ -6189,7 +6244,7 @@ msgstr "Catégorie - Emetteur"
 
 #: application/views/cabrillo/index.php:143
 msgid "Category Time"
-msgstr ""
+msgstr "Catégorie Temps"
 
 #: application/views/cabrillo/index.php:145
 #: application/views/cabrillo/index.php:146
@@ -6197,7 +6252,7 @@ msgstr ""
 #: application/views/cabrillo/index.php:148
 #, php-format
 msgid "%d Hours"
-msgstr ""
+msgstr "%d Heures"
 
 #: application/views/cabrillo/index.php:152
 msgid "Category Overlay"
@@ -6237,7 +6292,7 @@ msgstr "Adresse - Pays"
 
 #: application/views/cabrillo/index.php:193
 msgid "Certificate"
-msgstr ""
+msgstr "Certificat"
 
 #: application/views/cabrillo/index.php:193
 msgid ""
@@ -6369,11 +6424,11 @@ msgstr "Aucun concours trouvé dans votre journal de trafic."
 #: application/views/callstats/index.php:70
 #: application/views/gridmap/index.php:43
 msgid "All except SAT"
-msgstr ""
+msgstr "Tous sauf le SAT."
 
 #: application/views/callstats/index.php:149
 msgid "#QSOs"
-msgstr ""
+msgstr "#QSOs"
 
 #: application/views/cfd/index.php:7
 #, php-format
@@ -6385,9 +6440,9 @@ msgid "Switch to a Clubstation"
 msgstr ""
 
 #: application/views/club/clubswitch_modal.php:9
-#, php-format
+#, fuzzy, php-format
 msgid "Are you sure you want to switch to %s?"
-msgstr ""
+msgstr "Es-tu sûr de vouloir passer à %s ?"
 
 #: application/views/club/clubswitch_modal.php:14
 #: application/views/user/modals/stop_impersonate_modal.php:13
@@ -6406,13 +6461,13 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: application/views/club/permissions.php:3
-#, php-format
+#, fuzzy, php-format
 msgid "Club Permissions for %s"
-msgstr ""
+msgstr "Autorisations du club pour %s"
 
 #: application/views/club/permissions.php:4
 msgid "Go back"
-msgstr ""
+msgstr "Retour en arrière"
 
 #: application/views/club/permissions.php:13
 msgid ""
@@ -6594,6 +6649,85 @@ msgstr ""
 msgid "Role: %s"
 msgstr ""
 
+#: application/views/clublog/export.php:10
+#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
+#: application/views/webadif/export.php:10
+msgid "Upload Logbook"
+msgstr ""
+
+#: application/views/clublog/export.php:14
+#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
+#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
+#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
+#: application/views/qrz/export.php:14
+msgid "Download QSOs"
+msgstr ""
+
+#: application/views/clublog/export.php:24
+msgid "The next automatic Upload to Clublog will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:25
+msgid ""
+"Here you can see all QSOs which have not been previously uploaded to a "
+"Clublog logbook."
+msgstr ""
+
+#: application/views/clublog/export.php:26
+msgid ""
+"You need to set a username and password in your user account. You will also "
+"need to enable upload for each station profile ."
+msgstr ""
+
+#: application/views/clublog/export.php:34
+#: application/views/hrdlog/export.php:34
+#: application/views/logbookadvanced/index.php:764
+#: application/views/logbookadvanced/useroptions.php:170
+#: application/views/qrz/export.php:39
+#: application/views/qslprint/qslprint.php:30
+#: application/views/qslprint/qsolist.php:14
+#: application/views/webadif/export.php:41
+msgid "Profile name"
+msgstr ""
+
+#: application/views/clublog/export.php:35
+#: application/views/hrdlog/export.php:35
+#: application/views/oqrs/showrequests.php:86
+#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
+msgid "Station callsign"
+msgstr ""
+
+#: application/views/clublog/export.php:36
+#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
+msgid "Edited QSOs not uploaded"
+msgstr ""
+
+#: application/views/clublog/export.php:37
+#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
+#: application/views/webadif/export.php:43
+msgid "Total QSOs not uploaded"
+msgstr ""
+
+#: application/views/clublog/export.php:38
+#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
+#: application/views/webadif/export.php:44
+msgid "Total QSOs uploaded"
+msgstr ""
+
+#: application/views/clublog/export.php:69
+msgid "The next automatic Download from Clublog-QSLs will happen at: "
+msgstr ""
+
+#: application/views/clublog/export.php:70 application/views/qrz/export.php:75
+msgid ""
+"If no startdate is given then all QSOs after last confirmation will be "
+"downloaded/updated!"
+msgstr ""
+
+#: application/views/clublog/export.php:78
+msgid "Download from Clublog"
+msgstr ""
+
 #: application/views/components/hamsat/table.php:3
 #: application/views/hamsat/index.php:7
 msgid "Hamsat - Satellite Rovers"
@@ -6726,7 +6860,7 @@ msgstr "Nom ADIF"
 #: application/views/contesting/add.php:44
 #: application/views/contesting/edit.php:43
 #: application/views/contesting/edit.php:46
-#: application/views/interface_assets/header.php:523
+#: application/views/interface_assets/header.php:524
 #: application/views/mode/create.php:46 application/views/mode/create.php:48
 #: application/views/mode/edit.php:57 application/views/mode/edit.php:60
 #: application/views/mode/index.php:8 application/views/mode/index.php:55
@@ -7527,8 +7661,8 @@ msgstr ""
 #: application/views/debug/index.php:81 application/views/user/index.php:27
 msgid "User"
 msgid_plural "Users"
-msgstr[0] "Compte"
-msgstr[1] "Compte"
+msgstr[0] "Utilisateur"
+msgstr[1] "Utilisateurs"
 
 #: application/views/debug/index.php:88
 msgid "Server Information"
@@ -8093,13 +8227,6 @@ msgid ""
 "Wavelog"
 msgstr ""
 
-#: application/views/eqsl/analysis.php:11 application/views/eqsl/download.php:9
-#: application/views/eqsl/export.php:8 application/views/eqsl/import.php:7
-#: application/views/eqsl/result.php:11 application/views/eqsl/tools.php:7
-#: application/views/qrz/export.php:14
-msgid "Download QSOs"
-msgstr ""
-
 #: application/views/eqsl/analysis.php:14
 #: application/views/eqsl/download.php:13 application/views/eqsl/export.php:12
 #: application/views/eqsl/import.php:11 application/views/eqsl/result.php:14
@@ -8287,11 +8414,6 @@ msgstr ""
 msgid "your profile"
 msgstr ""
 
-#: application/views/hrdlog/export.php:10 application/views/qrz/export.php:10
-#: application/views/webadif/export.php:10
-msgid "Upload Logbook"
-msgstr ""
-
 #: application/views/hrdlog/export.php:13 application/views/qrz/export.php:18
 #: application/views/webadif/export.php:13
 msgid "Mark QSOs"
@@ -8317,36 +8439,6 @@ msgstr ""
 #: application/views/hrdlog/export.php:25
 #: application/views/webadif/export.php:34
 msgid "This might take a while as QSO uploads are processed sequentially."
-msgstr ""
-
-#: application/views/hrdlog/export.php:34
-#: application/views/logbookadvanced/index.php:764
-#: application/views/logbookadvanced/useroptions.php:170
-#: application/views/qrz/export.php:39
-#: application/views/qslprint/qslprint.php:30
-#: application/views/qslprint/qsolist.php:14
-#: application/views/webadif/export.php:41
-msgid "Profile name"
-msgstr ""
-
-#: application/views/hrdlog/export.php:35
-#: application/views/oqrs/showrequests.php:86
-#: application/views/qrz/export.php:40 application/views/webadif/export.php:42
-msgid "Station callsign"
-msgstr ""
-
-#: application/views/hrdlog/export.php:36 application/views/qrz/export.php:41
-msgid "Edited QSOs not uploaded"
-msgstr ""
-
-#: application/views/hrdlog/export.php:37 application/views/qrz/export.php:42
-#: application/views/webadif/export.php:43
-msgid "Total QSOs not uploaded"
-msgstr ""
-
-#: application/views/hrdlog/export.php:38 application/views/qrz/export.php:43
-#: application/views/webadif/export.php:44
-msgid "Total QSOs uploaded"
 msgstr ""
 
 #: application/views/hrdlog/export.php:60
@@ -8446,7 +8538,7 @@ msgid "deprecated"
 msgstr ""
 
 #: application/views/interface_assets/footer.php:138
-#: application/views/interface_assets/header.php:484
+#: application/views/interface_assets/header.php:485
 #: application/views/options/sidebar.php:12
 msgid "Version Info"
 msgstr ""
@@ -8837,33 +8929,37 @@ msgstr ""
 msgid "HRDLog Logbook"
 msgstr ""
 
-#: application/views/interface_assets/header.php:485
-msgid "Help"
+#: application/views/interface_assets/header.php:475
+msgid "Clublog Import / Export"
 msgstr ""
 
 #: application/views/interface_assets/header.php:486
-msgid "Forum"
+msgid "Help"
 msgstr ""
 
-#: application/views/interface_assets/header.php:490
-#, php-format
-msgid "Stop impersonate and switch back to %s"
+#: application/views/interface_assets/header.php:487
+msgid "Forum"
 msgstr ""
 
 #: application/views/interface_assets/header.php:491
 #, php-format
+msgid "Stop impersonate and switch back to %s"
+msgstr ""
+
+#: application/views/interface_assets/header.php:492
+#, php-format
 msgid "Switch back to %s"
 msgstr ""
 
-#: application/views/interface_assets/header.php:495
+#: application/views/interface_assets/header.php:496
 msgid "Logout"
 msgstr ""
 
-#: application/views/interface_assets/header.php:503
+#: application/views/interface_assets/header.php:504
 msgid "Select a Location"
 msgstr ""
 
-#: application/views/interface_assets/header.php:582
+#: application/views/interface_assets/header.php:583
 msgid "Extras"
 msgstr ""
 
@@ -9791,7 +9887,7 @@ msgstr "Envoyer un fichier"
 
 #: application/views/lotw/import.php:24
 msgid "Download Report"
-msgstr ""
+msgstr "Télécharger le rapport"
 
 #: application/views/lotw/import.php:24
 #, php-format
@@ -10711,12 +10807,6 @@ msgstr ""
 
 #: application/views/qrz/export.php:74
 msgid "The next automatic Download from QRZ-QSLs will happen at: "
-msgstr ""
-
-#: application/views/qrz/export.php:75
-msgid ""
-"If no startdate is given then all QSOs after last confirmation will be "
-"downloaded/updated!"
 msgstr ""
 
 #: application/views/qrz/export.php:83
@@ -12042,7 +12132,7 @@ msgstr ""
 #: application/views/simplefle/syntax_help.php:48
 msgid ""
 "Received exchange has to be prefixed with a dot '.', sent exchange with a "
-"comma ','. The last to lines are equivalent - i.e. spaces don't matter as "
+"comma ','. The last two lines are equivalent - i.e. spaces don't matter as "
 "the order doesn't as well. Exchange you have sent will automatically be "
 "included in the next QSO, if it contains received exchange, or if you use a "
 "single comma ','. To automatically increment the sent serial, use ',++' and "
@@ -13946,7 +14036,7 @@ msgstr "Soumettre la demande"
 
 #: application/views/widgets/qsos.php:32
 msgid "Rcvd"
-msgstr ""
+msgstr "Reçu"
 
 #~ msgid "Custom Statistics"
 #~ msgstr "Statistiques personnalisées"
