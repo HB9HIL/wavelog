@@ -39,6 +39,7 @@
 				<th><?= __("Mode"); ?></th>
 				<th><?= __("Submode"); ?></th>
 				<th><?= __("Band"); ?></th>
+				<th><?= __("QSL Message"); ?></th>
 				<th><?= __("Propagation Mode"); ?></th>
 				<th><?= __("eQSL Receive Date"); ?></th>
 				<th><?= __("Action"); ?></th>
@@ -49,7 +50,7 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 	$timestamp = strtotime($qsl['COL_TIME_ON']);
 	echo "<td>".date($custom_date_format, $timestamp)."</td>";
 	echo "<td>".date('H:i', $timestamp)."</td>";
-	echo "<td>".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</td>";
+	echo "<td><a id=\"view_eqsl_qso\" href=\"javascript:displayQso(".$qsl['COL_PRIMARY_KEY'].")\">".str_replace("0","&Oslash;",$qsl['COL_CALL'])."</a></td>";
 	echo "<td>".$qsl['COL_MODE']."</td>";
 	if(isset($qsl['COL_SUBMODE'])) {
 		echo "<td>".$qsl['COL_SUBMODE']."</td>";
@@ -57,15 +58,24 @@ foreach ($qslsnotdownloaded->result_array() as $qsl) {
 		echo "<td></td>";
 	}
 	echo "<td>".$qsl['COL_BAND']."</td>";
+	echo "<td>";
+	if (!empty($qsl['COL_QSLMSG_RCVD'])) {
+		echo htmlentities($qsl['COL_QSLMSG_RCVD']);
+	}
+	echo "</td>";
 	echo "<td>".$qsl['COL_PROP_MODE']."</td>";
-	echo "<td>".date($custom_date_format, strtotime($qsl['COL_EQSL_QSLRDATE'])) ?? '' ."</td>";
+	echo "<td>";
+	if (!empty($qsl['COL_EQSL_QSLRDATE'])) {
+		echo date($custom_date_format, strtotime($qsl['COL_EQSL_QSLRDATE'])) ?? '';
+	}
+	echo "</td>";
 	echo "<td><a href=\"".site_url("eqsl/image/".$qsl['COL_PRIMARY_KEY'])."\" data-fancybox=\"images\" data-width=\"528\" data-height=\"336\" class=\"btn btn-primary btn-sm\">" . __("View/Download") . "</a></td>";
 }
 	echo "</tr>";
 ?>
 		</tbody></table>
 		<br /><br />
-		<?php if (!($this->config->item('disable_manual_eqsl'))) {
+		<?php if ($this->config->item('enable_eqsl_massdownload') && !($this->config->item('disable_manual_eqsl'))) {
 			echo form_open_multipart('eqsl/download');?>
 
 			<div class="form-check">

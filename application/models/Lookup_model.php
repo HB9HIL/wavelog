@@ -37,10 +37,10 @@ class Lookup_model extends CI_Model{
 	}
 
 	/*
-	 * Builds query depending on what we are searching for
+	 * Builds information-where-part of query depending on what we are searching for
 	 */
-	function getQueryData($queryinfo, $confirmedtype) {
-		// If user inputs longer grid than 4 chars, we use only the first 4
+	private function build_info_query($queryinfo, &$binds) {
+		$sqlquerytypestring='';
 		if (strlen($queryinfo['grid']) > 4) {
 			$fixedgrid = substr($queryinfo['grid'], 0, 4);
 		}
@@ -48,19 +48,59 @@ class Lookup_model extends CI_Model{
 			$fixedgrid = $queryinfo['grid'];
 		}
 
-		$sqlquerytypestring = '';
-
 		switch ($queryinfo['type']) {
-		case 'dxcc': $sqlquerytypestring .= " and col_dxcc = " . $queryinfo['dxcc']; break;
-		case 'iota': $sqlquerytypestring .= " and col_iota = '" . $queryinfo['iota'] . "'"; break;
-		case 'vucc': $sqlquerytypestring .= " and (col_gridsquare like '%" . $fixedgrid . "%' or col_vucc_grids like '%" . $fixedgrid . "%')" ; break;
-		case 'cq':   $sqlquerytypestring .= " and col_cqz = " . $queryinfo['cqz']; break;
-		case 'was':  $sqlquerytypestring .= " and col_state = '" . $queryinfo['was'] . "' and COL_DXCC in ('291', '6', '110')"; break;
-		case 'sota': $sqlquerytypestring .= " and col_sota_ref = '" . $queryinfo['sota'] . "'"; break;
-		case 'wwff': $sqlquerytypestring .= " and col_sig = 'WWFF' and col_sig_info = '" . $queryinfo['wwff'] . "'"; break;
-		case 'itu':  $sqlquerytypestring .= " and col_ituz = " . $queryinfo['ituz']; break;
+		case 'dxcc':
+			$sqlquerytypestring .= " and col_dxcc = ?";
+			$binds[]=$queryinfo['dxcc'];
+			break;
+		case 'iota':
+			$sqlquerytypestring .= " and col_iota = ?";
+			$binds[]=$queryinfo['iota'];
+			break;
+		case 'vucc':
+			$sqlquerytypestring .= " and (col_gridsquare like ? or col_vucc_grids like ?)";
+			$binds[]='%'.$fixedgrid.'%';
+			$binds[]='%'.$fixedgrid.'%';
+			break;
+		case 'cq':
+			$sqlquerytypestring .= " and col_cqz = ?";
+			$binds[]=$queryinfo['cqz'];
+			break;
+		case 'was':
+			$sqlquerytypestring .= " and col_state = ? and COL_DXCC in ('291', '6', '110')";
+			$binds[]=$queryinfo['was'];
+			break;
+		case 'sota':
+			$sqlquerytypestring .= " and col_sota_ref = ?";
+			$binds[]=$queryinfo['sota'];
+			break;
+		case 'wwff':
+			$sqlquerytypestring .= " and col_wwff_ref = ?";
+			$binds[]=$queryinfo['wwff'];
+			break;
+		case 'itu':
+			$sqlquerytypestring .= " and col_ituz = ?";
+			$binds[]=$queryinfo['ituz'];
+			break;
+		case 'continent':
+			$sqlquerytypestring .= " and col_cont = ?";
+			$binds[]=$queryinfo['continent'];
+			break;
 		default: break;
 		}
+		return $sqlquerytypestring;
+	}
+
+	/*
+	 * Builds query depending on what we are searching for
+	 */
+	function getQueryData($queryinfo, $confirmedtype) {
+		// If user inputs longer grid than 4 chars, we use only the first 4
+		$binds=[];
+
+
+		$sqlquerytypestring = '';
+
 
 		if ($confirmedtype == 'confirmed') {
 			$user_default_confirmation = $this->session->userdata('user_default_confirmation');
@@ -105,7 +145,7 @@ class Lookup_model extends CI_Model{
 
 		$sql .= " and col_prop_mode != 'SAT'";
 
-		$sql .= $sqlquerytypestring;
+		$sql .= $this->build_info_query($queryinfo,$binds);
 
 		$sql .= $sqlqueryconfirmationstring;
 
@@ -118,7 +158,7 @@ class Lookup_model extends CI_Model{
 
 		$sql .= " and col_prop_mode != 'SAT'";
 
-		$sql .= $sqlquerytypestring;
+		$sql .= $this->build_info_query($queryinfo,$binds);
 
 		$sql .= $sqlqueryconfirmationstring;
 
@@ -131,7 +171,7 @@ class Lookup_model extends CI_Model{
 
 		$sql .= " and col_prop_mode = 'SAT'";
 
-		$sql .= $sqlquerytypestring;
+		$sql .= $this->build_info_query($queryinfo,$binds);
 
 		$sql .= $sqlqueryconfirmationstring;
 
@@ -144,11 +184,11 @@ class Lookup_model extends CI_Model{
 
 		$sql .= " and col_prop_mode = 'SAT'";
 
-		$sql .= $sqlquerytypestring;
+		$sql .= $this->build_info_query($queryinfo,$binds);
 
 		$sql .= $sqlqueryconfirmationstring;
 
-		$query = $this->db->query($sql);
+		$query = $this->db->query($sql,$binds);
 
 		return $query->result();
 	}

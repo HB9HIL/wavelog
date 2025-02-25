@@ -196,6 +196,9 @@ class Qrz extends CI_Controller {
 	 * Used for displaying the uid for manually selecting log for upload to qrz
 	 */
 	public function export() {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+
 		$this->load->model('stations');
 
 		$data['page_title'] = __("QRZ Logbook");
@@ -309,8 +312,11 @@ class Qrz extends CI_Controller {
 				if ((($user_id_to_load != null) && ($user_id_to_load != $station->user_id))) {	// Skip User if we're called with a specific user_id
 					continue;
 				} 
-				if ($lastqrz == null) {
+				if (($lastqrz == null) || ($user_id_to_load == null)) {
 					$lastqrz = $this->logbook_model->qrz_last_qsl_date($station->user_id);
+				}
+				if (($lastqrz ?? '') == '2999-12-31') {	// Nothing to do here, skip station
+					continue;
 				}
 				$qrz_api_key = $station->qrzapikey;
 				$result=($this->mass_download_qsos($qrz_api_key, $lastqrz, $station->station_ids));
@@ -444,10 +450,19 @@ class Qrz extends CI_Controller {
 				$record['qsl_rcvd'] = $config['qrz_rcvd_mark'];
 			}
 
+			// SAT-Name not given? Create array-key and fill with null
+			if (!(array_key_exists('sat_name', $record))) {
+				$record['sat_name']=null;
+			}
+			// Prop-Mode not given? Create array-key and fill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
 			$record['call']=str_replace("_","/",$record['call']);
 			$record['station_callsign']=str_replace("_","/",$record['station_callsign'] ?? '');
 			if ($record['station_callsign'] ?? '' != '') {
-				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+				$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $record['sat_name'], $record['station_callsign'], $station_ids);
 
 				if($status[0] == "Found") {
 					$qrz_status = $this->logbook_model->qrz_update($status[1], $qsl_date, $record['qsl_rcvd']);
@@ -455,7 +470,7 @@ class Qrz extends CI_Controller {
 					$table .= "<tr>";
 					$table .= "<td>".$record['station_callsign']."</td>";
 					$table .= "<td>".$time_on."</td>";
-					$table .= "<td>".$record['call']."</td>";
+					$table .= "<td><a id=\"view_qrz_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
 					$table .= "<td>".($record['mode'] ?? '')."</td>";
 					$table .= "<td>".$record['qsl_rcvd']."</td>";
 					$table .= "<td>".$qsl_date."</td>";

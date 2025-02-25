@@ -180,6 +180,7 @@ function single_callbook_update() {
                 fill_if_empty('#ituz_edit', data.dxcc.ituz);
             }
             fill_if_empty('#locator_edit', data.callsign_qra);
+            fill_if_empty('#email_edit', data.callsign_email);
             // fill_if_empty('#image', data.image);  Not in use yet, but may in future
             fill_if_empty('#iota_ref_edit', data.callsign_iota);
             fill_if_empty('#name_edit', data.callsign_name);
@@ -213,7 +214,7 @@ async function fill_if_empty(field, data) {
     }
 
     // catch special case for grid
-    if (field == "#locator_edit") {
+    if (field == "#locator_edit" && $(field).val() == '') {
         $(field).val(data.toUpperCase()).css('border', border_color).trigger('change');
         return;
     }
@@ -274,8 +275,8 @@ function qso_edit(id) {
 
                     if ($('#dxcc_id_edit').val() == '291' || $('#dxcc_id_edit').val() == '110' || $('#dxcc_id_edit').val() == '6') {
                         $('#location_us_county_edit').show();
-                    } else {    
-                        $('#location_us_county_edit').hide();    
+                    } else {
+                        $('#location_us_county_edit').hide();
                     }
 
                     var state = $("#stateDropdownEdit option:selected").text();
@@ -540,11 +541,16 @@ function qso_save() {
         contentType: false,
         type: 'POST',
         success: function (dataofconfirm) {
-            $(".edit-dialog").modal('hide');
-            $(".qso-dialog").modal('hide');
-            if (reload_after_qso_safe == true) {
-                location.reload();
-            }
+		if (dataofconfirm.success) {
+			$(".edit-dialog").modal('hide');
+			$(".qso-dialog").modal('hide');
+			if (reload_after_qso_safe == true) {
+				location.reload();
+			}
+		} else {
+			$("#error-messages-qso-edit").html('<div class="alert alert-danger alert-dismissible fade show" role="alert">'+dataofconfirm.detail+'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
+			$(".modal-body").animate({ scrollTop: 0 }, 'fast');
+		}
         },
         error: function(xhr, status, error) {
             console.log(xhr.responseText);
@@ -743,7 +749,9 @@ function spawnLookupModal(searchphrase, searchtype) {
                         $('#quicklookuptype').val(searchtype);
                         if (searchtype == 'dxcc') {
                             $("#quicklookupdxcc").val(searchphrase);
-                        } else if (searchtype == 'iota') {
+                        } else if (searchtype == 'continent') {
+                            $("#quicklookupcontinent").val(searchphrase);
+						} else if (searchtype == 'iota') {
                             $("#quicklookupiota").val(searchphrase);
                         } else if (searchtype == 'cq') {
                             $("#quicklookupcqz").val(searchphrase);
@@ -774,6 +782,7 @@ function changeLookupType(type) {
 	$('#quicklookupituz').hide();
 	$('#quicklookupwas').hide();
 	$('#quicklookuptext').hide();
+	$('#quicklookupcontinent').hide();
     if (type == "dxcc") {
         $('#quicklookupdxcc').show();
     } else if (type == "iota") {
@@ -786,7 +795,9 @@ function changeLookupType(type) {
         $('#quicklookupituz').show();
     } else if (type == "was") {
         $('#quicklookupwas').show();
-    }
+    } else if (type == "continent") {
+        $('#quicklookupcontinent').show();
+	}
 }
 
 // This function executes the call to the backend for fetching queryresult and displays the table in the dialog
@@ -807,6 +818,7 @@ function getLookupResult() {
 			wwff: $('#quicklookuptext').val(),
 			lotw: $('#quicklookuptext').val(),
 			ituz: $('#quicklookupituz').val(),
+			continent: $('#quicklookupcontinent').val(),
 		},
 		success: function (html) {
 			$('#lookupresulttable').html(html);
@@ -950,10 +962,16 @@ function statesDropdown(states, set_state = null, dropdown = '#stateDropdown') {
     if (states.status == 'ok') {
         dropdown.prop('disabled', false);
         $.each(states.data, function(index, state) {
-            var option = $('<option>', {
-                value: state.state,
-                text: state.subdivision + ' (' + state.state + ')'
-            });
+            var d_text = '';
+            if (state.deprecated == '1') {
+                d_text = '\u26A0\uFE0F [' + lang_general_states_deprecated + '] - ';
+            }
+            if (state.state == set_state || state.deprecated != '1') {
+                var option = $('<option>', {
+                    value: state.state,
+                    text: d_text + state.subdivision + ' (' + state.state + ')'
+                });
+            }
             dropdown.append(option);
         });
         $(dropdown).val(set_state);
@@ -1151,6 +1169,30 @@ function enableMap() {
     map.doubleClickZoom.enable();
     map.boxZoom.enable();
     map.keyboard.enable();
+}
+
+function shareModal(qso_data) {
+    $.ajax({
+        url: base_url + 'index.php/qso/getShareModal',
+        type: 'post',
+        data: {
+            qso_data: qso_data
+        },
+        success: function (html) {
+            BootstrapDialog.show({
+                title: lang_general_share_qso,
+                cssClass: 'bg-black bg-opacity-50',
+                nl2br: false,
+                message: html,
+                buttons: [{
+                    label: lang_admin_close,
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }]
+            });
+        }
+    });
 }
 
 console.log("Ready to unleash your coding prowess and join the fun?\n\n" +

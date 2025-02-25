@@ -1,7 +1,12 @@
 <div class="container">
+	<br>
 	<h3>
 	  <?php if (isset($user_add)) {
-		echo __("Create User Account");
+		if ($clubstation) {
+			echo __("Create Clubstation Account");
+		} else {
+			echo __("Create User Account");
+		}
 	  } else {
 		echo __("Edit Account")." <small class=\"text-muted\">".$user_name."</small>";
 	  }
@@ -34,7 +39,7 @@
 
 	<form method="post" action="<?php echo $user_form_action; ?>" name="users" autocomplete="off">
 	<div class="accordion user_edit">
-		<!-- ZONE 1 / USER -->
+		<!-- ZONE 1 / User General Information -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_user_general">
 				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_user_general" aria-expanded="true" aria-controls="panelsStayOpen-B_user_general">
@@ -66,6 +71,9 @@
 											<input class="form-control" type="password" name="user_password" value="<?php if(isset($user_password)) { echo $user_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
 										</div>
+										<?php if($clubstation) { ?>
+											<small class="text-muted"><?= __("Don't share this password with operators!"); ?></small>
+										<?php } ?>
 										<?php if(isset($password_error)) {
 											echo "<small class=\"badge bg-danger\">".$password_error."</small>";
 											} else if (!isset($user_add)) { ?>
@@ -78,9 +86,13 @@
 										<?php if($this->session->userdata('user_type') == 99) { ?>
 											<select class="form-select" name="user_type">
 											<?php
-												$levels = $this->config->item('auth_level');
-												foreach ($levels as $key => $value) {
-													echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+												if ($clubstation) {
+													echo '<option value="3" selected="selected">' . __("Clubstation") . '</option>';
+												} else {
+													$levels = $this->config->item('auth_level');
+													foreach ($levels as $key => $value) {
+														echo '<option value="'. $key . '" '. (($user_type ?? '') == $key ? "selected=\"selected\"":""). '>' . $value . '</option>';
+													}
 												}
 											?>
 											</select>
@@ -88,6 +100,9 @@
 											$l = $this->config->item('auth_level');
 											echo $l[$user_type];
 										}?>
+										<?php if ($clubstation) { ?>
+											<input type="hidden" name="clubstation" value="1" />
+										<?php } ?>
 									</div>
 								</div>
 							</div>
@@ -96,7 +111,7 @@
 						<!-- Personal Information -->
 						<div class="col-md">
 							<div class="card">
-								<div class="card-header"><?= __("Personal"); ?></div>
+								<div class="card-header"><?php if ($clubstation) { echo __("Callsign Owner"); } else { echo __("Personal");} ?></div>
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("First Name"); ?></label>
@@ -120,15 +135,15 @@
 								<div class="card-header"><?= __("Ham Radio"); ?></div>
 								<div class="card-body">
 									<div class="mb-3">
-										<label><?= __("Callsign"); ?></label>
-										<input class="form-control" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
+										<label><?php if ($clubstation) { echo __("Special/Club Callsign"); } else { echo __("Callsign"); } ?></label>
+										<input class="form-control uppercase" type="text" name="user_callsign" value="<?php if(isset($user_callsign)) { echo $user_callsign; } ?>" />
 											<?php if(isset($callsign_error)) { echo "<small class=\"badge bg-danger\">".$callsign_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Gridsquare"); ?></label>
-										<input class="form-control" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
+										<input class="form-control uppercase" type="text" name="user_locator" value="<?php if(isset($user_locator)) { echo $user_locator; } ?>" />
 											<?php if(isset($locator_error)) { echo "<small class=\"badge bg-danger\">".$locator_error."</small>"; } else { ?>
 											<?php } ?>
 									</div>
@@ -211,6 +226,17 @@
 										</select>
 										<small id="user_measurement_base_Help" class="form-text text-muted"><?= __("Choose which unit distances will be shown in"); ?></small>
 									</div>
+
+									<div class="mb-3">
+										<label for="user_dashboard_map"><?= __("Show Dashboard Map"); ?></label>
+										<?php if(!isset($user_dashboard_map)) { $user_dashboard_map='Y'; }?>
+										<select class="form-select" id="user_dashboard_map" name="user_dashboard_map" aria-describedby="user_dashboard_map_Help" required>
+											<option value='Y' <?php if($user_dashboard_map == "Y") { echo "selected=\"selected\""; } ?>><?= __("Yes"); ?></option>
+											<option value='map_at_right' <?php if($user_dashboard_map == "map_at_right") { echo "selected=\"selected\""; } ?>><?= __("Map at right"); ?></option>
+											<option value='N' <?php if($user_dashboard_map == "N") { echo "selected=\"selected\""; } ?>><?= __("No"); ?></option>
+										</select>
+										<small id="user_dashboard_map_Help" class="form-text text-muted"><?= __("Choose whether to show map on dashboard or not"); ?></small>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -239,6 +265,7 @@
 											<option value="Distance" <?php if ($user_column1 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column1 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column1 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column1 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -261,6 +288,7 @@
 											<option value="Distance" <?php if ($user_column2 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column2 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column2 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column2 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -283,6 +311,7 @@
 											<option value="Distance" <?php if ($user_column3 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column3 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column3 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column3 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -305,6 +334,7 @@
 											<option value="Distance" <?php if ($user_column4 == "Distance") { echo " selected =\"selected\""; } ?>><?= __("Distance"); ?></option>
 											<option value="Operator" <?php if ($user_column4 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column4 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
+											<option value="Bearing" <?php if ($user_column4 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 
@@ -329,6 +359,7 @@
 											<option value="Operator" <?php if ($user_column5 == "Operator") { echo " selected =\"selected\""; } ?>><?= __("Operator"); ?></option>
 											<option value="Name" <?php if ($user_column5 == "Name") { echo " selected =\"selected\""; } ?>><?= __("Name"); ?></option>
 											<option value="Location" <?php if ($user_column5 == "Location") { echo " selected =\"selected\""; } ?>><?= __("Station Location"); ?></option>
+											<option value="Bearing" <?php if ($user_column5 == "Bearing") { echo " selected =\"selected\""; } ?>><?= __("Bearing"); ?></option>
 										</select>
 									</div>
 								</div>
@@ -400,6 +431,15 @@
 											<option value="0" <?php if ($user_pota_lookup == 0) { echo " selected =\"selected\""; } ?>><?= __("No"); ?></option>
 										</select>
 										<small class="form-text text-muted"><?= __("If set, name and gridsquare is fetched from the API and filled in location and locator."); ?></small>
+									</div>
+									<div class="mb-3">
+										<label for="qso-page-last-qso-count"><?= __("Number of previous contacts displayed on QSO page."); ?></label>
+										<select class="form-select" id="qso-page-last-qso-count" name="user_qso_page_last_qso_count">
+											<?php for ($i = 5 ; $i <= $qso_page_last_qso_count_limit; $i += 5) {
+												$selected_attribute_value = $user_qso_page_last_qso_count == $i ? " selected =\"selected\"" : "";
+												printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+											} ?>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -485,7 +525,7 @@
 											</div>
 											<div class="col-md-3 icon_selectBox_data" data-boxcontent="station">
 												<?php foreach($map_icon_select['station'] as $val) {
-													echo "<label data-value='".$val."'>".(($val=="0")?__("Not display"):("<i class='".$val."'></i>"))."</label>";
+													echo "<label data-value='".$val."'>".(($val=="0")?__("Not displayed"):("<i class='".$val."'></i>"))."</label>";
 												} ?>
 											</div>
 										</div>
@@ -570,6 +610,23 @@
 
 								</div>
 							</div>
+							<!-- Dashboard Settings -->
+							<div class="card">
+								<div class="card-header"><?= __("Dashboard Settings"); ?></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="mb-3">
+											<label for="dashboard-last-qso-count"><?= __("Select the number of latest QSOs to be displayed on dashboard."); ?></label>
+											<select class="form-select" id="dashboard-last-qso-count" name="user_dashboard_last_qso_count">
+												<?php for ($i = 5 ; $i <= $dashboard_last_qso_count_limit; $i += 5) {
+													$selected_attribute_value = $user_dashboard_last_qso_count == $i ? " selected =\"selected\"" : "";
+													printf("<option value=\"{$i}\"{$selected_attribute_value}>{$i}</option>");
+												} ?>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="col-md">
 							<div class="card">
@@ -612,7 +669,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 3 / Default Value -->
+		<!-- ZONE 3 / Default Values -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_default_value">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_default_value" aria-expanded="false" aria-controls="panelsStayOpen-B_default_value">
@@ -690,7 +747,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 4 / Confirmation Account -->
+		<!-- ZONE 4 / Third Party Services -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_confirmation_account">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_confirmation_account" aria-expanded="false" aria-controls="panelsStayOpen-B_confirmation_account">
@@ -706,16 +763,18 @@
 								<div class="card-body">
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Username"); ?></label>
-										<input class="form-control" type="text" name="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
+										<input class="form-control" type="text" name="user_lotw_name" id="user_lotw_name" value="<?php if(isset($user_lotw_name)) { echo $user_lotw_name; } ?>" />
 										<?php if(isset($userlotwname_error)) { echo "<small class=\"badge bg-danger\">".$userlotwname_error."</small>"; } ?>
 									</div>
 
 									<div class="mb-3">
 										<label><?= __("Logbook of The World (LoTW) Password"); ?></label>
 										<div class="input-group">
-											<input class="form-control" type="password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
+											<input class="form-control" type="password" id="user_lotw_password" name="user_lotw_password" value="<?php if(isset($user_lotw_password)) { echo $user_lotw_password; } ?>" />
 											<span class="input-group-btn"><button class="btn btn-default btn-pwd-showhide" type="button"><i class="fa fa-eye-slash"></i></button></span>
+											<button class="btn btn-secondary ld-ext-right" type="button" id="lotw_test_btn"><?= __("Test Login"); ?><div class="ld ld-ring ld-spin"></div></button>
 										</div>
+										<div class="alert mt-3" style="display: none;" id="lotw_test_txt"></div>
 										<?php if(isset($lotwpassword_error)) {
 											echo "<small class=\"badge bg-danger\">".$lotwpassword_error."</small>";
 											} else if (!isset($user_add)) { ?>
@@ -781,7 +840,62 @@
 				</div>
 			</div>
 		</div>
-		<!-- ZONE 5 / Miscellaneous -->
+		<!-- ZONE 5 / Widgets -->
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="panelsStayOpen-H_widget_settings">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_widget_settings" aria-expanded="false" aria-controls="panelsStayOpen-B_widget_settings">
+				<?= __("Widgets");?></button>
+			</h2>
+			<div id="panelsStayOpen-B_widget_settings" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-H_widget_settings">
+				<div class="accordion-body">
+					<div class="row">
+						<!-- On-Air Widget Settings -->
+						<div class="col-md">
+							<div class="card">
+								<div class="card-header"><?= __("On-Air widget"); ?></div>
+								<div class="card-body">
+									<div class="mb-3">
+										<label><?= __("Enabled"); ?></label>
+										<?php if(!isset($on_air_widget_enabled)) { $on_air_widget_enabled='false'; }?>
+										<select class="form-select" name="on_air_widget_enabled" id="on_air_widget_enabled">
+											<option value="false" <?php if ($on_air_widget_enabled == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="true" <?php if ($on_air_widget_enabled == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										</select>
+										<small class="form-text text-muted">
+											<?= sprintf(__("Note: In order to use this widget, you need to have at least one CAT radio configured and working.")); ?>
+											<?php if (isset($on_air_widget_url)) {
+												// when adding user, the $on_air_widget_url url is not yet availalable, hence the if condition here 
+												print("<br>");
+												printf(__("When enabled, widget will be available at %s."), "<a href='$on_air_widget_url' target='_blank'>$on_air_widget_url</a>");
+											} ?>
+										</small>
+									</div>
+									<div class="mb-3">
+										<label><?= __('Display "Last seen" time'); ?></label>
+										<?php if(!isset($on_air_widget_display_last_seen)) { $on_air_widget_display_last_seen='false'; }?>
+										<select class="form-select" name="on_air_widget_display_last_seen" id="on_air_widget_display_last_seen">
+											<option value="false" <?php if ($on_air_widget_display_last_seen == "false") { echo 'selected="selected"'; } ?>><?= __("No"); ?></option>
+											<option value="true" <?php if ($on_air_widget_display_last_seen == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										</select>
+										<small class="form-text text-muted"><?= __("This setting control whether the 'Last seen' time is displayed in widget or not."); ?></small>
+									</div>
+									<div class="mb-3">
+										<label><?= __("Display only most recently updated radio"); ?></label>
+										<?php if(!isset($on_air_widget_show_only_most_recent_radio)) { $on_air_widget_show_only_most_recent_radio='true'; }?>
+										<select class="form-select" name="on_air_widget_show_only_most_recent_radio" id="on_air_widget_show_only_most_recent_radio">
+										<option value="true" <?php if ($on_air_widget_show_only_most_recent_radio == "true") { echo 'selected="selected"'; } ?>><?= __("Yes"); ?></option>
+										<option value="false" <?php if ($on_air_widget_show_only_most_recent_radio == "false") { echo 'selected="selected"'; } ?>><?= __("No, show all radios"); ?></option>
+										</select>
+										<small class="form-text text-muted"><?= __("If you have multiple CAT radios configured, this setting controls whether the widget should display all on-air radios of the user, or just the most recently updated one. In case you have only one radio, this setting has no effect."); ?></small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ZONE 6 / Miscellaneous -->
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="panelsStayOpen-H_miscellaneous">
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-B_miscellaneous" aria-expanded="false" aria-controls="panelsStayOpen-B_miscellaneous">

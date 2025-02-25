@@ -41,7 +41,7 @@ class Lotw extends CI_Controller {
 	public function index() {
 		$this->load->library('Permissions');
 		$this->load->model('user_model');
-		if(!$this->user_model->authorize(2)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
+		if(!$this->user_model->authorize(2) || !clubaccess_check(9)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		// Load required models for page generation
 		$this->load->model('Lotw_model');
@@ -469,7 +469,7 @@ class Lotw extends CI_Controller {
 	private function loadFromFile($filepath, $station_ids, $display_view = "TRUE") {
 
 		// Figure out how we should be marking QSLs confirmed via LoTW
-		$query = $query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
+		$query = $this->db->query('SELECT lotw_rcvd_mark FROM config');
 		$q = $query->row();
 		$config['lotw_rcvd_mark'] = $q->lotw_rcvd_mark;
 
@@ -508,6 +508,9 @@ class Lotw extends CI_Controller {
 			if (($record['call'] ?? '') == '') {	// Failsafe if no call is given
 				continue;
 			}
+			if (($record['station_callsign'] ?? '') == '') {	// Failsafe if no station_callsign is given
+				continue;
+			}
 			$time_on = date('Y-m-d', strtotime($record['qso_date'])) ." ".date('H:i', strtotime($record['time_on']));
 
 			$qsl_date = date('Y-m-d H:i', strtotime($record['app_lotw_rxqsl']));
@@ -524,7 +527,17 @@ class Lotw extends CI_Controller {
 				$record['qsl_rcvd'] = $config['lotw_rcvd_mark'];
 			}
 
-			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['station_callsign'], $station_ids);
+			// SAT-Name not given? Create array-key and fill with null
+			if (!(array_key_exists('sat_name', $record))) {
+				$record['sat_name']=null;
+			}
+
+			// Prop-Mode not given? Create array-key and fill with null
+			if (!(array_key_exists('prop_mode', $record))) {
+				$record['prop_mode']=null;
+			}
+
+			$status = $this->logbook_model->import_check($time_on, $record['call'], $record['band'], $record['mode'], $record['prop_mode'], $record['sat_name'], $record['station_callsign'], $station_ids);
 
 			if($status[0] == "Found") {
 				$qso_id4lotw=$status[1];
@@ -573,12 +586,18 @@ class Lotw extends CI_Controller {
 					$ituz = "";
 				}
 
-				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids, $ant_path);
+				if (isset($record['dxcc'])) {
+					$dxcc = $record['dxcc'];
+				} else {
+					$dxcc = "";
+				}
+
+				$lotw_status = $this->logbook_model->lotw_update($time_on, $record['call'], $record['band'], $qsl_date, $record['qsl_rcvd'], $state, $qsl_gridsquare, $qsl_vucc_grids, $iota, $cnty, $cqz, $ituz, $record['station_callsign'],$qso_id4lotw, $station_ids, $dxcc, $ant_path);
 
 				$table .= "<tr>";
 				$table .= "<td>".$record['station_callsign']."</td>";
 				$table .= "<td>".$time_on."</td>";
-				$table .= "<td>".$record['call']."</td>";
+				$table .= "<td><a id=\"view_lotw_qso\" href=\"javascript:displayQso(".$status[1].")\">".$record['call']."</a></td>";
 				$table .= "<td>".$record['mode']."</td>";
 				$table .= "<td>".$record['qsl_rcvd']."</td>";
 				$table .= "<td>".$qsl_date."</td>";
@@ -657,6 +676,7 @@ class Lotw extends CI_Controller {
 			foreach ($query->result() as $user) {
 				if ( ($sync_user_id != null) && ($sync_user_id != $user->user_id) ) { continue; }
 				$station_ids=$this->Stations->all_station_ids_of_user($user->user_id);
+				if ($station_ids == '') { continue; } // User has no Station-ID! next one
 
 				// Validate that LoTW credentials are not empty
 				// TODO: We don't actually see the error message
@@ -720,6 +740,89 @@ class Lotw extends CI_Controller {
 		} else {
 			return "No LoTW User details found to carry out matches.";
 		}
+	}
+
+	public function check_lotw_credentials () {
+		$this->load->model('user_model');
+		if(!$this->user_model->authorize(2)) {
+			$this->session->set_flashdata('error', __("You're not allowed to do that!"));
+			redirect('dashboard');
+			exit();
+		}
+		$ret=[];
+		$ret['status']='';
+
+
+		$raw = file_get_contents("php://input");
+		try {
+			$obj = json_decode($raw,true);
+		} catch (Exception $e) {
+			$ret['status']='failed_wrongcall';
+			log_message("Error",$ret['status']);
+		} finally {
+			$lotw_user=$obj['lotw_user'] ?? '';
+			$lotw_pass=$obj['lotw_pass'] ?? '';
+		}
+		$raw='';
+
+		$pw_placeholder = '**********';
+		if ($lotw_pass == $pw_placeholder) {	// User comes with unaltered credentials - take them from database
+			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
+			$q = $query->row();
+			$data['user_lotw_name'] = urlencode($q->user_lotw_name ?? '');
+			$data['user_lotw_password'] = urlencode($q->user_lotw_password ?? '');
+		} else {
+			$data['user_lotw_name'] = urlencode($lotw_user ?? '');
+			$data['user_lotw_password'] = urlencode($lotw_pass ?? '');
+		}
+
+		if ((($data['user_lotw_name'] ?? '') != '') && (($data['user_lotw_password'] ?? '') != '') && ($ret['status'] != 'failed_wrongcall')) {
+
+			// Get URL for downloading LoTW
+			$query = $query = $this->db->query('SELECT lotw_login_url FROM config');
+			$q = $query->row();
+			$lotw_url = $q->lotw_login_url;
+
+			// Validate that LoTW credentials are not empty
+			// TODO: We don't actually see the error message
+			if ($data['user_lotw_name'] == '' || $data['user_lotw_password'] == '') {
+				$ret='No Creds set';
+			}
+
+			// Build URL for LoTW report file
+			$lotw_url .= "?";
+			$lotw_url .= "login=" . $data['user_lotw_name'];
+			$lotw_url .= "&password=" . $data['user_lotw_password'];
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $lotw_url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+			$content = curl_exec($ch);
+			if ($content) {
+				if(curl_errno($ch)) {
+					$ret['status']='failed';
+					$ret['details']== sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], curl_strerror(curl_errno($ch))." (".curl_errno($ch).")");
+				} else if (str_contains($content,"Username/password incorrect</I>")) {
+					$ret['status']='failed_wrong_creds';
+					$ret['details']= sprintf(__("LoTW login failed for user %s: %s."), $data['user_lotw_name'], __("Username/password incorrect"));
+				} else {
+					$ret['status']='OK';
+					$ret['details']= __("LoTW login OK!");
+				}
+			} else {
+				$ret['status']='failed_na';
+				$ret['details']= __("LoTW currently not available. Try again later.");
+			}
+		} else {
+			if (($ret['status'] ?? '') == '') {
+				$ret['status']='failed_nocred';
+				$ret['details']= __("No LoTW credentials provided.");
+			}
+		}
+		header("Content-type: application/json");
+		echo json_encode($ret);
+		return $ret;
 	}
 
 	public function import() {	// Is only called via frontend. Cron uses "upload". within download the download is called

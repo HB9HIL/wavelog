@@ -31,6 +31,7 @@
         <th style=\'text-align: center\'>'.__("Time").'</th>
         <th style=\'text-align: center\'>'.__("Band").'</th>
         <th style=\'text-align: center\'>'.__("Propagation Mode").'</th>
+        <th style=\'text-align: center\'>'.__("QSL Message").'</th>
         <th style=\'text-align: center\'>'.__("QSL Date").'</th>
         <th style=\'text-align: center\'></th>
         </tr>
@@ -55,9 +56,12 @@
          if($qsl->COL_PROP_MODE != null) { echo $qsl->COL_PROP_MODE; };
          echo '</td>';
          echo '<td style=\'text-align: center\'>';
+         if($qsl->COL_QSLMSG_RCVD != null) { echo htmlentities($qsl->COL_QSLMSG_RCVD); };
+         echo '</td>';
+         echo '<td style=\'text-align: center\'>';
          if ($qsl->COL_EQSL_QSLRDATE) { $timestamp = strtotime($qsl->COL_EQSL_QSLRDATE); echo date($custom_date_format, $timestamp); }
          echo '</td>';
-            echo '<td style=\'text-align: center\'><button onclick="viewEqsl(\''.$qsl->image_file.'\', \''. $qsl->COL_CALL . '\')" class="btn btn-sm btn-success">' . __("View") . '</button></td>';
+            echo '<td style=\'text-align: center\'><a href=\''.site_url('eqsl/image/'.$qsl->COL_PRIMARY_KEY).'\' data-fancybox=\'images\' data-width=\'528\' data-height=\'336\' class=\'btn btn-sm btn-success\'>' . __("View") . '</a></td>';
             echo '</tr>';
         }
 

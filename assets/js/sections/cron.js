@@ -35,7 +35,6 @@ function init_datatable() {
 		"pageLength": 25,
 		responsive: true,
 		ordering: true,
-		"scrollY": "600px",
 		"scrollCollapse": true,
 		"paging": false,
 		"scrollX": true,
@@ -213,7 +212,7 @@ function reloadCrons() {
 
 function loadCronTable(rows) {
 	var uninitialized = $('.crontable').filter(function () {
-		return !$.fn.DataTable.fnIsDataTable(this);
+		return !$.fn.DataTable.isDataTable(this);
 	});
 
 	uninitialized.each(function () {

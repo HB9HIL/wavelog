@@ -2,42 +2,31 @@
 
 class API extends CI_Controller {
 
-	// Do absolutely nothing
 	function index() {
-		echo "nothing to see";
-	}
-
-	function help() {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('api_model');
+		$this->load->library('form_validation');
 
 		$data['api_keys'] = $this->api_model->keys();
-
+		$data['clubmode'] = $this->session->userdata('clubstation') == 1 ? true : false;
 		$data['page_title'] = __("API");
 
 		$this->load->view('interface_assets/header', $data);
-		$this->load->view('api/help');
+		$this->load->view('api/index');
 		$this->load->view('interface_assets/footer');
+	}
+
+	// legacy
+	function help() {
+		redirect('api');
 	}
 
 
 	function edit($key) {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 		$this->load->model('api_model');
 
@@ -66,38 +55,40 @@ class API extends CI_Controller {
 
 			$this->session->set_flashdata('notice', sprintf(__("API Key %s description has been updated."), "<b>".$this->input->post('api_key')."</b>"));
 
-			redirect('api/help');
+			redirect('api');
 		}
 
 	}
 
 	function generate($rights) {
 		$this->load->model('user_model');
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
+		if ($rights !== "r" && $rights !== "rw") {
+			$this->session->set_flashdata('error', __("Invalid API rights"));
+			redirect('api');
+			exit;
 		}
-
 
 		$this->load->model('api_model');
 
-		$data['api_keys'] = $this->api_model->generate_key($rights);
+		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1) {
+			$creator = $this->session->userdata('source_uid');
+		} else {
+			$creator = $this->session->userdata('user_id');
+		}
 
-		redirect('api/help');
+		if ($this->api_model->generate_key($rights, $creator)) {
+			$this->session->set_flashdata('success', __("API Key generated"));
+		} else {
+			$this->session->set_flashdata('error', __("API Key could not be generated"));
+		}
+		redirect('api');
 	}
 
 	function delete($key) {
 		$this->load->model('user_model');
-
-		// Check if users logged in
-
-		if($this->user_model->validate_session() == 0) {
-			// user is not logged in
-			redirect('user/login');
-		}
+		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
 
 		$this->load->model('api_model');
@@ -106,7 +97,7 @@ class API extends CI_Controller {
 
 		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>".$key."</b>" ));
 
-		redirect('api/help');
+		redirect('api');
 	}
 
 	// Example of authing
@@ -166,11 +157,16 @@ class API extends CI_Controller {
 
 		$this->load->model('stations');
 
+		if (!$this->load->is_loaded('Qra')) {
+			$this->load->library('Qra');
+		}
+
 		$return_msg = array();
 		$return_count = 0;
 
 		// Decode JSON and store
 		$raw = file_get_contents("php://input");
+		$raw = $raw = preg_replace('#<([eE][oO][rR])>[\r\n\t]+#', '<$1>', $raw);
 		$obj = json_decode($raw,true);
 		$raw='';
 		if ($obj === NULL) {
@@ -185,6 +181,26 @@ class API extends CI_Controller {
 		}
 
 		$userid = $this->api_model->key_userid($obj['key']);
+		$created_by = $this->api_model->key_created_by($obj['key']);
+
+		/**
+		 * As the API key user could use it also for clubstations we need to do an additional check here. Only if clubstations are enabled
+		 *
+		 * In Detail:
+		 * If the user is not the creator of the API key, it's likely a clubstation. In this case the callsign of the clubstation
+		 * can not be the same as the callsign of the user (operator call provided by the user). If this is the case, we need to use the callsign of the creator of the API key
+		 */
+		$real_operator = null;
+		if ($this->config->item('special_callsign')) {
+			if ($userid != $created_by) {
+				$this->load->model('user_model');
+				$real_operator = $this->user_model->get_by_id($created_by)->row()->user_callsign;
+				// TODO: It would be possible to check here if operator is allowed to use the clubstation, but this can be added later if needed
+			} else {
+				$real_operator = null;
+			}
+		}
+
 		$this->api_model->update_last_used(($obj['key']));
 
 		if(!isset($obj['station_profile_id']) || $this->stations->check_station_against_user($obj['station_profile_id'], $userid) == false) {
@@ -192,6 +208,8 @@ class API extends CI_Controller {
 			echo json_encode(['status' => 'failed', 'reason' => "station id does not belong to the API key owner."]);
 			die();
 		}
+		$mystation=$this->stations->profile_clean($obj['station_profile_id']);
+		$mygrid=($mystation->station_gridsquare ?? '');
 
 		if($obj['type'] == "adif" && $obj['string'] != "") {
 			// Load the logbook model for adding QSO records
@@ -218,13 +236,22 @@ class API extends CI_Controller {
 					}
 					if(count($record) == 0) {
 						break;
-					};
+					}
+					// in case the provided op call is the same as the clubstation callsign, we need to use the creator of the API key as the operator
+					$recorded_operator = $record['operator'] ?? '';
+					if (key_exists('operator',$record) && $real_operator != null && ($record['operator'] == $record['station_callsign']) || ($recorded_operator == '')) {
+						$record['operator'] = $real_operator;
+					}
+
+					if ((key_exists('gridsquare',$record)) && (($mygrid ?? '') != '') && (($record['gridsquare'] ?? '') != '') && (!(key_exists('distance',$record)))) {
+						$record['distance'] = $this->qra->distance($mygrid, $record['gridsquare'], 'K');
+					}
 					array_push($alladif,$record);
 					$adif_count++;
 				};
 				$record='';	// free memory
 				gc_collect_cycles();
-				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, true, false, true, false);
+				$custom_errors = $this->logbook_model->import_bulk($alladif, $obj['station_profile_id'], false, false, false, false, false, false, false, false, true, false, true, false);
 				if ($custom_errors) {
 					$adif_errors++;
 				}
@@ -234,8 +261,15 @@ class API extends CI_Controller {
 				$return_msg[]='Dryrun works';
 			}
 
-			http_response_code(201);
-			echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			if ($adif_errors == 0) {
+				http_response_code(201);
+				echo json_encode(['status' => 'created', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			} else {
+				$return_msg[]=$custom_errors;
+				http_response_code(400);
+				echo json_encode(['status' => 'abort', 'type' => $obj['type'], 'string' => $obj['string'], 'adif_count' => $adif_count, 'adif_errors' => $adif_errors, 'messages' => $return_msg ]);
+			}
+
 
 		}
 
@@ -322,12 +356,12 @@ class API extends CI_Controller {
 
 		//get qso data
 		$data['qsos'] = $this->adif_data->export_past_id($station_id, $fetchfromid, $limit);
-		
+
 		//set internalonly attribute for adif creation
 		$data['internalrender'] = true;
-		
+
 		//if no new QSOs are ready, return that
-		$qso_count = count($data['qsos']->result()); 
+		$qso_count = count($data['qsos']->result());
 		if($qso_count <= 0) {
 			http_response_code(200);
 			echo json_encode(['status' => 'successfull', 'message' => 'No new QSOs available.', 'lastfetchedid' => $fetchfromid, 'exported_qsos' => 0, 'adif' => null]);
@@ -341,7 +375,7 @@ class API extends CI_Controller {
 		$lastfetchedid = 0;
 		foreach ($data['qsos']->result() as $row) {
 			$lastfetchedid = max($lastfetchedid, $row->COL_PRIMARY_KEY);
-		}		
+		}
 
 		//return API result
 		http_response_code(200);
@@ -557,14 +591,34 @@ class API extends CI_Controller {
 		$this->api_model->update_last_used($obj['key']);
 
 		$user_id = $this->api_model->key_userid($obj['key']);
+		$created_by = $this->api_model->key_created_by($obj['key']);
 
-		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. We override this here to CW
-		if (isset($obj['mode']) && (strtoupper($obj['mode']) == 'CW-U' || strtoupper($obj['mode']) == 'CW-L')) {
-			$obj['mode'] = 'CW';
+		// Clubmode needs an additional check for the operator
+		if ($user_id != $created_by) {
+			$operator = $created_by;
+		} else {
+			$operator = $user_id;
 		}
 
+		// Special Case: Yaesu Radio's use CW-U and CW-L which aren't official ADIF Modes. Flex 3000 uses CWU and CWL. Icom uses CW-R. We override this here to CW
+		switch (strtoupper($obj['mode'] ?? '')) {
+			case 'CW-U':
+			case 'CW-L':
+			case 'CW-R':
+			case 'CWU':
+			case 'CWL':
+				$obj['mode'] = 'CW';
+				break;
+			case 'RTTY-L':
+			case 'RTTY-U':
+			case 'RTTY-R':
+				$obj['mode'] = 'RTTY';
+				break;
+		}
+
+
 		// Store Result to Database
-		$this->cat->update($obj, $user_id);
+		$this->cat->update($obj, $user_id, $operator);
 
 		// Return Message
 
@@ -619,7 +673,7 @@ class API extends CI_Controller {
 
 		$this->load->model('stations');
 		$all_station_ids=$this->stations->all_station_ids_of_user($user_id);
-		
+
 		if ((array_key_exists('station_ids',$raw_input)) && (is_array($raw_input['station_ids']))) {		// Special station_ids needed and it is an array?
 			$a_station_ids=[];
 			foreach ($raw_input['station_ids'] as $stationid) {	// Check for grants to given station_id
@@ -930,4 +984,104 @@ class API extends CI_Controller {
 		$latlng = $this->qra->qra2latlong($qra);
 		return $latlng;
 	}
+
+	function version() {
+		// This API endpoint provides the version of Wavelog if the provide key has at least read permissions
+		$data = json_decode(file_get_contents('php://input'), true);
+		$valid = false;
+
+		if (!empty($data['key'])) {
+			$this->load->model('api_model');
+			if (substr($this->api_model->access($data['key']), 0, 1) == 'r') {
+				$valid = true;
+			}
+		}
+
+		header("Content-type: application/json");
+		if ($valid) {
+			echo json_encode(['status' => 'ok', 'version' => $this->optionslib->get_option('version')]);
+		} else {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "missing or invalid api key"]);
+		}
+	}
+
+	/*
+		API call used in this WordPress plugin: https://github.com/HochdruckHummer/wavelog-wp-qso-display
+	*/
+	function get_wp_stats() {
+		// Set header
+		header('Content-type: application/json');
+
+		// Load API model
+		$this->load->model('api_model');
+
+		// Decode JSON and store
+		$obj = json_decode(file_get_contents("php://input"), true);
+		if ($obj === NULL) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "wrong JSON"]);
+			return;
+		}
+
+		// Authorization
+		if (!isset($obj['key']) || $this->api_model->authorize($obj['key']) == 0) {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "missing or wrong api key"]);
+			return;
+		}
+
+		// Validate station_id
+		if (!isset($obj['station_id']) || !is_numeric($obj['station_id'])) {
+			http_response_code(400);
+			echo json_encode(['status' => 'failed', 'reason' => "Invalid station_id."]);
+			return;
+		}
+
+		$station_id = (int)$obj['station_id'];
+		$key = $obj['key'];
+
+		// Load stations model
+		$this->load->model('stations');
+
+		// Get user stations
+		$userid = $this->api_model->key_userid($key);
+		$stations = $this->stations->all_of_user($userid);
+		$station_ids = array_map(function($row) {
+			return $row->station_id;
+		}, $stations->result());
+
+		// Check station access
+		if (!in_array($station_id, $station_ids)) {
+			http_response_code(401);
+			echo json_encode(['status' => 'failed', 'reason' => "Station ID not accessible for this API key"]);
+			return;
+		}
+
+		// Load cache driver
+		$this->load->driver('cache', ['adapter' => 'file']);
+
+		// Create cache key
+		$cache_key = "wp_stats_{$station_id}";
+
+		// Check if cached data exists
+		if ($cached_data = $this->cache->get($cache_key)) {
+			http_response_code(200);
+			echo json_encode(['status' => 'successful', 'message' => 'Data from cache', 'statistics' => $cached_data]);
+			return;
+		}
+
+		// Get QSO data (from database)
+		$data['totalalltime'] = $this->api_model->get_qsos_total($station_id)->result();
+		$data['totalthisyear'] = $this->api_model->get_qsos_this_year($station_id)->result();
+		$data['totalgroupedmodes'] = $this->api_model->get_qsos_grouped_by_mode($station_id)->result();
+
+		// Store in cache for 5 minutes
+		$this->cache->save($cache_key, $data, 600); // 10 minutes
+
+		// Return result
+		http_response_code(200);
+		echo json_encode(['status' => 'successful', 'message' => 'Export successful', 'statistics' => $data]);
+	}
+
 }

@@ -4,6 +4,7 @@
 	var dxcluster_maxage = <?php echo $this->optionslib->get_option('dxcluster_maxage') ?? 60; ?>;
 	var custom_date_format = "<?php echo $custom_date_format ?>";
 	var popup_warning = "<?= __("Pop-up was blocked! Please allow pop-ups for this site permanently."); ?>";
+	var lang_click_to_prepare_logging = "<?= __("Click to prepare logging."); ?>";
 </script>
 
 <style>
@@ -34,6 +35,9 @@
 	tbody a {
 		color: inherit;
 		text-decoration: none;
+	}
+	.dataTables_wrapper {
+		margin: 10px;
 	}
 </style>
 
@@ -103,18 +107,23 @@
 				?>
 			</select>
 		</div>
+		</div>
+
+</div>
 
 		<p>
 
-		<table style="width:100%" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
+		<table style="width:100%;" class="table-sm table spottable table-bordered table-hover table-striped table-condensed">
 			<thead>
 				<tr class="log_title titles">
 					<th style="width:200px;"><?= __("Date"); ?>/<?= __("Time"); ?></th>
 					<th style="width:150px;"><?= __("Frequency"); ?></th>
 					<th><?= __("Call"); ?></th>
 					<th><?= __("DXCC"); ?></th>
+					<th style="width:30px;"><?= __("WAC"); ?></th>
 					<th style="width:150px;"><?= __("Spotter"); ?></th>
 					<th><?= __("Message"); ?></th>
+					<th><?= __("Last Worked"); ?></th>
 				</tr>
 			</thead>
 
@@ -123,5 +132,4 @@
 		</table>
 	</div>
 
-</div>
-</div>
+

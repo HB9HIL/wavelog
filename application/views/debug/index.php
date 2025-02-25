@@ -64,6 +64,10 @@
                             <td><?= __("Environment"); ?></td>
                             <td><?php echo ENVIRONMENT; ?></td>
                         </tr>
+                        <tr>
+                            <td><?= __("System Time"); ?></td>
+                            <td><?php echo $system_time; ?></td>
+                        </tr>
                         <tr class="blank-row">
                             <td> </td>
                             <td> </td>
@@ -657,6 +661,7 @@
 ?>
 <div style="display: none">
     <?= __("Albanian"); ?>
+    <?= __("Armenian"); ?>
     <?= __("Bosnian"); ?>
     <?= __("Bulgarian"); ?>
     <?= __("Chinese (Simplified)"); ?>
@@ -677,6 +682,7 @@
     <?= __("Portuguese"); ?>
     <?= __("Russian"); ?>
     <?= __("Serbian"); ?>
+    <?= __("Slovenian"); ?>
     <?= __("Spanish"); ?>
     <?= __("Swedish"); ?>
     <?= __("Turkish"); ?>
