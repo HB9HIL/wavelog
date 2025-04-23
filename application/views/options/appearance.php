@@ -48,7 +48,7 @@
 								}
 								?>
                                 </select>
-                            <small id="themeHelp" class="form-text text-muted"><?= __("Global Theme Choice, this is used when users arent logged in."); ?></small>
+                            <small id="themeHelp" class="form-text text-muted"><?= __("Global Theme Choice, this is used when users arent logged in (e.g. Login Screen, Widgets, ...)."); ?></small>
                         </div>
                         
                         
