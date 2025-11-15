@@ -2984,7 +2984,7 @@ var dxWaterfall = {
             var middleFreq = this.getCachedMiddleFreq();
             // Use 20kHz margin for band detection (extends band edges)
             bandToUse = frequencyToBandKhz(middleFreq, 20);
-            if (bandToUse === 'All') {
+            if (!bandToUse || bandToUse === 'All') {
                 return null; // Out of band and no spots loaded
             }
         }
@@ -3069,7 +3069,7 @@ var dxWaterfall = {
         } else {
             // Use 20kHz margin for band detection (extends band edges)
             bandToDraw = frequencyToBandKhz(middleFreq, 20);
-            if (bandToDraw === 'All') {
+            if (!bandToDraw || bandToDraw === 'All') {
                 return; // Out of band and no spots loaded, don't draw
             }
         }
@@ -5198,7 +5198,7 @@ var dxWaterfall = {
         // Check if we're out of band (using 20kHz margin)
         var currentFreqKhz = this.getCachedMiddleFreq();
         var detectedBand = frequencyToBandKhz(currentFreqKhz, 20);
-        var isOutOfBand = (detectedBand === 'All');
+        var isOutOfBand = (!detectedBand || detectedBand === 'All');
 
         if (isOutOfBand && (!this.currentSpotBand || this.currentSpotBand === 'All')) {
             // Out of band with no spots loaded - show "Out of band" message
