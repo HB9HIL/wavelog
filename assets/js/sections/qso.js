@@ -2362,6 +2362,24 @@ $('.mode').on('change', function () {
 $('#band').on('change', function () {
 	const selectedBand = $(this).val();
 
+	// Legacy behavior for manual mode
+	if (typeof qso_manual !== 'undefined' && qso_manual >= 1) {
+		// Always fetch frequency for the selected band in manual mode
+		const mode = $('.mode').val();
+		$.get(base_url + 'index.php/qso/band_to_freq/' + selectedBand + '/' + mode, function (result) {
+			$('#frequency').val(result);
+			set_qrg();
+		});
+		$('#frequency_rx').val("");
+		$('#band_rx').val("");
+		$("#selectPropagation").val("");
+		$("#sat_name").val("");
+		$("#sat_mode").val("");
+		$("#callsign").blur();
+		stop_az_ele_ticker();
+		return; // Exit early to skip modern CAT-aware code
+	}
+
 	// In offline mode (CAT disabled), allow band changes to set default frequency
 	// In CAT mode, band selector is display-only - it follows the radio frequency
 	if (typeof isCATAvailable === 'function' && !isCATAvailable()) {
