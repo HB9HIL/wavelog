@@ -1,0 +1,103 @@
+/* Wavelog Mobile App CSS
+ * Supplements Bootstrap 5. Only adds what Bootstrap doesn't cover.
+ */
+
+/* ── Safe-area + bottom-nav spacing ─────────────────────────── */
+body {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    background-color: #f8f9fa;
+}
+
+/* ── Page content area ───────────────────────────────────────── */
+.wl-main {
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── Bottom navigation bar ───────────────────────────────────── */
+.wl-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: #fff;
+    border-top: 1px solid #dee2e6;
+    z-index: 1030;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.wl-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.25rem;
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 0.65rem;
+    line-height: 1.2;
+    min-height: 3.5rem;
+    gap: 0.2rem;
+    transition: color 0.15s;
+}
+
+.wl-tab i {
+    font-size: 1.2rem;
+}
+
+.wl-tab.active {
+    color: #0d6efd;
+}
+
+.wl-tab--disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ── Dashboard greeting ──────────────────────────────────────── */
+.wl-greeting {
+    margin-bottom: 1rem;
+}
+
+.wl-greeting h1 {
+    margin: 0;
+}
+
+/* ── Stat card ───────────────────────────────────────────────── */
+.wl-stat-card {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+.wl-stat-card__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0d6efd;
+    line-height: 1;
+}
+
+.wl-stat-card__label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+/* ── Recent QSOs section ─────────────────────────────────────── */
+.wl-section-title {
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.wl-qso-table {
+    font-size: 0.85rem;
+}
