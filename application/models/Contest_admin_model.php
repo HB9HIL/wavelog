@@ -66,6 +66,26 @@ class Contest_admin_model extends CI_Model {
 		$this->db->insert('contest', $data);
 	}
 
+	function getActiveContestIDforADIFName($adif_name) {
+
+		//clean adif name
+		$clean_adif_name = $this->security->xss_clean($adif_name);
+
+		//prepare SQL
+		$sql = "SELECT id, name, adifname, active FROM contest WHERE adifname = ? AND active = 1 LIMIT 1";
+
+		//run query
+		$query = $this->db->query($sql, [$clean_adif_name]);
+
+		//check if exactly one row returns
+		if ($query->num_rows() !== 1) {
+			return null;
+		}
+
+		//return row
+		return $query->row();
+	}
+
 	function contest($id) {
 		// Clean ID
 		$clean_id = $this->security->xss_clean($id);

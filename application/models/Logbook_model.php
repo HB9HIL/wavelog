@@ -4886,7 +4886,17 @@ class Logbook_model extends CI_Model {
 		gc_collect_cycles();
 		$custom_errors['qsocount'] = count($a_qsos);
 		if ($custom_errors['qsocount'] > 0) {
-			$this->db->insert_batch($this->config->item('table_name'), $a_qsos);
+			
+			$this->db->trans_start();
+
+			foreach ($a_qsos as $qso) {
+				$this->db->insert($this->config->item('table_name'), $qso);
+				$ids[] = $this->db->insert_id();
+			}
+
+			$this->db->trans_complete();
+
+			$custom_errors['qso_ids'] = $ids;
 		}
 		foreach ($amsat_qsos as $amsat_qso) {
 			$this->upload_amsat_status($data);

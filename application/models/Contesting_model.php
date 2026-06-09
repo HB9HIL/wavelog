@@ -566,4 +566,264 @@ class Contesting_model extends CI_Model {
 		return $this->db->query($sql, $bindings);
 		
 	}
+
+	function assignorcreatecontestsessions($qso_ids) {
+		
+		//get relevant supporting data
+		$user_id = $this->session->userdata('user_id');
+		$maintable = $this->config->item('table_name');
+
+		//create table name for temporary table
+		$data = random_bytes(16);
+		$data[6] = chr((ord($data[6]) & 0x0f) | 0x40);
+    	$data[8] = chr((ord($data[8]) & 0x3f) | 0x80);
+		$tmp_table = 'tmp_qso_' . bin2hex($data);
+
+		//prepare QSO ids for temp table
+		$insert_data = [];
+
+		foreach ($qso_ids as $qso_id) {
+			$qso_id = (int) $qso_id;
+
+			if ($qso_id > 0) {
+				$insert_data[] = [
+					'qso_id' => $qso_id,
+					'contest_session_id' => null
+				];
+			}
+		}
+
+		//abort if empty
+		if (empty($insert_data)) {
+			return;
+		}
+
+		//create temporary table
+		$this->db->query("
+        CREATE TEMPORARY TABLE `" . $tmp_table . "` (
+            qso_id BIGINT(20) UNSIGNED NOT NULL,
+			contest_session_id INT(20) UNSIGNED,
+            PRIMARY KEY (qso_id)
+        ) ENGINE=InnoDB
+    	");
+
+		//insert to temporary table
+		$this->db->insert_batch($tmp_table, $insert_data);
+
+		//get all contest QSOs with necessary info
+		$query = $this->db
+			->select('tmp.qso_id, tmp.contest_session_id, main.COL_CONTEST_ID, main.COL_TIME_ON, main.station_id')
+			->from($tmp_table . ' AS tmp')
+			->join($maintable . ' AS main', 'tmp.qso_id = main.COL_PRIMARY_KEY', 'inner')
+			->where('main.COL_CONTEST_ID IS NOT NULL', null, false)
+			->where('main.COL_CONTEST_ID !=', '');
+
+		$queryresult = $this->db->get()->result();
+
+		//abort if empty
+		if(count($queryresult) < 1) {
+			$this->dropTemporaryAssignmentTable($tmp_table);
+			return;
+		}
+
+		//create cache
+		$contest_sessions = [];
+		$contest_names_to_other = [];
+
+		//load contest admin model
+		$this->load->is_loaded('contest_admin_model') ?: $this->load->model('contest_admin_model');
+
+		//iterate through each qso
+		foreach ($queryresult as $row) {
+			
+			//try to find assignment candidate from cache
+			$assignment_candidate = $this->getContestSessionAssignmentCandidateFromCache($contest_sessions, in_array($row->COL_CONTEST_ID, $contest_names_to_other) ? "Other" : $row->COL_CONTEST_ID, $row->COL_TIME_ON, $row->station_id);
+			
+			//if not found, try the database
+			if($assignment_candidate == null)
+			{
+				$assignment_candidate = $this->getContestSessionAssignmentCandidateFromDb(in_array($row->COL_CONTEST_ID, $contest_names_to_other) ? "Other" : $row->COL_CONTEST_ID, $row->COL_TIME_ON, $row->station_id);
+			}
+
+			//if we found nothing, create a new one and load it asap
+			if(!$assignment_candidate){
+				
+				//check with the contest admin model if this contest exists
+				$contest_info = $this->contest_admin_model->getActiveContestIDforADIFName($row->COL_CONTEST_ID);
+
+				//if it does not exist, use "Other" and put the provided Contest_ID in the notes
+				if($contest_info == null){
+					$contest_id = 1;
+					$notes = $row->COL_CONTEST_ID;
+					$contest_names_to_other[] = $row->COL_CONTEST_ID;
+
+					//recheck cache and db now that we know it is "other"
+					//try to find assignment candidate from cache
+					$assignment_candidate = $this->getContestSessionAssignmentCandidateFromCache($contest_sessions, in_array($row->COL_CONTEST_ID, $contest_names_to_other) ? "Other" : $row->COL_CONTEST_ID, $row->COL_TIME_ON, $row->station_id);
+					
+					//if not found, try the database
+					if($assignment_candidate == null)
+					{
+						$assignment_candidate = $this->getContestSessionAssignmentCandidateFromDb(in_array($row->COL_CONTEST_ID, $contest_names_to_other) ? "Other" : $row->COL_CONTEST_ID, $row->COL_TIME_ON, $row->station_id);
+					}
+				}else{
+					$contest_id = $contest_info->id;
+					$notes = "";
+				}
+
+				//if we still don't have a candidate, create contest session and load it immediately
+				if(!$assignment_candidate){
+					$this->create_contest_session($contest_id,$row->COL_TIME_ON, $row->COL_TIME_ON, $row->station_id, $notes, false);
+					$assignment_candidate = $this->getContestSessionAssignmentCandidateFromDb(in_array($row->COL_CONTEST_ID, $contest_names_to_other) ? "Other" : $row->COL_CONTEST_ID, $row->COL_TIME_ON, $row->station_id);
+				}
+			}
+
+			//if we have a candidate, modify data and update temporary table
+			if($assignment_candidate){
+				
+				//modify start and end of contest session, for now only in cache
+				if($row->COL_TIME_ON <= $assignment_candidate['time_start']){
+					$assignment_candidate['time_start'] = $row->COL_TIME_ON;
+				}
+
+				if($row->COL_TIME_ON >= $assignment_candidate['time_end']){
+					$assignment_candidate['time_end'] = $row->COL_TIME_ON;
+				}
+
+				//save new state in cache
+				$contest_sessions[$assignment_candidate['contest_session_id']] = $assignment_candidate;
+
+				//update temporary table
+				$this->updateTemporaryAssignmentTable($tmp_table, $row->qso_id, $assignment_candidate['contest_session_id']);
+
+			}
+			
+		}
+
+		//prepare SQL to transfer temporary table contents into final table
+			$sql = "
+				INSERT INTO contest_qsos (
+					contest_session_id,
+					qso_id
+				)
+				SELECT
+					contest_session_id,
+					qso_id
+				FROM {$tmp_table}
+				WHERE contest_session_id IS NOT NULL
+			";
+
+			//run query
+			$this->db->query($sql);
+
+			//save affected row count
+			$updated_rows = $this->db->affected_rows();
+
+			//update each contest session with the new start and end times from built cache
+			foreach ($contest_sessions as $session_id => $session) {
+				$this->db
+					->where('id', $session_id)
+					->update('contest_session', [
+						'time_start' => $session['time_start'],
+						'time_end' => $session['time_end'],
+					]);
+			}
+
+			//finally drop temporary table
+			$this->dropTemporaryAssignmentTable($tmp_table);
+
+			//return updated rows
+			return $updated_rows;
+
+	}
+
+	function getContestSessionAssignmentCandidateFromCache(array $contest_sessions, $contest_adifname, $qso_datetime, $station_id) {
+		
+		//get qso timestamp
+		$qso_ts = strtotime($qso_datetime);
+
+		//try to find a candidate from cache
+		foreach ($contest_sessions as $session) {
+			
+			//abort if static values are not matching
+			if ($session['contest_adifname'] !== $contest_adifname or $session['station_id'] !== $station_id) {
+				continue;
+			}
+
+			//contest QSOs are usually within 48 hours of each other
+			$start_ts = strtotime($session['time_start']) - (48 * 60 * 60);
+			$end_ts   = strtotime($session['time_end']) + (48 * 60 * 60);
+
+			//check if qso is inside that space
+			if ($qso_ts > $start_ts && $qso_ts < $end_ts) {
+				return $session;
+			}
+		}
+
+		//return null if nothing is found
+		return null;
+	}
+
+	function getContestSessionAssignmentCandidateFromDb($contest_id, $time, $station_id) {
+		
+		//get user id from session
+		$user_id = $this->session->userdata('user_id');
+
+		//prepare bindings
+		$binding = [];
+
+		//declare sql - contest QSOs are usually within 48 hours of each other
+		//if there are multiple candidates, prefer the one with the later end time
+		$sql = "SELECT cs.id AS contest_session_id,
+				cs.time_start AS time_start,
+				cs.time_end AS time_end,
+				cs.comment AS comment,
+				cs.settings AS settings,
+				c.name AS contest_name,
+				c.id AS contest_id,
+				c.adifname AS contest_adifname,
+				sp.station_id AS station_id,
+				sp.station_callsign AS station_callsign,
+				sp.station_gridsquare AS station_gridsquare
+			FROM contest_session cs
+			JOIN contest c ON c.id = cs.contest_adif_id
+			JOIN station_profile sp ON sp.station_id = cs.station_id
+			WHERE cs.user_id = ? and c.adifname = ? and cs.station_id = ?
+			AND ? >= DATE_SUB(cs.time_start, INTERVAL 48 HOUR)
+			AND ? <= DATE_ADD(cs.time_end, INTERVAL 48 HOUR)
+			ORDER BY cs.time_end DESC
+			LIMIT 1";
+		
+		//create bindings
+		$binding = [$user_id, $contest_id, $station_id, $time, $time];
+		
+		//execute sql
+		$query = $this->db->query($sql, $binding);
+		
+		//return as array
+		return $query->row_array();
+	}
+
+	function dropTemporaryAssignmentTable($tablename) {
+		$this->db->query("DROP TEMPORARY TABLE IF EXISTS " . $tablename . ";");
+	}
+
+	function updateTemporaryAssignmentTable($tmp_table, $qso_id, $contest_session_id)
+	{
+		
+		//sanity checks
+		if ($qso_id <= 0 || $contest_session_id <= 0) {
+			return false;
+		}
+
+		//update temporary table
+		$this->db
+			->where('qso_id', $qso_id)
+			->update($tmp_table, [
+				'contest_session_id' => $contest_session_id
+			]);
+
+		//return affected rows
+		return ($this->db->affected_rows() >= 0);
+	}
 }

@@ -448,6 +448,12 @@ class adif extends CI_Controller {
 			$data['qsocount'] = $custom_errors['qsocount'] ?? 0;
 			$data['skip_dupes'] = $this->input->post('skipDuplicate');
 			$data['imported_contests'] = $contest_qso_infos;
+			$data['qso_ids'] = $custom_errors['qsocount'] ?? 0 > 0 ? $custom_errors['qso_ids'] : [];
+
+			if(count($contest_qso_infos) > 0 and count($data['qso_ids']) > 0){
+				$this->load->model('contesting_model');
+				$affected_qsos = $this->contesting_model->assignorcreatecontestsessions($data['qso_ids']);
+			}
 
 			$data['page_title'] = __("ADIF Imported");
 			$this->load->view('interface_assets/header', $data);
