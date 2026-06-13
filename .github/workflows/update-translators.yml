@@ -1,0 +1,36 @@
+name: Update translator list from Weblate
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    if: github.repository == 'HB9HIL/wavelog'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Update translator list
+        run: bash .github/scripts/update_translators.sh
+        env:
+          WEBLATE_API_TOKEN: ${{ secrets.WEBLATE_API_TOKEN }}
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          if [[ -n $(git status --porcelain) ]]; then
+            git add README.md
+            git commit -m "Update translator list from Weblate"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
