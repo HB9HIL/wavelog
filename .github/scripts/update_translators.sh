@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #
-# Append new Weblate translators to the README translator list.
+# Regenerate the README translator list from Weblate.
 #
 # Queries the Weblate "credits" API for the wavelog project, collects every
-# translator (username + full name), and appends those not yet present in the
-# README to the block delimited by the <!-- TRANSLATORS:START/END --> markers.
+# translator (username + full name), and rebuilds the block delimited by the
+# <!-- TRANSLATORS:START/END --> markers from scratch: deduplicated by username,
+# sorted by username (case-insensitive), bot/maintainer accounts removed.
 #
-# Append-only and idempotent: existing entries (incl. manual non-Weblate links)
-# are never touched, already-listed usernames are skipped.
+# Idempotent: an unchanged list produces no diff, so the workflow only commits
+# when translators were actually added or removed on Weblate.
 #
 # Requires: curl, jq, and a Weblate API token in $WEBLATE_API_TOKEN.
 
@@ -18,8 +19,8 @@ BASE="https://translate.wavelog.org"
 CREDITS_URL="$BASE/api/projects/wavelog/credits/?start=2020-01-01&end=2099-01-01"
 MIN_CHANGES="${MIN_CHANGES:-1}"
 
-# Usernames to never add (bot accounts are filtered via regex below; add
-# maintainers here if they should be kept out of the translator list).
+# Usernames to never list (bot accounts are filtered via regex below; these are
+# core maintainers credited as translators but kept out of the list).
 EXCLUDE_USERS=(HB9HIL int2001 DF2ET)
 
 : "${WEBLATE_API_TOKEN:?WEBLATE_API_TOKEN is required}"
@@ -27,26 +28,21 @@ EXCLUDE_USERS=(HB9HIL int2001 DF2ET)
 # 1. Fetch credits (fail hard on HTTP errors).
 json="$(curl -sf -H "Authorization: Token $WEBLATE_API_TOKEN" "$CREDITS_URL")"
 
-# 2. Flatten across all languages -> "username<TAB>full_name", drop bot
-#    accounts and entries below the change threshold, unique by username.
-candidates="$(
+# 2. Flatten across all languages -> "username<TAB>full_name", drop bot accounts
+#    and entries below the change threshold, unique by username, sorted by
+#    username case-insensitively.
+rows="$(
 	printf '%s' "$json" | jq -r --argjson min "$MIN_CHANGES" '
 		.[] | to_entries[] | .value[]
 		| select(.change_count >= $min)
 		| select(.username | test("^addon:|^anonymous$") | not)
 		| [.username, (.full_name // "")] | @tsv' \
-	| sort -t"$(printf '\t')" -k1,1 -u
+	| sort -f -t"$(printf '\t')" -k1,1 -u
 )"
 
-# 3. Usernames already present in the README (lowercased for matching).
-existing="$(grep -oE 'user/[^/)]+/' "$README" \
-	| sed 's#^user/##; s#/$##' \
-	| tr '[:upper:]' '[:lower:]' \
-	| sort -u)"
-
-# 4. Build the markdown for translators not yet listed.
+# 3. Build the comma-separated markdown line, skipping excluded maintainers.
 TAB="$(printf '\t')"
-new_entries=""
+list=""
 while IFS= read -r line; do
 	[[ -z "$line" ]] && continue
 	username="${line%%"$TAB"*}"
@@ -62,29 +58,27 @@ while IFS= read -r line; do
 	fi
 	[[ $skip -eq 1 ]] && continue
 
-	grep -qxF "$lc" <<< "$existing" && continue   # already listed
-
 	display="${fullname:-$username}"
-	new_entries+=", [${display}](${BASE}/user/${username}/)"
-	echo "Adding translator: ${username} (${display})" >&2
-done <<< "$candidates"
+	if [[ -z "$list" ]]; then
+		list="[${display}](${BASE}/user/${username}/)"
+	else
+		list="${list}, [${display}](${BASE}/user/${username}/)"
+	fi
+done <<< "$rows"
 
-if [[ -z "$new_entries" ]]; then
-	echo "No new translators." >&2
-	exit 0
+if [[ -z "$list" ]]; then
+	echo "Credits API returned no translators - aborting to avoid wiping the list." >&2
+	exit 1
 fi
 
-# 5. Append the new entries to the line directly preceding the END marker.
+# 4. Replace the content between the markers with the freshly built list.
 tmp="$(mktemp)"
-awk -v add="$new_entries" '
-	function flush() { if (havePrev) { print prev; havePrev=0 } }
-	/<!-- TRANSLATORS:END -->/ {
-		if (havePrev) { print prev add; havePrev=0 }
-		print $0; next
-	}
-	{ flush(); prev=$0; havePrev=1 }
-	END { flush() }
+LISTLINE="$list" awk '
+	/<!-- TRANSLATORS:START -->/ { print; print ENVIRON["LISTLINE"]; skip=1; next }
+	/<!-- TRANSLATORS:END -->/   { skip=0; print; next }
+	skip { next }
+	{ print }
 ' "$README" > "$tmp"
 mv "$tmp" "$README"
 
-echo "README updated." >&2
+echo "Translator list regenerated." >&2
