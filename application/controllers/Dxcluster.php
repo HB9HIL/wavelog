@@ -52,15 +52,11 @@ class Dxcluster extends CI_Controller {
 	}
 
 	/**
-	 * Returns the per-user worked/confirmed status for a batch of spots.
-	 *
-	 * The DX cluster relay (wavelog_worker) streams instance-shared spot data
-	 * (callsign, frequency, DXCC, mode, ...) straight to the browser over the
-	 * "dxspots" worker topic. The only slice that is user-specific — and therefore
-	 * cannot be shared over the worker — is whether the operator has already
-	 * worked/confirmed each callsign. The Bandmap requests just that slice here,
-	 * for the callsigns it received live, instead of re-fetching and re-enriching
-	 * the whole spot list every 30 s.
+	 * Returns the per-user worked/confirmed CALLSIGN status + last-worked info for a batch
+	 * of live spots. worked_dxcc/worked_continent are NOT returned here — the Bandmap
+	 * resolves those locally from the pre-loaded worked-slots (see worked_slots()). The
+	 * client only calls this for spots whose DXCC slot is already worked, so the lookup
+	 * stays small.
 	 */
 	public function worked_status() {
 		session_write_close();
@@ -87,7 +83,13 @@ class Dxcluster extends CI_Controller {
 		$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
 		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
 
-		$statuses = $this->logbook_model->get_batch_spot_statuses($spots, $logbooks_locations_array);
+		// Only the call-level slice is needed here; worked_dxcc/continent come from the
+		// pre-loaded worked-slots on the client (see get_worked_slots() / worked_slots()).
+		$full = $this->logbook_model->get_batch_spot_statuses($spots, $logbooks_locations_array);
+		$statuses = [];
+		foreach ($full as $call => $s) {
+			$statuses[$call] = ['worked_call' => $s['worked_call'], 'cnfmd_call' => $s['cnfmd_call']];
+		}
 
 		// Only fetch last-worked details for callsigns that are actually worked.
 		$worked_spots = [];
@@ -114,6 +116,31 @@ class Dxcluster extends CI_Controller {
 		}
 
 		echo json_encode(['statuses' => $statuses, 'last_worked' => $last_worked]);
+	}
+
+	/**
+	 * Returns the active logbook's worked/confirmed DXCC + continent slots (band|mode-aware)
+	 * for the Bandmap live feed. The browser matches live spots against these sets locally,
+	 * so worked_dxcc/worked_continent never need a per-spot server lookup. Also refetched by
+	 * the Bandmap when the user's qso_changed signal fires.
+	 */
+	public function worked_slots() {
+		session_write_close();
+		header('Content-Type: application/json');
+
+		// get_worked_slots() uses the cache driver when worked-status caching is enabled.
+		if ($this->config->item('enable_dxcluster_file_cache_worked') ?? false) {
+			$this->load->driver('cache', [
+				'adapter'    => $this->config->item('cache_adapter') ?? 'file',
+				'backup'     => $this->config->item('cache_backup') ?? 'file',
+				'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+			]);
+		}
+
+		$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
+		$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+
+		echo json_encode($this->logbook_model->get_worked_slots($logbooks_locations_array));
 	}
 
 	public function qrg_lookup($qrg) {

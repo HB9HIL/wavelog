@@ -58,6 +58,14 @@ class DxclusterCache {
 		return "dxcluster_worked_cont_{$logbook_key}_{$cont}";
 	}
 
+	/**
+	 * Generate WORKED slots blob key (all DXCC/continent band|mode slots of a logbook).
+	 * Used by the Bandmap live feed (Logbook_model::get_worked_slots()).
+	 */
+	public function get_worked_slots_key($logbook_key) {
+		return "dxcluster_worked_slots_{$logbook_key}";
+	}
+
 	// =========================================================================
 	// CACHE INVALIDATION
 	// =========================================================================
@@ -78,6 +86,9 @@ class DxclusterCache {
 
 		// Delete callsign cache
 		$this->_delete_from_cache($this->get_worked_call_key($logbook_key, $callsign));
+
+		// Delete the worked-slots blob (Bandmap live feed) so it is rebuilt on next load
+		$this->_delete_from_cache($this->get_worked_slots_key($logbook_key));
 
 		// Look up DXCC and continent from callsign
 		$dxccobj = new Dxcc();

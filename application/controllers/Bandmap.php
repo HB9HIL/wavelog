@@ -39,6 +39,25 @@ class Bandmap extends CI_Controller {
 			];
 		}
 
+		$pageData['dxcluster_worked_slots'] = null;
+		$pageData['qso_worker'] = null;
+		if ($pageData['dxspots_worker'] !== null) {
+			$this->load->is_loaded('logbook_model') ?: $this->load->model('logbook_model');
+			if ($this->config->item('enable_dxcluster_file_cache_worked') ?? false) {
+				$this->load->driver('cache', [
+					'adapter'    => $this->config->item('cache_adapter') ?? 'file',
+					'backup'     => $this->config->item('cache_backup') ?? 'file',
+					'key_prefix' => $this->config->item('cache_key_prefix') ?? ''
+				]);
+			}
+			$logbooks_locations_array = $this->logbooks_model->list_logbook_relationships($this->session->userdata('active_station_logbook'));
+			$pageData['dxcluster_worked_slots'] = $this->logbook_model->get_worked_slots($logbooks_locations_array);
+
+			$qso_topic = 'qso.' . $this->session->userdata('user_id');
+			$this->worker->register_topic($qso_topic);
+			$pageData['qso_worker'] = ['topic' => $qso_topic, 'token' => $this->worker->create_token($qso_topic)];
+		}
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',

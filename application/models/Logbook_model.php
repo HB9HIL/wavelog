@@ -3215,9 +3215,6 @@ class Logbook_model extends CI_Model {
 		$dxcc_data = [];
 		$cont_data = [];
 
-		// Pre-build mode mapping lookup table to avoid repeated function calls
-		$mode_cache = [];
-
 		// Process ALL results in one pass (worked AND confirmed combined)
 		foreach ($results as $row) {
 			$identifier = $row['identifier'];
@@ -3226,29 +3223,7 @@ class Logbook_model extends CI_Model {
 			$worked = (bool)$row['worked'];
 			$confirmed = (bool)$row['confirmed'];
 
-			// Check mode cache first to avoid redundant conversions
-			if (!isset($mode_cache[$logbook_mode])) {
-				// Convert logbook mode to spot mode category (phone/cw/digi)
-				$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
-				$qrgmode_lower = strtolower($qrgmode ?? '');
-
-				// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
-				if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
-					$mode_cache[$logbook_mode] = ($qrgmode_lower === 'data') ? 'digi' : $qrgmode_lower;
-				} else {
-					// Fallback to hardcoded mapping
-					$logbook_mode_upper = strtoupper($logbook_mode);
-					if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
-						$mode_cache[$logbook_mode] = 'phone';
-					} elseif ($logbook_mode_upper === 'CW') {
-						$mode_cache[$logbook_mode] = 'cw';
-					} else {
-						$mode_cache[$logbook_mode] = 'digi';
-					}
-				}
-			}
-
-			$mode_category = $mode_cache[$logbook_mode];
+			$mode_category = $this->_logbook_mode_to_category($logbook_mode);
 			$band_mode_key = $band . '|' . $mode_category;
 
 			// Store in appropriate data structure
@@ -3399,6 +3374,114 @@ class Logbook_model extends CI_Model {
 			'cnfmd_dxcc' => $cnfmd_dxcc,
 			'cnfmd_continent' => $cnfmd_cont
 		];
+	}
+
+	/**
+	 * Map a logbook mode (e.g. SSB, FT8, CW) to the spot mode category (phone/cw/digi).
+	 * Extracted so get_batch_spot_statuses() and get_worked_slots() share one mapping.
+	 */
+	private function _logbook_mode_to_category($logbook_mode) {
+		static $mode_cache = [];
+		if (!isset($mode_cache[$logbook_mode])) {
+			$qrgmode = @$this->Modes->get_qrgmode_from_mode($logbook_mode);
+			$qrgmode_lower = strtolower($qrgmode ?? '');
+
+			// Check if qrgmode is valid (phone/cw/data/digi), otherwise use fallback
+			if (!empty($qrgmode) && in_array($qrgmode_lower, ['phone', 'cw', 'data', 'digi'])) {
+				$mode_cache[$logbook_mode] = ($qrgmode_lower === 'data') ? 'digi' : $qrgmode_lower;
+			} else {
+				// Fallback to hardcoded mapping
+				$logbook_mode_upper = strtoupper($logbook_mode);
+				if (in_array($logbook_mode_upper, ['SSB', 'FM', 'AM', 'PHONE'])) {
+					$mode_cache[$logbook_mode] = 'phone';
+				} elseif ($logbook_mode_upper === 'CW') {
+					$mode_cache[$logbook_mode] = 'cw';
+				} else {
+					$mode_cache[$logbook_mode] = 'digi';
+				}
+			}
+		}
+		return $mode_cache[$logbook_mode];
+	}
+
+	/**
+	 * Worker live-feed helper: returns the active logbook's worked/confirmed DXCC and
+	 * continent slots (band|mode-aware) so the Bandmap can resolve worked_dxcc/worked_continent
+	 * for live spots client-side, without a per-spot lookup.
+	 *
+	 * Same aggregation + qsl_where + mode mapping as get_batch_spot_statuses(), but without
+	 * the IN(...) restriction (all slots at once). confirmed is a subset of worked.
+	 * Only cached when worked-status file caching is enabled (invalidated via
+	 * DxclusterCache::invalidate_for_callsign()); the cache driver must be loaded by the caller.
+	 *
+	 * @param array $logbooks_locations_array Station IDs
+	 * @return array{dxcc_worked:string[],dxcc_confirmed:string[],cont_worked:string[],cont_confirmed:string[]}
+	 */
+	function get_worked_slots($logbooks_locations_array) {
+		$empty = ['dxcc_worked' => [], 'dxcc_confirmed' => [], 'cont_worked' => [], 'cont_confirmed' => []];
+		if (empty($logbooks_locations_array)) {
+			return $empty;
+		}
+
+		$user_default_confirmation = $this->session->userdata('user_default_confirmation');
+		$cache_enabled = $this->config->item('enable_dxcluster_file_cache_worked') === true;
+
+		$cache_key = null;
+		if ($cache_enabled) {
+			$user_id = $this->session->userdata('user_id');
+			$logbook_ids_key = $this->dxclustercache->get_logbook_key($user_id, $logbooks_locations_array, $user_default_confirmation);
+			$cache_key = $this->dxclustercache->get_worked_slots_key($logbook_ids_key);
+			$cached = $this->cache->get($cache_key);
+			if ($cached !== false) {
+				return $cached;
+			}
+		}
+
+		$qsl_where = $this->qsl_default_where($user_default_confirmation);
+		$station_ids_placeholders = implode(',', array_fill(0, count($logbooks_locations_array), '?'));
+		$table = $this->config->item('table_name');
+
+		$sql = "
+			SELECT 'dxcc' AS type, COL_DXCC AS identifier, COL_BAND AS band, COL_MODE AS mode,
+			       MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) AS confirmed
+			FROM {$table}
+			WHERE station_id IN ({$station_ids_placeholders}) AND COL_DXCC IS NOT NULL AND COL_DXCC != ''
+			GROUP BY COL_DXCC, COL_BAND, COL_MODE
+			UNION ALL
+			SELECT 'cont' AS type, COL_CONT AS identifier, COL_BAND AS band, COL_MODE AS mode,
+			       MAX(CASE WHEN ({$qsl_where}) THEN 1 ELSE 0 END) AS confirmed
+			FROM {$table}
+			WHERE station_id IN ({$station_ids_placeholders}) AND COL_CONT IS NOT NULL AND COL_CONT != ''
+			GROUP BY COL_CONT, COL_BAND, COL_MODE
+		";
+
+		$bind = array_merge($logbooks_locations_array, $logbooks_locations_array);
+		$results = $this->db->query($sql, $bind)->result_array();
+
+		// Dedupe via assoc keys: multiple logbook modes can map to the same category.
+		$dxcc_w = []; $dxcc_c = []; $cont_w = []; $cont_c = [];
+		foreach ($results as $row) {
+			$slot = $row['identifier'] . '|' . $row['band'] . '|' . $this->_logbook_mode_to_category($row['mode']);
+			if ($row['type'] === 'dxcc') {
+				$dxcc_w[$slot] = true;
+				if ($row['confirmed']) $dxcc_c[$slot] = true;
+			} else {
+				$cont_w[$slot] = true;
+				if ($row['confirmed']) $cont_c[$slot] = true;
+			}
+		}
+
+		$out = [
+			'dxcc_worked'    => array_keys($dxcc_w),
+			'dxcc_confirmed' => array_keys($dxcc_c),
+			'cont_worked'    => array_keys($cont_w),
+			'cont_confirmed' => array_keys($cont_c),
+		];
+
+		if ($cache_enabled && $cache_key !== null) {
+			$this->cache->save($cache_key, $out, 900);
+		}
+		return $out;
 	}
 
 	/**

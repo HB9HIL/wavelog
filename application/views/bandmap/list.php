@@ -11,6 +11,10 @@
 	window.radioWorkerTopics = <?php echo json_encode($radio_worker_topics ?? []); ?>;
 	// Live DX spot feed via the worker (null unless the relay module is running).
 	window.dxspotsWorker = <?php echo json_encode($dxspots_worker ?? null); ?>;
+	// Pre-loaded worked/confirmed DXCC+continent slots for live spots, and the user's
+	// qso_changed topic to refresh them (both null unless the live feed is active).
+	window.dxWorkedSlots = <?php echo json_encode($dxcluster_worked_slots ?? null); ?>;
+	window.qsoWorker = <?php echo json_encode($qso_worker ?? null); ?>;
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -80,6 +84,8 @@
 	var lang_bandmap_max_age = "<?= __("Max Age"); ?>";
 	var lang_bandmap_fetched_at = "<?= __("Fetched at"); ?>";
 	var lang_bandmap_next_update = "<?= __("Next update in"); ?>";
+	var lang_bandmap_live_online = "<?= __("Online"); ?>";
+	var lang_bandmap_disconnected = "<?= __("Disconnected"); ?>";
 	var lang_bandmap_minutes = "<?= __("minutes"); ?>";
 	var lang_bandmap_seconds = "<?= __("seconds"); ?>";
 	var lang_bandmap_spots_fetched = "<?= __("spots fetched"); ?>";

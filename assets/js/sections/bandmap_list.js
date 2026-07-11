@@ -721,12 +721,29 @@ $(function() {
 	// via the websocket in between. Without the worker it stays the normal poll.
 	var DX_WORKER_SAFETYNET = 300; // seconds
 	var dxWorkerActive = false;
+	var dxWorkerConnected = false;   // websocket state, drives the live status indicator
 	var effectiveRefreshInterval = SPOT_REFRESH_INTERVAL;
 	var refreshCountdown = effectiveRefreshInterval;
 	var refreshTimerInterval = null;
 
+	// In worker mode the table updates live over the websocket — show a connection
+	// indicator ("Online" pulsing / "Disconnected") instead of the misleading countdown.
+	function updateLiveStatusDisplay() {
+		var isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
+		var $icon = $('#refreshIcon');
+		$icon.removeClass('fa-spinner fa-spin fa-hourglass-half fa-circle fa-triangle-exclamation text-success text-danger dxlive-blink');
+		if (dxWorkerConnected) {
+			$icon.addClass('fa-circle text-success dxlive-blink');
+			$('#refreshTimer').html(isCompactWidth ? '' : lang_bandmap_live_online);
+		} else {
+			$icon.addClass('fa-triangle-exclamation text-danger');
+			$('#refreshTimer').html(isCompactWidth ? '' : lang_bandmap_disconnected);
+		}
+	}
+
 	// Helper function to update refresh timer display (respects compact width)
 	function updateRefreshTimerDisplay() {
+		if (dxWorkerActive) { updateLiveStatusDisplay(); return; }
 		let isCompactWidth = window.matchMedia('(max-width: 1200px)').matches;
 		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
 		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
@@ -836,6 +853,8 @@ $(function() {
 	if (isFetching) {
 		$('#refreshIcon').removeClass('fa-hourglass-half').addClass('fa-spinner fa-spin');
 		$('#refreshTimer').html(isCompactWidth ? '...' : lang_bandmap_fetching);
+	} else if (dxWorkerActive) {
+		updateLiveStatusDisplay();
 	} else {
 		$('#refreshIcon').removeClass('fa-spinner fa-spin').addClass('fa-hourglass-half');
 		$('#refreshTimer').html(isCompactWidth ? `${refreshCountdown}s` : (lang_bandmap_next_update + ' ' + refreshCountdown + 's'));
@@ -2085,12 +2104,41 @@ $(function() {
 	// LIVE SPOT FEED (worker websocket)
 	// ========================================
 
-	// Callsigns whose per-user worked status we already resolved (seed fetch or a
-	// prior worked_status call) — avoids re-querying on every re-spot.
+	// Pre-loaded worked/confirmed slot Sets (dxcc/continent, band+mode-aware). null until
+	// built from window.dxWorkedSlots; only present when the live feed is active.
+	var dxWorkedSets = null;
+	// Callsigns whose call-level (worked_call) status we already fetched — avoids
+	// re-querying on every re-spot. Cleared on qso_changed (status may have changed).
 	var dxKnownStatusCalls = new Set();
-	var dxPendingStatus = {};   // callsign -> representative spot
+	var dxPendingStatus = {};   // callsign -> representative spot (for the call lookup)
 	var dxStatusTimer = null;
 	var dxRenderTimer = null;
+	var dxSlotsRefetchTimer = null;
+
+	// Build the four lookup Sets from a worked-slots payload (slot key: "id|band|mode").
+	function buildWorkedSets(slots) {
+		if (!slots) return null;
+		return {
+			dxccW: new Set(slots.dxcc_worked || []),
+			dxccC: new Set(slots.dxcc_confirmed || []),
+			contW: new Set(slots.cont_worked || []),
+			contC: new Set(slots.cont_confirmed || [])
+		};
+	}
+
+	// Resolve worked_dxcc/continent for a spot from the pre-loaded slot Sets (band+mode
+	// aware). worked_call/cnfmd_call are NOT set here — see queueWorkedStatus().
+	function resolveDxccCont(spot) {
+		if (!dxWorkedSets || !spot) return;
+		var d = spot.dxcc_spotted || {};
+		var slot = spot.band + '|' + spot.mode;
+		var dxccKey = d.dxcc_id + '|' + slot;
+		var contKey = (d.cont || '') + '|' + slot;
+		spot.worked_dxcc      = dxWorkedSets.dxccW.has(dxccKey);
+		spot.cnfmd_dxcc       = dxWorkedSets.dxccC.has(dxccKey);
+		spot.worked_continent = dxWorkedSets.contW.has(contKey);
+		spot.cnfmd_continent  = dxWorkedSets.contC.has(contKey);
+	}
 
 	// Coalesce bursts of live spots into one render. renderFilteredSpots() redraws
 	// the whole table (one DataTables draw per row), so on a busy all-band feed we
@@ -2108,7 +2156,7 @@ $(function() {
 		}, 1500);
 	}
 
-	// Merge a single live spot into the cache, keeping any status we already have.
+	// Merge a single live spot into the cache, keeping any call-level status we already have.
 	function ingestLiveSpot(spot) {
 		if (!spot || !spot.frequency || !spot.spotted || !spot.spotter) return;
 		if (!cachedSpotData) cachedSpotData = [];
@@ -2120,9 +2168,10 @@ $(function() {
 		var key = getSpotKey(spot);
 		var idx = cachedSpotData.findIndex(function (s) { return getSpotKey(s) === key; });
 		if (idx >= 0) {
-			// Preserve resolved worked-status fields from the existing entry.
+			// Preserve the call-level status from the existing entry (dxcc/cont are
+			// re-derived from the Sets below).
 			var prev = cachedSpotData[idx];
-			['worked_dxcc', 'worked_call', 'cnfmd_dxcc', 'cnfmd_call', 'cnfmd_continent', 'worked_continent', 'last_wked'].forEach(function (f) {
+			['worked_call', 'cnfmd_call', 'last_wked'].forEach(function (f) {
 				if (prev[f] !== undefined && spot[f] === undefined) spot[f] = prev[f];
 			});
 			cachedSpotData[idx] = spot;
@@ -2132,13 +2181,16 @@ $(function() {
 		spotTTLMap.set(key, 1);
 		cachedSpotData.sort(SortByQrg);
 
-		queueWorkedStatus(spot);
+		resolveDxccCont(spot);   // dxcc/continent colouring immediately, from local Sets
+		queueWorkedStatus(spot); // call-level status only where it can even be worked
 		debouncedRenderSpots();
 	}
 
-	// Queue a callsign for a batched, debounced per-user worked-status lookup.
+	// Queue a callsign for a batched, debounced call-level worked-status lookup.
+	// A callsign can only be "worked before" if its DXCC slot is already worked — so
+	// skip the lookup entirely when worked_dxcc is false. Keeps the lookup small.
 	function queueWorkedStatus(spot) {
-		if (!spot.spotted || dxKnownStatusCalls.has(spot.spotted)) return;
+		if (!spot.spotted || !spot.worked_dxcc || dxKnownStatusCalls.has(spot.spotted)) return;
 		dxPendingStatus[spot.spotted] = spot;
 		if (dxStatusTimer) return;
 		dxStatusTimer = setTimeout(flushWorkedStatus, 2000);
@@ -2150,6 +2202,7 @@ $(function() {
 		dxPendingStatus = {};
 		if (!spots.length) return;
 
+		// band/mode/dxcc_id are still needed server-side to key the batch query.
 		var payload = spots.map(function (s) {
 			return {
 				spotted: s.spotted,
@@ -2175,23 +2228,34 @@ $(function() {
 		});
 	}
 
-	// Apply a worked-status result onto the matching cached spots.
+	// Apply a call-level worked-status result onto the matching cached spots.
 	function mergeWorkedStatuses(statuses, lastWorked) {
 		if (!cachedSpotData) return;
 		Object.keys(statuses).forEach(function (call) { dxKnownStatusCalls.add(call); });
 		cachedSpotData.forEach(function (s) {
 			var st = statuses[s.spotted];
 			if (!st) return;
-			s.worked_dxcc = st.worked_dxcc;
 			s.worked_call = st.worked_call;
-			s.cnfmd_dxcc = st.cnfmd_dxcc;
 			s.cnfmd_call = st.cnfmd_call;
-			s.cnfmd_continent = st.cnfmd_continent;
-			s.worked_continent = st.worked_continent;
 			if (st.worked_call && lastWorked[s.spotted]) {
 				s.last_wked = lastWorked[s.spotted];
 			}
 		});
+	}
+
+	// Debounced refetch of the worked-slot Sets after the user logs a QSO (from anywhere).
+	// Coalesces bursts (e.g. contest logging) into one request.
+	function scheduleSlotsRefetch() {
+		if (dxSlotsRefetchTimer) return;
+		dxSlotsRefetchTimer = setTimeout(function () {
+			dxSlotsRefetchTimer = null;
+			$.ajax({ url: dxcluster_provider + '/worked_slots', dataType: 'json' }).done(function (slots) {
+				dxWorkedSets = buildWorkedSets(slots);
+				dxKnownStatusCalls.clear();  // call-level status may have changed too
+				if (cachedSpotData) cachedSpotData.forEach(resolveDxccCont);
+				debouncedRenderSpots();
+			});
+		}, 5000);
 	}
 
 	// Subscribe to the live spot feed if the worker relay is available. Without it
@@ -2201,19 +2265,41 @@ $(function() {
 		if (!dw || !window.WavelogWorker || !WavelogWorker.isAvailable()) return;
 
 		dxWorkerActive = true;
+		dxWorkerConnected = true; // optimistic; corrected by the callbacks below
 		effectiveRefreshInterval = DX_WORKER_SAFETYNET; // slow reconciliation only
+		dxWorkedSets = buildWorkedSets(window.dxWorkedSlots);
 
 		WavelogWorker.subscribe({
 			topic: dw.topic,
 			token: dw.token,
+			onOpen: function () { dxWorkerConnected = true; updateLiveStatusDisplay(); },
 			onMessage: function (frame) {
 				if (frame.type !== 'push' || !frame.payload || frame.payload.type !== 'spot' || !frame.payload.spot) return;
 				// WavelogWorker swallows handler exceptions — surface them here.
 				try { ingestLiveSpot(frame.payload.spot); } catch (e) { console.warn('dxspots: ingest failed', e); }
 			},
-			// On reconnect, do one full reconcile so spots from the gap aren't missed.
-			onReconnect: function () { applyFilters(false); }
+			// Websocket dropped / retrying / gave up — show "Disconnected".
+			onClose: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
+			onReconnecting: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
+			onFailed: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
+			// Back online: mark connected and do one full reconcile so gap spots aren't missed.
+			onReconnect: function () { dxWorkerConnected = true; updateLiveStatusDisplay(); applyFilters(false); }
 		});
+
+		// Refresh the worked-slot Sets when the user logs a QSO (any source). Reuses the
+		// existing per-user qso_changed topic — no new topic, no per-spot server work.
+		var qw = window.qsoWorker;
+		if (qw) {
+			WavelogWorker.subscribe({
+				topic: qw.topic,
+				token: qw.token,
+				onMessage: function (frame) {
+					if (frame.type === 'push' && frame.payload && frame.payload.type === 'qso_changed') {
+						scheduleSlotsRefetch();
+					}
+				}
+			});
+		}
 	}
 
 	initializeBackendFilters();
