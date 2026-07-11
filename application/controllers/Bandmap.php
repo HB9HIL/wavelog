@@ -28,6 +28,17 @@ class Bandmap extends CI_Controller {
 		}
 		$pageData['radio_worker_topics'] = $radio_worker_topics;
 
+		// Live DX spot feed: only wire it when the worker's DX cluster relay module
+		// is actually running (it registers the "dxspots" topic itself). Without it
+		// the Bandmap keeps its normal 30 s polling — nothing changes.
+		$pageData['dxspots_worker'] = null;
+		if ($this->worker->is_enabled() && $this->worker->has_topic('dxspots')) {
+			$pageData['dxspots_worker'] = [
+				'topic' => 'dxspots',
+				'token' => $this->worker->create_token('dxspots'),
+			];
+		}
+
 		$footerData = [];
 		$footerData['scripts'] = [
 			'assets/js/moment.min.js',

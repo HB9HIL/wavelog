@@ -716,7 +716,13 @@ $(function() {
 	}
 
 	// Auto-refresh timer state
-	var refreshCountdown = SPOT_REFRESH_INTERVAL;
+	// When the live worker feed is active, the full refetch is only a slow
+	// reconciliation safety-net (expiry/worked-status drift); live spots arrive
+	// via the websocket in between. Without the worker it stays the normal poll.
+	var DX_WORKER_SAFETYNET = 300; // seconds
+	var dxWorkerActive = false;
+	var effectiveRefreshInterval = SPOT_REFRESH_INTERVAL;
+	var refreshCountdown = effectiveRefreshInterval;
 	var refreshTimerInterval = null;
 
 	// Helper function to update refresh timer display (respects compact width)
@@ -845,7 +851,7 @@ $(function() {
 			clearInterval(refreshTimerInterval);
 		}
 
-		refreshCountdown = SPOT_REFRESH_INTERVAL;
+		refreshCountdown = effectiveRefreshInterval;
 
 		refreshTimerInterval = setInterval(function() {
 			refreshCountdown--;
@@ -863,7 +869,7 @@ $(function() {
 					}
 				}
 				fill_list(currentFilters.deContinent, dxcluster_maxage, bandForRefresh);
-				refreshCountdown = SPOT_REFRESH_INTERVAL;
+				refreshCountdown = effectiveRefreshInterval;
 			} else {
 				if (!isFetchInProgress && lastFetchParams.timestamp !== null) {
 					updateRefreshTimerDisplay();
@@ -899,7 +905,7 @@ $(function() {
 			const timeSinceLastFetch = Date.now() - lastFetchParams.timestamp.getTime();
 			if (timeSinceLastFetch > 60000) {
 				fill_list(lastFetchParams.continent, lastFetchParams.maxAge, lastFetchParams.band || 'All');
-				refreshCountdown = SPOT_REFRESH_INTERVAL;
+				refreshCountdown = effectiveRefreshInterval;
 			}
 		}
 	});
@@ -1937,6 +1943,12 @@ $(function() {
 			lastFetchParams.timestamp = new Date();
 			isFetchInProgress = false;
 
+			// Seed/reconcile spots already carry resolved worked status — remember
+			// them so live re-spots don't trigger a redundant worked_status lookup.
+			if (dxWorkerActive && cachedSpotData) {
+				cachedSpotData.forEach(function (s) { if (s.spotted) dxKnownStatusCalls.add(s.spotted); });
+			}
+
 			renderFilteredSpots();  // Apply client-side filters and render
 			startRefreshTimer();  // Start 10s countdown - TEMPORARY
 
@@ -2069,11 +2081,147 @@ $(function() {
 		updateFilterIcon();
 	}
 
+	// ========================================
+	// LIVE SPOT FEED (worker websocket)
+	// ========================================
+
+	// Callsigns whose per-user worked status we already resolved (seed fetch or a
+	// prior worked_status call) — avoids re-querying on every re-spot.
+	var dxKnownStatusCalls = new Set();
+	var dxPendingStatus = {};   // callsign -> representative spot
+	var dxStatusTimer = null;
+	var dxRenderTimer = null;
+
+	// Coalesce bursts of live spots into one render. renderFilteredSpots() redraws
+	// the whole table (one DataTables draw per row), so on a busy all-band feed we
+	// must not run it per spot — throttle to a calm cadence.
+	function debouncedRenderSpots() {
+		if (dxRenderTimer) return;
+		dxRenderTimer = setTimeout(function () {
+			dxRenderTimer = null;
+			try {
+				updateSourceOptions(cachedSpotData);
+				renderFilteredSpots();
+			} catch (e) {
+				console.warn('dxspots: render failed', e);
+			}
+		}, 1500);
+	}
+
+	// Merge a single live spot into the cache, keeping any status we already have.
+	function ingestLiveSpot(spot) {
+		if (!spot || !spot.frequency || !spot.spotted || !spot.spotter) return;
+		if (!cachedSpotData) cachedSpotData = [];
+
+		// Derive age (minutes) from the spot time, like the server does.
+		var when = spot.when ? new Date(spot.when).getTime() : Date.now();
+		spot.age = Math.max(0, Math.floor((Date.now() - when) / 60000));
+
+		var key = getSpotKey(spot);
+		var idx = cachedSpotData.findIndex(function (s) { return getSpotKey(s) === key; });
+		if (idx >= 0) {
+			// Preserve resolved worked-status fields from the existing entry.
+			var prev = cachedSpotData[idx];
+			['worked_dxcc', 'worked_call', 'cnfmd_dxcc', 'cnfmd_call', 'cnfmd_continent', 'worked_continent', 'last_wked'].forEach(function (f) {
+				if (prev[f] !== undefined && spot[f] === undefined) spot[f] = prev[f];
+			});
+			cachedSpotData[idx] = spot;
+		} else {
+			cachedSpotData.push(spot);
+		}
+		spotTTLMap.set(key, 1);
+		cachedSpotData.sort(SortByQrg);
+
+		queueWorkedStatus(spot);
+		debouncedRenderSpots();
+	}
+
+	// Queue a callsign for a batched, debounced per-user worked-status lookup.
+	function queueWorkedStatus(spot) {
+		if (!spot.spotted || dxKnownStatusCalls.has(spot.spotted)) return;
+		dxPendingStatus[spot.spotted] = spot;
+		if (dxStatusTimer) return;
+		dxStatusTimer = setTimeout(flushWorkedStatus, 2000);
+	}
+
+	function flushWorkedStatus() {
+		dxStatusTimer = null;
+		var spots = Object.values(dxPendingStatus);
+		dxPendingStatus = {};
+		if (!spots.length) return;
+
+		var payload = spots.map(function (s) {
+			return {
+				spotted: s.spotted,
+				band: s.band,
+				mode: s.mode,
+				dxcc_spotted: {
+					dxcc_id: s.dxcc_spotted ? s.dxcc_spotted.dxcc_id : null,
+					cont: s.dxcc_spotted ? s.dxcc_spotted.cont : ''
+				}
+			};
+		});
+
+		$.ajax({
+			url: dxcluster_provider + '/worked_status',
+			method: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(payload),
+			dataType: 'json'
+		}).done(function (res) {
+			if (!res || !res.statuses) return;
+			mergeWorkedStatuses(res.statuses, res.last_worked || {});
+			debouncedRenderSpots();
+		});
+	}
+
+	// Apply a worked-status result onto the matching cached spots.
+	function mergeWorkedStatuses(statuses, lastWorked) {
+		if (!cachedSpotData) return;
+		Object.keys(statuses).forEach(function (call) { dxKnownStatusCalls.add(call); });
+		cachedSpotData.forEach(function (s) {
+			var st = statuses[s.spotted];
+			if (!st) return;
+			s.worked_dxcc = st.worked_dxcc;
+			s.worked_call = st.worked_call;
+			s.cnfmd_dxcc = st.cnfmd_dxcc;
+			s.cnfmd_call = st.cnfmd_call;
+			s.cnfmd_continent = st.cnfmd_continent;
+			s.worked_continent = st.worked_continent;
+			if (st.worked_call && lastWorked[s.spotted]) {
+				s.last_wked = lastWorked[s.spotted];
+			}
+		});
+	}
+
+	// Subscribe to the live spot feed if the worker relay is available. Without it
+	// (no worker, or relay module off) this is a no-op and the normal poll stays.
+	function initDxSpotsWorker() {
+		var dw = window.dxspotsWorker;
+		if (!dw || !window.WavelogWorker || !WavelogWorker.isAvailable()) return;
+
+		dxWorkerActive = true;
+		effectiveRefreshInterval = DX_WORKER_SAFETYNET; // slow reconciliation only
+
+		WavelogWorker.subscribe({
+			topic: dw.topic,
+			token: dw.token,
+			onMessage: function (frame) {
+				if (frame.type !== 'push' || !frame.payload || frame.payload.type !== 'spot' || !frame.payload.spot) return;
+				// WavelogWorker swallows handler exceptions — surface them here.
+				try { ingestLiveSpot(frame.payload.spot); } catch (e) { console.warn('dxspots: ingest failed', e); }
+			},
+			// On reconnect, do one full reconcile so spots from the gap aren't missed.
+			onReconnect: function () { applyFilters(false); }
+		});
+	}
+
 	initializeBackendFilters();
 
 	initFilterCheckboxes();
 
 	applyFilters(true);
+	initDxSpotsWorker();
 
 	// Sync button states on initial load
 	syncQuickFilterButtons();

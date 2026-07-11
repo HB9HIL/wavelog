@@ -132,6 +132,42 @@ class Worker {
 	}
 
 	/**
+	 * Returns whether a topic is currently registered with the Worker.
+	 *
+	 * Used to detect worker-side data-source modules (e.g. the DX cluster relay,
+	 * which registers "dxspots" itself on start-up) without duplicating their
+	 * enable flag in PHP config. In cluster mode the registry is shared via Redis,
+	 * so this is accurate regardless of which node PHP queries.
+	 *
+	 * @param string $topic
+	 */
+	public function has_topic(string $topic): bool {
+		if (!$this->enabled) {
+			return false;
+		}
+
+		$ch = curl_init($this->url . '/internal/status');
+		curl_setopt_array($ch, [
+			CURLOPT_HTTPGET           => true,
+			CURLOPT_RETURNTRANSFER    => true,
+			CURLOPT_CONNECTTIMEOUT_MS => 500,
+			CURLOPT_TIMEOUT_MS        => $this->timeout_ms,
+			CURLOPT_HTTPHEADER        => ['X-Worker-Secret: ' . $this->secret],
+		]);
+		$resp      = curl_exec($ch);
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$curl_err  = curl_error($ch);
+		curl_close($ch);
+
+		if ($curl_err !== '' || $http_code !== 200 || $resp === false) {
+			return false;
+		}
+
+		$data = json_decode($resp, true);
+		return is_array($data) && !empty($data['topic_list']) && in_array($topic, $data['topic_list'], true);
+	}
+
+	/**
 	 * Returns the public WebSocket URL for the browser (worker_client_url from config).
 	 * Empty string if not configured.
 	 */

@@ -9,6 +9,8 @@
 	var user_color_worked = "<?php echo $user_color_worked; ?>";
 	var user_color_unworked = "<?php echo $user_color_unworked; ?>";
 	window.radioWorkerTopics = <?php echo json_encode($radio_worker_topics ?? []); ?>;
+	// Live DX spot feed via the worker (null unless the relay module is running).
+	window.dxspotsWorker = <?php echo json_encode($dxspots_worker ?? null); ?>;
 
 	// Detect OS for proper keyboard shortcuts
 	var isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
