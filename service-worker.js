@@ -9,25 +9,28 @@
  * To update the cache: bump CACHE_VERSION and redeploy.
  */
 
-const CACHE_VERSION = 'wl-mobile-v1';
+const CACHE_VERSION = 'wl-mobile-v2';
 
 const STATIC_ASSETS = [
     '/assets/css/default/bootstrap.min.css',
     '/assets/js/bootstrap.bundle.min.js',
     '/assets/fontawesome/css/all.min.css',
     '/assets/mobile/css/app.css',
+    '/assets/js/mobile/offline-log.js',
     '/assets/icons/android/android-launchericon-192-192.png',
     '/assets/icons/android/android-launchericon-512-512.png',
     '/manifest.json',
 ];
 
+// Precache the log route too, so QSOs can be entered while fully offline.
 const OFFLINE_FALLBACK = '/mobile/dashboard';
+const PRECACHE_ROUTES  = ['/mobile/dashboard', '/mobile/log'];
 
 // ── Install: precache app shell ───────────────────────────────
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_VERSION).then(cache =>
-            cache.addAll([...STATIC_ASSETS, OFFLINE_FALLBACK])
+            cache.addAll([...STATIC_ASSETS, ...PRECACHE_ROUTES])
         )
     );
     self.skipWaiting();

@@ -25,7 +25,7 @@
         <i class="fas fa-home" aria-hidden="true"></i>
         <span>Home</span>
     </a>
-    <a href="#" class="wl-tab wl-tab--disabled" aria-disabled="true" tabindex="-1">
+    <a href="/mobile/log" class="wl-tab<?= ($this->uri->segment(2) === 'log') ? ' active' : '' ?>">
         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
         <span>Log</span>
     </a>

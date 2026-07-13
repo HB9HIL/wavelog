@@ -101,3 +101,57 @@ body {
 .wl-qso-table {
     font-size: 0.85rem;
 }
+
+/* ── Log form ────────────────────────────────────────────────── */
+.wl-qso-form .form-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+    color: #495057;
+}
+
+/* ── Sync / connection status banner ─────────────────────────── */
+.wl-status {
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.wl-status--info  { background: #cfe2ff; color: #084298; }
+.wl-status--warn  { background: #fff3cd; color: #664d03; }
+.wl-status--error { background: #f8d7da; color: #842029; }
+
+/* ── Pending queue ───────────────────────────────────────────── */
+.wl-pending-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+}
+
+.wl-pending-item--error {
+    border-color: #f5c2c7;
+    background: #fff5f5;
+}
+
+.wl-pending-call {
+    font-weight: 700;
+}
+
+.wl-pending-meta {
+    color: #6c757d;
+    flex: 1;
+}
+
+.wl-pending-state {
+    color: #6c757d;
+}
+
+.wl-pending-item--error .wl-pending-state {
+    color: #dc3545;
+}
