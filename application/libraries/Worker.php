@@ -146,7 +146,7 @@ class Worker {
 			return false;
 		}
 
-		$ch = curl_init($this->url . '/internal/status');
+		$ch = curl_init($this->url . '/internal/status?topics=1');
 		curl_setopt_array($ch, [
 			CURLOPT_HTTPGET           => true,
 			CURLOPT_RETURNTRANSFER    => true,

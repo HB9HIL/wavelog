@@ -1379,7 +1379,7 @@ $(function() {
 			}
 
 		// Add row with appropriate class
-		let addedRow = table.rows.add(data).draw().nodes().to$();
+		let addedRow = table.rows.add(data).draw(false).nodes().to$();
 
 		if (rowClass) {
 			addedRow.addClass(rowClass);
@@ -1402,6 +1402,11 @@ $(function() {
 				}
 			}
 		});
+
+		let pageInfo = table.page.info();
+		if (pageInfo.pages > 0 && pageInfo.page >= pageInfo.pages) {
+			table.page(pageInfo.pages - 1).draw(false);
+		}
 
 		// Remove "fresh" highlight after 10 seconds
 		// (CAT gradient is updated every 3s from updateCATui, no need to force here)
@@ -2148,22 +2153,40 @@ $(function() {
 		dxRenderTimer = setTimeout(function () {
 			dxRenderTimer = null;
 			try {
+				pruneLiveSpots();
 				updateSourceOptions(cachedSpotData);
 				renderFilteredSpots();
 			} catch (e) {
 				console.warn('dxspots: render failed', e);
 			}
-		}, 1500);
+		}, 3000);
+	}
+
+	// Drop spots that aged past the user's max age since they were ingested. The live
+	// feed has no server-side age filter, so without this the cache only shrinks at the
+	// 5-minute reconcile.
+	function pruneLiveSpots() {
+		if (!cachedSpotData || !cachedSpotData.length) return;
+		var now = Date.now();
+		cachedSpotData = cachedSpotData.filter(function (s) {
+			var when = s.when ? new Date(s.when).getTime() : now;
+			s.age = Math.max(0, Math.floor((now - when) / 60000));
+			if (s.age <= dxcluster_maxage) return true;
+			spotTTLMap.delete(getSpotKey(s));
+			return false;
+		});
 	}
 
 	// Merge a single live spot into the cache, keeping any call-level status we already have.
 	function ingestLiveSpot(spot) {
 		if (!spot || !spot.frequency || !spot.spotted || !spot.spotter) return;
+		if (!spot.band) return;
 		if (!cachedSpotData) cachedSpotData = [];
 
 		// Derive age (minutes) from the spot time, like the server does.
 		var when = spot.when ? new Date(spot.when).getTime() : Date.now();
 		spot.age = Math.max(0, Math.floor((Date.now() - when) / 60000));
+		if (spot.age > dxcluster_maxage) return;
 
 		var key = getSpotKey(spot);
 		var idx = cachedSpotData.findIndex(function (s) { return getSpotKey(s) === key; });
@@ -2190,7 +2213,13 @@ $(function() {
 	// A callsign can only be "worked before" if its DXCC slot is already worked — so
 	// skip the lookup entirely when worked_dxcc is false. Keeps the lookup small.
 	function queueWorkedStatus(spot) {
-		if (!spot.spotted || !spot.worked_dxcc || dxKnownStatusCalls.has(spot.spotted)) return;
+		if (!spot.spotted) return;
+		if (!spot.worked_dxcc) {
+			spot.worked_call = false;
+			spot.cnfmd_call = false;
+			return;
+		}
+		if (dxKnownStatusCalls.has(spot.spotted)) return;
 		dxPendingStatus[spot.spotted] = spot;
 		if (dxStatusTimer) return;
 		dxStatusTimer = setTimeout(flushWorkedStatus, 2000);
@@ -2258,6 +2287,18 @@ $(function() {
 		}, 5000);
 	}
 
+	// The websocket is gone for good (WavelogWorker stopped retrying). Fall back to the
+	// normal polling
+	function deactivateDxWorker() {
+		if (!dxWorkerActive) return;
+		dxWorkerActive = false;
+		dxWorkerConnected = false;
+		effectiveRefreshInterval = SPOT_REFRESH_INTERVAL;
+		refreshCountdown = SPOT_REFRESH_INTERVAL;
+		updateRefreshTimerDisplay();
+		applyFilters(true);   // one full refetch so the gap is filled right away
+	}
+
 	// Subscribe to the live spot feed if the worker relay is available. Without it
 	// (no worker, or relay module off) this is a no-op and the normal poll stays.
 	function initDxSpotsWorker() {
@@ -2278,12 +2319,13 @@ $(function() {
 				// WavelogWorker swallows handler exceptions — surface them here.
 				try { ingestLiveSpot(frame.payload.spot); } catch (e) { console.warn('dxspots: ingest failed', e); }
 			},
-			// Websocket dropped / retrying / gave up — show "Disconnected".
+			// Websocket dropped, retry is still running — show "Disconnected".
 			onClose: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
 			onReconnecting: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
-			onFailed: function () { dxWorkerConnected = false; updateLiveStatusDisplay(); },
+			// Retries exhausted: no live feed any more, go back to polling.
+			onFailed: deactivateDxWorker,
 			// Back online: mark connected and do one full reconcile so gap spots aren't missed.
-			onReconnect: function () { dxWorkerConnected = true; updateLiveStatusDisplay(); applyFilters(false); }
+			onReconnect: function () { dxWorkerConnected = true; updateLiveStatusDisplay(); applyFilters(true); }
 		});
 
 		// Refresh the worked-slot Sets when the user logs a QSO (any source). Reuses the
