@@ -265,7 +265,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 													<td><span class="badge text-bg-info"><?php echo detect_webserver(); ?></span></td>
 												</tr>
 											</table>
-											<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false) {
+											<?php if (strpos(strtolower(detect_webserver()), 'nginx') !== false && getenv('CI_ENV') !== 'docker') {
 												if (detect_nginx_php_setting($http_scheme) != 200) { ?>
 													<div class="alert alert-warning d-flex flex-column align-items-center" role="alert">
 														<p class="mb-2 border-bottom"><?= __("Important note for nginx users!"); ?></p>
@@ -1098,7 +1098,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 										<div class="col-md-6 mb-2">
 											<label for="userlanguage" class="form-label"><?= __("Language"); ?></label>
 											<select class="form-select" id="userlanguage" name="userlanguage" tabindex="12">
-												<?php foreach ($languages as $lang) { 
+												<?php foreach ($languages as $lang) {
 													/** @var array $language */ ?>
 													<option value="<?php echo $lang['folder']; ?>" <?php if ($lang['gettext'] == $language) {
 																										echo 'selected';
@@ -1229,7 +1229,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 				/*
 				 *
 				 * Tabs Structure and Footer Buttons
-				 * 
+				 *
 				 */
 				const firstTabId = 'welcome-tab';
 				const secondTabId = 'precheck-tab';
@@ -1272,7 +1272,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 							continueButton.html("<?= __("You can't continue. Solve the red marked issues, restart the webserver and reload this page."); ?>");
 							backButton.css('display', 'block');
 							return;
-							// This is a dead end. The user have to solve the issues, restart the webserver and reload the page. 
+							// This is a dead end. The user have to solve the issues, restart the webserver and reload the page.
 							// There is no reason to continue if PHP modules are missing or the webserver has not write access to some folders within Wavelog.
 							// The checks for PHP Settings are triggering just warnings (except 'allow_url_fopen', this one triggers a failure as it's needed for a lot of different functions (unfortunately)).
 						}
@@ -1431,16 +1431,16 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 				 *	General Requirement Levels
 				 * 		hard = No continue allowed, no install possible.
 				 * 		soft = Shows yellow warning, but install and continue allowed.
-				 * 
+				 *
 				 */
 
 
 				/*
 				 * Tab 2 - Prechecks
-				 * 
+				 *
 				 * 		Pre-Check Verification is handled in PHP, see $prechecks_passed.
 				 * 		So nothing to see here, just a placeholder for structure.
-				 * 
+				 *
 				 */
 
 				// empty
@@ -1448,14 +1448,14 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 
 				/*
 				 * Tab 3 - Configuration
-				 * 
+				 *
 				 * 		Rules:
 				 * 		No checks needed 'Advanced Settings'.
-				 * 
+				 *
 				 * 		Callbook Password:
 				 * 			- do not allow specialchars defined in stringForbiddenChars() (hard)
-				 * 
-				 * 
+				 *
+				 *
 				 */
 
 				let callbook_type = $('#global_call_lookup');
@@ -1551,14 +1551,14 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 
 				/*
 				 * Tab 4 - Database
-				 * 
+				 *
 				 * 		Rules:
 				 * 			- Password can be empty
 				 * 			- All other inputs can't be empty (hard)
-				 * 			- Connection have to be successful (hard) 
+				 * 			- Connection have to be successful (hard)
 				 * 			- Database itself have to be empty (hard)
 				 * 			- MySQL/MariaDB Version below Minimum (soft) -> defined in install/includes/install_config/install_config.php
-				 * 
+				 *
 				 */
 				let db_connection_results = $('#db_connection_testresult');
 
@@ -1659,7 +1659,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 
 				/*
 				 * Tab 5 - First User
-				 * 
+				 *
 				 * 		Rules:
 				 * 			- do not allow specialchars in userpassword defined in stringForbiddenChars() (hard)
 				 * 			- No input can be empty (hard)
@@ -1667,7 +1667,7 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 				 * 			- E-Mail have to match regex (hard)
 				 * 			- Password should have at least 8 charachters (soft)
 				 * 			- Password and Password-Confirmation have to match (hard)
-				 * 
+				 *
 				 */
 
 				let passwordField = $('#password');
@@ -1879,12 +1879,12 @@ if (!file_exists('.lock') && !file_exists($db_config_path . 'config.php') && !fi
 
 				/*
 				 * Tab 6 - Install
-				 * 
+				 *
 				 * 	Rules:
 				 * 		The checklist have te fully green, but can contain yellow warnings.
-				 * 		If one of the items has an error warning, the install button is disabled and 
-				 * 		an install is not possible. 
-				 * 
+				 * 		If one of the items has an error warning, the install button is disabled and
+				 * 		an install is not possible.
+				 *
 				 */
 
 				let resetButton = $('#resetButton');
