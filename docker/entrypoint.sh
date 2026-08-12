@@ -44,7 +44,4 @@ if [ -n "$PUID" ] || [ -n "$PGID" ]; then
 	done < /var/www/html/docker/writable-dirs
 fi
 
-# start cron daemon (runs as wavelog via /etc/cron.d/wavelog)
-cron
-
-exec "$@"
+exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
