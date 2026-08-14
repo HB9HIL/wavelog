@@ -44,6 +44,22 @@ if [ -n "$PUID" ] || [ -n "$PGID" ]; then
 	done < /var/www/html/docker/writable-dirs
 fi
 
+# WAVELOG_LOG_STDOUT sends the application log to the container stdout as NDJSON
+# instead of application/logs/. The access log is switched to the same format,
+# so stdout stays machine-readable as a whole. When the variable is unset, the
+# application config decides (see $config['log_to_stdout']).
+if [ -n "${WAVELOG_LOG_STDOUT:-}" ]; then
+	case "$(echo "$WAVELOG_LOG_STDOUT" | tr '[:upper:]' '[:lower:]')" in
+		1|true|yes|on) WAVELOG_LOG_STDOUT=true ;;
+		*)             WAVELOG_LOG_STDOUT=false ;;
+	esac
+	export WAVELOG_LOG_STDOUT
+
+	if [ "$WAVELOG_LOG_STDOUT" = "true" ]; then
+		sed -i 's|/access.log combined|/access.log wavelog_json|' /etc/apache2/sites-enabled/000-default.conf
+	fi
+fi
+
 # start cron daemon (runs as wavelog via /etc/cron.d/wavelog), unless DISABLE_CRON=true
 if [ "${DISABLE_CRON:-false}" != "true" ]; then
 	cron

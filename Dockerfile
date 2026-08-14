@@ -40,6 +40,7 @@ COPY --chown=wavelog:www-data ./ ./
 # basic setup steps and permissions
 RUN mkdir -p ./application/config/docker \
     && chown wavelog:www-data ./application/config/docker \
+    && mv ./docker/json-log.conf /etc/apache2/conf-enabled/json-log.conf \
     && mv ./htaccess.sample ./.htaccess \
     && sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php \
     && while read -r dir || [ -n "$dir" ]; do \
