@@ -108,10 +108,193 @@ class Qslprint_model extends CI_Model {
 		return $query;
 	}
 
-	function get_qsos_for_print_ajax($station_id) {
-		$query = $this->get_qsos_for_print($station_id);
+	/*
+	 * DataTables column index -> SQL expression, used for ordering and for the
+	 * per-column filter dropdowns. Only indexes listed here are sortable or
+	 * filterable, so no client supplied string ever reaches the SQL.
+	 */
+	private function print_column_map() {
+		return array(
+			1  => 'log.COL_CALL',
+			2  => 'DATE(log.COL_TIME_ON)',
+			4  => "COALESCE(NULLIF(log.COL_SUBMODE, ''), log.COL_MODE)",
+			5  => 'LOWER(log.COL_BAND)',
+			6  => 'log.COL_FREQ',
+			7  => 'log.COL_RST_SENT',
+			8  => 'log.COL_RST_RCVD',
+			9  => 'log.COL_QSL_VIA',
+			10 => 'sp.station_callsign',
+			11 => 'sp.station_profile_name',
+			12 => "COALESCE(log.COL_QSL_SENT_VIA, '')",
+		);
+	}
 
-		return $query;
+	private function print_queue_from() {
+		return " FROM ".$this->config->item('table_name')." log
+			INNER JOIN station_profile sp ON sp.`station_id` = log.`station_id`";
+	}
+
+	/*
+	 * Builds the WHERE for the print queue. $params may carry the DataTables
+	 * global search and the per-column filters; pass an empty array to get the
+	 * unfiltered queue.
+	 */
+	private function print_queue_where($station_id, $params, &$binding) {
+		$where = " WHERE sp.`user_id` = ?";
+		$binding[] = $this->session->userdata('user_id');
+
+		if ($station_id != 'All') {
+			$where .= " AND log.`station_id` = ?";
+			$binding[] = $station_id;
+		}
+
+		$where .= " AND log.`COL_QSL_SENT` IN('R', 'Q')";
+
+		foreach ($this->print_column_map() as $index => $expression) {
+			if (isset($params['column_search'][$index]) && $params['column_search'][$index] !== '') {
+				$where .= " AND ".$expression." = ?";
+				$binding[] = $params['column_search'][$index];
+			}
+		}
+
+		if (isset($params['search']) && $params['search'] !== '') {
+			$columns = array('log.COL_CALL', 'log.COL_QSL_VIA', 'sp.station_callsign', 'sp.station_profile_name', 'log.COL_MODE', 'log.COL_SUBMODE', 'log.COL_BAND');
+			$where .= ' AND ('.implode(' LIKE ? OR ', $columns).' LIKE ?)';
+			$binding = array_merge($binding, array_fill(0, count($columns), '%'.$params['search'].'%'));
+		}
+
+		return $where;
+	}
+
+	private function print_queue_order($params) {
+		$map = $this->print_column_map();
+
+		if (isset($params['order_column']) && isset($map[$params['order_column']])) {
+			$direction = (strtolower($params['order_dir'] ?? '') === 'desc') ? 'DESC' : 'ASC';
+			return ' ORDER BY '.$map[$params['order_column']].' '.$direction;
+		}
+
+		return " ORDER BY log.`COL_DXCC` ASC, log.`COL_CALL` ASC, log.`COL_SAT_NAME` ASC, log.`COL_SAT_MODE` ASC, log.`COL_BAND_RX` ASC, log.`COL_TIME_ON` ASC, log.`COL_MODE` ASC";
+	}
+
+	/*
+	 * One page of the print queue for the DataTable.
+	 * The QSL counters are not joined in, they are looked up for the callsigns of
+	 * this page only (see print_queue_stats), otherwise every draw would run a
+	 * GROUP BY over the whole logbook.
+	 */
+	function get_qsos_for_print_paged($station_id, $params) {
+		$binding = array();
+		$total = $this->db->query("SELECT COUNT(*) AS cnt".$this->print_queue_from().$this->print_queue_where($station_id, array(), $binding), $binding)->row()->cnt;
+
+		$binding = array();
+		$where = $this->print_queue_where($station_id, $params, $binding);
+		$filtered = $this->db->query("SELECT COUNT(*) AS cnt".$this->print_queue_from().$where, $binding)->row()->cnt;
+
+		$start = max(0, (int) ($params['start'] ?? 0));
+		$length = (int) ($params['length'] ?? 25);
+
+		$sql = "SELECT log.COL_PRIMARY_KEY, log.COL_CALL, log.COL_TIME_ON, log.COL_MODE, log.COL_SUBMODE,
+			log.COL_BAND, log.COL_BAND_RX, log.COL_FREQ as frequency, log.COL_FREQ_RX as frequency_rx,
+			log.COL_SAT_NAME, log.COL_SAT_MODE, log.COL_RST_SENT, log.COL_RST_RCVD,
+			log.COL_QSL_VIA, log.COL_QSL_SENT_VIA, sp.station_id, sp.station_callsign, sp.station_profile_name"
+			.$this->print_queue_from().$where.$this->print_queue_order($params);
+
+		// DataTables sends -1 for "All"
+		if ($length > 0) {
+			$sql .= " LIMIT ".$length." OFFSET ".$start;	// both cast to int above
+		}
+
+		$rows = $this->db->query($sql, $binding)->result();
+		$this->print_queue_stats($rows);
+
+		return array(
+			'data' => $rows,
+			'recordsTotal' => (int) $total,
+			'recordsFiltered' => (int) $filtered,
+		);
+	}
+
+	/*
+	 * Adds previous_qsl / qsl_sent_to_call / qsl_rcvd_from_call to the given rows,
+	 * looking them up for the callsigns of those rows only.
+	 */
+	private function print_queue_stats($rows) {
+		if (!$rows) {
+			return;
+		}
+
+		$station_ids = array();
+		$calls = array();
+		foreach ($rows as $row) {
+			$station_ids[$row->station_id] = $row->station_id;
+			$calls[$row->COL_CALL] = $row->COL_CALL;
+		}
+		$binding = array_merge(array_values($station_ids), array_values($calls));
+		$scope = " AND station_id IN (".implode(',', array_fill(0, count($station_ids), '?')).")"
+			." AND COL_CALL IN (".implode(',', array_fill(0, count($calls), '?')).")";
+
+		$totals = array();
+		$sql = "SELECT station_id, COL_CALL,
+			SUM(CASE WHEN COL_QSL_SENT = 'Y' THEN 1 ELSE 0 END) AS qsl_sent_to_call,
+			SUM(CASE WHEN COL_QSL_RCVD = 'Y' THEN 1 ELSE 0 END) AS qsl_rcvd_from_call
+			FROM ".$this->config->item('table_name')."
+			WHERE (COL_QSL_SENT = 'Y' OR COL_QSL_RCVD = 'Y')".$scope."
+			GROUP BY station_id, COL_CALL";
+		foreach ($this->db->query($sql, $binding)->result() as $row) {
+			$totals[$row->station_id.'|'.$row->COL_CALL] = $row;
+		}
+
+		$previous = array();
+		$sql = "SELECT station_id, COL_CALL, COL_BAND, COL_MODE, COALESCE(COL_SAT_NAME, '') AS sat_name, COUNT(*) AS previous_qsl
+			FROM ".$this->config->item('table_name')."
+			WHERE COL_QSL_SENT = 'Y'".$scope."
+			GROUP BY station_id, COL_CALL, COL_BAND, COL_MODE, COALESCE(COL_SAT_NAME, '')";
+		foreach ($this->db->query($sql, $binding)->result() as $row) {
+			$previous[$row->station_id.'|'.$row->COL_CALL.'|'.$row->COL_BAND.'|'.$row->COL_MODE.'|'.$row->sat_name] = $row->previous_qsl;
+		}
+
+		foreach ($rows as $row) {
+			$total = $totals[$row->station_id.'|'.$row->COL_CALL] ?? null;
+			$row->qsl_sent_to_call = $total ? (int) $total->qsl_sent_to_call : 0;
+			$row->qsl_rcvd_from_call = $total ? (int) $total->qsl_rcvd_from_call : 0;
+
+			$key = $row->station_id.'|'.$row->COL_CALL.'|'.$row->COL_BAND.'|'.$row->COL_MODE.'|'.($row->COL_SAT_NAME ?? '');
+			$row->previous_qsl = (int) ($previous[$key] ?? 0);
+		}
+	}
+
+	/*
+	 * Distinct values for the filter dropdowns above the table. One pass over the
+	 * queue, deduplicated per column afterwards.
+	 */
+	function get_print_filter_values($station_id) {
+		$binding = array();
+		$where = $this->print_queue_where($station_id, array(), $binding);
+
+		$sql = "SELECT DISTINCT UPPER(log.COL_CALL) AS callsign,
+			DATE(log.COL_TIME_ON) AS qso_date,
+			COALESCE(NULLIF(log.COL_SUBMODE, ''), log.COL_MODE) AS mode,
+			LOWER(log.COL_BAND) AS band,
+			sp.station_callsign AS station,
+			COALESCE(log.COL_QSL_SENT_VIA, '') AS sent_via"
+			.$this->print_queue_from().$where;
+
+		$values = array('callsign' => array(), 'qso_date' => array(), 'mode' => array(), 'band' => array(), 'station' => array(), 'sent_via' => array());
+		foreach ($this->db->query($sql, $binding)->result_array() as $row) {
+			foreach (array_keys($values) as $column) {
+				if ($row[$column] !== '' && $row[$column] !== null) {
+					$values[$column][$row[$column]] = true;
+				}
+			}
+		}
+
+		foreach ($values as $column => $unique) {
+			$values[$column] = array_keys($unique);
+			sort($values[$column]);
+		}
+
+		return $values;
 	}
 
 	function delete_from_qsl_queue($id) {

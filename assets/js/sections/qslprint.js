@@ -1,12 +1,19 @@
 let qsoDialogInstance = null;
 
+// Selected QSO ids, kept here because server side paging drops off-page rows from the DOM
+const selectedQsos = new Set();
+
+function qslprintTable() {
+	return $('#qslprint_table').DataTable();
+}
+
+function reloadQslprintTable() {
+	qslprintTable().ajax.reload(null, false);
+}
+
 function removeQslRow(id) {
-	var $row = $("#qslprint_" + id);
-	if ($.fn.dataTable.isDataTable('#qslprint_table')) {
-		$('#qslprint_table').DataTable().row($row).remove().draw(false);
-	} else {
-		$row.remove();
-	}
+	selectedQsos.delete(String(id));
+	reloadQslprintTable();
 }
 
 function deleteFromQslQueue(id) {
@@ -60,154 +67,174 @@ function openQsoList(callsign) {
 
 function addQsoToPrintQueue(id) {
 	$.ajax({
-        url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
-        type: 'post',
+		url: base_url + 'index.php/qslprint/add_qso_to_print_queue',
+		type: 'post',
 		data: {'id': id},
-        success: function(html) {
-					if (qsoDialogInstance) {
-                        qsoDialogInstance.close();
-                    }
-                    let callSign = $("#qsolist_"+id).find("td:eq(0)").text();
-                    let formattedCallSign = callSign.toUpperCase();
-                    let searchCallSign = formattedCallSign;
-                    let line = '<tr id="qslprint_'+id+'">';
-					let freq_or_band = $('#frequency_or_band').val();
-
-					line += '<td style=\'text-align: center\'><div class="form-check"><input class="form-check-input" type="checkbox" /></div></td>';
-                    line += '<td style="text-align: center" data-search="' + searchCallSign + '">';
-                    line += '<span class="qso_call d-flex align-items-center justify-content-between">';
-                    line += '<a id="edit_qso" href="javascript:displayQso(' + id + ');">';
-                    line += formattedCallSign;
-                    line += '</a>';
-                    line += '<span class="qso_icons ms-3 d-flex align-items-center" style="gap: 2px;">';
-                    line += '<a target="_blank" href="https://www.qrz.com/db/' + formattedCallSign + '">';
-                    line += '<img width="16" height="16" src="' + base_url + 'images/icons/qrz.png" alt="Lookup ' + formattedCallSign + ' on QRZ.com">';
-                    line += '</a> ';
-                    line += '<a target="_blank" href="https://www.hamqth.com/' + formattedCallSign + '">';
-                    line += '<img width="16" height="16" src="' + base_url + 'images/icons/hamqth.png" alt="Lookup ' + formattedCallSign + ' on HamQTH">';
-                    line += '</a> ';
-                    line += '<a target="_blank" href="https://www.eqsl.cc/Member.cfm?' + formattedCallSign + '">';
-                    line += '<img width="16" height="16" src="' + base_url + 'images/icons/eqsl.png" alt="Lookup ' + formattedCallSign + ' on eQSL.cc">';
-                    line += '</a>';
-                    line += '</span></span>';
-                    line += '</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(1)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(2)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(3)").text()+'</td>';
-					if (freq_or_band === 'band') {
-						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
-						line += '<td class=\'col-freq\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
-					} else if (freq_or_band === 'frequency') {
-						line += '<td class=\'col-band\' style=\'text-align: center; display:none;\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
-						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
-					} else {
-						line += '<td class=\'col-band\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(4)").text()+'</td>';
-						line += '<td class=\'col-freq\' style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(5)").text()+'</td>';
-					}
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(6)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(7)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(10)").text()+'</td>';
-					line += '<td style=\'text-align: center\'><span class="badge text-bg-light">'+$("#qsolist_"+id).find("td:eq(8)").text()+'</span></td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(9)").text()+'</td>';
-					line += '<td style=\'text-align: center\'>'+$("#qsolist_"+id).find("td:eq(11)").text()+'</td>';
-					let prev_qsl_html = $("#qsolist_"+id).find("td:eq(12)").html();
-					line += '<td style=\'text-align: center; white-space: nowrap;\'>'+prev_qsl_html+'</td>';
-					line += '<td style=\'text-align: center; white-space: nowrap;\'><div class="d-inline-flex align-items-center gap-1"><button onclick="mark_qsl_sent('+id+', \'B\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="'+lang_qslprint_action_mark+'"><i class="fa fa-check"></i></button><button onclick="deleteFromQslQueue('+id+')" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="'+lang_qslprint_action_remove+'"><i class="fas fa-trash-alt"></i></button><button onclick="openQsoList(\''+$("#qsolist_"+id).find("td:eq(0)").text()+'\')" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-title="'+lang_qslprint_action_qsolist+'"><i class="fas fa-search"></i></button></div></td>';
-                    line += '</tr>';
-                    if ($.fn.dataTable.isDataTable('#qslprint_table')) {
-                        $('#qslprint_table').DataTable().row.add($(line)).draw(false);
-                    } else {
-                        $('#qslprint_table tr:last').after(line);
-                    }
-                    $('#qslprint_'+id+' [data-bs-toggle="tooltip"]').tooltip();
-                    $("#qsolist_"+id).remove();
-                },
-                error: function() {
-					console.error('Error adding QSO to print queue.');
-				}
-            });
+		success: function() {
+			if (qsoDialogInstance) {
+				qsoDialogInstance.close();
+			}
+			$("#qsolist_" + id).remove();
+			reloadQslprintTable();
+		},
+		error: function() {
+			console.error('Error adding QSO to print queue.');
+		}
+	});
 }
 
 $(".station_id").change(function(){
-	var station_id = $(".station_id").val();
-	$.ajax({
-		url: base_url + 'index.php/qslprint/get_qsos_for_print_ajax',
-		type: 'post',
-		data: {'station_id': station_id},
-		success: function(html) {
-			$('.resulttable').empty();
-			$('.resulttable').append(html);
-			initQslprintTable();
-		}
-	});
+	reloadQslprintTable();
 });
 
 function initQslprintTable() {
-	if (!$.fn.dataTable.isDataTable('#qslprint_table')) {
-		$('#qslprint_table').DataTable({
-			stateSave: true,
-			autoWidth: false,
-			orderCellsTop: true,
-			ordering: true,
-			order: [],
-			columnDefs: [
-				{ orderable: false, targets: 0 }
-			],
-			pageLength: 25,
-			lengthMenu: [
-				[10, 25, 50, 100, -1],
-				[10, 25, 50, 100, lang_export_qslprint_pagination_all]
-			],
-			paging: 'pagination',
-			language: {
-				url: getDataTablesLanguageUrl(),
-			},
-			initComplete: function () {
-				var api = this.api();
-				// Filter dropdowns live in their own (second) header row
-				var $filterCells = $('#qslprint_table thead tr').last().find('th');
-				api.columns('.select-filter').every(function () {
-					var column = this;
-					var $cell = $filterCells.eq(column.index());
-					if (!$cell.length) { return; }
-					var select = $('<select class="form-select form-select-sm" style="width:100%;"><option value=""></option></select>')
-						.appendTo($cell.empty())
-						.on('click', function (e) { e.stopPropagation(); })	// keep dropdown clicks from re-sorting the column
-						.on('change', function () {
-							var val = $.fn.dataTable.util.escapeRegex($(this).val());
-							column.search(val ? '^' + val + '$' : '', true, false).draw();
-						});
-					if ($cell.hasClass('select-filter-html')) {
-						// Body cell holds HTML (e.g. Callsign links); build options from the
-						// plain text stored in data-search so values/labels stay clean and safe.
-						var seen = {}, labels = [];
-						column.nodes().to$().each(function () {
-							var label = $(this).attr('data-search') || $(this).text().trim();
-							if (label && !seen.hasOwnProperty(label)) {
-								seen[label] = true;
-								labels.push(label);
-							}
-						});
-						labels.sort();
-						$.each(labels, function (i, label) {
-							$('<option>').val(label).text(label).appendTo(select);
-						});
-					} else {
-						column.data().unique().sort().each(function (d) {
-							select.append('<option value="' + d + '">' + d + '</option>');
-						});
-					}
-					// Reflect any stateSave-restored column search back into the dropdown
-					var saved = column.search();
-					if (saved) {
-						select.val(saved.replace(/^\^|\$$/g, ''));
-					}
-				});
-			}
-		});
+	if ($.fn.dataTable.isDataTable('#qslprint_table')) {
+		return;
 	}
+
+	var table = $('#qslprint_table').DataTable({
+		serverSide: true,
+		processing: true,
+		ajax: {
+			url: base_url + 'index.php/qslprint/qsos_datatable',
+			type: 'post',
+			data: function (d) {
+				d.station_id = $('.station_id').val();
+			}
+		},
+		stateSave: true,
+		autoWidth: false,
+		orderCellsTop: true,
+		ordering: true,
+		order: [],
+		columns: [
+			{ data: 'checkbox', className: 'text-center', orderable: false },
+			{ data: 'callsign', className: 'text-center' },
+			{ data: 'date', className: 'text-center' },
+			{ data: 'time', className: 'text-center', orderable: false },
+			{ data: 'mode', className: 'text-center' },
+			{ data: 'band', className: 'text-center col-band' },
+			{ data: 'frequency', className: 'text-center col-freq' },
+			{ data: 'rst_sent', className: 'text-center' },
+			{ data: 'rst_rcvd', className: 'text-center' },
+			{ data: 'qsl_via', className: 'text-center' },
+			{ data: 'station', className: 'text-center' },
+			{ data: 'profile', className: 'text-center' },
+			{ data: 'sent_via', className: 'text-center send-method' },
+			{ data: 'previous', className: 'text-center text-nowrap', orderable: false },
+			{ data: 'actions', className: 'text-center text-nowrap', orderable: false }
+		],
+		pageLength: 25,
+		lengthMenu: [
+			[10, 25, 50, 100, -1],
+			[10, 25, 50, 100, lang_export_qslprint_pagination_all]
+		],
+		paging: 'pagination',
+		language: {
+			url: getDataTablesLanguageUrl(),
+		},
+		rowCallback: function (row, data) {
+			var checked = selectedQsos.has(qsoIdOfRow(data.DT_RowId));
+			$(row).toggleClass('activeRow', checked).find('input[name="selected_qsos[]"]').prop('checked', checked);
+		},
+		drawCallback: function () {
+			$('[data-bs-toggle="tooltip"]', this.api().table().body()).tooltip();
+			updateSelectionCount();
+		}
+	});
+
+	// The dropdown values cannot be derived from the visible page, the server
+	// sends them once with the first response
+	table.on('xhr.dt', function (e, settings, json) {
+		if (json && json.filters) {
+			buildFilterDropdowns(table, json.filters);
+		}
+	});
+
+	$('#qslprint_table tbody').on('change', 'input[name="selected_qsos[]"]', function () {
+		var $row = $(this).closest('tr');
+		var id = qsoIdOfRow($row.attr('id'));
+		if (this.checked) {
+			selectedQsos.add(id);
+		} else {
+			selectedQsos.delete(id);
+		}
+		$row.toggleClass('activeRow', this.checked);
+		updateSelectionCount();
+	});
+
+	// Selects the current page; the selection itself survives paging, sorting and filtering
+	$('#checkBoxAll').on('change', function () {
+		var checked = this.checked;
+		table.rows({ page: 'current' }).every(function () {
+			var id = qsoIdOfRow(this.data().DT_RowId);
+			if (checked) {
+				selectedQsos.add(id);
+			} else {
+				selectedQsos.delete(id);
+			}
+			$(this.node()).toggleClass('activeRow', checked).find('input[name="selected_qsos[]"]').prop('checked', checked);
+		});
+		updateSelectionCount();
+	});
+
+	switchbandandfrequencydisplay($('#frequency_or_band').val());
 }
 initQslprintTable();
+
+function qsoIdOfRow(rowId) {
+	return String(rowId).replace('qslprint_', '');
+}
+
+function buildFilterDropdowns(table, filters) {
+	// Filter dropdowns live in their own (second) header row
+	var $filterCells = $('#qslprint_table thead tr').last().find('th');
+
+	$.each(filters, function (index, options) {
+		var column = table.column(parseInt(index, 10));
+		var $cell = $filterCells.eq(parseInt(index, 10));
+		if (!$cell.length) { return; }
+
+		var select = $('<select class="form-select form-select-sm" style="width:100%;"><option value=""></option></select>')
+			.appendTo($cell.empty())
+			.on('click', function (e) { e.stopPropagation(); })	// keep dropdown clicks from re-sorting the column
+			.on('change', function () {
+				column.search($(this).val()).draw();
+			});
+
+		$.each(options, function (i, option) {
+			$('<option>').val(option.value).text(option.label).appendTo(select);
+		});
+
+		// Reflect any stateSave-restored column search back into the dropdown
+		if (column.search()) {
+			select.val(column.search());
+		}
+	});
+}
+
+function updateSelectionCount() {
+	var table = qslprintTable();
+	var rows = table.rows({ page: 'current' }).data();
+	var pageSelected = rows.length > 0;
+
+	for (var i = 0; i < rows.length; i++) {
+		if (!selectedQsos.has(qsoIdOfRow(rows[i].DT_RowId))) {
+			pageSelected = false;
+			break;
+		}
+	}
+
+	$('#checkBoxAll').prop('checked', pageSelected);
+	$('#qslprint_selected_count').text(selectedQsos.size);
+	$('#qslprint_selection').toggle(selectedQsos.size > 0);
+}
+
+function clearQslprintSelection() {
+	selectedQsos.clear();
+	$('#qslprint_table tbody tr').removeClass('activeRow').find('input[name="selected_qsos[]"]').prop('checked', false);
+	updateSelectionCount();
+}
 
 function showOqrs(id) {
 	$.ajax({
@@ -253,39 +280,17 @@ function mark_qsl_sent(id, method) {
     });
 }
 
-var target = document.body;
-var box_observer = new MutationObserver(function() {
-	$('#checkBoxAll').change(function (event) {
-		if (this.checked) {
-			$('.qslprint tbody tr').each(function (i) {
-				$(this).closest('tr').addClass('activeRow');
-				$(this).closest('tr').find("input[type=checkbox]").prop("checked", true);
-			});
-		} else {
-			$('.qslprint tbody tr').each(function (i) {
-				$(this).closest('tr').removeClass('activeRow');
-				$(this).closest('tr').find("input[type=checkbox]").prop("checked", false);
-			});
-		}
+// Drops the ids the server reported as updated and refreshes the table once
+function removeQslRows(data) {
+	$.each(data, function (k, row) {
+		selectedQsos.delete(String(row.qsoID));
 	});
-	$('.qslprint').on('click', 'input[type="checkbox"]', function() {
-		if ($(this).is(":checked")) {
-			$(this).closest('tr').addClass('activeRow');
-		} else {
-			$(this).closest('tr').removeClass('activeRow');
-		}
-	});
+	reloadQslprintTable();
+}
 
-
-});
-var config = { childList: true, subtree: true};
-box_observer.observe(target, config);
-
-
-function markSelectedQsos() {
-	var elements = $('.qslprint tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
+// Returns the current selection, or null after telling the user it is empty
+function requireSelectedQsos() {
+	if (selectedQsos.size === 0) {
 		BootstrapDialog.alert({
 			title: lang_qslprint_info,
 			message: lang_qslprint_select_at_least_one_row,
@@ -295,16 +300,17 @@ function markSelectedQsos() {
 			callback: function (result) {
 			}
 		});
+		return null;
+	}
+	return getSelectedIds();
+}
+
+function markSelectedQsos() {
+	var id_list = requireSelectedQsos();
+	if (id_list === null) {
 		return;
 	}
 	$('.markallprinted').prop("disabled", true);
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id');
-		id = id.match(/\d/g);
-		id = id.join("");
-		id_list.push(id);
-	});
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
 		type: 'post',
@@ -313,40 +319,18 @@ function markSelectedQsos() {
 			'method' : ''
 		},
 		success: function(data) {
-			if (data !== []) {
-				$.each(data, function(k, v) {
-					removeQslRow(this.qsoID);
-				});
-			}
+			removeQslRows(data);
 			$('.markallprinted').prop("disabled", false);
 		}
 	});
 }
 
 function removeSelectedQsos() {
-	var elements = $('.qslprint tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
-		BootstrapDialog.alert({
-			title: lang_qslprint_info,
-			message: lang_qslprint_select_at_least_one_row,
-			type: BootstrapDialog.TYPE_INFO,
-			closable: false,
-			draggable: false,
-			callback: function (result) {
-			}
-		});
+	var id_list = requireSelectedQsos();
+	if (id_list === null) {
 		return;
 	}
 	$('.removeall').prop("disabled", true);
-
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id');
-		id = id.match(/\d/g);
-		id = id.join("");
-		id_list.push(id);
-	});
 
 	$.ajax({
 		url: base_url + 'index.php/logbookadvanced/update_qsl',
@@ -356,40 +340,18 @@ function removeSelectedQsos() {
 			'method' : ''
 		},
 		success: function(data) {
-			if (data !== []) {
-				$.each(data, function(k, v) {
-					removeQslRow(this.qsoID);
-				});
-			}
+			removeQslRows(data);
 			$('.removeall').prop("disabled", false);
 		}
 	});
 }
 
 function exportSelectedQsos() {
-	var elements = $('.qslprint tbody input:checked');
-	var nElements = elements.length;
-	if (nElements == 0) {
-		BootstrapDialog.alert({
-			title: lang_qslprint_info,
-			message: lang_qslprint_select_at_least_one_row,
-			type: BootstrapDialog.TYPE_INFO,
-			closable: false,
-			draggable: false,
-			callback: function (result) {
-			}
-		});
+	var id_list = requireSelectedQsos();
+	if (id_list === null) {
 		return;
 	}
 	$('.exportselected').prop("disabled", true);
-
-	var id_list=[];
-	elements.each(function() {
-		let id = $(this).first().closest('tr').attr('id');
-		id = id.match(/\d/g);
-		id = id.join("");
-		id_list.push(id);
-	});
 
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -489,33 +451,12 @@ function unmarkallQSOs(){
 
 function switchbandandfrequencydisplay(mode){
 
-	//switch state according to selected value. Default case = band
-	switch(mode) {
-	case 'band':
-		bandcols = document.querySelectorAll('.col-band');
-		bandcols.forEach(cell => { cell.style.display = '';});
-		freqcols = document.querySelectorAll('.col-freq');
-		freqcols.forEach(cell => { cell.style.display = 'none';});
-		break;
-	case 'frequency':
-		bandcols = document.querySelectorAll('.col-band');
-		bandcols.forEach(cell => { cell.style.display = 'none';});
-		freqcols = document.querySelectorAll('.col-freq');
-		freqcols.forEach(cell => { cell.style.display = '';});
-		break;
-	case 'both':
-		bandcols = document.querySelectorAll('.col-band');
-		bandcols.forEach(cell => { cell.style.display = '';});
-		freqcols = document.querySelectorAll('.col-freq');
-		freqcols.forEach(cell => { cell.style.display = '';});
-		break;
-	default:
-		bandcols = document.querySelectorAll('.col-band');
-		bandcols.forEach(cell => { cell.style.display = '';});
-		freqcols = document.querySelectorAll('.col-freq');
-		freqcols.forEach(cell => { cell.style.display = 'none';});
-		break;
-	}
+	// Column visibility instead of inline styles, so it survives every redraw
+	var showBand = (mode !== 'frequency');
+	var showFreq = (mode === 'frequency' || mode === 'both');
+
+	qslprintTable().column(5).visible(showBand);	// Band
+	qslprintTable().column(6).visible(showFreq);	// Frequency
 }
 
 document.getElementById('frequency_or_band').addEventListener('change', function (event) {
@@ -594,11 +535,7 @@ function requestedQslAction(action) {
 }
 
 function getSelectedIds() {
-	let id_list = [];
-	$('#qslprint_table tbody input[name="selected_qsos[]"]:checked').each(function () {
-		id_list.push($(this).val());
-	});
-	return id_list;
+	return Array.from(selectedQsos);
 }
 
 function printSelectedQsos(printAll) {
@@ -724,9 +661,8 @@ function markQslPrinted(printAll) {
 			url: base_url + 'index.php/qslprint/qsl_printed/all',
 			type: 'get',
 			success: function () {
-				if ($.fn.dataTable.isDataTable('#qslprint_table')) {
-					$('#qslprint_table').DataTable().clear().draw();
-				}
+				clearQslprintSelection();
+				reloadQslprintTable();
 				$('#button_markprint').removeClass("running");
 			},
 			error: function () {
@@ -748,11 +684,7 @@ function markQslPrinted(printAll) {
 				'method': ''
 			},
 			success: function (data) {
-				if (data !== []) {
-					$.each(data, function (k, v) {
-						removeQslRow(this.qsoID);
-					});
-				}
+				removeQslRows(data);
 				$('#button_markprint').prop("disabled", false).removeClass("running");
 			},
 			error: function () {

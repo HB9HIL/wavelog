@@ -93,6 +93,12 @@
 						<li><button type="button" class="dropdown-item removeall" onclick="removeSelectedQsos();"><?= __("Remove selected QSOs from the queue"); ?></button></li>
 					</ul>
 				</div>
+
+				<!-- Selection survives paging, so show how much is selected -->
+				<div id="qslprint_selection" class="d-flex align-items-center" style="display: none;">
+					<span class="badge text-bg-secondary"><?= sprintf(__("%s selected"), '<span id="qslprint_selected_count">0</span>'); ?></span>
+					<button type="button" class="btn btn-sm btn-link" onclick="clearQslprintSelection();"><?= __("Clear selection"); ?></button>
+				</div>
 			</div>
 
 	    <p class="card-text"><?= __("Here you can export requested QSLs as CSV or ADIF files for printing and, optionally, mark them as sent."); ?></p>
@@ -102,10 +108,7 @@
 		</p>
 
 		<div class="resulttable">
-		<?php
-			$data2['qsos'] = $qsos;
-			$this->load->view('qslprint/qslprint', $data2);
-		?>
+		<?php $this->load->view('qslprint/qslprint'); ?>
 			</div>
 		</div>
 	</div>
