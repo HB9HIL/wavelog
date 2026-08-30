@@ -136,7 +136,7 @@ class Core
 	// Function to write the database config file
 	function write_config($data) {
 
-		$template_path 	= 'config/database.php';
+		$template_path 	= '../application/config/database.sample.php';
 		$output_path 	= $_SERVER['DOCUMENT_ROOT'] . '/' . $data['directory'] . '/application/config/database.php';
 
 		if (isset($_ENV['CI_ENV'])) {
@@ -165,10 +165,21 @@ class Core
 		}
 		log_message('info', 'database.php template file read successfully.');
 
-		$new  = str_replace("%HOSTNAME%", $this->_sanitize($data['db_hostname']), $database_file);
-		$new  = str_replace("%USERNAME%", $this->_sanitize($data['db_username']), $new);
-		$new  = str_replace("%PASSWORD%", $this->_sanitize($data['db_password'] ?? ''), $new);
-		$new  = str_replace("%DATABASE%", $this->_sanitize($data['db_name']), $new);
+		$values = array(
+			'hostname' => $data['db_hostname'],
+			'username' => $data['db_username'],
+			'password' => $data['db_password'] ?? '',
+			'database' => $data['db_name'],
+		);
+
+		$new = $database_file;
+		foreach ($values as $key => $value) {
+			$new = $this->_set_db_value($new, $key, $value);
+			if ($new === null) {
+				log_message('error', 'database.php template does not contain the key: ' . $key);
+				return false;
+			}
+		}
 		log_message('info', 'Database config file prepared successfully. Writing to file...');
 
 		// Write the new database.php file
@@ -201,7 +212,7 @@ class Core
 	// Function to write the config file
 	function write_configfile($data) {
 
-		$template_path 	= 'config/config.php';
+		$template_path 	= '../application/config/config.sample.php';
 		$output_path 	= '../application/config/config.php';
 
 		if (isset($_ENV['CI_ENV'])) {
@@ -236,44 +247,39 @@ class Core
 		// creating a unique encryption key
 		$encryptionkey = uniqid(bin2hex(random_bytes(8)), false);
 
-		$new  = str_replace("%baselocator%", strtoupper($data['userlocator']), $config_file);
-		$new  = str_replace("%websiteurl%", $this->_sanitize($data['websiteurl']), $new);
-		$new  = str_replace("%directory%", $this->_sanitize($data['directory']), $new);
-		$new  = str_replace("%callbook%", $this->_sanitize($data['global_call_lookup']), $new);
-
 		// Username/password-based providers
 		$callbooks_userpass = ['qrz', 'hamqth', 'qrzcq', 'qrzru'];
-		// Token-based providers (single "<provider>_token" placeholder)
+		// Token-based providers (single "<provider>_token" config key)
 		$callbooks_token    = ['qrzcall'];
 
 		$selected = $data['global_call_lookup'] ?? '';
 
-		// Substitute the selected provider's credentials, blank out everything else.
-		if (in_array($selected, $callbooks_userpass, true)) {
-			$c_username = '%' . $selected . '_username%';
-			$c_password = '%' . $selected . '_password%';
-			$new = str_replace($c_username, $this->_sanitize($data['callbook_username'] ?? ''), $new);
-			$new = str_replace($c_password, $this->_sanitize($data['callbook_password'] ?? ''), $new);
-		}
-		if (in_array($selected, $callbooks_token, true)) {
-			$c_token = '%' . $selected . '_token%';
-			$new = str_replace($c_token, $this->_sanitize($data['callbook_token'] ?? ''), $new);
-		}
+		$values = array(
+			'directory'      => $this->_quote($data['directory']),
+			'callbook'       => $this->_quote($selected),
+			'locator'        => $this->_quote(strtoupper($data['userlocator'])),
+			'base_url'       => $this->_quote($data['websiteurl']),
+			'log_threshold'  => (int)$data['log_threshold'],
+			'encryption_key' => $this->_quote($encryptionkey),
+		);
 
-		// Blank out all non-selected provider placeholders so the generated
-		// config has empty strings for the inactive ones.
+		// Blank out every provider, only the selected one gets credentials.
 		foreach ($callbooks_userpass as $cb) {
-			if ($cb === $selected) continue;
-			$new = str_replace('%' . $cb . '_username%', '', $new);
-			$new = str_replace('%' . $cb . '_password%', '', $new);
+			$values[$cb . '_username'] = $this->_quote($cb === $selected ? ($data['callbook_username'] ?? '') : '');
+			$values[$cb . '_password'] = $this->_quote($cb === $selected ? ($data['callbook_password'] ?? '') : '');
 		}
 		foreach ($callbooks_token as $cb) {
-			if ($cb === $selected) continue;
-			$new = str_replace('%' . $cb . '_token%', '', $new);
+			$values[$cb . '_token'] = $this->_quote($cb === $selected ? ($data['callbook_token'] ?? '') : '');
 		}
 
-		$new = str_replace("%encryptionkey%", $encryptionkey, $new);
-		$new = str_replace("'%log_threshold%'", (int)$data['log_threshold'], $new);
+		$new = $config_file;
+		foreach ($values as $key => $literal) {
+			$new = $this->_set_config_value($new, $key, $literal);
+			if ($new === null) {
+				log_message('error', 'config.php template does not contain the key: ' . $key);
+				return false;
+			}
+		}
 		log_message('info', 'Config.php file prepared successfully. Writing to file...');
 
 		// Write the new config.php file
@@ -307,5 +313,33 @@ class Core
 	private function _sanitize($value){
 		$value = str_replace('\\', '\\\\', $value ?? '');
 		return str_replace("'", "\\'", $value);
+	}
+
+	// Turn a value into a single-quoted PHP string literal
+	private function _quote($value) {
+		return "'" . $this->_sanitize($value) . "'";
+	}
+
+	// Replace the value of a $config['<key>'] assignment in config.sample.php.
+	// $literal must already be a valid PHP expression. Returns null if the key
+	// is not found exactly once.
+	private function _set_config_value($content, $key, $literal) {
+		$pattern = '/^[ \t]*\$config\[\'' . preg_quote($key, '/') . '\'\][^;]*;/m';
+		$new = preg_replace_callback($pattern, function () use ($key, $literal) {
+			return "\$config['" . $key . "'] = " . $literal . ";";
+		}, $content, 1, $count);
+
+		return ($count === 1) ? $new : null;
+	}
+
+	// Replace the value of a '<key>' => '...' entry in database.sample.php.
+	// Returns null if the key is not found exactly once.
+	private function _set_db_value($content, $key, $value) {
+		$pattern = '/^([ \t]*)\'' . preg_quote($key, '/') . '\'\s*=>\s*\'[^\']*\',/m';
+		$new = preg_replace_callback($pattern, function ($m) use ($key, $value) {
+			return $m[1] . "'" . $key . "' => " . $this->_quote($value) . ",";
+		}, $content, 1, $count);
+
+		return ($count === 1) ? $new : null;
 	}
 }

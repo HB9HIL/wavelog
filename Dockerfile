@@ -41,7 +41,7 @@ COPY --chown=wavelog:www-data ./ ./
 RUN mkdir -p ./application/config/docker \
     && chown wavelog:www-data ./application/config/docker \
     && mv ./htaccess.sample ./.htaccess \
-    && sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./install/config/config.php \
+    && sed -i "s/\$config\['index_page'\] = 'index.php';/\$config\['index_page'\] = '';/g" ./application/config/config.sample.php \
     && while read -r dir || [ -n "$dir" ]; do \
         case "$dir" in ''|'#'*) continue ;; esac; \
         chmod -R g+rw "./$dir"; \
