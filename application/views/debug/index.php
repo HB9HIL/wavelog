@@ -46,6 +46,15 @@
                             <td><a href="https://github.com/wavelog/wavelog/releases/tag/<?php echo $latest_release; ?>" target="_blank"><?php echo $latest_release."\n"; ?></a></td>
                         </tr>
                         <?php } ?>
+                        <?php
+                        // commit the docker image was built from, written at build time
+                        $build_commit = trim((string)@file_get_contents('/usr/local/share/wavelog/build-info'));
+                        if ($build_commit != "") { ?>
+                        <tr>
+                            <td><?= __("Build Commit"); ?></td>
+                            <td><?php echo htmlspecialchars(substr($build_commit, 0, 40)); ?></td>
+                        </tr>
+                        <?php } ?>
                         <tr>
                             <td><?= __("ADIF Version"); ?></td>
                             <td><?php echo $this->optionslib->get_option('adif_version'); ?>

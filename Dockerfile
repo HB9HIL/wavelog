@@ -47,6 +47,11 @@ RUN mkdir -p ./application/config/docker \
         chmod -R g+rw "./$dir"; \
     done < ./docker/writable-dirs
 
+# build metadata (injected by CI)
+ARG WAVELOG_COMMIT="local build"
+RUN mkdir -p /usr/local/share/wavelog \
+    && printf '%s\n' "$WAVELOG_COMMIT" > /usr/local/share/wavelog/build-info
+
 # Entrypoint
 RUN mv ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh \
     && chmod +x /usr/local/bin/entrypoint.sh

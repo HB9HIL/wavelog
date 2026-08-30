@@ -48,6 +48,8 @@ jobs:
       with:
         context: .
         platforms: linux/amd64
+        build-args: |
+          WAVELOG_COMMIT=${{ github.sha }}
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
 
@@ -80,6 +82,8 @@ jobs:
       with:
         context: .
         platforms: linux/arm64
+        build-args: |
+          WAVELOG_COMMIT=${{ github.sha }}
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
 
@@ -114,6 +118,8 @@ jobs:
       with:
         context: .
         platforms: linux/arm/v7
+        build-args: |
+          WAVELOG_COMMIT=${{ github.sha }}
         outputs: type=image,name=${{ env.REGISTRY }}/${{ needs.prepare.outputs.image_name }},push-by-digest=true,name-canonical=true,push=true
         labels: ${{ steps.meta.outputs.labels }}
 
