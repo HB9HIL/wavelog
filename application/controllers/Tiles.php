@@ -13,6 +13,7 @@ class Tiles extends CI_Controller {
 		$this->require_session_cookie();
 
 		if (!preg_match('#^tiles/(\d{1,2})/(\d{1,6})/(\d{1,6})\.png$#', $this->uri->uri_string(), $m)) {
+			log_message('error', 'regex doesn\'t match');
 			$this->bail(404);
 		}
 
@@ -21,6 +22,7 @@ class Tiles extends CI_Controller {
 		$y = (int) $m[3];
 
 		if ($z > 19 || $x >= (1 << $z) || $y >= (1 << $z)) {
+			log_message('error', 'coordinates doesn\'t match');
 			$this->bail(404);
 		}
 
@@ -32,9 +34,12 @@ class Tiles extends CI_Controller {
 		if ($png === false) {
 			$png = $this->fetch_upstream($upstream, $subdomains, $x, $y, $z);
 			if ($png === null) {
+				log_message('error', 'no image from upstream; this may be the error');
 				$this->bail(404);
 			}
-			MaptileCache::save($upstream, $z, $x, $y, $png);
+			if (!MaptileCache::save($upstream, $z, $x, $y, $png) {
+				log_message('error', 'cache doesn\'t work');
+			}
 		}
 
 		$this->output
@@ -48,6 +53,7 @@ class Tiles extends CI_Controller {
 	private function require_session_cookie(): void {
 		$name = $this->config->item('sess_cookie_name') ?? 'ci_session';
 		if ($this->input->cookie($name) === null) {
+			log_message('error', 'missing cookie');
 			$this->bail(404);
 		}
 	}
@@ -71,6 +77,7 @@ class Tiles extends CI_Controller {
 		$status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 		if ($body === false || $status !== 200 || (strncmp($body, "\x89PNG", 4) !== 0 && strncmp($body, "\xFF\xD8\xFF\xE0", 4) !== 0)) {
+			log_message('error', 'fetch upstream doesn\'t work');
 			return null;
 		}
 
