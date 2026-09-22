@@ -66,9 +66,11 @@ if (isset($_ENV['CI_ENV'])) {
  * MAINTENANCE MODE
  *---------------------------------------------------------------
  *
- * Only Admin's are allowed to login while this is active.
+ * Only Admins are allowed to login while this is active.
+ * Enabled by a .maintenance file in the root (path overridable via env var MAINTENANCE_FILE,
+ * e.g. a mounted ConfigMap) or by the env var MAINTENANCE_MODE=true.
  */
-define('MAINTENANCE_MODE', file_exists(__DIR__.'/.maintenance'));
+define('MAINTENANCE_MODE', file_exists(getenv('MAINTENANCE_FILE') ?: __DIR__.'/.maintenance') || filter_var(getenv('MAINTENANCE_MODE'), FILTER_VALIDATE_BOOL));
 
 /*
  *---------------------------------------------------------------
