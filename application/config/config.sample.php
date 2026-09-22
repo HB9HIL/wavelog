@@ -345,6 +345,9 @@ $config['log_threshold'] = 0;
 | Leave this BLANK unless you would like to set something other than the default
 | application/logs/ directory. Use a full server path with trailing slash.
 |
+| A PHP stream such as 'php://stderr' sends the log to the web server's error
+| output instead of files, e.g. into the container log when running in Docker.
+|
 */
 $config['log_path'] = '';
 

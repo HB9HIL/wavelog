@@ -98,6 +98,13 @@ class CI_Log {
 	protected $_enabled = TRUE;
 
 	/**
+	 * PHP stream to log to instead of files, e.g. php://stderr
+	 *
+	 * @var string|null
+	 */
+	protected $_stream;
+
+	/**
 	 * Predefined logging levels
 	 *
 	 * @var array
@@ -124,18 +131,25 @@ class CI_Log {
 
 		isset(self::$func_overload) OR self::$func_overload = (extension_loaded('mbstring') && ini_get('mbstring.func_overload'));
 
-		$this->_log_path = ($config['log_path'] !== '')
-			? rtrim($config['log_path'], '/\\').DIRECTORY_SEPARATOR : APPPATH.'logs'.DIRECTORY_SEPARATOR;
+		if (strncmp($config['log_path'], 'php://', 6) === 0)
+		{
+			$this->_stream = $config['log_path'];
+		}
+		else
+		{
+			$this->_log_path = ($config['log_path'] !== '')
+				? rtrim($config['log_path'], '/\\').DIRECTORY_SEPARATOR : APPPATH.'logs'.DIRECTORY_SEPARATOR;
+
+			file_exists($this->_log_path) OR mkdir($this->_log_path, 0755, TRUE);
+
+			if ( ! is_dir($this->_log_path) OR ! is_really_writable($this->_log_path))
+			{
+				$this->_enabled = FALSE;
+			}
+		}
 
 		$this->_file_ext = (isset($config['log_file_extension']) && $config['log_file_extension'] !== '')
 			? ltrim($config['log_file_extension'], '.') : 'php';
-
-		file_exists($this->_log_path) OR mkdir($this->_log_path, 0755, TRUE);
-
-		if ( ! is_dir($this->_log_path) OR ! is_really_writable($this->_log_path))
-		{
-			$this->_enabled = FALSE;
-		}
 
 		if (is_numeric($config['log_threshold']))
 		{
@@ -184,21 +198,29 @@ class CI_Log {
 			return FALSE;
 		}
 
-		$config =& get_config();
-		if ((isset($config['one_log'])) && ($config['one_log'])) {
-			$filepath = $this->_log_path.'log-'.str_replace(array("http://","https://","/"),"",$config['base_url']).'.'.$this->_file_ext;
-		} else {
-			$filepath = $this->_log_path.'log-'.date('Y-m-d').'.'.$this->_file_ext;
-		}
 		$message = '';
 
-		if ( ! file_exists($filepath))
+		if ($this->_stream !== NULL)
 		{
-			$newfile = TRUE;
-			// Only add protection to php files
-			if ($this->_file_ext === 'php')
+			$filepath = $this->_stream;
+		}
+		else
+		{
+			$config =& get_config();
+			if ((isset($config['one_log'])) && ($config['one_log'])) {
+				$filepath = $this->_log_path.'log-'.str_replace(array("http://","https://","/"),"",$config['base_url']).'.'.$this->_file_ext;
+			} else {
+				$filepath = $this->_log_path.'log-'.date('Y-m-d').'.'.$this->_file_ext;
+			}
+
+			if ( ! file_exists($filepath))
 			{
-				$message .= "<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>\n\n";
+				$newfile = TRUE;
+				// Only add protection to php files
+				if ($this->_file_ext === 'php')
+				{
+					$message .= "<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>\n\n";
+				}
 			}
 		}
 
