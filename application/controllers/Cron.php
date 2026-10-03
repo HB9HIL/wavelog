@@ -391,16 +391,25 @@ class cron extends CI_Controller {
 			return 0;
 		});
 
-		if ($this->config->item('cron_allow_insecure') ?? false == true) {
+		if ($this->config->item('cron_allow_insecure') ?? false) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 		}
 		$response = curl_exec($ch);
-		$error = $response === false ? curl_error($ch) : '';
+		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		if ($response === false) {
+			$error = curl_error($ch);
+			log_message('error', 'CRON: ' . $cron->id . ' failed with CURL error: ' . $error);
+		} else if ($http_code >= 300) {
+			$error = 'HTTP ' . $http_code;
+			log_message('error', 'CRON: ' . $cron->id . ' failed with HTTP code ' . $http_code . '. Response: ' . $response);
+		} else {
+			$error = '';
+		}
 
 		// invalidate the cache so the job can run next time
 		$this->cache->delete($lock_key);
 		return [
-			'success' => $response !== false,
+			'success' => $error === '',
 			'locked' => false,
 			'response' => $response,
 			'error' => $error,
