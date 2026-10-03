@@ -92,7 +92,7 @@ class API_Model extends CI_Model {
 	}
 
 	// Generate API Key
-	function generate_key($rights, $creator = NULL) {
+	function generate_key($rights, $creator = NULL, $description = NULL) {
 
 		// Generate Unique Key
 		$data['key'] = "wl" . substr(md5(uniqid(rand(), true)), 19);
@@ -103,6 +103,9 @@ class API_Model extends CI_Model {
 
 		$data['user_id'] = $this->session->userdata('user_id');
 		$data['created_by'] = $creator != NULL ? $creator : $this->session->userdata('user_id');
+		if ($description !== NULL) {
+			$data['description'] = xss_clean($description);
+		}
 
 
 		if ($this->db->insert('api', $data)) {

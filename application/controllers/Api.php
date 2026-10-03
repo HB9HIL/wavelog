@@ -130,13 +130,18 @@ class API extends CI_Controller {
 
 		$this->load->model('api_model');
 
-		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1 && !($this->input->post('club_key', true) == '1' && clubaccess_check(9))) {
-			$creator = $this->session->userdata('source_uid');
-		} else {
-			$creator = $this->session->userdata('user_id');
+		$creator = $this->session->userdata('user_id');
+		$description = null;
+		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1) {
+			// Shared club key: officers can issue keys owned by the clubstation itself (e.g. shack radios)
+			if ($this->input->post('club_key', true) == '1' && clubaccess_check(9)) {
+				$description = 'Shared Key created by ' . $this->session->userdata('cd_src_call');
+			} else {
+				$creator = $this->session->userdata('source_uid');
+			}
 		}
 
-		if ($this->api_model->generate_key($rights, $creator)) {
+		if ($this->api_model->generate_key($rights, $creator, $description)) {
 			$this->session->set_flashdata('success', __("API Key generated"));
 		} else {
 			$this->session->set_flashdata('error', __("API Key could not be generated"));
