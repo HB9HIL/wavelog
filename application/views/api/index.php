@@ -41,18 +41,10 @@
 					<tbody>
 						<?php foreach ($api_keys->result() as $row) { ?>
 							<tr>
-								<?php if ($clubmode && $row->user_callsign !== ($this->session->userdata('cd_src_call') ?: $this->session->userdata('user_callsign'))) {
-									$api_key = substr($row->key, 0, 2) . str_repeat('*', strlen($row->key) - 6) . substr($row->key, -4);
-									$masked = true;
-								} else {
-									$api_key = $row->key;
-									$masked = false;
-								} ?>
+								<?php $api_key = $row->key; ?>
 								<td>
 									<i class="fas fa-key"></i> <span class="api-key" id="<?php echo html_escape($api_key); ?>"><?php echo html_escape($api_key); ?></span>
-									<?php if (!$masked) { ?>
 									<span data-bs-toggle="tooltip" title="<?= __("Copy to clipboard"); ?>" data-apikey="<?php echo html_escape($api_key); ?>" onclick="copyApiKey(this.dataset.apikey)"><i class="copy-icon fas fa-copy"></i></span>
-									<?php } ?>
 								</td>
 								<td><?php echo html_escape($row->description ?? ''); ?></td>
 								<td><?php echo html_escape($row->last_used ?? ''); ?></td>
@@ -70,21 +62,19 @@
 								</td>
 								<td><span class="badge rounded-pill text-bg-success"><?php echo html_escape(ucfirst($row->status ?? '')); ?></span></td>
 								<td>
-									<?php if (!$masked) { ?>
-										<a href="<?php echo site_url('api/edit'); ?>/<?php echo html_escape(rawurlencode($api_key)); ?>" class="btn btn-outline-primary btn-sm"><?= __("Edit"); ?></a>
+									<a href="<?php echo site_url('api/edit'); ?>/<?php echo html_escape(rawurlencode($api_key)); ?>" class="btn btn-outline-primary btn-sm"><?= __("Edit"); ?></a>
 
-										<a href="<?php echo html_escape(site_url('api/auth/' . rawurlencode($api_key))); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
+									<a href="<?php echo html_escape(site_url('api/auth/' . rawurlencode($api_key))); ?>" target="_blank" class="btn btn-primary btn-sm"><?= __("Test"); ?></a>
 
-										<?php
-											$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '"' . ($row->description ?: __("<noname>")) . '"');
-										?>
-										<form method="post" action="<?php echo site_url('api/delete'); ?>" style="display:inline;">
-											<input type="hidden" name="key" value="<?php echo html_escape($api_key); ?>">
-											<button type="submit" class="btn btn-danger btn-sm" data-confirm="<?php echo html_escape($cfnm_delete); ?>">
-												<?= __("Delete"); ?>
-											</button>
-										</form>
-									<?php } ?>
+									<?php
+										$cfnm_delete = sprintf(__("Are you sure you want delete the API Key %s?"), '"' . ($row->description ?: __("<noname>")) . '"');
+									?>
+									<form method="post" action="<?php echo site_url('api/delete'); ?>" style="display:inline;">
+										<input type="hidden" name="id" value="<?php echo (int) $row->id; ?>">
+										<button type="submit" class="btn btn-danger btn-sm" data-confirm="<?php echo html_escape($cfnm_delete); ?>">
+											<?= __("Delete"); ?>
+										</button>
+									</form>
 								</td>
 
 							</tr>

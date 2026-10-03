@@ -154,8 +154,8 @@ class API extends CI_Controller {
 
 		if(!$this->user_model->authorize(3)) { $this->session->set_flashdata('error', __("You're not allowed to do that!")); redirect('dashboard'); }
 
-		$key = $this->input->post('key', TRUE);
-		if (empty($key)) {
+		$id = $this->input->post('id', TRUE);
+		if (empty($id) || !is_numeric($id)) {
 			$this->session->set_flashdata('error', __("Invalid API Key"));
 			redirect('api');
 			return;
@@ -163,9 +163,9 @@ class API extends CI_Controller {
 
 		$this->load->model('api_model');
 
-		$this->api_model->delete_key($key);
+		$this->api_model->delete_key($id);
 
-		$this->session->set_flashdata('notice', sprintf(__("API Key %s has been deleted"), "<b>" . htmlspecialchars($key, ENT_QUOTES, 'UTF-8') . "</b>" ));
+		$this->session->set_flashdata('notice', __("API Key has been deleted"));
 
 		redirect('api');
 	}

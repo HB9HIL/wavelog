@@ -45,6 +45,9 @@ class API_Model extends CI_Model {
 	function key_description($key = '') {
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->where('key', $key);
+		if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+			$this->db->where('created_by', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+		}
 		$query = $this->db->get('api');
 
 		return $query->result_array()[0];
@@ -72,13 +75,19 @@ class API_Model extends CI_Model {
 
 		$this->db->where('key', xss_clean($key));
 		$this->db->where('user_id', $this->session->userdata('user_id'));
+		if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+			$this->db->where('created_by', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+		}
 		$this->db->update('api', xss_clean($data));
 	}
 
 
-	function delete_key($key = '') {
+	function delete_key($id) {
+		$this->db->where('id', (int) $id);
 		$this->db->where('user_id', $this->session->userdata('user_id'));
-		$this->db->where('key', xss_clean($key));
+		if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
+			$this->db->where('created_by', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+		}
 		$this->db->delete('api');
 	}
 
