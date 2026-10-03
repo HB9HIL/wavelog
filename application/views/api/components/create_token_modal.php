@@ -28,6 +28,13 @@
 							</div>
 						</div>
 					</div>
+					<?php if ($clubmode && clubaccess_check(9)) { ?>
+						<div class="form-check mb-2">
+							<input class="form-check-input" type="checkbox" name="club_key" value="1" id="clubToken">
+							<label class="form-check-label" for="clubToken"><?= __("Shared club token (e.g. for shack radios)"); ?></label>
+							<small class="text-muted d-block"><?= __("If you activate this option, the generated API token will belong to the clubstation instead of you. Radios connected with it are visible to all members. It has full access to the club logbook and the operator has to be provided by the logging software."); ?></small>
+						</div>
+					<?php } ?>
 					<hr class="my-4">
 					<div class="row g-4 mb-2">
 						<div class="col-md-7">

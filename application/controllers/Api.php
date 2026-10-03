@@ -130,7 +130,7 @@ class API extends CI_Controller {
 
 		$this->load->model('api_model');
 
-		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1) {
+		if ($this->session->userdata('clubstation') == 1 && $this->session->userdata('impersonate') == 1 && !($this->input->post('club_key', true) == '1' && clubaccess_check(9))) {
 			$creator = $this->session->userdata('source_uid');
 		} else {
 			$creator = $this->session->userdata('user_id');

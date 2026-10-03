@@ -97,20 +97,21 @@
 				<p><?= __("You have no API Keys."); ?></p>
 			<?php } ?>
 
-			<p>
-				<form method="post" action="<?php echo site_url('api/generate'); ?>" style="display:inline;">
-					<input type="hidden" name="rights" value="rw">
-					<button type="submit" class="btn btn-primary">
-						<i class="fas fa-plus"></i> <?= __("Create a read & write key"); ?>
-					</button>
-				</form>
-				<form method="post" action="<?php echo site_url('api/generate'); ?>" style="display:inline;">
-					<input type="hidden" name="rights" value="r">
-					<button type="submit" class="btn btn-primary">
-						<i class="fas fa-plus"></i> <?= __("Create a read-only key"); ?>
-					</button>
-				</form>
-			</p>
+			<form method="post" action="<?php echo site_url('api/generate'); ?>">
+				<?php if ($clubmode && clubaccess_check(9)) { ?>
+					<div class="form-check mb-2">
+						<input class="form-check-input" type="checkbox" name="club_key" value="1" id="clubKey">
+						<label class="form-check-label" for="clubKey"><?= __("Shared club key (e.g. for shack radios)"); ?></label>
+						<small class="text-muted d-block"><?= __("If you activate this option, the generated API key will belong to the clubstation instead of you. Radios connected with it are visible to all members. It has full access to the club logbook and the operator has to be provided by the logging software."); ?></small>
+					</div>
+				<?php } ?>
+				<button type="submit" name="rights" value="rw" class="btn btn-primary">
+					<i class="fas fa-plus"></i> <?= __("Create a read & write key"); ?>
+				</button>
+				<button type="submit" name="rights" value="r" class="btn btn-primary">
+					<i class="fas fa-plus"></i> <?= __("Create a read-only key"); ?>
+				</button>
+			</form>
 
 		</div>
 	</div>

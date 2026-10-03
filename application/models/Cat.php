@@ -362,7 +362,8 @@
 		 * All radios of the logged-in user.
 		 *
 		 * Clubstation scope: members below officer level only see the radios
-		 * they registered themselves (source_uid). On a direct club login
+		 * they registered themselves (source_uid) plus the shared radios of the
+		 * club account itself (shared club keys). On a direct club login
 		 * (club_direct, no source_uid) only radios of the club account itself.
 		 *
 		 * @return object CI query result of cat rows.
@@ -371,7 +372,7 @@
 			//$this->db->where('radio', $result['radio']);
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+				$this->db->where_in('operator', [$this->session->userdata('source_uid') ?: $this->session->userdata('user_id'), $this->session->userdata('user_id')]);
 			}
 			$query = $this->db->get('cat');
 
@@ -387,7 +388,7 @@
 		function recent_status() {
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+				$this->db->where_in('operator', [$this->session->userdata('source_uid') ?: $this->session->userdata('user_id'), $this->session->userdata('user_id')]);
 			}
 			$this->db->where("timestamp > date_sub(UTC_TIMESTAMP(), interval 15 minute)", NULL, FALSE);
 
@@ -405,7 +406,7 @@
 			$this->db->select('id, radio');
 			$this->db->where('user_id', $this->session->userdata('user_id'));
 			if ($only_operator && ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9))) {
-				$this->db->where('operator', $this->session->userdata('source_uid') ?: $this->session->userdata('user_id'));
+				$this->db->where_in('operator', [$this->session->userdata('source_uid') ?: $this->session->userdata('user_id'), $this->session->userdata('user_id')]);
 			}
 			$query = $this->db->get('cat');
 
@@ -424,8 +425,9 @@
 			$binding[] = $id;
 			$binding[] = $this->session->userdata('user_id');
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$sql .= ' AND operator = ?';
+				$sql .= ' AND operator IN (?, ?)';
 				$binding[] = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
+				$binding[] = $this->session->userdata('user_id');
 			}
 			return $this->db->query($sql, $binding);
 		}
@@ -441,8 +443,9 @@
 			$sql = 'SELECT * FROM cat WHERE user_id = ?';
 			$binding[] = $this->session->userdata('user_id');
 			if ($this->session->userdata('clubstation') == 1 && !clubaccess_check(9)) {
-				$sql .= ' AND operator = ?';
+				$sql .= ' AND operator IN (?, ?)';
 				$binding[] = $this->session->userdata('source_uid') ?: $this->session->userdata('user_id');
+				$binding[] = $this->session->userdata('user_id');
 			}
 			$sql .= ' ORDER BY timestamp DESC LIMIT 1';
 			return $this->db->query($sql, $binding);
